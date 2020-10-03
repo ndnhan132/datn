@@ -15,10 +15,20 @@ class CreateTeachersTable extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('email');
+            $table->string('password');
+            $table->string('address');
+            $table->string('phone');
+            $table->boolean('is_male')->nullable();
+            $table->string('identity_card');
+            $table->string('university');
+            $table->string('speciality');
+            $table->enum('level', ['student', 'teacher', 'docter', 'master'])->nullable();
             $table->timestamp('last_modified')->nullable();
             $table->integer('price');
             $table->integer('fee');
-            $table->string('data1')->nullable();
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }

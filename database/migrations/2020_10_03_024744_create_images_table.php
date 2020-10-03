@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRegistrationStatusesTable extends Migration
+class CreateImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateRegistrationStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('registration_statuses', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('display_name');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ class CreateRegistrationStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('registration_statuses');
+        Schema::dropIfExists('images');
     }
 }
