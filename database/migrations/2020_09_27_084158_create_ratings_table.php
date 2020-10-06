@@ -16,6 +16,7 @@ class CreateRatingsTable extends Migration
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('teacher_id')->constrained()->onDelete('cascade');
+            $table->string('assessor');
             $table->integer('voice');
             $table->integer('qualification');
             $table->integer('teaching_method');

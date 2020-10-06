@@ -128,6 +128,7 @@ class DatabaseSeeder extends Seeder
 
         foreach (range(0, 10) as $index) {
             DB::table('courses')->insert([
+                'code' => $faker->numberBetween($min = 00000, $max = 99999),
                 'subject_id' => $faker->randomElement($subjects->pluck('id')->toArray()),
                 'course_level_id' => $faker->randomElement($courseLevels->pluck('id')->toArray()),
                 'fullname' => $faker->name,
@@ -139,7 +140,7 @@ class DatabaseSeeder extends Seeder
                 'time_per_session' => $faker->randomElement($array = array ('60', '90','120')),
                 'num_of_student' => $faker->numberBetween($min = 1, $max = 3),
                 'tuition_per_month' => $faker->numberBetween($min = 1000, $max = 3000) . '000',
-                'other_requirement' => $faker->text(200),
+                'other_requirement' => $faker->text(70),
             ]);
         }
 
