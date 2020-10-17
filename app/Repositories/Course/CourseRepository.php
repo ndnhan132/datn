@@ -19,4 +19,12 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
                            ->offset(0)
                            ->get();
     }
+
+    public function pagination($startFrom, $recordPerPage)
+    {
+        return $this->model->orderBy('id', 'DESC')
+                    ->offset($startFrom)
+                    ->limit($recordPerPage)
+                    ->get();
+    }
 }

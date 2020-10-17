@@ -58,7 +58,7 @@ class DatabaseSeeder extends Seeder
             'fee' => $faker->numberBetween($min = 10, $max = 50),
             'is_active' => $faker->randomElement($array = array ('0','1')),
         ]);
-        foreach (range(0, 10) as $index) {
+        foreach (range(0, 30) as $index) {
             DB::table('teachers')->insert([
                 'name' => $faker->name,
                 'email' => $faker->freeEmail,
@@ -126,8 +126,9 @@ class DatabaseSeeder extends Seeder
         $subjects = DB::table('subjects')->get();
         $courseLevels = DB::table('course_levels')->get();
 
-        foreach (range(0, 10) as $index) {
+        foreach (range(0, 30) as $index) {
             DB::table('courses')->insert([
+                'confirmed' => $faker->randomElement($array = array (true, false)),
                 'code' => $faker->numberBetween($min = 00000, $max = 99999),
                 'subject_id' => $faker->randomElement($subjects->pluck('id')->toArray()),
                 'course_level_id' => $faker->randomElement($courseLevels->pluck('id')->toArray()),

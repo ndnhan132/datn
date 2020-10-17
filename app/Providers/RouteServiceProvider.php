@@ -51,7 +51,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace('App\\Http\\Controllers\\Front')
                 ->group(base_path('routes/front.php'));
             Route::middleware('web')
-                ->prefix('/admin')
+                ->prefix('/quan-ly')
                 ->namespace('App\\Http\\Controllers\\Admin')
                 ->group(base_path('routes/admin.php'));
         });

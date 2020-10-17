@@ -1,0 +1,106 @@
+@import "scss-src/general";
+// @import "scss-src/fa";
+@import "scss-src/color-primary";
+.app-content{
+    // padding: 30px 20px;
+    .app-title{
+        padding: 12px 20px;
+        margin-bottom: 20px;
+        h1{
+            font-size: 1.3rem;
+        }
+    }
+    .tile{
+        padding: 10px;
+        margin-bottom: 1rem;
+        .tile-title{
+            background: #0283c8 url(../images/title.png) no-repeat right top;
+            background-size: auto 100%;
+            color: white;
+            text-transform: uppercase;
+            font-weight: normal;
+            font-size: 1.2rem;
+            padding: 10px;
+            margin:-10px -10px 15px;
+        }
+        thead {
+            tr th{
+                border-top: none;
+                // border-bottom: none;
+            }
+            th:first-child{
+                border-left: 0;
+            }
+            th:last-of-type{
+                border-right-color: crimson;
+                // border-right-width: 0px;
+            }
+
+            tr{
+            background: #0283c8 url(../images/title.png);
+            // background-size: auto 100%;
+            background-size: 100%;
+            background-position: right;
+            background-repeat: no-repeat;
+            color: white;
+            text-transform: uppercase;
+            font-weight: normal;
+            }
+            th{
+                white-space: nowrap;
+                text-align: center;
+                font-weight: normal;
+            }
+        }
+        td{
+            display: table-cell;
+            vertical-align: middle;
+
+        }
+    }
+    .label-status{
+        // background-color: #c40909;
+        // border: 5px solid #de0f0f;
+        border: 0.2rem solid;
+        color: #fff;
+        text-align: center;
+        border-radius: 2px;
+        padding: 0.15rem 0.35rem;
+        // border-radius: 0.25rem;
+    }
+    .label-status-success{
+        @extend .label-status;
+        background-color: #51cf66;
+        border-color: #40c057;
+    }
+    .label-status-secondary{
+        @extend .label-status;
+        background-color: #868e96;
+        border-color: #ced4da;
+    }
+    .btn-sm{
+        border-radius: 2px;
+        padding: 0.15rem 0.45rem;
+    }
+    .pagination-wrapper{
+        width: 100%;
+        .page-item .page-link{
+            padding: 0.35rem 0.55rem;
+            border-radius: 0;
+            border: 1px solid #dee2e6;
+        }
+    }
+
+}
+
+#content-table{
+    table{
+        margin-bottom: 0;
+        th{
+            padding: 0.5rem;
+        }
+        td{
+            padding: 0.25rem;
+        }
+    }
+}
