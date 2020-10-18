@@ -162,6 +162,13 @@ a.text-primary:focus {
   background-color: #0283c8;
   color: #fff; }
 
+.select-disable {
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none; }
+
 .app-content .app-title {
   padding: 12px 20px;
   margin-bottom: 20px; }
@@ -200,18 +207,35 @@ a.text-primary:focus {
   .app-content .tile td {
     display: table-cell;
     vertical-align: middle; }
-.app-content .label-status, .app-content .label-status-success, .app-content .label-status-secondary {
+.app-content .label-status, .app-content .label-status-success, .app-content .label-status-secondary, .app-content .label-status-warning, .app-content .label-status-info {
   border: 0.2rem solid;
   color: #fff;
   text-align: center;
   border-radius: 2px;
-  padding: 0.15rem 0.35rem; }
+  padding: 0.15rem 0.15rem;
+  display: inline-block;
+  min-width: 80px;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none; }
 .app-content .label-status-success {
   background-color: #51cf66;
-  border-color: #40c057; }
+  border-color: #8ce99a; }
 .app-content .label-status-secondary {
   background-color: #868e96;
   border-color: #ced4da; }
+.app-content .label-status-warning {
+  background-color: #ffd43b;
+  border-color: #fcc419; }
+.app-content .label-status-info {
+  background-color: #4dabf7;
+  border-color: #74c0fc; }
+.app-content .label-status-info:hover,
+.app-content .label-status-info:focus {
+  background-color: #1c7ed6;
+  border-color: #1c7ed6; }
 .app-content .btn-sm {
   border-radius: 2px;
   padding: 0.15rem 0.45rem; }
@@ -221,6 +245,12 @@ a.text-primary:focus {
     padding: 0.35rem 0.55rem;
     border-radius: 0;
     border: 1px solid #dee2e6; }
+.app-content .modal-custom .modal-header {
+  background: #0283c8 url(../images/title.png) no-repeat right top;
+  background-size: auto 100%; }
+.app-content .modal-custom .modal-body {
+  max-height: calc(80vh);
+  overflow-x: auto; }
 
 #content-table table {
   margin-bottom: 0; }

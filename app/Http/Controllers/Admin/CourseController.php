@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Course\CourseRepositoryInterface;
+use Illuminate\Support\Facades\Log;
 
 class CourseController extends Controller
 {
@@ -38,5 +39,39 @@ class CourseController extends Controller
         }
 
         return view('admin.course.index-table', compact(['courses', 'max', 'page']));
+    }
+    public function ajaxShow(Request $request, $courseId)
+    {
+        Log::info(__FILE__ . __CLASS__ . __FUNCTION__);
+        if($courseId){
+            $course = $this->courseRepository->find($courseId);
+            if($course) {
+                $html = view('admin.course.detail', compact(['course']));
+                $html = strval($html);
+                $html = trim($html);
+
+                return response()->json(array(
+                    'success' => 'true',
+                    'data'    => null,
+                    'html'    => $html,
+                ));
+            }
+        }
+
+        return response()->json(array('success' => 'false'));
+    }
+
+    public function ajaxConfirm(Request $request)
+    {
+        Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~~' . __METHOD__);
+        $courseId = ($request['courseId']) ? $request['courseId'] : '';
+        $isConfirmed = (isset($request['isConfirmed'])) ? $request['isConfirmed'] : '';
+        if($courseId != '' && in_array($isConfirmed, array('0', '1'))) {
+            return response()->json(array(
+                'success' => $this->courseRepository->confirm($courseId, $isConfirmed)
+            ));
+        }
+
+        return response()->json(array('success' => 'false'));
     }
 }

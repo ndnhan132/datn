@@ -27,4 +27,13 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
                     ->limit($recordPerPage)
                     ->get();
     }
+
+    public function confirm($courseId, $isConfirmed)
+    {
+        $course = $this->model->find($courseId);
+        $course->confirmed = $isConfirmed;
+        return $course->save();
+    }
+
+
 }

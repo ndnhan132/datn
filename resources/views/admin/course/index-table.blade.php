@@ -10,24 +10,26 @@
                         <th>mã số</th>
                         <th>Người gửi</th>
                         <th>tg đăng ký</th>
-                        <th>Duyệt</th>
                         <th>Yêu cầu</th>
+                        <th>Duyệt</th>
                         <th>Tình trạng</th>
-                        <th>Tác vụ</th>
+                        {{-- <th>Tác vụ</th> --}}
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($courses as $course)
-                    {{ \Debugbar::debug($course) }}
                     <tr>
-                        <td>
+                        <td class="text-center">
                             <span>{{ $course->code }}</span>
                         </td>
                         <td>
                             <span>{{ $course->fullname }}</span>
                         </td>
                         <td class="text-center">
-                            <span>{{ $course->created_at ?? '--/--/--' }}</span>
+                            <span>{{ $course->created_at ?? '--/--/-- --:--' }}</span>
+                        </td>
+                        <td class="text-center">
+                            <span class="btn btn-sm btn-info- course-btn-detail label-status-info" data-course-id="{{ $course->id }}">Chi tiết</span>
                         </td>
                         <td class="text-white text-center text-capitalize">
                             @if (!isset($course->confirmed))
@@ -41,21 +43,21 @@
                                 đạt</span>
                             @endif
                         </td>
+
                         <td class="text-center">
-                            <span class="btn btn-sm btn-info">Chi
-                                tiết</span>
-                        </td>
-                        <td>
                             @if ($course->confirmed)
                             <span class="label-status-success">Đã nhận</span>
+                            @else
+                            <span class="label-status-secondary">Chờ</span>
                             @endif
                         </td>
-                        <td>
+                        {{-- <td>
                             <div class="d-flex justify-content-center">
                                 <button class="btn btn-sm btn-warning text-white btn-edit" data-id="{{ $course->id }}">Edit</button>
-                                <button class="btn btn-sm btn-danger text-white ml-2 btn-delete" data-id="{{ $course->id }}">Del</button>
+                                <button class="btn btn-sm btn-danger text-white ml-2 btn-delete" data-id="{{ $course->id }}"><i class="fa fa-trash"></i>
+                                </button>
                             </div>
-                        </td>
+                        </td> --}}
                     </tr>
                     @endforeach
                 </tbody>

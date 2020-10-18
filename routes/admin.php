@@ -15,4 +15,6 @@ Route::name('admin.')->group(function(){
     // dk tim gia su
     Route::get('/khoa-hoc', 'CourseController@index')->name('course.index');
     Route::get('/khoa-hoc/ajax/index', 'CourseController@ajaxGetTableContent');
+    Route::get('/khoa-hoc/ajax/show/{courseId}', 'CourseController@ajaxShow');
+    Route::post('/khoa-hoc/ajax/confirm', 'CourseController@ajaxConfirm');
 });
