@@ -186,27 +186,6 @@ a.text-primary:focus {
     font-size: 1.2rem;
     padding: 10px;
     margin: -10px -10px 15px; }
-  .app-content .tile thead tr th {
-    border-top: none; }
-  .app-content .tile thead th:first-child {
-    border-left: 0; }
-  .app-content .tile thead th:last-of-type {
-    border-right-color: crimson; }
-  .app-content .tile thead tr {
-    background: #0283c8 url(../images/title.png);
-    background-size: 100%;
-    background-position: right;
-    background-repeat: no-repeat;
-    color: white;
-    text-transform: uppercase;
-    font-weight: normal; }
-  .app-content .tile thead th {
-    white-space: nowrap;
-    text-align: center;
-    font-weight: normal; }
-  .app-content .tile td {
-    display: table-cell;
-    vertical-align: middle; }
 .app-content .label-status, .app-content .label-status-success, .app-content .label-status-secondary, .app-content .label-status-warning, .app-content .label-status-danger, .app-content .label-status-info {
   border: 0.2rem solid;
   color: #fff;
@@ -254,12 +233,56 @@ a.text-primary:focus {
 .app-content .modal-custom .modal-body {
   max-height: calc(80vh);
   overflow-x: auto; }
+.app-content thead tr th {
+  border-top: none; }
+.app-content thead th:first-child {
+  border-left: 0; }
+.app-content thead th:last-of-type {
+  border-right-color: crimson; }
+.app-content thead tr {
+  background: #0283c8 url(../images/title.png);
+  background-size: 100%;
+  background-position: right;
+  background-repeat: no-repeat;
+  color: white;
+  text-transform: uppercase;
+  font-weight: normal; }
+.app-content thead th {
+  white-space: nowrap;
+  text-align: center;
+  font-weight: normal; }
+.app-content td {
+  display: table-cell;
+  vertical-align: middle; }
 
-#content-table table {
+#content-table table, .modal table {
   margin-bottom: 0; }
-  #content-table table th {
+  #content-table table th, .modal table th {
     padding: 0.5rem; }
-  #content-table table td {
+  #content-table table td, .modal table td {
     padding: 0.25rem; }
+
+.notification {
+  position: relative; }
+  .notification .count {
+    position: absolute;
+    right: -12px;
+    top: -15px;
+    color: white;
+    opacity: 0.7;
+    background: #ff2c74;
+    font-size: 12px;
+    line-height: 23px;
+    font-weight: normal;
+    height: 23px;
+    width: 23px;
+    padding: 2px 5px;
+    border-radius: 50%;
+    font-family: sans-serif;
+    text-align: center; }
+
+.notification:hover .count {
+  opacity: 1;
+  background: red; }
 
 /*# sourceMappingURL=stylesheet.css.map */

@@ -27,9 +27,9 @@
 	  </div>
 </div>
 
-<div class="modal fade modal-custom" id="js-modal-course-detail" tabindex="-1"
+<div class="modal fade modal-custom" id="js-modal-course-registration-compare" tabindex="-1"
 	role="dialog">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content rounded-0">
 			<div class="modal-header py-2 border-bottom-0 bg-primary rounded-0">
 				<h5 class="modal-title text-white" id="exampleModalLabel"><i class="fa fa-info-circle"></i> Chi tiết</h5>

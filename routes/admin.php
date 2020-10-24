@@ -18,6 +18,8 @@ Route::name('admin.')->group(function(){
         Route::prefix('/ajax')->group(function(){
             Route::get('/index', 'TeacherCourseRegistrationController@ajaxGetTableContent');
             Route::get('/get-teacher-registration/{courseId}', 'TeacherCourseRegistrationController@ajaxGetTeacherRegistration');
+            Route::get('/compare/{registrationId}', 'TeacherCourseRegistrationController@ajaxGetCompare');
+            Route::post('/confirm-status', 'TeacherCourseRegistrationController@ajaxConfirmStatus');
         });
     });
     // dk tim gia su

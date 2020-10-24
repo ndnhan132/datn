@@ -24,11 +24,12 @@ class CreateTeachersTable extends Migration
             $table->string('identity_card');
             $table->string('university');
             $table->string('speciality');
-            $table->enum('level', ['student', 'teacher', 'docter', 'master'])->nullable();
+            $table->foreignId('teacher_level_id')->nullable()->constrained()->onDelete('set null');
             $table->timestamp('last_modified')->nullable();
             $table->integer('price');
             $table->integer('fee');
             $table->boolean('is_active')->default(false);
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

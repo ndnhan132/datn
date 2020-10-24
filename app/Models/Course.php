@@ -27,6 +27,18 @@ class Course extends Model
         return $this->teacherCourseRegistrations->where('registration_status_id', \App\Models\RegistrationStatus::RECEIVED_ID)->first();
     }
 
+    /**
+     * @Author: Nhan Nguyen Dinh
+     * @Date: 2020-10-24 22:06:27  *
+     * @Desc:
+     * @Return: model giao vien nhan lop hoac null
+     */
+
+    public function countWait()
+    {
+        return $this->teacherCourseRegistrations->where('registration_status_id', \App\Models\RegistrationStatus::PENDING_ID)->count();
+    }
+
     //* #define Relationships
     public function subject()
     {
@@ -41,5 +53,15 @@ class Course extends Model
     public function teacherCourseRegistrations()
     {
         return $this->hasMany('App\Models\TeacherCourseRegistration');
+    }
+
+    public function courseLevel()
+    {
+        return $this->belongsTo('App\Models\CourseLevel');
+    }
+
+    public function TeacherLevel()
+    {
+        return $this->belongsTo('App\Models\TeacherLevel');
     }
 }

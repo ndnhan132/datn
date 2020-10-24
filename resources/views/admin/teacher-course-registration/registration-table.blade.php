@@ -10,7 +10,7 @@
                         <th>Yêu cầu</th>
                         <th>Duyệt</th>
                         <th>Tình trạng</th>
-                        <th>Đăng ký</th>
+                        <th>Tổng Đăng ký</th>
                         <th>Tác vụ</th>
                     </tr>
                 </thead>
@@ -38,7 +38,7 @@
                             @if ($record->isReceived())
                             <span class="label-status-success">Đã nhận</span>
                             @elseif ($record->isPendding())
-                            <span class="label-status-warning">Đang chờ</span>
+                            <span class="label-status-warning">Chưa Kiểm tra</span>
                             @elseif ($record->isEligible())
                             <span class="label-status-info">Đủ điều kiên</span>
                             @else
@@ -64,31 +64,3 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $(document).on('click', '.teacher-course-registration .registration-btn-compare', function(){
-        var registrationId = ($(this).data('registration-id')) ? $(this).data('registration-id') : '';
-        if(courseId != '' && [0, 1].includes(isConfirmed)) {
-            $.ajax({
-                url: '/quan-ly/khoa-hoc/ajax/confirm',
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    isConfirmed: isConfirmed,
-                    courseId: courseId,
-                },
-            })
-            .done(function(data) {
-                console.log(data);
-                $(document).find('.btn-modal-dismiss').click();
-                $(document).find('.btn-table-reload').click();
-            })
-            .fail(function(jqXHR, textStatus, errorThrown) {
-                console.log("error");
-            })
-            .always(function() {
-            });
-        } else {
-            $(document).find('.btn-modal-dismiss').click();
-        }
-    });
-</script>

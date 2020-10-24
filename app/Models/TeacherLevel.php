@@ -5,13 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CourseLevel extends Model
+class TeacherLevel extends Model
 {
     use HasFactory;
 
-    // *#define Relationships
+    //* #define Relationships
     public function courses()
     {
         return $this->hasMany('App\Models\Courses');
+    }
+
+    public function teachers()
+    {
+        return $this->hasMany('App\Models\Teachers');
     }
 }

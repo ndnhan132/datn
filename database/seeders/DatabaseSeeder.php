@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         DB::table('teacher_course_registrations')->truncate();
         DB::table('images')->truncate();
         DB::table('image_types')->truncate();
+        DB::table('teacher_levels')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $faker = \Faker\Factory::create();
@@ -43,6 +44,14 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
+        $teacherLevels = array('Học sinh','Sinh viên chưa ra trường', 'Sinh viên đã ra trường', 'Giáo viên', 'Giảng viên đại học');
+        foreach($teacherLevels as $lv) {
+            DB::table('teacher_levels')->insert([
+                'display_name' => $lv,
+                ]);
+        }
+        unset($teacherLevels);
+        $teacherLevels = DB::table('teacher_levels')->get();
         DB::table('teachers')->insert([
             'name' => $faker->name,
             'email' => 'testteacher@gmail.com',
@@ -53,7 +62,7 @@ class DatabaseSeeder extends Seeder
             'identity_card' => $faker->numberBetween($min = 1000, $max = 9000) * $faker->numberBetween($min = 1000, $max = 9000),
             'university' =>$faker->name,
             'speciality' => $faker->name,
-            'level' => $faker->randomElement($array = array ('student', 'teacher', 'docter', 'master')),
+            'teacher_level_id' =>$faker->randomElement($teacherLevels->pluck('id')->toArray()),
             'price' => $faker->numberBetween($min = 10, $max = 90) . '000000',
             'fee' => $faker->numberBetween($min = 10, $max = 50),
             'is_active' => $faker->randomElement($array = array ('0','1')),
@@ -69,7 +78,7 @@ class DatabaseSeeder extends Seeder
                 'identity_card' => $faker->numberBetween($min = 1000, $max = 9000) * $faker->numberBetween($min = 1000, $max = 9000),
                 'university' =>$faker->name,
                 'speciality' => $faker->name,
-                'level' => $faker->randomElement($array = array ('student', 'teacher', 'docter', 'master')),
+                'teacher_level_id' =>$faker->randomElement($teacherLevels->pluck('id')->toArray()),
                 'price' => $faker->numberBetween($min = 10, $max = 90) . '000000',
                 'fee' => $faker->numberBetween($min = 10, $max = 50),
                 'is_active' => $faker->randomElement($array = array ('0','1')),

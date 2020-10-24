@@ -20,6 +20,8 @@ class CreateCoursesTable extends Migration
             $table->foreignId('subject_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('other_subject')->nullable();
             $table->foreignId('course_level_id')->nullable()->constrained()->onDelete('cascade');
+            $table->enum('teacher_gender', ['MALE', 'FEMALE', 'BOTH'])->default('BOTH');
+            $table->foreignId('teacher_level_id')->nullable()->constrained()->onDelete('set null');
             $table->string('other_level')->nullable();
             $table->string('fullname');
             $table->string('address');

@@ -30,40 +30,6 @@
             padding: 10px;
             margin:-10px -10px 15px;
         }
-        thead {
-            tr th{
-                border-top: none;
-                // border-bottom: none;
-            }
-            th:first-child{
-                border-left: 0;
-            }
-            th:last-of-type{
-                border-right-color: crimson;
-                // border-right-width: 0px;
-            }
-
-            tr{
-            background: #0283c8 url(../images/title.png);
-            // background-size: auto 100%;
-            background-size: 100%;
-            background-position: right;
-            background-repeat: no-repeat;
-            color: white;
-            text-transform: uppercase;
-            font-weight: normal;
-            }
-            th{
-                white-space: nowrap;
-                text-align: center;
-                font-weight: normal;
-            }
-        }
-        td{
-            display: table-cell;
-            vertical-align: middle;
-
-        }
     }
     .label-status{
         // background-color: #c40909;
@@ -134,10 +100,43 @@
             overflow-x: auto;
         }
     }
+    thead {
+        tr th{
+            border-top: none;
+            // border-bottom: none;
+        }
+        th:first-child{
+            border-left: 0;
+        }
+        th:last-of-type{
+            border-right-color: crimson;
+            // border-right-width: 0px;
+        }
 
+        tr{
+        background: #0283c8 url(../images/title.png);
+        // background-size: auto 100%;
+        background-size: 100%;
+        background-position: right;
+        background-repeat: no-repeat;
+        color: white;
+        text-transform: uppercase;
+        font-weight: normal;
+        }
+        th{
+            white-space: nowrap;
+            text-align: center;
+            font-weight: normal;
+        }
+    }
+    td{
+        display: table-cell;
+        vertical-align: middle;
+
+    }
 }
 
-#content-table{
+#content-table , .modal{
     table{
         margin-bottom: 0;
         th{
@@ -146,5 +145,33 @@
         td{
             padding: 0.25rem;
         }
+    }
+}
+.notification{
+    position: relative;
+    .count{
+        position: absolute;
+        right: -12px;
+        top: -15px;
+        color:white;
+        opacity: 0.7;
+        // background: red;
+        background: #ff2c74;
+        font-size: 12px;
+        line-height: 23px;
+        font-weight: normal;
+        height: 23px;
+        width: 23px;
+        padding: 2px 5px;
+        border-radius: 50%;
+        font-family:sans-serif;
+        text-align:center;
+    }
+}
+.notification:hover{
+    .count{
+        opacity: 1;
+        background: red;
+
     }
 }

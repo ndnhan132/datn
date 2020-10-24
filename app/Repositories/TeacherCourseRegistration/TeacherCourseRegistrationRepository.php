@@ -16,4 +16,13 @@ class TeacherCourseRegistrationRepository extends BaseRepository implements Teac
     {
         // return $this->model->where('course_id', $courseId);
     }
+    public function confirmStatus($registrationId, $statusId)
+    {
+        $registration = $this->model->find($registrationId);
+        if($registration){
+            $registration->registration_status_id = $statusId;
+            return $registration->save();
+        }
+        return false;
+    }
 }

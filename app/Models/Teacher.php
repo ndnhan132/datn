@@ -38,4 +38,9 @@ class Teacher extends Model
     {
         return $this->hasMany('App\Models\Image');
     }
+
+    public function TeacherLevel()
+    {
+        return $this->belongsTo('App\Models\TeacherLevel');
+    }
 }

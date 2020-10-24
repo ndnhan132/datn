@@ -6,20 +6,24 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\TeacherCourseRegistration\TeacherCourseRegistrationRepositoryInterface;
 use App\Repositories\Course\CourseRepositoryInterface;
+use App\Repositories\RegistrationStatus\RegistrationStatusRepositoryInterface;
 use Illuminate\Support\Facades\Log;
 
 class TeacherCourseRegistrationController extends Controller
 {
     protected $teacherCourseRegistrationRepository;
     protected $courseRepository;
+    protected $registrationStatusRepository;
 
     public function __construct(
         TeacherCourseRegistrationRepositoryInterface $teacherCourseRegistrationRepository,
-        CourseRepositoryInterface $courseRepository
+        CourseRepositoryInterface $courseRepository,
+        RegistrationStatusRepositoryInterface $registrationStatusRepository
         )
     {
         $this->teacherCourseRegistrationRepository = $teacherCourseRegistrationRepository;
         $this->courseRepository = $courseRepository;
+        $this->registrationStatusRepository = $registrationStatusRepository;
 
     }
 
@@ -52,5 +56,36 @@ class TeacherCourseRegistrationController extends Controller
         Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
         $courseRegistrations = $this->courseRepository->find($courseId);
         return view('admin.teacher-course-registration.registration-table', compact('courseRegistrations'));
+    }
+    public function ajaxGetCompare(Request $request, $registrationId)
+    {
+        Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
+        $registration = $this->teacherCourseRegistrationRepository->find($registrationId);
+        if($registration){
+            $html = view('admin.teacher-course-registration.compare', compact('registration'));
+            $html = strval($html);
+            $html = trim($html);
+            return response()->json(array(
+                'success' => 'true',
+                'data'    => null,
+                'html'    => $html,
+            ));
+        }
+        return response()->json(array('success' => 'false'));
+    }
+
+    public function ajaxConfirmStatus(Request $request)
+    {
+        Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
+        if(isset($request['registrationId'], $request['registrationStatus'])){
+            $registrationId = $request['registrationId'];
+            $registrationStatus = $request['registrationStatus'];
+            $statusId = $this->registrationStatusRepository->findByName($registrationStatus)->id ?? '';
+            if($statusId){
+                $res = $this->teacherCourseRegistrationRepository->confirmStatus($registrationId, $statusId);
+                return response()->json(array('success' => boolval($res)));
+            }
+        }
+        return response()->json(array('success' => 'false'));
     }
 }

@@ -52,8 +52,12 @@
                             <span>{{ $record->teacherCourseRegistrations->count() }}</span>
                         </td>
                         <td class="text-center">
-                            <span class="btn btn-sm btn-info btn-display-teacher" data-course-id="{{ $record->id }}" type="button" {{ (!$record->teacherCourseRegistrations) ? 'disabled' : '' }}>
-                                Danh sách&nbsp;<i class="fa fa-arrow-right align-top-"></i>
+                            <span class="btn btn-sm btn-info btn-display-teacher notification" data-course-id="{{ $record->id }}" type="button" {{ (!$record->teacherCourseRegistrations) ? 'disabled' : '' }}>
+                                Danh sách&nbsp;
+                                <i class="fa fa-arrow-right align-top-"></i>
+                                @if ($record->countWait())
+                                <span class="count">+{{ $record->countWait() }}</span>
+                                @endif
                             </span>
                         </td>
                     </tr>
