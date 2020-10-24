@@ -97,6 +97,11 @@
         background-color: #ffd43b;
         border-color: #fcc419;
     }
+    .label-status-danger{
+        @extend .label-status;
+        background-color: #fa5252;
+        border-color: #ff8787;
+    }
     .label-status-info{
         @extend .label-status;
         background-color: #4dabf7;

@@ -18,13 +18,13 @@ class CourseController extends Controller
 
     public function index()
     {
-        $courses = $this->courseRepository->index();
-        return view('admin.course.index', compact('courses'));
+        Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
+        return view('admin.course.index');
     }
 
     public function ajaxGetTableContent(Request $request)
     {
-
+        Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
         isset($request['recordPerPage']) ? $recordPerPage = $request['record-per-page'] : $recordPerPage = 10;
         isset($request['page']) ? ($page = $request['page']) : ($page = 1);
         $startFrom = ($page - 1) * $recordPerPage;
@@ -38,11 +38,12 @@ class CourseController extends Controller
             $max = floor($count / $recordPerPage);
         }
 
-        return view('admin.course.index-table', compact(['courses', 'max', 'page']));
+        return view('admin.course.main-table', compact(['courses', 'max', 'page']));
     }
+
     public function ajaxShow(Request $request, $courseId)
     {
-        Log::info(__FILE__ . __CLASS__ . __FUNCTION__);
+        Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
         if($courseId){
             $course = $this->courseRepository->find($courseId);
             if($course) {
@@ -63,7 +64,7 @@ class CourseController extends Controller
 
     public function ajaxConfirm(Request $request)
     {
-        Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~~' . __METHOD__);
+        Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
         $courseId = ($request['courseId']) ? $request['courseId'] : '';
         $isConfirmed = (isset($request['isConfirmed'])) ? $request['isConfirmed'] : '';
         if($courseId != '' && in_array($isConfirmed, array('0', '1'))) {

@@ -207,7 +207,7 @@ a.text-primary:focus {
   .app-content .tile td {
     display: table-cell;
     vertical-align: middle; }
-.app-content .label-status, .app-content .label-status-success, .app-content .label-status-secondary, .app-content .label-status-warning, .app-content .label-status-info {
+.app-content .label-status, .app-content .label-status-success, .app-content .label-status-secondary, .app-content .label-status-warning, .app-content .label-status-danger, .app-content .label-status-info {
   border: 0.2rem solid;
   color: #fff;
   text-align: center;
@@ -229,6 +229,9 @@ a.text-primary:focus {
 .app-content .label-status-warning {
   background-color: #ffd43b;
   border-color: #fcc419; }
+.app-content .label-status-danger {
+  background-color: #fa5252;
+  border-color: #ff8787; }
 .app-content .label-status-info {
   background-color: #4dabf7;
   border-color: #74c0fc; }

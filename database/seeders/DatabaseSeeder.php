@@ -157,5 +157,26 @@ class DatabaseSeeder extends Seeder
                     ]);
                 }
             }
+        foreach($teachers as $tea) {
+            DB::table('images')->insert([
+                'teacher_id' => $tea->id,
+                'src' => 'https://picsum.photos/id/1005/200/300',
+                'image_type' => 'TEACHER_AVATAR'
+            ]);
+            foreach(range(0, 1) as $index){
+                DB::table('images')->insert([
+                    'teacher_id' => $tea->id,
+                    'src' => 'https://picsum.photos/id/1047/300/200',
+                    'image_type' => 'TEACHER_IDENTITY_CARD'
+                ]);
+            }
+            foreach(range(0, 2) as $index){
+                DB::table('images')->insert([
+                    'teacher_id' => $tea->id,
+                    'src' => 'https://picsum.photos/id/1033/300/200',
+                    'image_type' => 'TEACHER_DEGREE'
+                ]);
+            }
+        }
     }
 }

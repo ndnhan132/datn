@@ -35,5 +35,18 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
         return $course->save();
     }
 
+    public function teacherCourseRegistrationPagination($startFrom, $recordPerPage)
+    {
+        $data = $this->model->where('confirmed', true)
+                    ->orderBy('id', 'DESC')
+                    ->offset($startFrom)
+                    ->limit($recordPerPage)
+                    ->get();
+        $count = $this->model->where('confirmed', true)->count();
 
+        return array(
+            'data' => $data,
+            'count' => $count
+        );
+    }
 }

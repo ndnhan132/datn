@@ -17,8 +17,8 @@ $asideItems = array(
     'key3' => [
         'title'       => 'Đk nhận lớp',
         'fontawesome' => 'fa fa-laptop',
-        'routeName'   => 'admin.course.index',
-        'uri'         => 'quan-ly/khoa-hoc',
+        'routeName'   => 'admin.teacherCourseRegistration.index',
+        'uri'         => 'quan-ly/dang-ky-nhan-lop',
         'txt3'        => 'admin.dashboard.index',
 ],
     'key4' => [
