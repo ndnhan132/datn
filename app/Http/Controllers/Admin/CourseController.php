@@ -46,8 +46,9 @@ class CourseController extends Controller
         Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
         if($courseId){
             $course = $this->courseRepository->find($courseId);
+            $canConfirm = (isset($request['can-confirm']) && $request['can-confirm'] == 'yes') ? true : false;
             if($course) {
-                $html = view('admin.course.detail', compact(['course']));
+                $html = view('admin.course.detail', compact(['course', 'canConfirm']));
                 $html = strval($html);
                 $html = trim($html);
 

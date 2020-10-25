@@ -25,9 +25,33 @@
     @include('admin.layouts.asidebar')
 </aside>
 
-<main class="app-content">
+<main class="app-content pb-0">
     @yield('content')
 </main>
+<div id="spinner" style="width: 100%;height: 100%;position: fixed;left: 0;top: 0;z-index: 1999; display: none; background: rgba(255,255,255,0.1);">
+    <div class="d-flex justify-content-center my-auto w-100 h-100">
+        {{-- <div class="spinner-border my-auto" role="status" style="color: #cdcdcd; ">
+            <span class="sr-only">Loading...</span>
+        </div> --}}
+    </div>
+</div>
+<div class="modal fade modal-custom" id="js-modal-detail" tabindex="-1"
+	role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content rounded-0">
+			<div class="modal-header py-2 border-bottom-0 bg-primary rounded-0">
+				<h5 class="modal-title text-white" id="exampleModalLabel"><i class="fa fa-info-circle"></i> Chi tiết</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body py-0 my-3">
+
+			</div>
+		</div>
+	</div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <script src="{{asset('/web-admin/template/js/main.js')}}"></script>

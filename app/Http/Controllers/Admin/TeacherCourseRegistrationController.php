@@ -80,12 +80,25 @@ class TeacherCourseRegistrationController extends Controller
         if(isset($request['registrationId'], $request['registrationStatus'])){
             $registrationId = $request['registrationId'];
             $registrationStatus = $request['registrationStatus'];
-            $statusId = $this->registrationStatusRepository->findByName($registrationStatus)->id ?? '';
-            if($statusId){
-                $res = $this->teacherCourseRegistrationRepository->confirmStatus($registrationId, $statusId);
-                return response()->json(array('success' => boolval($res)));
+            $status = $this->registrationStatusRepository->findByName($registrationStatus);
+            $registration = $this->teacherCourseRegistrationRepository->find($registrationId);
+            // if($registration->course->received() && !$registration->isReceived()) {
+            if($registration->canChangeStatus()) {
+                $statusId = $status->id;
+                if($statusId){
+                    $res = $this->teacherCourseRegistrationRepository->confirmStatus($registrationId, $statusId);
+                    return response()->json(array('success' => boolval($res)));
+                }
+            }else{
+                return response()->json(array(
+                    'success' => false,
+                    'message' => 'Khoá học này đã có người nhận. Không thể thay đổi trạng thái!',
+                ));
             }
         }
-        return response()->json(array('success' => 'false'));
+        return response()->json(array(
+            'success' => false,
+            'message' => 'Có lỗi xảy ra',
+        ));
     }
 }

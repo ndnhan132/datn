@@ -2,7 +2,7 @@
 #### class:
 #### - ex: course-btn-detail
 #### id:
-#### - ex: js-modal-course-detail
+#### - ex: js-modal-detail
 
 
 kho thay doi status danf ky khoa hoc, can check da nhan hay chua.

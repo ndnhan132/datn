@@ -27,4 +27,6 @@ Route::name('admin.')->group(function(){
     Route::get('/khoa-hoc/ajax/index', 'CourseController@ajaxGetTableContent');
     Route::get('/khoa-hoc/ajax/show/{courseId}', 'CourseController@ajaxShow');
     Route::post('/khoa-hoc/ajax/confirm', 'CourseController@ajaxConfirm');
+
+    Route::view('/binh-luan', 'admin.comment.index')->name('comment.index');
 });

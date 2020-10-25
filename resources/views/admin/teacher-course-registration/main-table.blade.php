@@ -1,3 +1,4 @@
+<div class="cover-container">
 <div class="col-md-12 px-0">
     <div class="tile">
         <div class="table-responsive">
@@ -27,7 +28,7 @@
                             <span>{{ $record->received()->teacher->name ?? '' }}</span>
                         </td>
                         <td class="text-center">
-                            <span class="btn btn-sm btn-info- course-btn-detail label-status-info" data-record-id="{{ $record->id }}">Chi tiết</span>
+                            <span class="btn btn-sm btn-info- btn-detail label-status-info" data-type="course" data-course-id="{{ $record->id }}">Chi tiết</span>
                         </td>
                         <td class="text-white text-center text-capitalize">
                             @if (!isset($record->confirmed))
@@ -81,3 +82,4 @@
 </div>
 @endif
 @endisset
+</div>

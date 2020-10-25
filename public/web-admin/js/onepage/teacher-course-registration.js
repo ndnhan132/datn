@@ -42,13 +42,18 @@ $(function () {
     }
 
     function loadTeacherRegistrationTable(courseId) {
+        showSpinner();
+        fadeOutContentTable();
         $url = '/quan-ly/dang-ky-nhan-lop/ajax/get-teacher-registration/' + courseId;
         $('#content-table').load($url, function () {
             console.log('registration table');
+            hideSpinner();
+            fadeInContentTable();
         });
     }
 
     function registrationCompareTeacherVsCourse(registrationId) {
+        showSpinner();
         var _modal = $(document).find('#js-modal-course-registration-compare');
         _modal.find('.modal-body').empty();
         $.ajax({
@@ -60,6 +65,7 @@ $(function () {
             _modal.modal('show');
             // $(document).find('.btn-modal-dismiss').click();
             // $(document).find('.btn-table-reload').click();
+            hideSpinner();
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
             console.log("error");
@@ -69,6 +75,7 @@ $(function () {
     }
 
     function confirmStatus(registrationStatus, registrationId, courseId) {
+        showSpinner();
         $.ajax({
             url: '/quan-ly/dang-ky-nhan-lop/ajax/confirm-status',
             type: 'POST',
@@ -82,9 +89,11 @@ $(function () {
                 console.log(data);
                 if (data.success) {
                     loadTeacherRegistrationTable(courseId);
+                } else {
+                    alert(data.message);
                 }
-            $(document).find('.btn-modal-dismiss').click();
-            // $(document).find('.btn-table-reload').click();
+                $(document).find('.btn-modal-dismiss').click();
+                showSpinner();
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
             console.log("error");

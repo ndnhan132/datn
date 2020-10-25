@@ -31,7 +31,7 @@ $asideItems = array(
     'key5' => [
         'title'       => 'Bình luận',
         'fontawesome' => 'fa fa-comments',
-    'routeName' => 'admin.dashboard.index',
+        'routeName'   => 'admin.comment.index',
 'uri' => 'admin.dashboard.index',
 'txt3' => 'admin.dashboard.index',
 ],

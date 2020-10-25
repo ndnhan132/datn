@@ -176,7 +176,9 @@ a.text-primary:focus {
     font-size: 1.3rem; }
 .app-content .tile {
   padding: 10px;
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px; }
   .app-content .tile .tile-title {
     background: #0283c8 url(../images/title.png) no-repeat right top;
     background-size: auto 100%;
@@ -258,9 +260,11 @@ a.text-primary:focus {
 #content-table table, .modal table {
   margin-bottom: 0; }
   #content-table table th, .modal table th {
-    padding: 0.5rem; }
+    padding: 0.5rem;
+    text-transform: capitalize; }
   #content-table table td, .modal table td {
-    padding: 0.25rem; }
+    padding: 0.25rem;
+    text-transform: capitalize; }
 
 .notification {
   position: relative; }
@@ -284,5 +288,28 @@ a.text-primary:focus {
 .notification:hover .count {
   opacity: 1;
   background: red; }
+
+.cursor-pointer {
+  cursor: pointer; }
+
+#content-table {
+  background: #fff;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out; }
+  #content-table .cover-container {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.5s; }
+
+.fadeIn {
+  opacity: 1; }
+
+.fadeOut {
+  opacity: 0; }
 
 /*# sourceMappingURL=stylesheet.css.map */

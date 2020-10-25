@@ -16,6 +16,8 @@
             <tr><td class="pr-3">Thời gian tạo</td><td> {{ $course->created_at ?? '--/--/-- --:--'}}</td></tr>
         </tbody>
     </table>
+
+    @if ($canConfirm)
     <div class="w-100 text-right pt-3">
         <button class="btn btn-sm btn-primary px-3 btn-confirm" data-course-id="{{ $course->id }}" data-is-confirmed="1">
             Thông qua
@@ -30,7 +32,7 @@
         </button>
     </div>
 <script type="text/javascript">
-    $(document).on('click', '#js-modal-course-detail .btn-confirm', function(){
+    $(document).on('click', '#js-modal-detail .btn-confirm', function(){
         var courseId = ($(this).data('course-id')) ? $(this).data('course-id') : '';
         var isConfirmed = $(this).data('is-confirmed');
         if(courseId != '' && [0, 1].includes(isConfirmed)) {
@@ -58,3 +60,4 @@
         }
     });
 </script>
+@endif

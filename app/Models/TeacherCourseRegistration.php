@@ -34,6 +34,17 @@ class TeacherCourseRegistration extends Model
         return $this->registration_status_id == \App\Models\RegistrationStatus::INELIGIBLE_ID;
     }
 
+    /**
+     * @Author: Nhan Nguyen Dinh
+     * @Date: 2020-10-25 16:11:38
+     * @Desc: Đăng ký được thay đổi điều kiện trong trường hợp thay đổi cho đăng ký đã nhận hoặc khoá học chưa ai nhận
+     * @Return: boolean
+     */
+    public function canChangeStatus()
+    {
+        return !( (!$this->isReceived()) && $this->course->received() );
+    }
+
     //* #define Relationships
     public function teacher()
     {

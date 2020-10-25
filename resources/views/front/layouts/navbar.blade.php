@@ -26,6 +26,9 @@
             <li class="nav-item">
         <a class="nav-link" href="#">Liên hệ</a>
       </li>
+      <li class="nav-item">
+      <a class="nav-link" href="{{ route('admin.dashboard.index') }}">Admin</a>
+      </li>
   </div>
 </nav>
 

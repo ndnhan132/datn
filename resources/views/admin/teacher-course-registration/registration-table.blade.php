@@ -1,28 +1,29 @@
+<div class="cover-container">
 <div class="col-md-12 px-0">
     <div class="tile">
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th><span class="btn btn-sm btn-block btn-back-to-main-table">back</span></th>
-                        <th>Người gửi</th>
-                        <th>Người nhận</th>
-                        <th>Yêu cầu</th>
-                        <th>Duyệt</th>
+                        <th><span class="btn-back-to-main-table d-block cursor-pointer"><i class="fa fa-backward"></i></span></th>
+                        <th>Ảnh đại diện</th>
+                        <th>Giáo viên đăng ký</th>
+                        <th>So sánh</th>
                         <th>Tình trạng</th>
-                        <th>Tổng Đăng ký</th>
-                        <th>Tác vụ</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php
                         $registrations = $courseRegistrations->teacherCourseRegistrations;
                     @endphp
-                    @foreach ($registrations as $record)
+                    @foreach ($registrations as $key => $record)
                         @php
                             $teacher = $record->teacher;
                         @endphp
                     <tr>
+                        <td class="text-center">
+                            <span>{{ $key + 1 }}</span>
+                        </td>
                         <td class="text-center">
                             <span>
                                 <img src="{{ asset($teacher->getAvatarSrc())}}" width="55" height="70" class="">
@@ -45,22 +46,11 @@
                             <span class="label-status-secondary">Không đủ điều kiên</span>
                             @endif
                         </td>
-                        <td class="text-white text-center text-capitalize">
-                            {{-- @if (!isset($record->confirmed))
-                            <span class="label-status-danger">tin
-                                Mới</span>
-                            @elseif($record->confirmed)
-                            <span class="label-status-success">Đã
-                                duyệt</span>
-                            @else
-                            <span class="label-status-secondary">ko
-                                đạt</span>
-                            @endif --}}
-                        </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+</div>
 </div>

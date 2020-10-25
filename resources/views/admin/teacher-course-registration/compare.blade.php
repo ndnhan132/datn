@@ -5,7 +5,7 @@
 <div class="container-fluid" id="js-teacher-course-registration-compare">
     <div class="row">
         <div class="col-md-6">
-            <h4 class="">Yêu cầu</h4>
+            <h4 class="border-bottom">Yêu cầu</h4>
             <table class="table table-borderless">
                 <tbody>
                     <tr>
@@ -60,7 +60,7 @@
             </table>
         </div>
         <div class="col-md-6 border-left">
-            <h4 class="">Thông tin gia sư</h4>
+            <h4 class="border-bottom">Thông tin gia sư</h4>
             <table class="table table-borderless">
                 <tbody>
                     <tr>
@@ -97,23 +97,30 @@
             </table>
         </div>
       </div>
-    <div>
-        <div class="w-100 text-right pt-3">
-        <button class="btn btn-sm btn-success px-3 btn-confirm" data-registration-id="{{ $registration->id }}" data-status="{{ \App\Models\RegistrationStatus::RECEIVED_NAME }}"  data-course-id="{{ $course->id }}">
-                Đã nhận
-            </button>
-            &nbsp;&nbsp;&nbsp;
-            <button class="btn btn-sm btn-primary px-3 btn-confirm" data-registration-id="{{ $registration->id }}" data-status="{{ \App\Models\RegistrationStatus::ELIGIBLE_NAME }}" data-course-id="{{ $course->id }}">
-                Đủ điều kiện
-            </button>
-            &nbsp;&nbsp;&nbsp;
-            <button class="btn btn-sm btn-secondary btn-confirm" data-registration-id="{{ $registration->id }}" data-status="{{ \App\Models\RegistrationStatus::INELIGIBLE_NAME }}"  data-course-id="{{ $course->id }}">
-                Ko đạt
-            </button>
-            &nbsp;&nbsp;&nbsp;
-            <button class="btn btn-sm btn-warning px-3 btn-modal-dismiss"  data-dismiss="modal">
-               Huỷ
-            </button>
+
+      <div>
+          <div class="w-100 text-right pt-3">
+            @if ($registration->canChangeStatus())
+            <button class="btn btn-sm btn-success px-3 btn-confirm" data-registration-id="{{ $registration->id }}" data-status="{{ \App\Models\RegistrationStatus::RECEIVED_NAME }}"  data-course-id="{{ $course->id }}">
+                    Đã nhận
+                </button>
+                &nbsp;&nbsp;&nbsp;
+                <button class="btn btn-sm btn-primary px-3 btn-confirm" data-registration-id="{{ $registration->id }}" data-status="{{ \App\Models\RegistrationStatus::ELIGIBLE_NAME }}" data-course-id="{{ $course->id }}">
+                    Đủ điều kiện
+                </button>
+                &nbsp;&nbsp;&nbsp;
+                <button class="btn btn-sm btn-secondary btn-confirm" data-registration-id="{{ $registration->id }}" data-status="{{ \App\Models\RegistrationStatus::INELIGIBLE_NAME }}"  data-course-id="{{ $course->id }}">
+                    Ko đạt
+                </button>
+                @else
+                    <span class="text-danger float-left border-bottom">
+                        * Khoá học này đã có người nhận. Không thể thay đổi trạng thái!
+                    </span>
+                @endif
+                &nbsp;&nbsp;&nbsp;
+                <button class="btn btn-sm btn-warning px-3 btn-modal-dismiss text-white"  data-dismiss="modal">
+                Huỷ
+                </button>
+            </div>
         </div>
-    </div>
 </div>

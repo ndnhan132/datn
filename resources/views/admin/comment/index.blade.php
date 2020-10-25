@@ -10,7 +10,7 @@
 	<div>
 		<h1>
 			<i class="fa fa-th-list"></i>
-			&nbsp;&nbsp;Đăng ký nhận lớp
+			&nbsp;&nbsp; Bình Luận
 			<span type="button" class="btn-table-reload px-3"><i
 					class="fa fa-refresh"></i></span>
 		</h1>
@@ -45,6 +45,5 @@
 
 @endsection
 @section('javascript')
-<script src="{{asset('/web-admin/js/onepage/teacher-course-registration.js') . '?' . time() }}"
-	type="text/javascript"></script>
+{{-- <script src="{{asset('/web-admin/js/onepage/teacher-course-registration.js') . '?' . time() }}" type="text/javascript"></script> --}}
 @endsection
