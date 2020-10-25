@@ -34,19 +34,16 @@
                             </td>
                             <td class="text-white text-center text-capitalize">
                                 @if (!isset($course->confirmed))
-                                <span class="label-status-danger">tin
-                                    Mới</span>
+                                <span class="label-status-danger">tin Mới</span>
                                 @elseif($course->confirmed)
-                                <span class="label-status-success">Đã
-                                    duyệt</span>
+                                <span class="label-status-success">Thông qua</span>
                                 @else
-                                <span class="label-status-secondary">ko
-                                    đạt</span>
+                                <span class="label-status-secondary">Ko Thông qua</span>
                                 @endif
                             </td>
 
                             <td class="text-center">
-                                @if ($course->confirmed)
+                                @if ($course->received())
                                 <span class="label-status-success">Đã nhận</span>
                                 @else
                                 <span class="label-status-secondary">Chờ</span>

@@ -169,93 +169,95 @@ a.text-primary:focus {
   -webkit-user-select: none;
   -webkit-touch-callout: none; }
 
-.app-content .app-title {
-  padding: 12px 20px;
-  margin-bottom: 20px; }
-  .app-content .app-title h1 {
-    font-size: 1.3rem; }
-.app-content .tile {
-  padding: 10px;
-  margin-bottom: 1rem;
-  border-bottom-left-radius: 0px;
-  border-bottom-right-radius: 0px; }
-  .app-content .tile .tile-title {
+.app-content {
+  background: #F9F9F9; }
+  .app-content .app-title {
+    padding: 12px 20px;
+    margin-bottom: 20px; }
+    .app-content .app-title h1 {
+      font-size: 1.3rem; }
+  .app-content .tile {
+    padding: 10px;
+    margin-bottom: 1rem;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px; }
+    .app-content .tile .tile-title {
+      background: #0283c8 url(../images/title.png) no-repeat right top;
+      background-size: auto 100%;
+      color: white;
+      text-transform: uppercase;
+      font-weight: normal;
+      font-size: 1.2rem;
+      padding: 10px;
+      margin: -10px -10px 15px; }
+  .app-content .label-status, .app-content .label-status-success, .app-content .label-status-secondary, .app-content .label-status-warning, .app-content .label-status-danger, .app-content .label-status-info {
+    border: 0.2rem solid;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 0.15rem 0.15rem;
+    display: inline-block;
+    min-width: 80px;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none; }
+  .app-content .label-status-success {
+    background-color: #51cf66;
+    border-color: #8ce99a; }
+  .app-content .label-status-secondary {
+    background-color: #868e96;
+    border-color: #ced4da; }
+  .app-content .label-status-warning {
+    background-color: #ffd43b;
+    border-color: #fcc419; }
+  .app-content .label-status-danger {
+    background-color: #fa5252;
+    border-color: #ff8787; }
+  .app-content .label-status-info {
+    background-color: #4dabf7;
+    border-color: #74c0fc; }
+  .app-content .label-status-info:hover,
+  .app-content .label-status-info:focus {
+    background-color: #1c7ed6;
+    border-color: #1c7ed6; }
+  .app-content .btn-sm {
+    border-radius: 2px;
+    padding: 0.15rem 0.45rem; }
+  .app-content .pagination-wrapper {
+    width: 100%; }
+    .app-content .pagination-wrapper .page-item .page-link {
+      padding: 0.35rem 0.55rem;
+      border-radius: 0;
+      border: 1px solid #dee2e6; }
+  .app-content .modal-custom .modal-header {
     background: #0283c8 url(../images/title.png) no-repeat right top;
-    background-size: auto 100%;
+    background-size: auto 100%; }
+  .app-content .modal-custom .modal-body {
+    max-height: calc(80vh);
+    overflow-x: auto; }
+  .app-content thead tr th {
+    border-top: none; }
+  .app-content thead th:first-child {
+    border-left: 0; }
+  .app-content thead th:last-of-type {
+    border-right-color: crimson; }
+  .app-content thead tr {
+    background: #0283c8 url(../images/title.png);
+    background-size: 100%;
+    background-position: right;
+    background-repeat: no-repeat;
     color: white;
     text-transform: uppercase;
-    font-weight: normal;
-    font-size: 1.2rem;
-    padding: 10px;
-    margin: -10px -10px 15px; }
-.app-content .label-status, .app-content .label-status-success, .app-content .label-status-secondary, .app-content .label-status-warning, .app-content .label-status-danger, .app-content .label-status-info {
-  border: 0.2rem solid;
-  color: #fff;
-  text-align: center;
-  border-radius: 2px;
-  padding: 0.15rem 0.15rem;
-  display: inline-block;
-  min-width: 80px;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -webkit-touch-callout: none; }
-.app-content .label-status-success {
-  background-color: #51cf66;
-  border-color: #8ce99a; }
-.app-content .label-status-secondary {
-  background-color: #868e96;
-  border-color: #ced4da; }
-.app-content .label-status-warning {
-  background-color: #ffd43b;
-  border-color: #fcc419; }
-.app-content .label-status-danger {
-  background-color: #fa5252;
-  border-color: #ff8787; }
-.app-content .label-status-info {
-  background-color: #4dabf7;
-  border-color: #74c0fc; }
-.app-content .label-status-info:hover,
-.app-content .label-status-info:focus {
-  background-color: #1c7ed6;
-  border-color: #1c7ed6; }
-.app-content .btn-sm {
-  border-radius: 2px;
-  padding: 0.15rem 0.45rem; }
-.app-content .pagination-wrapper {
-  width: 100%; }
-  .app-content .pagination-wrapper .page-item .page-link {
-    padding: 0.35rem 0.55rem;
-    border-radius: 0;
-    border: 1px solid #dee2e6; }
-.app-content .modal-custom .modal-header {
-  background: #0283c8 url(../images/title.png) no-repeat right top;
-  background-size: auto 100%; }
-.app-content .modal-custom .modal-body {
-  max-height: calc(80vh);
-  overflow-x: auto; }
-.app-content thead tr th {
-  border-top: none; }
-.app-content thead th:first-child {
-  border-left: 0; }
-.app-content thead th:last-of-type {
-  border-right-color: crimson; }
-.app-content thead tr {
-  background: #0283c8 url(../images/title.png);
-  background-size: 100%;
-  background-position: right;
-  background-repeat: no-repeat;
-  color: white;
-  text-transform: uppercase;
-  font-weight: normal; }
-.app-content thead th {
-  white-space: nowrap;
-  text-align: center;
-  font-weight: normal; }
-.app-content td {
-  display: table-cell;
-  vertical-align: middle; }
+    font-weight: normal; }
+  .app-content thead th {
+    white-space: nowrap;
+    text-align: center;
+    font-weight: normal; }
+  .app-content td {
+    display: table-cell;
+    vertical-align: middle; }
 
 #content-table table, .modal table {
   margin-bottom: 0; }

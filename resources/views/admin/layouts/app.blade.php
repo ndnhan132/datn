@@ -57,8 +57,9 @@
 <script src="{{asset('/web-admin/template/js/main.js')}}"></script>
 <!-- The javascript plugin to display page loading on top-->
 <script src="{{asset('/web-admin/template/js/plugins/pace.min.js')}}"></script>
-<script src="{{asset('/web-admin/template/js/plugins/sweetalert.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('/web-admin/template/js/plugins/bootstrap-notify.min.js')}}"></script>
+{{-- <script src="{{asset('/web-admin/template/js/plugins/sweetalert.min.js')}}"></script> --}}
+{{-- <script type="text/javascript" src="{{asset('/web-admin/template/js/plugins/bootstrap-notify.min.js')}}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="{{asset('/web-admin/js/script.js') . '?' . time() }}" type="text/javascript"></script>
 {{-- <script src="https://kit.fontawesome.com/71560e0a69.js" crossorigin="anonymous"></script> --}}
 @yield('javascript')

@@ -17,6 +17,44 @@ function fadeOutContentTable()
     document.getElementById('content-table').firstElementChild.style.opacity = '0';
 }
 
+function msgErrors(msg) {
+    if (!msg) {
+        msg = "Có lỗi xảy ra !"
+    }
+
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: msg,
+    });
+    hideSpinner();
+}
+function msgSuccess() {
+    Swal.fire({
+        title: 'Success!',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500
+    });
+    hideSpinner();
+}
+function showAjaxErrors(errors) {
+    var alertHtml = "<div>";
+    $.each(errors, function (key, value) {
+        alertHtml += '<div class = "alert alert-danger py-2 px-2" style = "float: left;width: calc(100% - 0px);margin-left: 0px;">' +
+            '- ' + value + '<button type="extutton" class="close d-none" data-dismiss="alert">×</button >' +
+            '</div>';
+    });
+    alertHtml += '</div>'
+    Swal.fire({
+        title: 'Invalid Data',
+        html: alertHtml,
+        focusConfirm: false,
+    })
+    hideSpinner();
+}
+
+
 $(document).ready(function () {
     $.ajaxSetup({
         headers: {

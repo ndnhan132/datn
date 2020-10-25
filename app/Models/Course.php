@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 
 class Course extends Model
 {
@@ -63,5 +64,11 @@ class Course extends Model
     public function TeacherLevel()
     {
         return $this->belongsTo('App\Models\TeacherLevel');
+    }
+
+    //* #define Accessors
+    public function getCreatedAtAttribute($value)
+    {
+        return (new Carbon($value))->setTimeZone('Asia/Ho_Chi_Minh')->isoFormat('HH:mm DD/MM/YYYY');
     }
 }

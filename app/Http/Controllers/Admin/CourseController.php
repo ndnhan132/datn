@@ -53,14 +53,17 @@ class CourseController extends Controller
                 $html = trim($html);
 
                 return response()->json(array(
-                    'success' => 'true',
+                    'success' => true,
                     'data'    => null,
                     'html'    => $html,
                 ));
             }
         }
 
-        return response()->json(array('success' => 'false'));
+        return response()->json(array(
+            'success' => 'false',
+            'message' => 'Có lỗi xảy ra!',
+        ));
     }
 
     public function ajaxConfirm(Request $request)
@@ -70,10 +73,14 @@ class CourseController extends Controller
         $isConfirmed = (isset($request['isConfirmed'])) ? $request['isConfirmed'] : '';
         if($courseId != '' && in_array($isConfirmed, array('0', '1'))) {
             return response()->json(array(
-                'success' => $this->courseRepository->confirm($courseId, $isConfirmed)
+                'success' => $this->courseRepository->confirm($courseId, $isConfirmed),
+                'message' => '',
             ));
         }
 
-        return response()->json(array('success' => 'false'));
+        return response()->json(array(
+            'success' => 'false',
+            'message' => 'Có lỗi xảy ra!'
+        ));
     }
 }

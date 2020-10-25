@@ -17,7 +17,7 @@
         </tbody>
     </table>
 
-    @if ($canConfirm)
+    @if ($canConfirm && !$course->received())
     <div class="w-100 text-right pt-3">
         <button class="btn btn-sm btn-primary px-3 btn-confirm" data-course-id="{{ $course->id }}" data-is-confirmed="1">
             Thông qua
@@ -46,12 +46,17 @@
                 },
             })
             .done(function(data) {
-                console.log(data);
                 $(document).find('.btn-modal-dismiss').click();
-                $(document).find('.btn-table-reload').click();
+                if(data.success) {
+                    msgSuccess();
+                    $(document).find('.btn-table-reload').click();
+                }else{
+                    msgError(data.message);
+                }
             })
             .fail(function(jqXHR, textStatus, errorThrown) {
                 console.log("error");
+                msgErrors();
             })
             .always(function() {
             });
@@ -60,4 +65,10 @@
         }
     });
 </script>
+@elseif($course->received())
+<div class="w-100 text-right pt-3">
+    <span class="text-danger float-left border-bottom">
+        * Khoá học này đã có người nhận. Không thể thay đổi trạng thái!
+    </span>
+</div>
 @endif
