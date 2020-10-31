@@ -29,4 +29,18 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
         $teacher->fee = rand(10, 50);
         return $teacher->save();
     }
+
+    public function pagination($startFrom, $recordPerPage)
+    {
+        $data = $this->model->orderBy('id', 'DESC')
+                    ->offset($startFrom)
+                    ->limit($recordPerPage)
+                    ->get();
+        $count = $this->model->get()->count();
+
+        return array(
+            'data' => $data,
+            'count' => $count
+        );
+    }
 }
