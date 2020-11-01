@@ -12,7 +12,7 @@
         <a class="nav-link" href="#">Trang chủ</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Lớp mới</a>
+      <a class="nav-link" href="{{ route('front.getNewClassPage') }}">Lớp mới</a>
       </li>
     <li class="nav-item">
         <a class="nav-link" href="#">Phụ huynh</a>

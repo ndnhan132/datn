@@ -31,18 +31,18 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
     public function confirm($courseId, $isConfirmed)
     {
         $course = $this->model->find($courseId);
-        $course->confirmed = $isConfirmed;
+        $course->flag_is_confirmed = $isConfirmed;
         return $course->save();
     }
 
     public function teacherCourseRegistrationPagination($startFrom, $recordPerPage)
     {
-        $data = $this->model->where('confirmed', true)
+        $data = $this->model->where('flag_is_confirmed', true)
                     ->orderBy('id', 'DESC')
                     ->offset($startFrom)
                     ->limit($recordPerPage)
                     ->get();
-        $count = $this->model->where('confirmed', true)->count();
+        $count = $this->model->where('flag_is_confirmed', true)->count();
 
         return array(
             'data' => $data,
@@ -67,5 +67,20 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
         $course->tuition_per_month = rand(1000, 9999) . '000';
         $course->other_requirement = 'lorem ipsum dolor sit amet, consectetur adip';
         return $course->save();
+    }
+
+    public function getNewClassesWithPagination($startFrom, $recordPerPage)
+    {
+        // $data = $this->model->orderBy('id', 'DESC')
+        //                    ->where('flag_is_checked', true)
+        //                    ->where('flag_is_confirmed', true)
+        //                    ->get();
+        // $count = $this->model->where('flag_is_checked', true)
+        //                     ->where('flag_is_confirmed', true)
+        //                     ->count();
+        // return array(
+        //     'data' => $data,
+        //     'count' => $count
+        // );
     }
 }

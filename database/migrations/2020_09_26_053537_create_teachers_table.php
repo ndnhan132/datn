@@ -28,7 +28,8 @@ class CreateTeachersTable extends Migration
             $table->timestamp('last_modified')->nullable();
             $table->integer('price');
             $table->integer('fee');
-            $table->boolean('is_active')->default(false);
+            $table->boolean('flag_is_active')->default(false);
+            $table->boolean('flag_is_checked')->default(false);
             $table->text('description')->nullable();
             $table->timestamps();
         });

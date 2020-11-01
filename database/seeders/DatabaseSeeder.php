@@ -65,7 +65,8 @@ class DatabaseSeeder extends Seeder
             'teacher_level_id' =>$faker->randomElement($teacherLevels->pluck('id')->toArray()),
             'price' => $faker->numberBetween($min = 10, $max = 90) . '000000',
             'fee' => $faker->numberBetween($min = 10, $max = 50),
-            'is_active' => $faker->randomElement($array = array ('0','1')),
+            'flag_is_active' => 1,
+            'flag_is_checked' => 1,
         ]);
         foreach (range(0, 30) as $index) {
             DB::table('teachers')->insert([
@@ -81,7 +82,8 @@ class DatabaseSeeder extends Seeder
                 'teacher_level_id' =>$faker->randomElement($teacherLevels->pluck('id')->toArray()),
                 'price' => $faker->numberBetween($min = 10, $max = 90) . '000000',
                 'fee' => $faker->numberBetween($min = 10, $max = 50),
-                'is_active' => $faker->randomElement($array = array ('0','1')),
+                'flag_is_active' => $faker->randomElement($array = array ('0','1')),
+                'flag_is_checked' => $faker->randomElement($array = array ('0','1')),
             ]);
         }
         $subjects = array(
@@ -137,7 +139,8 @@ class DatabaseSeeder extends Seeder
 
         foreach (range(0, 30) as $index) {
             DB::table('courses')->insert([
-                'confirmed' => $faker->randomElement($array = array (true, false)),
+                'flag_is_confirmed' => $faker->randomElement($array = array (true, false)),
+                'flag_is_checked' => $faker->randomElement($array = array (true, false)),
                 'code' => $faker->numberBetween($min = 00000, $max = 99999),
                 'subject_id' => $faker->randomElement($subjects->pluck('id')->toArray()),
                 'course_level_id' => $faker->randomElement($courseLevels->pluck('id')->toArray()),
@@ -154,7 +157,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        $teachers = DB::table('teachers')->where('is_active', '1')->get();
+        $teachers = DB::table('teachers')->where('flag_is_active', '1')->get();
         $courses= DB::table('courses')->get();
         $registrationStatuses = DB::table('registration_statuses')->get();
         foreach($courses as $course) {

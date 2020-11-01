@@ -23,6 +23,19 @@ class Teacher extends Model
         return $res->src ?? '#';
     }
 
+    /**
+     * @Author: Nhan Nguyen Dinh
+     * @functon isActive()
+     * @Date: 2020-11-01 04:46:34
+     * @Desc:
+     * @Return:
+     */
+    public function isActive()
+    {
+        return $this->flag_is_checked && $this->flag_is_active;
+    }
+
+
     //* #define Relationships
     // public function courses()
     // {

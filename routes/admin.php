@@ -12,6 +12,8 @@ Route::name('admin.')->group(function(){
     // Danh sách gia sư
     Route::get('/giao-vien', 'TeacherController@index')->name('teacher.index');
     Route::get('/giao-vien/ajax/index', 'TeacherController@ajaxGetTableContent');
+    Route::get('/giao-vien/ajax/show/{teacherId}', 'TeacherController@ajaxShow');
+    Route::post('/giao-vien/ajax/confirm', 'TeacherController@ajaxConfirm');
 
     //dang ky nhan lop
     Route::prefix('/dang-ky-nhan-lop')->name('teacherCourseRegistration.')->group(function() {

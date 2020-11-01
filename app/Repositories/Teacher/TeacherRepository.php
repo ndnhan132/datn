@@ -43,4 +43,17 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
             'count' => $count
         );
     }
+    // public function markAsChecked($teacher)
+    // {
+    //     $teacher->find($teacher)->flag_is_checked = true;
+    //     return $teacher->save();
+    // }
+
+    public function confirm($teacherId, $isActive)
+    {
+        $teacher = $this->model->find($teacherId);
+        $teacher->flag_is_active = $isActive;
+        $teacher->flag_is_checked = true;
+        return $teacher->save();
+    }
 }

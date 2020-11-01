@@ -11,7 +11,7 @@
                             <th>xét Duyệt</th>
                             <th>Tình trạng</th>
                             <th>chi tiết</th>
-                            {{-- <th>Tác vụ</th> --}}
+                            <th>Tác vụ</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -21,14 +21,16 @@
                             <td class="text-center"><span>{{ $record->name }}</span></td>
                             <td class="text-center"><span>{{ $record->teacherLevel->display_name }}</span></td>
                             <td class="text-center">
-                                @if ($record->is_active)
-                                    <span class="label-status-success">đã xác nhận</span>
+                                @if (!$record->flag_is_checked)
+                                    <span class="label-status-warning">Chưa Xem xét</span>
+                                @elseif($record->isActive())
+                                    <span class="label-status-success">Đã xét duyệt</span>
                                 @else
-                                    <span class="label-status-secondary">Chưa xác nhận</span>
+                                    <span class="label-status-secondary">Không hợp lệ</span>
                                 @endif
                             </td>
                             <td class="text-center">
-                                <span class="btn btn-sm btn-info- btn-detail label-status-info" data-type="course" data-course-id="{{ $record->id }}">Chi tiết</span>
+                                <span class="btn btn-sm btn-info- btn-detail label-status-info" data-type="teacher" data-teacher-id="{{ $record->id }}">Chi tiết</span>
                             </td>
                         </tr>
                         @endforeach

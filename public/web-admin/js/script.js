@@ -88,6 +88,10 @@ $(function () {
                 var canConfirm = ($(this).data('can-confirm') == 'yes') ? 'yes' : 'no';
                 url = '/quan-ly/khoa-hoc/ajax/show/' + courseId + '?can-confirm=' + canConfirm;
                 break;
+            case 'teacher':
+                var teacherId = ($(this).data('teacher-id')) ? $(this).data('teacher-id') : '';
+                url = '/quan-ly/giao-vien/ajax/show/' + teacherId;
+                break;
         }
 
         showDetailModal(url);

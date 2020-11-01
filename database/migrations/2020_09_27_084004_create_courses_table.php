@@ -15,7 +15,8 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->boolean('confirmed')->nullable();
+            $table->boolean('flag_is_confirmed')->default(false);
+            $table->boolean('flag_is_checked')->default(false);
             $table->string('code')->unique();
             $table->foreignId('subject_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('other_subject')->nullable();

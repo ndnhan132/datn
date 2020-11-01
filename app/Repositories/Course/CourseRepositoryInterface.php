@@ -8,4 +8,5 @@ interface CourseRepositoryInterface
     public function pagination($startFrom, $recordPerPage);
     public function teacherCourseRegistrationPagination($startFrom, $recordPerPage);
     public function confirm($courseId, $isConfirmed);
+    public function getNewClassesWithPagination($startFrom, $recordPerPage); // front page
 }
