@@ -12,3 +12,6 @@ Route::post('/front/ajax/teacher/store', 'TeacherController@ajaxStore');
 Route::get('/lop-can-gia-su.html', 'CourseController@getNewClassPage')->name('front.getNewClassPage');
 
 Route::get('/nhan-lop/{slug}', 'TeacherCourseRegistrationController@getRegisterPage')->name('front.teacherRegisterCourse');
+
+Route::post('/gv-dang-nhap', 'TeacherController@login')->name('front.teacherLogin');
+Route::get('/gv-dang-xuat', 'TeacherController@logout')->name('front.teacherLogout');

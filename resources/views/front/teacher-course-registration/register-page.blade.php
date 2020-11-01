@@ -36,7 +36,10 @@
                     @endif
                     Nhan lop
                 @else
-                    Can dang nhap
+                <form action="{{ route('front.teacherLogin') }}" method="post">
+                    @csrf
+                    <input type="submit" value="dang nhap">
+                </form>
                 @endif
             </div>
             <div class="row">

@@ -16,7 +16,7 @@ class CreateTeachersTable extends Migration
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password');
             $table->string('address');
             $table->string('phone');
@@ -31,6 +31,8 @@ class CreateTeachersTable extends Migration
             $table->boolean('flag_is_active')->default(false);
             $table->boolean('flag_is_checked')->default(false);
             $table->text('description')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

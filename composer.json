@@ -14,8 +14,13 @@
         "fruitcake/laravel-cors": "^2.0",
         "fzaninotto/faker": "^1.9",
         "guzzlehttp/guzzle": "^7.0.1",
+        "inertiajs/inertia-laravel": "^0.2.4",
         "laravel/framework": "^8.0",
-        "laravel/tinker": "^2.0"
+        "laravel/jetstream": "^1.5",
+        "laravel/sanctum": "^2.6",
+        "laravel/tinker": "^2.0",
+        "livewire/livewire": "^2.0",
+        "tightenco/ziggy": "^0.9.4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
