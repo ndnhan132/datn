@@ -18,6 +18,8 @@ class CreateCoursesTable extends Migration
             $table->boolean('flag_is_confirmed')->default(false);
             $table->boolean('flag_is_checked')->default(false);
             $table->string('code')->unique();
+            $table->string('slug')->unique();
+            $table->string('title');
             $table->foreignId('subject_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('other_subject')->nullable();
             $table->foreignId('course_level_id')->nullable()->constrained()->onDelete('cascade');

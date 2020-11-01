@@ -4,10 +4,41 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Teacher extends Model
+class Teacher extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
+        /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 
     //* #define my functions
 
@@ -35,6 +66,30 @@ class Teacher extends Model
         return $this->flag_is_checked && $this->flag_is_active;
     }
 
+    /**
+     * @Author: Nhan Nguyen Dinh
+     * @function getGenderAndLevel()
+     * @Date: 2020-11-01 10:32:36
+     * @Desc:
+     * @Params1:
+     * @Return:
+     */
+
+    public function getGenderAndLevel()
+    {
+        $gender = "";
+        if($this->is_male) {
+            $gender = "Nam ";
+        }
+        else {
+            $gender = "Nữ ";
+        }
+        $str = $gender. $this->teacherLevel->display_name ?? '';
+        $str = strtolower($str);
+        $str = ucfirst($str);
+        return $str;
+    }
+
 
     //* #define Relationships
     // public function courses()
@@ -52,7 +107,7 @@ class Teacher extends Model
         return $this->hasMany('App\Models\Image');
     }
 
-    public function TeacherLevel()
+    public function teacherLevel()
     {
         return $this->belongsTo('App\Models\TeacherLevel');
     }

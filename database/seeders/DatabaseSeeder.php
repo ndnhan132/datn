@@ -144,6 +144,7 @@ class DatabaseSeeder extends Seeder
                 'code' => $faker->numberBetween($min = 00000, $max = 99999),
                 'subject_id' => $faker->randomElement($subjects->pluck('id')->toArray()),
                 'course_level_id' => $faker->randomElement($courseLevels->pluck('id')->toArray()),
+                'teacher_level_id' =>$faker->randomElement($teacherLevels->pluck('id')->toArray()),
                 'fullname' => $faker->name,
                 'address' =>  $faker->address,
                 'phone' => $faker->e164PhoneNumber,
@@ -154,6 +155,8 @@ class DatabaseSeeder extends Seeder
                 'num_of_student' => $faker->numberBetween($min = 1, $max = 3),
                 'tuition_per_month' => $faker->numberBetween($min = 1000, $max = 3000) . '000',
                 'other_requirement' => $faker->text(70),
+                'slug' => $faker->slug . '.html',
+                'title' => $faker->text(100),
             ]);
         }
 

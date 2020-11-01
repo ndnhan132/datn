@@ -40,6 +40,29 @@ class Course extends Model
         return $this->teacherCourseRegistrations->where('registration_status_id', \App\Models\RegistrationStatus::PENDING_ID)->count();
     }
 
+    /**
+     * @Author: Nhan Nguyen Dinh
+     * @function getRequiredGenderAndLevel
+     * @Date: 2020-11-01 09:05:14
+     * @Desc:
+     * @Params1:
+     * @Return:
+     */
+    public function getRequiredGenderAndLevel()
+    {
+        $gender = "";
+        if($this->teacher_gender = "MALE") {
+            $gender = "Nam ";
+        }
+        elseif($this->teacher_gender = "FEMALE"){
+            $gender = "Nữ ";
+        }
+        $str = $gender. $this->teacherLevel->display_name ?? '';
+        $str = strtolower($str);
+        $str = ucfirst($str);
+        return $str;
+    }
+
     //* #define Relationships
     public function subject()
     {
@@ -61,7 +84,7 @@ class Course extends Model
         return $this->belongsTo('App\Models\CourseLevel');
     }
 
-    public function TeacherLevel()
+    public function teacherLevel()
     {
         return $this->belongsTo('App\Models\TeacherLevel');
     }

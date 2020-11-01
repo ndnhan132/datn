@@ -14,8 +14,8 @@
                           <p class="card-text">{{ $course->time_working }}</p>
                           <p class="card-text">{{ $course->address }}</p>
                           <p class="card-text">{{ $course->tuition_per_month }}</p>
-                          <p class="card-text">{{ $course->other_requirement }}</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          <p class="card-text">{{ $course->getRequiredGenderAndLevel() }}</p>
+                          <a href="{{ route('front.teacherRegisterCourse', $course->slug) }}" class="btn btn-primary">Đăng ký ngay</a>
                         </div>
                       </div>
                 </div>

@@ -10,3 +10,5 @@ Route::get('/dang-ky-lam-gia-su.html', 'TeacherController@getTeacherRegisterPage
 Route::post('/front/ajax/teacher/store', 'TeacherController@ajaxStore');
 
 Route::get('/lop-can-gia-su.html', 'CourseController@getNewClassPage')->name('front.getNewClassPage');
+
+Route::get('/nhan-lop/{slug}', 'TeacherCourseRegistrationController@getRegisterPage')->name('front.teacherRegisterCourse');
