@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Teacher\TeacherRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
 
 
 class TeacherController extends Controller
@@ -29,24 +31,58 @@ class TeacherController extends Controller
         return $this->teacherRepository->store($request);
     }
 
-    public function login(Request $request)
+    public function ajaxLogin(Request $request)
     {
-        $email = 'testteacher@gmail.com';
-        $password = '111111';
-        // dd(Auth::guard('teacher'));
-        if (Auth::guard('teacher')->attempt(['email' => $email, 'password' => $password])) {
-            dd(Auth::guard('teacher')->user()->name);
-            dd(Auth::guard('teacher')->check());
+        if(Auth::guard('teacher')->check()) dd('Đã đăng nhập');
+        // $email = 'testteacher@gmail.com';
+        // $password = '111111';
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $success = false;
+        $message = 'Đăng nhập không thành công.';
+        $tmpTeacher = $this->teacherRepository->findByEmail($email);
+        if($tmpTeacher) {
+            if(Hash::check($password, $tmpTeacher->password)) {
+                // $data = [
+                //     'email' => $email,
+                //     'password' => $password,
+                // ];
+                $credentials = $request->only('email', 'password');
+                $remember = ($request->input('remember')) ? '1' : '0';
+                if (Auth::guard('teacher')->attempt($credentials, $remember)) {
+                    if(Auth::guard('teacher')->check()) {
+                        $message = 'Đăng nhập thành công.';
+                        $success = true;
+                    }
+                }
+            }
+            else {
+                $message = 'Mật khẩu không chính xác !';
+            }
         }
+        else {
+            $message = 'Email ko tồn tại !';
+        }
+        //  dd(Auth::guard('teacher')->check());
+        // dd($message);
+        return response()->json(array(
+            'success' => $success,
+            'message' => $message,
+        ));
     }
+
     public function logout()
     {
-        // if(Auth::check())
-        // {
-        //     Auth::logout();
-        // }
-        // dd('Logout');
-        dd(Auth::check());
-        dd(Auth::guard('teacher'));
+        Auth::guard('teacher')->logout();
+        return response()->json(array(
+            'success' => !Auth::guard('teacher')->check()
+        ));
     }
+
+    public function ajaxLoadTeacherLoginBox()
+    {
+        return view('front.layouts.teacher-login-box');
+    }
+
+
 }

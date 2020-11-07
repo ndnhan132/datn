@@ -33,4 +33,28 @@ class TeacherCourseRegistrationController extends Controller
         $course = $this->courseRepository->findBySlug($slug);
         return view('front.teacher-course-registration.register-page', compact('course'));
     }
+
+    public function ajaxLoadTeacherCourseRegistrationBox(Request $request, $courseId)
+    {
+        return view('front.teacher-course-registration.registration-box', compact('courseId'));
+    }
+
+    public function ajaxTeacherRegisterCourse(Request $request)
+    {
+        $success = false;
+        $courseId = $request->input('courseId') ?? '';
+        if($courseId){
+            $success = $this->teacherCourseRegistrationRepository->teacherRegisterCourse($courseId);
+        }
+        return response()->json(array(
+            'success' => $success
+        ));
+    }
+
+    public function ajaxReloadRegisterPage(Request $request, $slug)
+    {
+        Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
+        $course = $this->courseRepository->findBySlug($slug);
+        return view('front.teacher-course-registration.teacher-register-course-content', compact('course'));
+    }
 }

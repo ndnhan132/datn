@@ -90,6 +90,19 @@ class Teacher extends Authenticatable
         return $str;
     }
 
+    /**
+     * @Author: Nhan Nguyen Dinh
+     * @function: isRegisteredThisCourse($courseId)
+     * @Date: 2020-11-01 15:36:43
+     * @Desc:
+     * @Params1:
+     * @Return:
+     */
+
+    public function isRegisteredThisCourse($courseId)
+    {
+        return $this->teacherCourseRegistrations()->where('course_id', $courseId)->first();
+    }
 
     //* #define Relationships
     // public function courses()
@@ -99,7 +112,7 @@ class Teacher extends Authenticatable
 
     public function teacherCourseRegistrations()
     {
-        return $this->hasMany('App\Models\TeacherCourseRegistrations');
+        return $this->hasMany('App\Models\TeacherCourseRegistration');
     }
 
     public function images()

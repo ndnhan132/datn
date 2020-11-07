@@ -56,4 +56,9 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
         $teacher->flag_is_checked = true;
         return $teacher->save();
     }
+
+    public function findByEmail($email)
+    {
+        return $this->model->where('email', $email)->first();
+    }
 }

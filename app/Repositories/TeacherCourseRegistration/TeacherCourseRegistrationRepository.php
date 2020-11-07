@@ -4,6 +4,7 @@ namespace App\Repositories\TeacherCourseRegistration;
 
 use App\Repositories\BaseRepository;
 use App\Models\TeacherCourseRegistration;
+use Illuminate\Support\Facades\Auth;
 
 class TeacherCourseRegistrationRepository extends BaseRepository implements TeacherCourseRegistrationRepositoryInterface
 {
@@ -22,6 +23,24 @@ class TeacherCourseRegistrationRepository extends BaseRepository implements Teac
         if($registration){
             $registration->registration_status_id = $statusId;
             return $registration->save();
+        }
+        return false;
+    }
+
+    public function teacherRegisterCourse($courseId)
+    {
+        if(Auth::guard('teacher')->check()) {
+            $teacherId = Auth::guard('teacher')->user()->id;
+            $tmp = $this->model->where('teacher_id', $teacherId)->where('course_id', $courseId)->first();
+            if($tmp) {
+                return false;
+            }
+            $registration = new TeacherCourseRegistration();
+            $registration->teacher_id = $teacherId;
+            $registration->course_id = $courseId;
+            $registration->is_teacher_registered = true;
+            $registration->registration_status_id = 1;
+            return $registration->save() ? true : false;
         }
         return false;
     }
