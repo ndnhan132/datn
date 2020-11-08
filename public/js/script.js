@@ -1,4 +1,9 @@
 $(function () {
+    $(document).on('click', '.btn-teacher-show-login', function (event) {
+        event.preventDefault();
+        $('.form-box').slideToggle();
+    });
+
     $(document).on('click', '.btn-teacher-login', function(event) {
         event.preventDefault();
         $.ajax({
@@ -51,8 +56,20 @@ $(function () {
     // !#function
     function loadTeacherLoginBox() {
         var _loginBox = $(document).find('#teacher-login-box');
+        // var _width = _loginBox.outerWidth();
+        // var _height = _loginBox.outerHeight();
+
+        var _width = _loginBox.width();
+        var _height = _loginBox.height();
+
+        var _loadingStyle = `style="
+            width: ${_width}px;
+            height: ${_height}px;
+            background: #FFFCEC;
+        "`;
+        console.log(_loadingStyle);
         _loginBox.empty();
-        var loadingHtml = `<div class="d-flex justify-content-center my-auto w-100 h-100">
+        var loadingHtml = `<div class="d-flex justify-content-center my-auto border" ${_loadingStyle}>
                 <div class="spinner-border my-auto" role="status" style="color: #cdcdcd; ">
                     <span class="sr-only">Loading...</span>
                 </div>
@@ -62,8 +79,10 @@ $(function () {
         var _registrationBox = $(document).find('#teacher-course-registration-box');
         if (_registrationBox) {
             _registrationBox.empty();
+            // _registrationBox.fadeOut();
             _registrationBox.append(loadingHtml);
             _registrationBox.load('/ajax/load-teacher-course-registration-box/' + $(document).find('#teacher-course-registration-box').data('course-id'));
+            // _registrationBox.fadeIn();
         }
     }
 

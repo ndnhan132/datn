@@ -1,4 +1,115 @@
 #asidebar{
+    #teacher-login-box{
+        .btn-teacher-show-login{
+            cursor: pointer;
+            position: relative;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+            text-decoration: none;
+            overflow: hidden;
+        }
+        a, a:visited, a:link{
+            text-decoration:none;
+            color: #0044CC;
+        }
+        a:hover{
+        color: #FF0000;
+        text-decoration: underline;
+        }
+
+    }
+    .btn-circle{
+        display: block;
+        width: 90px;
+        height: 28px;
+        margin: 0 auto;
+        color: #fff;
+        text-decoration: none;
+        line-height: 28px;
+        font-size: 13px;
+        padding: 0 0 0 30px;
+        cursor: pointer;
+        outline: none;
+        background-color: #65C2B9;
+        border: none;
+        border-radius: 14px;
+        box-shadow: -1px 3px #999;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+    }
+    .btn-circle:hover{
+        // background-color: #e68d3e
+        background-color: #65C2B9;
+    }
+    .btn-circle:active {
+        background-color: #e68d3e;
+        box-shadow: none;
+        transform: translateY(3px) translateX(-1px);
+      }
+    // .btn-teacher-show-login:hover:before {
+    //     content: "";
+    //     background: #74c0fc;
+    //     display: block;
+    //     position: absolute;
+    //     padding-top: 300%;
+    //     padding-left: 350%;
+    //     margin-left: -20px!important;
+    //     margin-top: -120%;
+    //     opacity: 0;
+    //     transition: all 0.8s
+    // }
+
+    // .btn-teacher-show-login:before {
+    //     padding: 0;
+    //     margin: 0;
+    //     opacity: 1;
+    //     transition: 0s
+    // }
+
+    .btn-teacher-login{
+        display: block;
+        width: auto;
+        height: 28px;
+        margin: 0 auto;
+        color: #fff;
+        text-decoration: none;
+        text-align: center!important;
+        line-height: 28px;
+        font-size: 13px;
+        padding: 0 20px 0 20px;
+        cursor: pointer;
+        outline: none;
+        background: linear-gradient(180deg, #f97979 0%,#f55656 50%,#ec0000 51%,#e70000 100%);
+        border: 1px solid #a91212;
+        border-radius: 3px;
+        @extend .cannot-copy;
+    }
+    .btn-teacher-login:hover{
+        // #ffa47f
+        // #fb7255
+        // #f93e1d
+        // #f42620
+        // #ba332f
+        background: linear-gradient(180deg, #ffa47f 0%,#fb7255 50%,#f93e1d 51%,#f42620 100%);
+        border: 1px solid #ba332f;
+    }
+
+    .btn-login-icon{
+        // width: 23px;
+        // height: 23px;
+        // position: absolute;
+        // left: 2px;
+        // top: calc(50% - 12px);
+        width: 33px;
+        height: 36px;
+        position: absolute;
+        left: -2px;
+        top: calc(50% - 18px);
+    }
+
     .card{
         border-radius: 0;
         margin-bottom: 1rem;
@@ -23,7 +134,7 @@
                     padding: 0.5rem 0.5rem;
                     text-transform: capitalize;
                     font-size: 1.005rem;
-                    @extend .gray6;
+                    // @extend .gray6;
                 }
                 .asidebar-link:before{
                     content:'\f0da';
@@ -32,8 +143,55 @@
                     padding-right: 0.25rem;
                 }
                 .asidebar-item:hover .asidebar-link{
-                    @extend .gray6;
+                    // @extend .gray6;
                 }
+            }
+        }
+    }
+    .teacher-profile{
+        padding: 0.4rem 0.75rem 0.75rem;
+        border: 1px solid #D5D5D5;
+        background-color: #FFFCEC;
+        color: #2e5cb4;
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        .profile-name{
+            border-radius: 0;
+            text-transform: uppercase;
+            font-weight: 500;
+            text-align: center;
+            margin: 0 auto 0.5rem;
+            padding: 5px;
+            font-weight: bold;
+            color: #FA8201;
+            font-size: 1rem;
+        }
+        .profile-body{
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            min-height: 1px;
+            padding: 0rem;
+            a{
+                color: #2e5cb4;
+                font-size: 13px;
+            }
+            ul img{
+                width: 0.875rem;
+                font-size:1rem;
+                // border-bottom: 1px solid #04776f;
+                padding-bottom: 4px;
+                // margin-bottom: 4px;
+            }
+            .profile-description{
+                border: 3px solid #D7E9F7;
+                padding: 4px;
+                margin-top: 0.5rem;
+                background: #fff;
+                font-size: 0.8rem;
             }
         }
     }

@@ -38,16 +38,17 @@ a:hover, a:focus, a:visisted {
     text-decoration: none !important;
 }
 input[type=text],input[type=email],input[type=password] {
-    outline: none;
+    // outline: none;
     width: 100%;
     /* background: #f9fdff; */
-    background: #ffffff;
-    border: 1px solid #c3dfee;
+    // background: #ffffff;
+    // border: 1px solid #c3dfee;
     /* border: 1px solid #6c757d; */
-    padding: 2px;
+    // padding: 2px;
 }
 input:focus{
     box-shadow: none;
+    outline: none;
 }
 @media(min-width: 1200px) {
     .container {
@@ -56,4 +57,12 @@ input:focus{
         padding-left: 0;
         padding-right: 0;
     }
+}
+
+.cannot-copy{
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
