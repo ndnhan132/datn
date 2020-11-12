@@ -1,65 +1,64 @@
 @import "scss-src/general";
-// @import "scss-src/fa";
 @import "scss-src/color-primary";
 @import "scss-src/header";
 @import "scss-src/asidebar";
+@import "scss-src/footer";
 
-#main-navbar{
-    .nav-item{
-        .nav-link{
-            text-transform: uppercase;
-            font-weight: 500;
-            color: #fff;
-            font-size: 1rem;
-        }
-        .sub-menu{
-            width: 100%;
-            position: absolute;
-            ul{ 
-                display:none;
-                list-style: none;
-                margin: 0;
-                text-align: left;
-                padding-left: 0;
-                // padding-bottom: 4px;
-                a{
-                    li{
-                        width: 100%;
-                        color: #FFF;
-                        padding: 6px 8px;
-                        border-bottom: 1px solid;
-                        i{
-                            padding-right: 0.5rem;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    .nav-item:hover{
-        background: red;
-    }
-    .nav-item:hover .sub-menu ul{
-            display: block;
-    }
+// #main-navbar{
+//     .nav-item{
+//         .nav-link{
+//             text-transform: uppercase;
+//             font-weight: 500;
+//             color: #fff;
+//             font-size: 1rem;
+//         }
+//         .sub-menu{
+//             width: 100%;
+//             position: absolute;
+//             ul{
+//                 display:none;
+//                 list-style: none;
+//                 margin: 0;
+//                 text-align: left;
+//                 padding-left: 0;
+//                 // padding-bottom: 4px;
+//                 a{
+//                     li{
+//                         width: 100%;
+//                         color: #FFF;
+//                         padding: 6px 8px;
+//                         border-bottom: 1px solid;
+//                         i{
+//                             padding-right: 0.5rem;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     .nav-item:hover{
+//         background: red;
+//     }
+//     .nav-item:hover .sub-menu ul{
+//             display: block;
+//     }
 
-    .nav-item.active .nav-link,
-    .nav-item:hover .nav-link{
-        color: #dc3545;
-        // font-weight: 600;
-    }
+//     .nav-item.active .nav-link,
+//     .nav-item:hover .nav-link{
+//         color: #dc3545;
+//         // font-weight: 600;
+//     }
 
-}
+// }
 
-#main-navbar::after{
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    opacity: .15;
-    background-image: url("../images/bg-1.png");
-}
-
+// #main-navbar::after{
+//     content: '';
+//     display: block;
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     bottom: 0;
+//     left: 0;
+//     opacity: .15;
+//     background-image: url("../images/bg-1.png");
+// }
