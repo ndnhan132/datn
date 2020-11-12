@@ -1,4 +1,4 @@
-<div class="container-fluid bg-primary position-relative" id="main-navbar">
+{{-- <div class="container-fluid bg-primary position-relative" id="main-navbar">
     <div class="container">
         <nav class="navbar navbar-expand-lg p-0">
             <a class="navbar-brand" href="#"></a>
@@ -44,4 +44,4 @@
             </div>
         </nav>
     </div>
-</div>
+</div> --}}

@@ -19,3 +19,6 @@ Route::get('/ajax/teacher-logout', 'TeacherController@logout')->name('front.teac
 Route::get('/ajax/load-teacher-login-box', 'TeacherController@ajaxLoadTeacherLoginBox');
 Route::get('/ajax/load-teacher-course-registration-box/{courseId}', 'TeacherCourseRegistrationController@ajaxLoadTeacherCourseRegistrationBox');
 Route::post('/ajax/teacher-register-course', 'TeacherCourseRegistrationController@ajaxTeacherRegisterCourse');
+
+
+Route::get('/giao-vien', 'TeacherController@getForTeacherPage')->name('front.forTeacher');
