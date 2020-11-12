@@ -60,8 +60,8 @@ input:focus {
 
 .btn-primary {
   color: #FFF;
-  background-color: #0283c8;
-  border-color: #0283c8; }
+  background-color: #18bc9c;
+  border-color: #18bc9c; }
 
 .btn-primary:hover {
   color: #FFF;
@@ -76,8 +76,8 @@ input:focus {
 .btn-primary.disabled,
 .btn-primary:disabled {
   color: #FFF;
-  background-color: #0283c8;
-  border-color: #0283c8; }
+  background-color: #18bc9c;
+  border-color: #18bc9c; }
 
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled).active,
@@ -93,13 +93,13 @@ input:focus {
   box-shadow: 0 0 0 0 rgba(38, 166, 154, 0.5); }
 
 .btn-outline-primary {
-  color: #0283c8;
-  border-color: #0283c8; }
+  color: #18bc9c;
+  border-color: #18bc9c; }
 
 .btn-outline-primary:hover {
   color: #FFF;
-  background-color: #0283c8;
-  border-color: #0283c8; }
+  background-color: #18bc9c;
+  border-color: #18bc9c; }
 
 .btn-outline-primary:focus,
 .btn-outline-primary.focus {
@@ -108,15 +108,15 @@ input:focus {
 
 .btn-outline-primary.disabled,
 .btn-outline-primary:disabled {
-  color: #0283c8;
+  color: #18bc9c;
   background-color: transparent; }
 
 .btn-outline-primary:not(:disabled):not(.disabled):active,
 .btn-outline-primary:not(:disabled):not(.disabled).active,
 .show > .btn-outline-primary.dropdown-toggle {
   color: #FFF;
-  background-color: #0283c8;
-  border-color: #0283c8; }
+  background-color: #18bc9c;
+  border-color: #18bc9c; }
 
 .btn-outline-primary:not(:disabled):not(.disabled):active:focus,
 .btn-outline-primary:not(:disabled):not(.disabled).active:focus,
@@ -126,7 +126,7 @@ input:focus {
 
 .badge-primary {
   color: #FFF;
-  background-color: #0283c8; }
+  background-color: #18bc9c; }
 
 a.badge-primary:hover,
 a.badge-primary:focus {
@@ -165,7 +165,7 @@ a.badge-primary.focus {
   border-color: #004e47; }
 
 .bg-primary {
-  background-color: #0283c8 !important; }
+  background-color: #18bc9c !important; }
 
 a.bg-primary:hover,
 a.bg-primary:focus,
@@ -174,24 +174,24 @@ button.bg-primary:focus {
   background-color: #00635a !important; }
 
 .border-primary {
-  border-color: #0283c8 !important; }
+  border-color: #18bc9c !important; }
 
 .text-primary {
-  color: #0283c8 !important; }
+  color: #18bc9c !important; }
 
 a.text-primary:hover,
 a.text-primary:focus {
   color: #004a43 !important; }
 
 .widget-small.primary {
-  background-color: #0283c8; }
+  background-color: #18bc9c; }
 
 .widget-small.primary.coloured-icon {
   background-color: #fff;
   color: #2a2a2a; }
 
 .widget-small.primary.coloured-icon .icon {
-  background-color: #0283c8;
+  background-color: #18bc9c;
   color: #fff; }
 
 #mainNav {
@@ -291,19 +291,33 @@ a.text-primary:focus {
           margin-right: 0; }
 
   #mainNav.navbar-shrink {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem; }
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem; }
     #mainNav.navbar-shrink .nav-container {
       flex-direction: row;
       flex-wrap: nowrap;
       width: 100% !important; }
       #mainNav.navbar-shrink .nav-container .navbar-collapse {
         border-top: none; }
+        #mainNav.navbar-shrink .nav-container .navbar-collapse .navbar-nav {
+          border-bottom: 1px solid #CEE2FD;
+          box-shadow: 0 0 0 -1px rgba(0, 0, 0, 0.05); }
+          #mainNav.navbar-shrink .nav-container .navbar-collapse .navbar-nav li.nav-item {
+            border-bottom: 3px solid transparent;
+            border-left: none;
+            border-right: none; }
+            #mainNav.navbar-shrink .nav-container .navbar-collapse .navbar-nav li.nav-item .nav-link {
+              padding: 0.25rem 1.0rem; }
+          #mainNav.navbar-shrink .nav-container .navbar-collapse .navbar-nav li.nav-item:hover {
+            border-bottom: 3px solid #18bc9c;
+            margin-bottom: -2px; }
       #mainNav.navbar-shrink .nav-container .logo .navbar-brand {
         font-size: 1.25em; }
         #mainNav.navbar-shrink .nav-container .logo .navbar-brand img,
         #mainNav.navbar-shrink .nav-container .logo .navbar-brand svg {
-          height: 3.0rem; } }
+          height: 5.0rem;
+          margin-bottom: -5px;
+          margin-top: -5px; } }
 @media all and (min-width: 992px) {
   .navbar .nav-item .sub-menu {
     display: block;

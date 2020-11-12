@@ -99,8 +99,6 @@
                     li.nav-item {
                         border-left: 1px solid transparent;
                         border-right: 1px solid transparent;
-
-                        // margin-right: 1rem;
                         a.nav-link {
                             padding: 0.25rem 1.5rem;
                             font-size: 16px;
@@ -113,9 +111,6 @@
                         .sub-menu {
                             width: 100%;
                             position: absolute;
-
-                            // display: none;
-                            // height: 0;
                             list-style: none;
                             margin: 0;
                             text-align: left;
@@ -157,7 +152,6 @@
                             }
                         }
                     }
-
                     .nav-item:last-child {
                         margin-right: 0;
                     }
@@ -168,15 +162,32 @@
 
     // shrink
     #mainNav.navbar-shrink {
-        padding-top: 0.75rem;
-        padding-bottom: 0.75rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
 
         .nav-container {
             flex-direction: row;
             flex-wrap: nowrap;
             width: 100% !important;
+            ;
             .navbar-collapse {
                 border-top: none;
+                .navbar-nav{
+                    border-bottom: 1px solid #CEE2FD;
+                    box-shadow: 0 0 0 -1px rgba(0,0,0,.05);
+                    li.nav-item{
+                        border-bottom: 3px solid transparent;
+                        border-left: none;
+                        border-right: none;
+                        .nav-link{
+                            padding: 0.25rem 1.0rem;
+                        }
+                    }
+                    li.nav-item:hover {
+                        border-bottom: 3px solid #18bc9c;
+                        margin-bottom: -2px;
+                    }
+                }
             }
             .logo {
                 .navbar-brand {
@@ -185,7 +196,9 @@
                     img,
                     svg {
                         // height: 2.75rem;
-                        height: 3.0rem;
+                        height: 5.0rem;
+                        margin-bottom: -5px;
+                        margin-top: -5px;
                     }
                 }
             }
