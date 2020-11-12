@@ -53,6 +53,8 @@ $(function () {
             });
     });
 
+    // $(document).on('hv', '')
+
     // !#function
     function loadTeacherLoginBox() {
         var _loginBox = $(document).find('#teacher-login-box');
