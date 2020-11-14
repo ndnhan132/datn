@@ -15,7 +15,6 @@
         <div class="panel-header">
             Gia sư các khối lớp
         </div>
-        {{-- <span class="line-dots"></span> --}}
         <div class="panel-body asidebar-box-body">
             @include('front.layouts.asidebar.loading')
         </div>
@@ -24,7 +23,6 @@
         <div class="panel-header">
             Gia sư theo bộ môn
         </div>
-        {{-- <span class="line-dots"></span> --}}
         <div class="panel-body asidebar-box-body">
             @include('front.layouts.asidebar.loading')
         </div>

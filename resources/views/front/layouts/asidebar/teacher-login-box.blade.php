@@ -39,12 +39,12 @@
         </div>
     </div>
 @else
-    <div class="card mb-0 border-0">
-        <div class="card-header bg-primary btn-teacher-show-login">
+    <div class="panel mb-0 pl-0">
+        <div class="panel-header bg-primary btn-teacher-show-login pl-2 text-white">
             <span>Gia sư đăng nhập</span>
         </div>
         <div class="w-100 form-box"  style="display: none">
-            <div class="card-body border">
+            <div class="panel-body p-2 border border-left-0">
                 <form action="" id="teacher-login-form" style="display: none-">
                     <ul class="m-0 list-unstyled">
                         <li>Địa chỉ Email：</li>

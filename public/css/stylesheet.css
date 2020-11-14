@@ -49,11 +49,6 @@ input:focus {
   -webkit-user-select: none;
   -webkit-touch-callout: none; }
 
-#page-container {
-  width: 100%;
-  height: auto;
-  margin-top: 150px; }
-
 * {
   -webkit-transition: color .2s ease;
   transition: color .2s ease; }
@@ -337,9 +332,9 @@ a.text-primary:focus {
         font-size: 1.25em; }
         #mainNav.navbar-shrink .nav-container .logo .navbar-brand img,
         #mainNav.navbar-shrink .nav-container .logo .navbar-brand svg {
-          height: 5.0rem;
-          margin-bottom: -5px;
-          margin-top: -5px; } }
+          height: 4.75rem;
+          margin-bottom: -10px;
+          margin-top: -10px; } }
 @media all and (min-width: 992px) {
   .navbar .nav-item .sub-menu {
     display: block;
@@ -436,7 +431,7 @@ a.text-primary:focus {
 #asidebar .teacher-profile {
   padding: 0.4rem 0.75rem 0.75rem;
   border: 1px solid #D5D5D5;
-  background-color: #FFFCEC;
+  background-color: rgba(227, 227, 227, 0.1);
   color: #2e5cb4;
   position: relative;
   display: -ms-flexbox;
@@ -490,7 +485,8 @@ a.text-primary:focus {
   background-clip: border-box;
   border-radius: 0;
   margin-bottom: 1rem;
-  padding-left: 0.5rem; }
+  padding-left: 0.5rem;
+  border-left: 1px solid #dee2e6 !important; }
   #asidebar .panel .panel-header {
     padding: .625rem 0;
     margin-bottom: 0;
@@ -526,9 +522,25 @@ a.text-primary:focus {
         #asidebar .panel .panel-body .asidebar-list .asidebar-item:hover {
           margin-left: 0;
           padding-left: 0.75rem;
-          background: #e3e3e3; }
+          background: #e3e3e3;
+          border-top: 1px solid #e3e3e3;
+          margin-top: -1px; }
           #asidebar .panel .panel-body .asidebar-list .asidebar-item:hover .asidebar-link {
             color: #339af0; }
+
+#page-container {
+  width: 100%;
+  height: auto;
+  margin-top: 150px; }
+
+.mainbox-bg {
+  background-color: rgba(227, 227, 227, 0.1); }
+
+.mainbox {
+  background-color: rgba(227, 227, 227, 0.2);
+  padding: 0.75rem;
+  margin-top: 1rem;
+  border-radius: 4px; }
 
 footer {
   background: #232b50;

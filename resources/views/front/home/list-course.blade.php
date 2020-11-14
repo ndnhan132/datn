@@ -1,4 +1,4 @@
-<div id="list-course">
+<div id="list-course" class="mainbox">
     <div>
         @include('front.home.header-title', ['title' => 'Danh sách lớp mới', 'icon' => 'fas fa-star-of-life'])
         <div class="table-responsive">

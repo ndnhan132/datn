@@ -1,9 +1,9 @@
-<div id="introduce">
+<div id="introduce" class="mainbox">
     <div>
         @include('front.home.header-title', ['title' => 'Giới thiệu'])
         <div class="row">
             <div class="col-md-6">
-                <img class="img-fluid" src="{{ asset('/images/introduce.jpg') }}" alt="">
+                <img class="img-fluid" src="{{ asset('/images/introduce.png') }}" alt="">
             </div>
             <div class="col-md-6">
                 <div>

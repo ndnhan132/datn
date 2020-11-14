@@ -1,0 +1,15 @@
+#page-container{
+    width: 100%;
+    height: auto;
+    margin-top: 150px;
+}
+.mainbox-bg{
+    background-color: $color-mainbox-opacity01;
+}
+
+.mainbox{
+    background-color: $color-mainbox-opacity02;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    border-radius: 4px;
+}
