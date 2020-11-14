@@ -48,9 +48,9 @@
                 <form action="" id="teacher-login-form" style="display: none-">
                     <ul class="m-0 list-unstyled">
                         <li>Địa chỉ Email：</li>
-                        <li><input name="email" type="text" id="email" value="testteacher@gmail.com" class="input_fc2id_login"></li>
+                        <li><input name="email" type="text" id="email" value="testteacher@gmail.com"></li>
                         <li>Mật khẩu：</li>
-                        <li><input name="pass" type="password" id="password" value="111111" class="input_fc2id_login"></li>
+                        <li><input name="password" type="password" id="password" value="111111"></li>
                         <li class="text-center">
                             <div class="position-relative col-6 px-0 ml-auto">
                                 <img src="{{ asset('/images/icon/lock24.png') }}" alt="lock" class="btn-login-icon">

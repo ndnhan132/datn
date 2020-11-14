@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'HomeController@index')->name('front.home');
+Route::get('/', 'PageController@index')->name('front.home');
 
 Route::get('/dang-ky-tim-gia-su.html', 'CourseController@getCourseRegisterPage')->name('front.getCourseRegisterPage');
 Route::post('/front/ajax/course/store', 'CourseController@ajaxStore');
@@ -19,6 +19,7 @@ Route::get('/ajax/teacher-logout', 'TeacherController@logout')->name('front.teac
 Route::get('/ajax/load-teacher-login-box', 'TeacherController@ajaxLoadTeacherLoginBox');
 Route::get('/ajax/load-teacher-course-registration-box/{courseId}', 'TeacherCourseRegistrationController@ajaxLoadTeacherCourseRegistrationBox');
 Route::post('/ajax/teacher-register-course', 'TeacherCourseRegistrationController@ajaxTeacherRegisterCourse');
+Route::post('/ajax/load-aside-data', 'PageController@ajaxLoadAsideData');
 
 
 Route::get('/giao-vien', 'TeacherController@getForTeacherPage')->name('front.forTeacher');

@@ -81,7 +81,7 @@ class TeacherController extends Controller
 
     public function ajaxLoadTeacherLoginBox()
     {
-        return view('front.layouts.teacher-login-box');
+        return view('front.layouts.asidebar.teacher-login-box');
     }
 
     public function getForTeacherPage()

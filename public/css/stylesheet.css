@@ -58,6 +58,28 @@ input:focus {
   -webkit-transition: color .2s ease;
   transition: color .2s ease; }
 
+.line-dots {
+  width: 100%;
+  border-bottom: dotted 1px #222;
+  height: 1px;
+  display: block;
+  position: relative;
+  font-family: Arial,Helvetica,sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left; }
+  .line-dots::before {
+    content: '';
+    height: 1px;
+    width: 100%;
+    border-bottom: dotted 1px #222;
+    position: absolute;
+    top: -2px;
+    left: 0; }
+
 .btn-primary {
   color: #FFF;
   background-color: #18bc9c;
@@ -351,7 +373,9 @@ a.text-primary:focus {
   transition-duration: 0.4s;
   text-decoration: none;
   overflow: hidden; }
-#asidebar #teacher-login-box a, #asidebar #teacher-login-box a:visited, #asidebar #teacher-login-box a:link {
+#asidebar #teacher-login-box a,
+#asidebar #teacher-login-box a:visited,
+#asidebar #teacher-login-box a:link {
   text-decoration: none;
   color: #0044CC; }
 #asidebar #teacher-login-box a:hover {
@@ -409,33 +433,6 @@ a.text-primary:focus {
   position: absolute;
   left: -2px;
   top: calc(50% - 18px); }
-#asidebar .card {
-  border-radius: 0;
-  margin-bottom: 1rem; }
-  #asidebar .card .card-header {
-    border-radius: 0;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 1.15rem;
-    font-weight: 500;
-    text-align: center; }
-  #asidebar .card .card-body {
-    padding: 0.5rem; }
-  #asidebar .card .asidebar-list {
-    margin-bottom: 0; }
-    #asidebar .card .asidebar-list .asidebar-item {
-      margin: 0.25rem 0;
-      box-shadow: 0px 0px 3px 0px #e5e5e5; }
-      #asidebar .card .asidebar-list .asidebar-item .asidebar-link {
-        display: block;
-        padding: 0.5rem 0.5rem;
-        text-transform: capitalize;
-        font-size: 1.005rem; }
-      #asidebar .card .asidebar-list .asidebar-item .asidebar-link:before {
-        content: '\f0da';
-        font-family: fontAwesome;
-        padding-left: 0.25rem;
-        padding-right: 0.25rem; }
 #asidebar .teacher-profile {
   padding: 0.4rem 0.75rem 0.75rem;
   border: 1px solid #D5D5D5;
@@ -475,6 +472,63 @@ a.text-primary:focus {
       margin-top: 0.5rem;
       background: #fff;
       font-size: 0.8rem; }
+#asidebar .asidebar-box-body {
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease; }
+#asidebar .panel {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: rgba(227, 227, 227, 0.1);
+  background-clip: border-box;
+  border-radius: 0;
+  margin-bottom: 1rem;
+  padding-left: 0.5rem; }
+  #asidebar .panel .panel-header {
+    padding: .625rem 0;
+    margin-bottom: 0;
+    border-radius: 0;
+    font-weight: 500;
+    font-size: 1.25rem;
+    text-align: left;
+    border-bottom: 1px solid #e3e3e3; }
+  #asidebar .panel .panel-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px; }
+    #asidebar .panel .panel-body .asidebar-list {
+      margin-bottom: 0; }
+      #asidebar .panel .panel-body .asidebar-list .asidebar-item {
+        margin-left: 0.75rem;
+        padding: 0.25rem 0;
+        border-bottom: 1px solid #e3e3e3; }
+        #asidebar .panel .panel-body .asidebar-list .asidebar-item:last-child {
+          border-bottom: 0; }
+        #asidebar .panel .panel-body .asidebar-list .asidebar-item .asidebar-link {
+          display: block;
+          padding: 0.25rem 0.5rem 0.25rem 0;
+          text-transform: capitalize;
+          font-size: 1.005rem;
+          color: #868e96; }
+          #asidebar .panel .panel-body .asidebar-list .asidebar-item .asidebar-link:before {
+            content: '\f0da';
+            font-family: fontAwesome;
+            padding-left: 0;
+            padding-right: 0.25rem;
+            color: #339af0; }
+        #asidebar .panel .panel-body .asidebar-list .asidebar-item:hover {
+          margin-left: 0;
+          padding-left: 0.75rem;
+          background: #e3e3e3; }
+          #asidebar .panel .panel-body .asidebar-list .asidebar-item:hover .asidebar-link {
+            color: #339af0; }
 
 footer {
   background: #232b50;

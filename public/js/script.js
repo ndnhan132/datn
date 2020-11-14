@@ -1,4 +1,7 @@
 $(function () {
+
+    //! start header scroll
+    /* #region   */
     var navbarCollapse = function () {
         if ($('#mainNav').length) {
             if ($("#mainNav").offset().top > 68) {
@@ -47,15 +50,19 @@ $(function () {
     // Collapse the navbar when page is scrolled
     $(window).scroll(navbarCollapse);
 
+    /* #endregion */
+    //! end header scroll
 
-
+    //! load aside data
+    var asidebarInterval = setInterval(loadAsidebarBoxContent, 100);
 
     $(document).on('click', '.btn-teacher-show-login', function (event) {
         event.preventDefault();
         $('.form-box').slideToggle();
     });
 
-    $(document).on('click', '.btn-teacher-login', function(event) {
+    $(document).on('click', '.btn-teacher-login', function (event) {
+        /* #region   */
         event.preventDefault();
         $.ajax({
             url: '/ajax/teacher-login',
@@ -69,8 +76,10 @@ $(function () {
                     loadTeacherLoginBox();
                 }
             });
+        /* #endregion */
     });
-    $(document).on('click', '.btn-teacher-logout', function(event) {
+    $(document).on('click', '.btn-teacher-logout', function (event) {
+        /* #region   */
         event.preventDefault();
         $.ajax({
             url: '/ajax/teacher-logout',
@@ -80,13 +89,20 @@ $(function () {
                 console.log(data);
                 if (data.success) {
                     loadTeacherLoginBox();
+                    var myInterval = setInterval(function () {
+                        if ($(document).find('#teacher-login-box .form-box').length) {
+                            $(document).find('#teacher-login-box .form-box').css('display', 'block');
+                        }
+                    }, 100);
                 }
             });
+        /* #endregion */
     });
-    $(document).on('click', '.btn-teacher-register-course', function(event){
+    $(document).on('click', '.btn-teacher-register-course', function (event) {
+        /* #region   */
         event.preventDefault();
         var courseId = $(document).find('#teacher-course-registration-box').data('course-id');
-        if(!courseId) {
+        if (!courseId) {
             alert('Error');
             return;
         }
@@ -94,7 +110,7 @@ $(function () {
             url: '/ajax/teacher-register-course',
             type: 'POST',
             dataType: 'json',
-            data: {courseId : courseId},
+            data: { courseId: courseId },
         })
             .done(function (data) {
                 console.log(data);
@@ -102,12 +118,14 @@ $(function () {
                     reloadRegisterPageContent();
                 }
             });
+        /* #endregion */
     });
 
     // $(document).on('hv', '')
 
     // !#function
     function loadTeacherLoginBox() {
+        /* #region   */
         var _loginBox = $(document).find('#teacher-login-box');
         // var _width = _loginBox.outerWidth();
         // var _height = _loginBox.outerHeight();
@@ -120,7 +138,6 @@ $(function () {
             height: ${_height}px;
             background: #FFFCEC;
         "`;
-        console.log(_loadingStyle);
         _loginBox.empty();
         var loadingHtml = `<div class="d-flex justify-content-center my-auto border" ${_loadingStyle}>
                 <div class="spinner-border my-auto" role="status" style="color: #cdcdcd; ">
@@ -137,10 +154,45 @@ $(function () {
             _registrationBox.load('/ajax/load-teacher-course-registration-box/' + $(document).find('#teacher-course-registration-box').data('course-id'));
             // _registrationBox.fadeIn();
         }
+        /* #endregion */
     }
 
-    function reloadRegisterPageContent(){
+    function reloadRegisterPageContent() {
         var _url = '/ajax/nhan-lop/' + 'eveniet-similique-incidunt-nam-cumque-dolorem-quas-debitis.html';
         $(document).find('#teacher-register-course-content').load(_url);
+    }
+
+    function loadAsidebarBoxContent() {
+        var _asideBar = $(document).find('#asidebar');
+        if (_asideBar.length) {
+            console.log('aside loading...');
+            clearInterval(asidebarInterval);
+            var _type = _asideBar.data('type');
+            $.ajax({
+                url: '/ajax/load-aside-data',
+                type: 'POST',
+                dataType: 'json',
+                data: { type: _type },
+            })
+            .done(function (data) {
+                if (data.success) {
+                    if (data.html.teacherByCourseLevel.length) {
+                        $(document).find('#asidebar-teacher-by-courselevel .asidebar-box-body')
+                            .empty()
+                            .append(data.html.teacherByCourseLevel);
+                    }
+                    if (data.html.teacherBySubject.length) {
+                        $(document).find('#asidebar-teacher-by-subject .asidebar-box-body')
+                            .empty()
+                            .append(data.html.teacherBySubject);
+                    }
+                    if (data.html.support.length) {
+                        $(document).find('#asidebar-support .asidebar-box-body')
+                            .empty()
+                            .append(data.html.support);
+                    }
+                }
+            });
+        }
     }
 });

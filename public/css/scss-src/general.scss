@@ -69,3 +69,35 @@ input:focus{
     -webkit-transition: color .2s ease;
     transition: color .2s ease;
 }
+.line-dots{
+    width: 100%;
+    border-bottom: dotted 1px #222;
+    height: 1px;
+    display: block;
+    position: relative;
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    &::before{
+        content: '';
+        height: 1px;
+        width: 100%;
+        border-bottom: dotted 1px #222;
+        position: absolute;
+        top: -2px;
+        left: 0;
+    }
+    &::after{
+        // content: '';
+        // height: 1px;
+        // width: 100%;
+        // border-bottom: dotted 1px #222;
+        // position: absolute;
+        // top: 2px;
+        // left: 0;
+    }
+}

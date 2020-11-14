@@ -47,7 +47,7 @@
                             <a href=""><i class="far fa-comment-dots"></i>&nbsp;&nbsp;Liên hệ</a>
                         </li>
                         <li>
-                            <a href="mailto:"><i class="fas fa-envelope"></i>&nbsp;&nbsp;Support@dichvugiasu.com</a>
+                            <a href="mailto:"><i class="fas fa-envelope"></i>&nbsp;&nbsp;Support@giasudanang.com</a>
                         </li>
 						<li>
                            <i class="fab fa-skype"></i><a>&nbsp;&nbsp;Skype:Gia Sư Đà Nẵng</a>
@@ -61,19 +61,16 @@
                     </ul>
                 </div>
             </div>
-
             <div class="col-md-4 col-12">
                 <div class="align-top m-0 h-100">
                     <h5 class="text-warning">BẢN ĐỒ</h5>
                     <div class="bg-white" style="height: 200px;">
-
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-    <div class="row social">
+    <div class="row social border-top border-dark">
         <div class="col-auto ml-auto">
             <a href="#">
                 <i class="fab fa-invision"></i>

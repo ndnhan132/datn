@@ -1,24 +1,33 @@
-#asidebar{
-    #teacher-login-box{
-        .btn-teacher-show-login{
+#asidebar {
+    // border-left: 1px solid rgba(0, 0, 0, .005);
+    // background: rgba(250, 250, 250,0.33);
+    // padding: 0 0.5rem;
+    #teacher-login-box {
+        .btn-teacher-show-login {
             cursor: pointer;
             position: relative;
-            -webkit-transition-duration: 0.4s; /* Safari */
+            -webkit-transition-duration: 0.4s;
+            /* Safari */
             transition-duration: 0.4s;
             text-decoration: none;
             overflow: hidden;
         }
-        a, a:visited, a:link{
-            text-decoration:none;
+
+        a,
+        a:visited,
+        a:link {
+            text-decoration: none;
             color: #0044CC;
         }
-        a:hover{
-        color: #FF0000;
-        text-decoration: underline;
+
+        a:hover {
+            color: #FF0000;
+            text-decoration: underline;
         }
 
     }
-    .btn-circle{
+
+    .btn-circle {
         display: block;
         width: 90px;
         height: 28px;
@@ -40,15 +49,18 @@
         -webkit-user-select: none;
         -webkit-touch-callout: none;
     }
-    .btn-circle:hover{
+
+    .btn-circle:hover {
         // background-color: #e68d3e
         background-color: #65C2B9;
     }
+
     .btn-circle:active {
         background-color: #e68d3e;
         box-shadow: none;
         transform: translateY(3px) translateX(-1px);
-      }
+    }
+
     // .btn-teacher-show-login:hover:before {
     //     content: "";
     //     background: #74c0fc;
@@ -69,35 +81,36 @@
     //     transition: 0s
     // }
 
-    .btn-teacher-login{
+    .btn-teacher-login {
         display: block;
         width: auto;
         height: 28px;
         margin: 0 auto;
         color: #fff;
         text-decoration: none;
-        text-align: center!important;
+        text-align: center !important;
         line-height: 28px;
         font-size: 13px;
         padding: 0 20px 0 20px;
         cursor: pointer;
         outline: none;
-        background: linear-gradient(180deg, #f97979 0%,#f55656 50%,#ec0000 51%,#e70000 100%);
+        background: linear-gradient(180deg, #f97979 0%, #f55656 50%, #ec0000 51%, #e70000 100%);
         border: 1px solid #a91212;
         border-radius: 3px;
         @extend .cannot-copy;
     }
-    .btn-teacher-login:hover{
+
+    .btn-teacher-login:hover {
         // #ffa47f
         // #fb7255
         // #f93e1d
         // #f42620
         // #ba332f
-        background: linear-gradient(180deg, #ffa47f 0%,#fb7255 50%,#f93e1d 51%,#f42620 100%);
+        background: linear-gradient(180deg, #ffa47f 0%, #fb7255 50%, #f93e1d 51%, #f42620 100%);
         border: 1px solid #ba332f;
     }
 
-    .btn-login-icon{
+    .btn-login-icon {
         // width: 23px;
         // height: 23px;
         // position: absolute;
@@ -110,45 +123,7 @@
         top: calc(50% - 18px);
     }
 
-    .card{
-        border-radius: 0;
-        margin-bottom: 1rem;
-        .card-header{
-            border-radius:0;
-            color: #fff;
-            text-transform: uppercase;
-            font-size: 1.15rem;
-            font-weight: 500;
-            text-align:center;
-        }
-        .card-body{
-            padding: 0.5rem;
-        }
-        .asidebar-list{
-            margin-bottom: 0;
-            .asidebar-item{
-                margin: 0.25rem 0;
-                box-shadow :0px 0px 3px 0px #e5e5e5;
-                .asidebar-link{
-                    display: block;
-                    padding: 0.5rem 0.5rem;
-                    text-transform: capitalize;
-                    font-size: 1.005rem;
-                    // @extend .gray6;
-                }
-                .asidebar-link:before{
-                    content:'\f0da';
-                    font-family: fontAwesome;
-                    padding-left: 0.25rem;
-                    padding-right: 0.25rem;
-                }
-                .asidebar-item:hover .asidebar-link{
-                    // @extend .gray6;
-                }
-            }
-        }
-    }
-    .teacher-profile{
+    .teacher-profile {
         padding: 0.4rem 0.75rem 0.75rem;
         border: 1px solid #D5D5D5;
         background-color: #FFFCEC;
@@ -159,7 +134,8 @@
         -ms-flex-direction: column;
         flex-direction: column;
         min-width: 0;
-        .profile-name{
+
+        .profile-name {
             border-radius: 0;
             text-transform: uppercase;
             font-weight: 500;
@@ -170,23 +146,27 @@
             color: #FA8201;
             font-size: 1rem;
         }
-        .profile-body{
+
+        .profile-body {
             -ms-flex: 1 1 auto;
             flex: 1 1 auto;
             min-height: 1px;
             padding: 0rem;
-            a{
+
+            a {
                 color: #2e5cb4;
                 font-size: 13px;
             }
-            ul img{
+
+            ul img {
                 width: 0.875rem;
-                font-size:1rem;
+                font-size: 1rem;
                 // border-bottom: 1px solid #04776f;
                 padding-bottom: 4px;
                 // margin-bottom: 4px;
             }
-            .profile-description{
+
+            .profile-description {
                 border: 3px solid #D7E9F7;
                 padding: 4px;
                 margin-top: 0.5rem;
@@ -194,5 +174,92 @@
                 font-size: 0.8rem;
             }
         }
+    }
+
+    .asidebar-box-body {
+        -webkit-transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -ms-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        transition: all 1s ease;
+        // background: rgba(248, 248, 248, 0.444);
+        // background: rgba(255, 255, 255, 1.0);
+    }
+
+    .panel {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        // background-color: #fff;
+    background-color: rgba(227, 227, 227,0.1);
+
+        background-clip: border-box;
+        // border: 1px solid rgba(0, 0, 0, .125);
+        border-radius: 0;
+        margin-bottom: 1rem;
+        padding-left: 0.5rem;
+
+        .panel-header {
+            padding: .625rem 0;
+            margin-bottom: 0;
+            border-radius: 0;
+            // text-transform: uppercase;
+            font-weight: 500;
+            font-size: 1.25rem;
+            text-align: left;
+            border-bottom: 1px solid rgb(227, 227, 227);
+        }
+
+        .panel-body {
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            min-height: 1px;
+            // padding: 0.5rem;
+            // padding-top: 0.5rem;
+
+            .asidebar-list {
+                // margin-left: 0.75rem;
+                margin-bottom: 0;
+
+                .asidebar-item {
+                    // margin: 0.25rem 0;
+                    margin-left: 0.75rem;
+                    padding: 0.25rem 0;
+                    // box-shadow: 0px 0px 3px 0px #e5e5e5;
+                    border-bottom: 1px solid rgb(227, 227, 227);
+                    &:last-child{
+                        border-bottom: 0;
+                    }
+                    .asidebar-link {
+                        display: block;
+                        padding: 0.25rem 0.5rem 0.25rem 0;
+                        text-transform: capitalize;
+                        font-size: 1.005rem;
+                        color: #868e96;
+                        &:before {
+                            content: '\f0da';
+                            font-family: fontAwesome;
+                            padding-left: 0;
+                            padding-right: 0.25rem;
+                        color: #339af0;
+                        }
+                    }
+
+                    &:hover {
+                        margin-left: 0;
+                        padding-left: 0.75rem;
+                        background: rgb(227, 227, 227);
+                        .asidebar-link {
+                            color: #339af0;
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }
