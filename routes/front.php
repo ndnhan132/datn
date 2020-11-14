@@ -9,7 +9,11 @@ Route::post('/front/ajax/course/store', 'CourseController@ajaxStore');
 Route::get('/dang-ky-lam-gia-su.html', 'TeacherController@getTeacherRegisterPage')->name('front.getTeacherRegisterPage');
 Route::post('/front/ajax/teacher/store', 'TeacherController@ajaxStore');
 
-Route::get('/lop-can-gia-su.html', 'CourseController@getNewClassPage')->name('front.getNewClassPage');
+// lop moi chua giao
+Route::get('/lop-can-gia-su.html', 'CourseController@getNotReceivedClassPage')->name('front.getNotReceivedClassPage');
+// tat ca cac lop
+Route::get('/danh-sach-lop.html', 'CourseController@getAllClassPage')->name('front.getAllClassPage');
+Route::get('/ajax/get-list-class', 'CourseController@ajaxGetListClass');
 
 Route::get('/nhan-lop/{slug}', 'TeacherCourseRegistrationController@getRegisterPage')->name('front.teacherRegisterCourse');
 Route::get('/ajax/nhan-lop/{slug}', 'TeacherCourseRegistrationController@ajaxReloadRegisterPage');

@@ -16,7 +16,7 @@
                     </li>
                     <li class="nav-item flex-fill text-center">
                         <a class="nav-link"
-                            href="{{ route('front.getNewClassPage') }}">Lớp
+                            href="{{ route('front.getNotReceivedClassPage') }}">Lớp
                             mới</a>
                     </li>
                     <li class="nav-item flex-fill text-center">

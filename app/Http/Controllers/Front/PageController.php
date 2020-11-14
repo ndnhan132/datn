@@ -28,12 +28,7 @@ class PageController extends Controller
     public function index()
     {
         Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
-        $courses = $this->courseRepository->getHomeCourse(5);
-        // $subjects = $this->subjectRepository->index();
-        // $courseLevels = $this->courseLevelRepository->index();
-        // \Debugbar::debug($courses);
-        // \Debugbar::debug($subjects);
-        // \Debugbar::debug($courseLevels);
+        $courses = $this->courseRepository->getHomeCourse(7);
         return view('front.home.index', compact(['courses']));
     }
 
@@ -42,6 +37,7 @@ class PageController extends Controller
         Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
         $subjects     = $this->subjectRepository->index();
         $courseLevels = $this->courseLevelRepository->index();
+
         $htmlTeacherByCourseLevel = view('front.layouts.asidebar.teacher-by-courselevel', compact('courseLevels'));
         $htmlTeacherByCourseLevel = strval($htmlTeacherByCourseLevel);
         $htmlTeacherByCourseLevel = trim($htmlTeacherByCourseLevel);

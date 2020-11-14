@@ -14,7 +14,8 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
 
     public function getHomeCourse($itemPerPage = 5)
     {
-        return $this->model->orderBy('created_at', 'asc')
+        return $this->model->where("flag_is_confirmed", true)
+                           ->orderBy('created_at', 'asc')
                            ->limit($itemPerPage)
                            ->offset(0)
                            ->get();
@@ -88,4 +89,32 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
     {
         return $this->model->where('slug', $slug)->first();
     }
+
+    public function getWithPagination($startFrom, $recordPerPage, $type, $confirmedRequired)
+    {
+        $query = $this->model;
+        if($confirmedRequired) {
+            $query = $query->where('flag_is_confirmed', true);
+        }
+        if($type == 'ALL') {
+            $query = $query;
+        }
+        elseif ($type == 'NOT_RECEIVED'){
+            $query = $query->whereDoesntHave('teacherCourseRegistrations', function($q) {
+                return $q->where('registration_status_id', \App\Models\RegistrationStatus::RECEIVED_ID);
+            });
+        }
+
+        $count = $query->count();
+        $data = $query->orderBy('id', 'DESC')
+                      ->offset($startFrom)
+                      ->limit($recordPerPage)
+                      ->get();
+
+        return array(
+        'data' => $data,
+        'count' => $count
+        );
+    }
+
 }

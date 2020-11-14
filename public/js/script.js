@@ -123,6 +123,12 @@ $(function () {
 
     // $(document).on('hv', '')
 
+    var pageNum = 1;
+    $(document).on('click', '.pagination-item', function () {
+        pageNum = $(this).data('pagenum') ? $(this).data('pagenum') : 1;
+        reloadListCourse();
+    });
+
     // !#function
     function loadTeacherLoginBox() {
         /* #region   */
@@ -194,5 +200,18 @@ $(function () {
                 }
             });
         }
+    }
+
+    function reloadListCourse() {
+        var _contentTable = $('#list-class-page');
+        $url = '/ajax/get-list-class?page=' + pageNum + '&type=' + _contentTable.data('type');
+        console.log('reload ' + $url);
+        // document.getElementById('list-class-page').firstElementChild.style.opacity = '0';
+        _contentTable.find('.mainbox').css('opacity','0');
+        _contentTable.load($url, function () {
+            console.log('load Index');
+            // document.getElementById('list-class-page').firstElementChild.style.opacity = '1';
+            _contentTable.find('.mainbox').css('opacity','1');
+        });
     }
 });

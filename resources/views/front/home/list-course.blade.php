@@ -5,7 +5,6 @@
         <table class="table table-striped table-bordered">
             <thead class="bg-primary text-white">
                 <tr class="text-nowrap">
-                    <th>Mã số</th>
                     <th>Môn học</th>
                     <th>Thời gian</th>
                     <th>Địa chỉ</th>
@@ -17,12 +16,13 @@
             <tbody>
             @foreach ($courses as $course)
                 <tr>
-                    <td>{{ $course->code }}</td>
                     <td class="text-capitalize">{{ $course->subject->display_name }}</td>
                     <td>{{ $course->time_working }}</td>
                     <td>{{ $course->address }}</td>
                     <td>{{ $course->tuition_per_month . ' đ/tháng' }}</td>
-                <td>{{ $course->other_requirement }}</td>
+                <td>
+                <span title="{{ $course->other_requirement }}">{{ (strlen($course->other_requirement) > 50) ? (substr($course->other_requirement, 0, 50). '...') : ($course->other_requirement) }}</span>
+            </td>
                 <td>{{ 'Chưa nhận' }}</td>
                 </tr>
             @endforeach
@@ -31,6 +31,6 @@
         </div>
     </div>
     <div class="w-100 d-flex">
-        <a href="./" class="btn btn-sm btn-primary rounded-pill text-uppercase px-4 ml-auto">Xem thêm</a>
+        <a href="{{ route('front.getNotReceivedClassPage') }}" class="btn btn-sm btn-primary rounded-pill text-uppercase px-4 ml-auto">Xem thêm</a>
     </div>
 </div>

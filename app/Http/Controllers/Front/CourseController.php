@@ -28,12 +28,16 @@ class CourseController extends Controller
         return $this->courseRepository->store($request);
     }
 
-    public function getNewClassPage()
+    public function getNotReceivedClassPage()
     {
         Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
-        $recordPerPage = 12;
-        $res = $this->courseRepository->teacherCourseRegistrationPagination(0, $recordPerPage);
-        $count = $res['count'];
+        $page = 1;
+        $startFrom = 0;
+        $recordPerPage = 4;
+        $confirmedRequired = true;
+        $type = 'NOT_RECEIVED';
+        $res     = $this->courseRepository->getWithPagination($startFrom, $recordPerPage, $type, $confirmedRequired);
+        $count   = $res['count'];
         $courses = $res['data'];
 
         if ($count % $recordPerPage) {
@@ -41,8 +45,49 @@ class CourseController extends Controller
         } else {
             $max = floor($count / $recordPerPage);
         }
-        return view('front.course.new-class-page', compact('courses'));
+
+        return view('front.course.list-class-page', compact(['courses', 'max', 'page', 'type']));
     }
 
+    public function getAllClassPage(Request $request)
+    {
+        Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
+        $page = 1;
+        $startFrom = 0;
+        $recordPerPage = 4;
+        $confirmedRequired = true;
+        $type    = 'ALL';
+        $res     = $this->courseRepository->getWithPagination($startFrom, $recordPerPage,  $type, $confirmedRequired);
+        $count   = $res['count'];
+        $courses = $res['data'];
+
+        if ($count % $recordPerPage) {
+            $max = floor($count / $recordPerPage) + 1;
+        } else {
+            $max = floor($count / $recordPerPage);
+        }
+
+        return view('front.course.list-class-page', compact(['courses', 'max', 'page', 'type']));
+    }
+
+    public function ajaxGetListClass(Request $request)
+    {
+        Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
+        isset($request['recordPerPage']) ? $recordPerPage = $request['record-per-page'] : $recordPerPage = 4;
+        isset($request['page']) ? ($page = $request['page']) : ($page = 1);
+        $startFrom = ($page - 1) * $recordPerPage;
+        $confirmedRequired = true;
+        isset($request['type']) ? ($type = $request['type']) : ($type = 'ALL');
+        $res     = $this->courseRepository->getWithPagination($startFrom, $recordPerPage,  $type, $confirmedRequired);
+        $count   = $res['count'];
+        $courses = $res['data'];
+        if ($count % $recordPerPage) {
+            $max = floor($count / $recordPerPage) + 1;
+        } else {
+            $max = floor($count / $recordPerPage);
+        }
+
+        return view('front.course.list-class-table', compact(['courses', 'max', 'page']));
+    }
 
 }
