@@ -1,4 +1,4 @@
-<div id="carouselExampleSlidesOnly" class="carousel slide"
+<div id="carouselExampleSlidesOnly" class="carousel slide rounded"
             data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">

@@ -29,7 +29,7 @@
     </div>
     <div class="panel" id="asidebar-fanpage">
         <div class="panel-body asidebar-box-body">
-            {{-- @include('front.layouts.asidebar.loading') --}}
+            @include('front.layouts.asidebar.loading')
         </div>
     </div>
 </div>

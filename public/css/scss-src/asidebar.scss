@@ -180,8 +180,6 @@
         -ms-transition: all 1s ease;
         -o-transition: all 1s ease;
         transition: all 1s ease;
-        // background: rgba(248, 248, 248, 0.444);
-        // background: rgba(255, 255, 255, 1.0);
     }
 
     .panel {
@@ -192,9 +190,7 @@
         flex-direction: column;
         min-width: 0;
         word-wrap: break-word;
-        // background-color: #fff;
-    // background-color: rgba(227, 227, 227,0.1);
-    background-color: $color-mainbox-opacity01;
+        background-color: $color-mainbox-opacity01;
 
         background-clip: border-box;
         // border: 1px solid rgba(0, 0, 0, .125);

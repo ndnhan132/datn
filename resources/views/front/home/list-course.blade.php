@@ -1,6 +1,6 @@
 <div id="list-course" class="mainbox">
     <div>
-        @include('front.home.header-title', ['title' => 'Danh sách lớp mới', 'icon' => 'fas fa-star-of-life'])
+        @include('front.home.header-title', ['title' => 'Danh sách lớp mới'])
         <div class="table-responsive">
         <table class="table table-striped table-bordered">
             <thead class="bg-primary text-white">
@@ -29,5 +29,8 @@
             </tbody>
         </table>
         </div>
+    </div>
+    <div class="w-100 d-flex">
+        <a href="./" class="btn btn-sm btn-primary rounded-pill text-uppercase px-4 ml-auto">Xem thêm</a>
     </div>
 </div>

@@ -19,7 +19,8 @@ body {
   margin: 0;
   /* font-family: "Source Sans Pro", arial, tahoma; */
   font-family: Poppins, sans-serif;
-  color: #343a40; }
+  color: #343a40;
+  background: #efefef; }
 
 a {
   text-decoration: none !important; }
@@ -431,7 +432,7 @@ a.text-primary:focus {
 #asidebar .teacher-profile {
   padding: 0.4rem 0.75rem 0.75rem;
   border: 1px solid #D5D5D5;
-  background-color: rgba(227, 227, 227, 0.1);
+  background-color: rgba(255, 255, 255, 0.75);
   color: #2e5cb4;
   position: relative;
   display: -ms-flexbox;
@@ -481,7 +482,7 @@ a.text-primary:focus {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: rgba(227, 227, 227, 0.1);
+  background-color: rgba(255, 255, 255, 0.75);
   background-clip: border-box;
   border-radius: 0;
   margin-bottom: 1rem;
@@ -533,11 +534,8 @@ a.text-primary:focus {
   height: auto;
   margin-top: 150px; }
 
-.mainbox-bg {
-  background-color: rgba(227, 227, 227, 0.1); }
-
 .mainbox {
-  background-color: rgba(227, 227, 227, 0.2);
+  background-color: white;
   padding: 0.75rem;
   margin-top: 1rem;
   border-radius: 4px; }
@@ -548,7 +546,7 @@ footer {
   footer .information {
     font-size: 13px;
     line-height: 24px;
-    min-height: 300px; }
+    min-height: 200px; }
     footer .information h5 {
       font-size: 1rem;
       line-height: 1.5rem;
