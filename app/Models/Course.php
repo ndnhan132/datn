@@ -63,6 +63,39 @@ class Course extends Model
         return $str;
     }
 
+    /**
+     * @Author: Nhan Nguyen Dinh
+     * @function: getSubjectAndLevel()
+     * @Date: 2020-11-15 11:11:21
+     * @Desc:
+     * @Params1:
+     * @Return:
+     */
+    public function getSubjectAndLevel()
+    {
+        $subj = '';
+        $lvl  = '';
+        if($this->subject) $subj .= $this->subject->display_name;
+        if($this->other_subject) $subj .= ', ' . $this->other_subject;
+        if($this->courseLevel) $lvl .= $this->courseLevel->display_name;
+        if($this->otherLevel) $lvl .= ', ' . $this->other_level;
+
+        return $subj . ' - ' . $lvl;
+    }
+
+    /**
+     * @Author: Nhan Nguyen Dinh
+     * @function: getDisplayTution()
+     * @Date: 2020-11-15 11:27:47
+     * @Desc:
+     * @Params1:
+     * @Return:
+     */
+    public function getDisplayTution()
+    {
+        return number_format($this->tuition_per_month, 0, ",", ".");
+    }
+
     //* #define Relationships
     public function subject()
     {

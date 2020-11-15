@@ -44,7 +44,7 @@
             <span>Gia sư đăng nhập</span>
         </div>
         <div class="w-100 form-box"  style="display: none">
-            <div class="panel-body p-2 border border-left-0">
+            <div class="panel-body p-2">
                 <form action="" id="teacher-login-form" style="display: none-">
                     <ul class="m-0 list-unstyled">
                         <li>Địa chỉ Email：</li>

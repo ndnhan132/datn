@@ -1,9 +1,12 @@
 @extends('front.layouts.app')
-@section('title', 'Trang chủ')
+@if ($type == 'NOT_RECEIVED')
+    @section('title', 'Lớp chưa giao')
+@else
+    @section('title', 'Danh sách lớp')
+@endif
 @section('head')
 @endsection
 @section('content')
-{{-- {{ dd($courses) }} --}}
 <div id="list-class-page" data-type="{{ $type ?? 'ALL'}}">
     @include('front.course.list-class-table');
 </div>

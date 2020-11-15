@@ -137,7 +137,7 @@ class DatabaseSeeder extends Seeder
         $subjects = DB::table('subjects')->get();
         $courseLevels = DB::table('course_levels')->get();
 
-        foreach (range(0, 30) as $index) {
+        foreach (range(0, 150) as $index) {
             DB::table('courses')->insert([
                 'flag_is_confirmed' => $faker->randomElement($array = array (true, false)),
                 'flag_is_checked' => $faker->randomElement($array = array (true, false)),

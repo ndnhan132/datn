@@ -207,11 +207,26 @@ $(function () {
         $url = '/ajax/get-list-class?page=' + pageNum + '&type=' + _contentTable.data('type');
         console.log('reload ' + $url);
         // document.getElementById('list-class-page').firstElementChild.style.opacity = '0';
-        _contentTable.find('.mainbox').css('opacity','0');
+        _contentTable.find('.list-class-page').css('opacity','0');
         _contentTable.load($url, function () {
             console.log('load Index');
+            //scroll top
+            scroll2Top();
             // document.getElementById('list-class-page').firstElementChild.style.opacity = '1';
-            _contentTable.find('.mainbox').css('opacity','1');
+            _contentTable.find('.list-class-page').css('opacity','1');
         });
+    }
+
+    function scroll2Top() {
+        // document.body.scrollTop = 0;
+        // document.documentElement.scrollTop = 0;
+        $("#mainNav").removeClass("navbar-shrink");
+        $("html, body").animate(
+            {
+                scrollTop: 0 - $('#mainNav').outerHeight() * 3,
+            },
+            1000,
+            "easeInOutExpo"
+        );
     }
 });

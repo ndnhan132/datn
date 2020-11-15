@@ -33,7 +33,7 @@ class CourseController extends Controller
         Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
         $page = 1;
         $startFrom = 0;
-        $recordPerPage = 4;
+        $recordPerPage = 12;
         $confirmedRequired = true;
         $type = 'NOT_RECEIVED';
         $res     = $this->courseRepository->getWithPagination($startFrom, $recordPerPage, $type, $confirmedRequired);
@@ -54,7 +54,7 @@ class CourseController extends Controller
         Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
         $page = 1;
         $startFrom = 0;
-        $recordPerPage = 4;
+        $recordPerPage = 12;
         $confirmedRequired = true;
         $type    = 'ALL';
         $res     = $this->courseRepository->getWithPagination($startFrom, $recordPerPage,  $type, $confirmedRequired);
@@ -73,7 +73,7 @@ class CourseController extends Controller
     public function ajaxGetListClass(Request $request)
     {
         Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
-        isset($request['recordPerPage']) ? $recordPerPage = $request['record-per-page'] : $recordPerPage = 4;
+        isset($request['recordPerPage']) ? $recordPerPage = $request['record-per-page'] : $recordPerPage = 12;
         isset($request['page']) ? ($page = $request['page']) : ($page = 1);
         $startFrom = ($page - 1) * $recordPerPage;
         $confirmedRequired = true;

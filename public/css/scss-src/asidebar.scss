@@ -1,5 +1,16 @@
 #asidebar {
     #teacher-login-box {
+        border: 2px solid #18bc9c;
+        border-radius: 0.25rem;
+
+            .panel{
+                border:none!important;
+                .panel-header{
+                    border:none!important;
+                    opacity: 0.875;
+                }
+            }
+
         .btn-teacher-show-login {
             cursor: pointer;
             position: relative;
@@ -222,7 +233,8 @@
 
                 .asidebar-item {
                     // margin: 0.25rem 0;
-                    margin-left: 0.75rem;
+                    margin-right: 0.25rem;
+                    margin-left: 0.25rem;
                     padding: 0.25rem 0;
                     // box-shadow: 0px 0px 3px 0px #e5e5e5;
                     border-bottom: 1px solid rgb(227, 227, 227);
