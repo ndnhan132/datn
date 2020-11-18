@@ -3,5 +3,5 @@
 @section('head')
 @endsection
 @section('content')
-            @include('front.teacher-course-registration.teacher-register-course-content', ['course' => $course])
+    @include('front.teacher-course-registration.teacher-register-course-content', ['course' => $course])
 @endsection

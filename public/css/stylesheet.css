@@ -548,7 +548,8 @@ a.text-primary:focus {
   background-color: white;
   padding: 0.75rem;
   margin-top: 1rem;
-  border-radius: 4px; }
+  border-radius: 4px;
+  width: 100%; }
 
 #list-class-page .list-class-item {
   transition: opacity 0.5s;
