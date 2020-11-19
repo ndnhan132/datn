@@ -35,3 +35,4 @@ Route::name('front.teacherManager.')->prefix('/ho-so')->group(function () {
 });
 
 Route::post('/ajax/teacher-manager/update/general', 'TeacherManagerController@ajaxUpdateGeneral');
+Route::post('/ajax/teacher-manager/update/password', 'TeacherManagerController@ajaxUpdatePassword');

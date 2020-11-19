@@ -73,4 +73,11 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
         $teacher->description = $request->input('description');
         return $teacher->save();
     }
+
+    public function updatePassword($request)
+    {
+        $teacher = $this->model->find(Auth::guard('teacher')->user()->id);
+        $teacher->password = bcrypt($request->input('password'));
+        return $teacher->save();
+    }
 }

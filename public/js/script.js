@@ -137,6 +137,13 @@ $(function () {
         console.log(_formData);
         ajaxTeacherManagerUpdate(_url, _formData);
     });
+    $('.teacher-manager form#password-form .btn-submit').on('click', function (event) {
+        event.preventDefault();
+        var _url = '/ajax/teacher-manager/update/password';
+        var _formData = $('.teacher-manager form#password-form').serialize();
+        console.log(_formData);
+        ajaxTeacherManagerUpdate(_url, _formData);
+    });
 
     // !#function
     function loadTeacherLoginBox() {
@@ -255,7 +262,9 @@ $(function () {
         })
             .done(function (data) {
                 console.log(data);
-                showSettingAlert(data.success);
+                var _message;
+                if (data.message) _message = data.message;
+                showSettingAlert(data.success, _message);
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
                 console.log("error");
@@ -263,14 +272,49 @@ $(function () {
             });
     }
 
-    function showSettingAlert($status) {
-        $htm = `<div class="alert alert-danger" style="display:none">
-            <i class="fas fa-info"></i> Cập nhật thât bại!
-        </div>`;
+    function showSettingAlert($status, $message = null) {
+        console.log(typeof $message);
         if ($status) {
-            $htm = `<div class="alert alert-success" style="display:none">
-                <i class="fas fa-check"></i> Cập nhật thành công!
-            </div>`;
+            if ($message) {
+                if (typeof $message == "string") {
+                    $htm = `<div class="alert alert-success" style="display:none">
+                    <i class="fas fa-check"></i>&nbsp;` + $message + `
+                </div>`;
+                }
+                if (typeof $message == "object") {
+                    $htm = `<div class="alert alert-success" style="display:none">`;
+                    $.each($message, function (key, value) {
+                        $htm += `<i class="fas fa-check"></i>&nbsp;` + value + `!<br>`;
+                    });
+                    $htm += `</div>`;
+                }
+            }
+            else {
+                $htm = `<div class="alert alert-success" style="display:none">
+                    <i class="fas fa-check"></i>&nbsp;Cập nhật thành công!
+                </div>`;
+            }
+        }
+        else {
+            if ($message) {
+                if (typeof $message == "string") {
+                    $htm = `<div class="alert alert-danger" style="display:none">
+                    <i class="fas fa-info"></i>&nbsp;` + $message + `
+                </div>`;
+                }
+                if (typeof $message == "object") {
+                    $htm = `<div class="alert alert-danger" style="display:none">`;
+                    $.each($message, function (key, value) {
+                        $htm += `<i class="fas fa-info"></i>&nbsp;` + value + `!<br>`;
+                    });
+                    $htm += `</div>`;
+                }
+            }
+            else {
+                $htm = `<div class="alert alert-danger" style="display:none">
+                    <i class="fas fa-info"></i>&nbsp;Cập nhật thât bại!
+                </div>`;
+            }
         }
         var _alert = $(document).find('.teacher-manager .setting-alert');
         _alert.empty().append($htm);

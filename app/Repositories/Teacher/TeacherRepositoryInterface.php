@@ -9,4 +9,5 @@ interface TeacherRepositoryInterface
     public function confirm($teacherId, $isActive);
     public function findByEmail($email);
     public function updateGeneral($request);
+    public function updatePassword($request);
 }
