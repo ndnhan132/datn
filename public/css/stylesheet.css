@@ -573,7 +573,7 @@ a.text-primary:focus {
       color: #666 !important; }
       .teacher-manager .content input::focus, .teacher-manager .content textarea::focus, .teacher-manager .content select::focus {
         border-color: #007bb3 !important; }
-    .teacher-manager .content input {
+    .teacher-manager .content input, .teacher-manager .content select {
       height: 40px !important; }
     .teacher-manager .content label {
       margin: 5px 0;

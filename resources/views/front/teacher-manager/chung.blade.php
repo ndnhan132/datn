@@ -36,19 +36,26 @@
                 </div>
             </div>
             <div class="form-group col-sm-6">
-                <label class="col-sm-12">Giới tính</label>
-                <div class="col-sm-12">
-                    {{-- <input type="text" class="form-control" value="{{ $teacher->is_male }}"> --}}
-                    <select name="is_male" class="form-control">
-                        <option value="1" {{ ($teacher->is_male == 1) ? 'selected' : '' }}>Nam</option>
-                        <option value="0" {{ ($teacher->is_male == 0) ? 'selected' : '' }}>Nữ</option>
-                    </select>
+                <div class="form-group col-sm-12">
+                    <label class="col-sm-12">Số chứng minh nhân dân</label>
+                    <div class="col-sm-12">
+                        <input type="text" class="form-control" value="{{ $teacher->identity_card }}" name="identity_card">
+                    </div>
+                </div>
+                <div class="form-group col-sm-12">
+                    <label class="col-sm-12">Giới tính</label>
+                    <div class="col-sm-12">
+                        <select name="is_male" class="form-control">
+                            <option value="1" {{ ($teacher->is_male == 1) ? 'selected' : '' }}>Nam</option>
+                            <option value="0" {{ ($teacher->is_male == 0) ? 'selected' : '' }}>Nữ</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="form-group col-sm-6">
                 <label class="col-sm-12">Mô tả</label>
                 <div class="col-sm-12">
-                    <textarea name="description" cols="30" rows="4" class="form-control">{{ $teacher->description }}</textarea>
+                    <textarea name="description" cols="30" rows="7" class="form-control">{{ $teacher->description }}</textarea>
                 </div>
             </div>
         </div>

@@ -144,6 +144,13 @@ $(function () {
         console.log(_formData);
         ajaxTeacherManagerUpdate(_url, _formData);
     });
+    $('.teacher-manager form#education-form .btn-submit').on('click', function (event) {
+        event.preventDefault();
+        var _url = '/ajax/teacher-manager/update/education';
+        var _formData = $('.teacher-manager form#education-form').serialize();
+        console.log(_formData);
+        ajaxTeacherManagerUpdate(_url, _formData);
+    });
 
     // !#function
     function loadTeacherLoginBox() {

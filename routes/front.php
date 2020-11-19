@@ -31,8 +31,11 @@ Route::get('/giao-vien', 'TeacherController@getForTeacherPage')->name('front.for
 // group quan ly giao vien
 Route::name('front.teacherManager.')->prefix('/ho-so')->group(function () {
     Route::get('/', 'TeacherManagerController@index')->name('index');
-    Route::get('/cai-dat-{settingType}', 'TeacherManagerController@getManager')->name('getManager');
+    Route::get('/cai-dat-{settingType}.html', 'TeacherManagerController@getManager')->name('getManager');
 });
 
 Route::post('/ajax/teacher-manager/update/general', 'TeacherManagerController@ajaxUpdateGeneral');
 Route::post('/ajax/teacher-manager/update/password', 'TeacherManagerController@ajaxUpdatePassword');
+Route::post('/ajax/teacher-manager/update/education', 'TeacherManagerController@ajaxUpdateEducation');
+
+Route::get('/ajax/get-teacher-level', 'TeacherManagerController@ajaxGetTeacherLevel');

@@ -26,7 +26,7 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
         $teacher->university = 'test_' . rand();
         $teacher->speciality = 'test_' . rand();
         $teacher->level = 'student';
-        $teacher->price = rand(10, 90) . '000000';
+        $teacher->reference_tuition = rand(10, 90) . '000000';
         $teacher->fee = rand(10, 50);
         return $teacher->save();
     }
@@ -71,6 +71,7 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
         $teacher->phone = $request->input('phone');
         $teacher->is_male = $request->input('is_male');
         $teacher->description = $request->input('description');
+        $teacher->identity_card = $request->input('identity_card');
         return $teacher->save();
     }
 
@@ -80,4 +81,15 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
         $teacher->password = bcrypt($request->input('password'));
         return $teacher->save();
     }
+
+    public function updateEducation($request)
+    {
+        $teacher = $this->model->find(Auth::guard('teacher')->user()->id);
+        $teacher->university = $request->input('university');
+        $teacher->speciality = $request->input('speciality');
+        $teacher->teacher_level_id = $request->input('teacher_level_id');
+        $teacher->reference_tuition = $request->input('reference_tuition');
+        return $teacher->save();
+    }
+
 }

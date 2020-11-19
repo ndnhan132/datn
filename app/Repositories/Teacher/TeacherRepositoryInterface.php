@@ -10,4 +10,5 @@ interface TeacherRepositoryInterface
     public function findByEmail($email);
     public function updateGeneral($request);
     public function updatePassword($request);
+    public function updateEducation($request);
 }

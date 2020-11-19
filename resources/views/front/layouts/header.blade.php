@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
     <div class="container nav-container">
         <div class="logo">
-            <a class="navbar-brand js-scroll-trigger p-0" href="">
+            <a class="navbar-brand js-scroll-trigger p-0" href="{{ route('front.home') }}">
                 <img src="{{asset('/images/logo/4.png')}}" alt="" />
             </a>
         </div>
@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="">Trang chủ</a>
+                    <a class="nav-link" href="{{ route('front.home') }}">Trang chủ</a>
                 </li>
                 <li class="nav-item  position-relative">
                     <a class="nav-link" href="{{ route('front.getNotReceivedClassPage') }}"><span>Lớp mới</span><i class="fas fa-angle-down pl-2"></i></a>
@@ -35,6 +35,7 @@
                 </li>
                 <li class="nav-item"><a class="nav-link" href="/help/notices">Tin tức</a></li>
                 <li class="nav-item"><a class="nav-link" href="/help/notices">Liên hệ</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('front.teacherManager.index') }}">Hồ sơ</a></li>
             </ul>
         </div>
     </div>

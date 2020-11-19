@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Teacher\TeacherRepositoryInterface;
+use App\Repositories\TeacherLevel\TeacherLevelRepositoryInterface;
 use Illuminate\Support\Facades\Log;
 use Validator;
 use Illuminate\Support\Facades\Auth;
@@ -13,15 +14,26 @@ use Illuminate\Support\Facades\Hash;
 class TeacherManagerController extends Controller
 {
     protected $teacherRepository;
+    protected $teacherLevelRepository;
     public function __construct(
-        TeacherRepositoryInterface $teacherRepository
+        TeacherRepositoryInterface $teacherRepository,
+        TeacherLevelRepositoryInterface $teacherLevelRepository
         )
     {
         $this->teacherRepository = $teacherRepository;
+        $this->teacherLevelRepository = $teacherLevelRepository;
     }
     public function index()
     {
         return view('front.teacher-manager.index');
+    }
+
+    public function ajaxGetTeacherLevel(Request $request)
+    {
+        return response()->json(array(
+            'success' => true,
+            'data'    => $this->teacherLevelRepository->index(),
+        ));
     }
 
     public function getManager(Request $request, $settingType)
@@ -73,5 +85,13 @@ class TeacherManagerController extends Controller
                 'message' => $validator->errors()->all(),
             ]);
         }
+    }
+
+    public function ajaxUpdateEducation(Request $request)
+    {
+        Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
+        return response()->json(array(
+            'success' => $this->teacherRepository->updateEducation($request)
+        ));
     }
 }
