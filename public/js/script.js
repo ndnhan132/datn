@@ -129,6 +129,15 @@ $(function () {
         reloadListCourse();
     });
 
+    //! teacher manager
+    $('.teacher-manager form#general-form .btn-submit').on('click', function (event) {
+        event.preventDefault();
+        var _url = '/ajax/teacher-manager/update/general';
+        var _formData = $('.teacher-manager form#general-form').serialize();
+        console.log(_formData);
+        ajaxTeacherManagerUpdate(_url, _formData);
+    });
+
     // !#function
     function loadTeacherLoginBox() {
         /* #region   */
@@ -169,6 +178,7 @@ $(function () {
     }
 
     function loadAsidebarBoxContent() {
+        /* #region   */
         var _asideBar = $(document).find('#asidebar');
         if (_asideBar.length) {
             console.log('aside loading...');
@@ -180,44 +190,48 @@ $(function () {
                 dataType: 'json',
                 data: { type: _type },
             })
-            .done(function (data) {
-                if (data.success) {
-                    if (data.html.teacherByCourseLevel.length) {
-                        $(document).find('#asidebar-teacher-by-courselevel .asidebar-box-body')
-                            .empty()
-                            .append(data.html.teacherByCourseLevel);
+                .done(function (data) {
+                    if (data.success) {
+                        if (data.html.teacherByCourseLevel.length) {
+                            $(document).find('#asidebar-teacher-by-courselevel .asidebar-box-body')
+                                .empty()
+                                .append(data.html.teacherByCourseLevel);
+                        }
+                        if (data.html.teacherBySubject.length) {
+                            $(document).find('#asidebar-teacher-by-subject .asidebar-box-body')
+                                .empty()
+                                .append(data.html.teacherBySubject);
+                        }
+                        if (data.html.support.length) {
+                            $(document).find('#asidebar-support .asidebar-box-body')
+                                .empty()
+                                .append(data.html.support);
+                        }
                     }
-                    if (data.html.teacherBySubject.length) {
-                        $(document).find('#asidebar-teacher-by-subject .asidebar-box-body')
-                            .empty()
-                            .append(data.html.teacherBySubject);
-                    }
-                    if (data.html.support.length) {
-                        $(document).find('#asidebar-support .asidebar-box-body')
-                            .empty()
-                            .append(data.html.support);
-                    }
-                }
-            });
+                });
         }
+        /* #endregion */
     }
 
     function reloadListCourse() {
+        /* #region   */
         var _contentTable = $('#list-class-page');
         $url = '/ajax/get-list-class?page=' + pageNum + '&type=' + _contentTable.data('type');
         console.log('reload ' + $url);
         // document.getElementById('list-class-page').firstElementChild.style.opacity = '0';
-        _contentTable.find('.list-class-page').css('opacity','0');
+        _contentTable.find('.list-class-page').css('opacity', '0');
         _contentTable.load($url, function () {
             console.log('load Index');
             //scroll top
             scroll2Top();
             // document.getElementById('list-class-page').firstElementChild.style.opacity = '1';
-            _contentTable.find('.list-class-page').css('opacity','1');
+            _contentTable.find('.list-class-page').css('opacity', '1');
         });
+        /* #endregion */
     }
 
     function scroll2Top() {
+        /* #region   */
         // document.body.scrollTop = 0;
         // document.documentElement.scrollTop = 0;
         $("#mainNav").removeClass("navbar-shrink");
@@ -228,5 +242,45 @@ $(function () {
             1000,
             "easeInOutExpo"
         );
+        /* #endregion */
+    }
+
+    function ajaxTeacherManagerUpdate(url, formData) {
+        scroll2Top();
+        $.ajax({
+            url: url,
+            type: 'POST',
+            dataType: 'json',
+            data: formData,
+        })
+            .done(function (data) {
+                console.log(data);
+                showSettingAlert(data.success);
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log("error");
+                showSettingAlert(false);
+            });
+    }
+
+    function showSettingAlert($status) {
+        $htm = `<div class="alert alert-danger" style="display:none">
+            <i class="fas fa-info"></i> Cập nhật thât bại!
+        </div>`;
+        if ($status) {
+            $htm = `<div class="alert alert-success" style="display:none">
+                <i class="fas fa-check"></i> Cập nhật thành công!
+            </div>`;
+        }
+        var _alert = $(document).find('.teacher-manager .setting-alert');
+        _alert.empty().append($htm);
+        // var _myIntervalShow = setInterval(function () {
+            _alert.find('.alert').slideDown();
+            // clearInterval(_myIntervalShow);
+        // }, 999);
+        var _myIntervalHide = setInterval(function () {
+            _alert.find('.alert').slideUp('slow');
+            clearInterval(_myIntervalHide);
+        }, 4000);
     }
 });

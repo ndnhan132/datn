@@ -18,7 +18,7 @@ body {
   padding: 0;
   margin: 0;
   /* font-family: "Source Sans Pro", arial, tahoma; */
-  font-family: Poppins, sans-serif;
+  font-family: Roboto, sans-serif !important;
   color: #343a40;
   background: #efefef; }
 
@@ -538,6 +538,68 @@ a.text-primary:focus {
           margin-top: -1px; }
           #asidebar .panel .panel-body .asidebar-list .asidebar-item:hover .asidebar-link {
             color: #339af0; }
+
+.teacher-manager {
+  display: flex; }
+  .teacher-manager .aside {
+    border: 2px solid #007bff; }
+    .teacher-manager .aside .header {
+      background-color: #007bff;
+      opacity: 0.8;
+      color: #fff;
+      padding: 0.25rem 0.25rem; }
+    .teacher-manager .aside .body {
+      background: #fff; }
+      .teacher-manager .aside .body a {
+        display: block;
+        width: 100%;
+        padding: 0.15rem 0.5rem; }
+        .teacher-manager .aside .body a:hover {
+          background: #cdcdcd; }
+  .teacher-manager .content {
+    border-color: #424242;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    padding: 1rem 1.75rem 0.5rem;
+    background-color: #fff; }
+    .teacher-manager .content input, .teacher-manager .content textarea, .teacher-manager .content select {
+      border: 2px solid #e3e4e8;
+      border-radius: 2px;
+      line-height: 14px;
+      padding-left: 15px;
+      transition: all 0.1s ease-in-out;
+      box-shadow: none;
+      font-size: 13px;
+      color: #666 !important; }
+      .teacher-manager .content input::focus, .teacher-manager .content textarea::focus, .teacher-manager .content select::focus {
+        border-color: #007bb3 !important; }
+    .teacher-manager .content input {
+      height: 40px !important; }
+    .teacher-manager .content label {
+      margin: 5px 0;
+      font-size: 14px;
+      font-weight: 600; }
+    .teacher-manager .content .form-group {
+      margin: 0;
+      margin-bottom: 15px;
+      padding: 0; }
+    .teacher-manager .content .setting-alert .alert {
+      background-color: #f8f9fa;
+      border-radius: 0;
+      border-left: 3px solid;
+      border-right: none;
+      border-top: none;
+      border-bottom: none;
+      font-size: 13px; }
+    .teacher-manager .content .setting-alert .alert-success {
+      border-color: #28a745;
+      color: #28a745 !important; }
+    .teacher-manager .content .setting-alert .alert-danger {
+      border-color: #dc3545;
+      color: #dc3545 !important; }
+    .teacher-manager .content .form-control:disabled, .teacher-manager .content .form-control[readonly] {
+      background-color: #f4f8fc;
+      opacity: 1; }
 
 #page-container {
   width: 100%;

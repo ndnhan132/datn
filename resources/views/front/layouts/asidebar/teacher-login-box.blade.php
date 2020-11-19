@@ -21,7 +21,7 @@
                             </li>
                             <li>
                                 <img src="{{ asset('images/icon/icon_owner13x.gif') }}" alt="...">
-                                <a href="#" class="btn-teacher-profile"><u>Hồ sơ</u></a>
+                                <a href="{{ route('front.teacherManager.index') }}" class="btn-teacher-profile"><u>Hồ sơ</u></a>
                             </li>
                             <li>
                                 <img src="{{ asset('images/icon/logout16x.png') }}" alt="...">

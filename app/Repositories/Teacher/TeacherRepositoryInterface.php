@@ -8,4 +8,5 @@ interface TeacherRepositoryInterface
     // public function markAsChecked($teacher);
     public function confirm($teacherId, $isActive);
     public function findByEmail($email);
+    public function updateGeneral($request);
 }

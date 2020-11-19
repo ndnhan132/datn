@@ -27,3 +27,11 @@ Route::post('/ajax/load-aside-data', 'PageController@ajaxLoadAsideData');
 
 
 Route::get('/giao-vien', 'TeacherController@getForTeacherPage')->name('front.forTeacher');
+
+// group quan ly giao vien
+Route::name('front.teacherManager.')->prefix('/ho-so')->group(function () {
+    Route::get('/', 'TeacherManagerController@index')->name('index');
+    Route::get('/cai-dat-{settingType}', 'TeacherManagerController@getManager')->name('getManager');
+});
+
+Route::post('/ajax/teacher-manager/update/general', 'TeacherManagerController@ajaxUpdateGeneral');

@@ -4,6 +4,7 @@ namespace App\Repositories\Teacher;
 
 use App\Repositories\BaseRepository;
 use App\Models\Teacher;
+use Illuminate\Support\Facades\Auth;
 
 class TeacherRepository extends BaseRepository implements TeacherRepositoryInterface
 {
@@ -60,5 +61,16 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
     public function findByEmail($email)
     {
         return $this->model->where('email', $email)->first();
+    }
+
+    public function updateGeneral($request)
+    {
+        $teacher = $this->model->find(Auth::guard('teacher')->user()->id);
+        $teacher->name = $request->input('name');
+        $teacher->address = $request->input('address');
+        $teacher->phone = $request->input('phone');
+        $teacher->is_male = $request->input('is_male');
+        $teacher->description = $request->input('description');
+        return $teacher->save();
     }
 }
