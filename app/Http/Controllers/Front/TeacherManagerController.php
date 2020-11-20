@@ -106,7 +106,6 @@ class TeacherManagerController extends Controller
         $teacher = Auth::guard('teacher')->user();
         $fileExtension = $request->input('file_extension') ?? 'jpg';
         $fileName      = $request->input('file_name')      ?? (Str::slug($teacher->name, '-') . '.' . $fileExtension);
-        $fileName      = (Str::slug($teacher->name, '-') . '.' . $fileExtension);
         $fileData      = $request->input('file_data')      ?? '';
         $fileSrc       = $request->input('file_src')       ?? '';
         $success = false;
@@ -114,12 +113,38 @@ class TeacherManagerController extends Controller
             $success = true;
         }
         else{
-            $path = 'uploads/avatar/' . $fileName;
-            $success = $this->imageRepository->updateTeacherAvatar($path, $teacher->id, $fileData);
+            $file = 'uploads/avatar/' . $fileName;
+            $success = $this->imageRepository->updateTeacherAvatar($fileName, $teacher->id, $fileData);
         }
 
         return response()->json(array(
             'success' => $success,
+        ));
+    }
+
+    public function ajaxUpdateImage(Request $request)
+    {
+        Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
+        $teacher = Auth::guard('teacher')->user();
+        $fileExtension = $request->input('file_extension') ?? 'jpg';
+        $fileName      = $request->input('file_name')      ?? (Str::slug($teacher->name, '-') . '.' . $fileExtension);
+        $fileData      = $request->input('file_data')      ?? '';
+        $fileType      = $request->input('file_type')      ?? '';
+        $success = false;
+        $url = '';
+        $action = 'replace';
+        $action = 'new';
+        if($fileType == 'DEGREE' || $fileType == 'IDENTITY'){
+            $res = $this->imageRepository->updateTeacherImage($fileName, $teacher->id, $fileData, $fileType, $action);
+            if($res) {
+                $url = $res;
+                $success = true;
+            }
+        }
+
+        return response()->json(array(
+            'success' => $success,
+            'url' => asset($url),
         ));
     }
 }

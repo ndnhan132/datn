@@ -1,57 +1,211 @@
 @extends('front.layouts.teacher-manager-master')
 @section('title', 'Cài đặt chung')
 @section('head')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.min.css">
 @endsection
 @section('content')
 @php
     $teacher = Auth::guard('teacher')->user();
+    $identityCardImages = $teacher->getIdentityCardImages();
+    $degreeCardImages = $teacher->getDegreeImages();
 @endphp
 <div class="content mb-5">
-    <form action="" method="post" id="education-form">
+    <form action="" method="post" id="verify-form">
         <div class="setting-alert">
         </div>
         <div class="row d-flex flex-wrap border-bottom pb-4">
-            <div class="form-group col-sm-6">
-                <label class="col-sm-12">Đại học <small class="text-danger">(Nếu có)</small></label>
+            <div class="form-group col-sm-12">
+                {{-- <label class="col-sm-12">Tải lên</small></label> --}}
                 <div class="col-sm-12">
-                    <input type="text" class="form-control" value="{{ $teacher->university }}" name="university">
+                    <div class="images-box d-flex flex-wrap border-warning">
+                    </div>
                 </div>
             </div>
-            <div class="form-group col-sm-6">
-                <label class="col-sm-12">Chuyên ngành <small class="text-danger">(Nếu có)</small></label>
+            <div class="form-group col-sm-12">
+                <label class="col-sm-12">Chứng minh nhân dân <small class="text-danger">(Tối đa 2 hình ảnh)</small></label>
                 <div class="col-sm-12">
-                    <input type="text" class="form-control" value="{{ $teacher->speciality }}" name="speciality">
+                    <div class="images-box d-flex flex-wrap">
+                        @if (count($identityCardImages))
+                            @foreach ($identityCardImages as $item)
+                            <div class="image-thumbnail">
+                                <div class="image-cover">
+                                    <img src="{{asset( $item->src )}}" alt="">
+                                </div>
+                            </div>
+                            @endforeach
+                        @endif
+                        @if (count($identityCardImages) < 2)
+                        <div class="image-upload"  data-upload-type="IDENTITY">
+                            <div class="image-cover" >
+                                <img src="{{ asset('images/upload.gif') }}" alt="">
+                            </div>
+                        </div>
+                        @endif
+                    </div>
                 </div>
             </div>
-            <div class="form-group col-sm-6">
-                <label class="col-sm-12">Trình độ hiện tại</label>
+            <div class="form-group col-sm-12">
+                <label class="col-sm-12">Bằng cấp <small class="text-danger">(Tối đa 4 hình ảnh)</small></label>
                 <div class="col-sm-12">
-                    {{-- <input type="text" class="form-control" value="{{ $teacher->teacherLevel->display_name }}" name="teacher_level"> --}}
-                    <select name="teacher_level_id" class="form-control" data-teacher_level="{{ $teacher->teacher_level_id ?? '' }}">
-                    </select>
-                </div>
-            </div>
-            <div class="form-group col-sm-6">
-                <label class="col-sm-12">Học phí tham khảo <small class="text-danger">(theo tháng)</small></label>
-                <div class="col-sm-12">
-                    <input type="text" class="form-control" value="{{ $teacher->reference_tuition }}" name="reference_tuition">
+                    <div class="images-box d-flex flex-wrap">
+                        @if (count($degreeCardImages))
+                            @foreach ($degreeCardImages as $item)
+                            <div class="image-thumbnail">
+                                <div class="image-cover">
+                                    <img src="{{asset( $item->src )}}" alt="">
+                                </div>
+                            </div>
+                            @endforeach
+                        @endif
+                        @if (count($degreeCardImages) < 4)
+                        <div class="image-upload" data-upload-type="DEGREE">
+                            <div class="image-cover">
+                                <img src="{{ asset('images/upload.gif') }}" alt="">
+                            </div>
+                        </div>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="w-100 d-flex py-4">
-            <a href="#" class="btn btn-info rounded-pill text-uppercase px-5 mx-auto btn-submit">Lưu</a>
-        </div>
+        <input type="hidden" class="d-none" name="file_extension">
+        <input type="hidden" class="d-none" name="file_name">
+        <input type="hidden" class="d-none" name="file_data">
+        <input type="hidden" class="d-none" name="file_type">
     </form>
 </div>
+<div class="modal fade verify-page" id="crop-image-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div><input type='file' value="upload" id="choose_image"></div>
+          <div>
+              <div id="image-croppie">
+
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary btn-save">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.min.js"></script>
 <script>
 $(function() {
-    $.ajax({
-        url: '/ajax/get-teacher-level',
-        type: 'GET',
-    })
-    .done(function(data) {
-        console.log(data);
+    var boxSelected ;
+    var uploadType;
+    var imageCrop = $("#image-croppie").croppie({
+                    enableExif: true,
+                    viewport: {
+                        width: 225,
+                        height: 150,
+                        type: "square",
+                    },
+                    boundary: {
+                        width: 300,
+                        height: 250,
+                    },
+                    showZoomer: false,
+                    enforceBoundary: false,
+                });
+
+    $(document).on('click', '#verify-form .image-upload', function() {
+        // imageCrop.croppie("bind", {
+        //                         url: $('#avatar-form .preview img').attr('src'),
+        //                         zoom: 1
+        //                     })
+        //                     .then(function () {
+        //                         console.log("complete");
+        //                     });
+        // console.log(imageCrop);
+        boxSelected = $(this);
+        uploadType = $(this).data('upload-type');
+        $('#verify-form input[name=file_type]').val(uploadType);
+        $('#image-croppie img').attr('src', 'null');
+        $('#crop-image-modal').modal('show');
     });
+
+    $(document).on('change', '#choose_image', function(){
+        var _fileData = $(this).prop('files')[0];
+        var _ext = $(this).val().split('.').pop().toLowerCase();
+        if ($.inArray(_ext, ['png', 'jpg', 'jpeg']) == -1) {
+            // $('#avatar-form').reset();
+            alert('ko ho tro');
+            return;
+        }
+        if (_fileData.size > 4200000) /* 2mb*/ {
+            // $('#avatar-form').reset();
+            alert('file qua lon');
+            return;
+        }
+        $('#verify-form input[name=file_extension]').val(_ext);
+        $('#verify-form input[name=file_name]').val(_fileData.name);
+        var reader = new FileReader();
+            reader.onload = function (event) {
+                imageCrop
+                    .croppie("bind", {
+                        url: event.target.result,
+                    })
+                    .then(function () {
+                        console.log("complete");
+                    });
+            };
+        reader.readAsDataURL(this.files[0]);
+    });
+
+    $('.btn-save').on('click', function (){
+        imageCrop.croppie("result", {
+                    type: "canvas",
+                    size: "viewport",
+                })
+                .then(function (response) {
+                    // console.log(response);
+                    $('#verify-form input[name=file_data]').val(response);
+                    var _formData = $('.teacher-manager form#verify-form').serialize();
+                    $.ajax({
+                        url: '/ajax/teacher-manager/update/image',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: _formData,
+                    })
+                    .done(function (data) {
+                            console.log(data);
+                            // $(boxSelected).find('img').attr('src', response);
+                            $(boxSelected).addClass('image-thumbnail').removeClass('image-upload');
+                            $('#verify-form input[name=file_data]').val('');
+                            $('#verify-form input[name=file_extension]').val('');
+                            $('#verify-form input[name=file_name]').val('');
+                            $('#verify-form input[name=file_type]').val('');
+                            if(data.success && data.url){
+                                $(boxSelected).find('img').attr('src', data.url);
+                            }
+                            boxSelected = '';
+                            uploadType = '';
+                            $('#crop-image-modal').modal('hide');
+                        })
+                        .fail(function (jqXHR, textStatus, errorThrown) {
+                            console.log("error");
+                            $('#verify-form input[name=file_data]').val('');
+                            $('#verify-form input[name=file_extension]').val('');
+                            $('#verify-form input[name=file_name]').val('');
+                            $('#verify-form input[name=file_type]').val('');
+                            boxSelected = '';
+                            uploadType = '';
+                            $('#crop-image-modal').modal('hide');
+                        });
+                });
+    })
+
 });
 </script>
 @endsection

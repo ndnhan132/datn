@@ -693,6 +693,24 @@ a.text-primary:focus {
           cursor: pointer; }
           .teacher-manager .content .select-avatar .upload:hover i {
             opacity: 1; }
+    .teacher-manager .content #verify-form .images-box {
+      border: 2px solid #e3e4e8;
+      border-radius: 2px;
+      transition: all 0.1s ease-in-out;
+      box-shadow: none;
+      width: 100%;
+      min-height: 120px; }
+      .teacher-manager .content #verify-form .images-box .image-thumbnail, .teacher-manager .content #verify-form .images-box .image-upload {
+        width: 50%; }
+        .teacher-manager .content #verify-form .images-box .image-thumbnail .image-cover, .teacher-manager .content #verify-form .images-box .image-upload .image-cover {
+          padding: 0.5rem; }
+          .teacher-manager .content #verify-form .images-box .image-thumbnail .image-cover img, .teacher-manager .content #verify-form .images-box .image-upload .image-cover img {
+            width: 100%;
+            height: 180px; }
+      .teacher-manager .content #verify-form .images-box .image-upload {
+        cursor: pointer; }
+        .teacher-manager .content #verify-form .images-box .image-upload .image-cover img {
+          background-color: #DBDBDB; }
 
 footer {
   background: #232b50;

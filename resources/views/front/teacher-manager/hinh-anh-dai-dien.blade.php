@@ -27,7 +27,7 @@
                 <input type="hidden" class="d-none" name="file_extension">
                 <input type="hidden" class="d-none" name="file_name">
                 <input type="hidden" class="d-none" name="file_data">
-                <input type="hidden" class="d-none" name="file_src" value="{{ asset(Auth::guard('teacher')->user()->getAvatarSrc()) }}">
+                <input type="hidden" class="d-none" name="file_src" value="{{ Auth::guard('teacher')->user()->getAvatarSrc() }}">
             </div>
         </div>
         <div class="w-100 d-flex py-4">
@@ -55,7 +55,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary btn-x">Save changes</button>
+          <button type="button" class="btn btn-primary btn-save">Save changes</button>
         </div>
       </div>
     </div>
@@ -90,26 +90,6 @@ $(function() {
                             });
         $('#crop-image-modal').modal('show');
     });
-    // $(document).on('change', '#avatar-form input[name=avatar]', function(){
-    //     var _fileData = $(this).prop('files')[0];
-    //     var _ext = $(this).val().split('.').pop().toLowerCase();
-    //     if ($.inArray(_ext, ['png', 'jpg', 'jpeg']) == -1) {
-    //         // $('#avatar-form').reset();
-    //         return;
-    //     }
-    //     if (_fileData.size > 4200000) /* 2mb*/ {
-    //         // $('#avatar-form').reset();
-    //         return;
-    //     }
-    //     if (this.files && this.files[0]) {
-    //         var reader = new FileReader();
-    //         reader.onload = function (e) {
-    //             console.log(e.target.result);
-    //             $('#avatar-form .preview img').attr("src", e.target.result);
-    //         };
-    //         reader.readAsDataURL(this.files[0]);
-    //     }
-    // });
 
     $(document).on('change', '#choose_image', function(){
         var _fileData = $(this).prop('files')[0];
@@ -138,7 +118,7 @@ $(function() {
             };
         reader.readAsDataURL(this.files[0]);
     });
-    $('.btn-x').on('click', function (){
+    $('.btn-save').on('click', function (){
         imageCrop.croppie("result", {
                     type: "canvas",
                     size: "viewport",

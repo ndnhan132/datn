@@ -104,6 +104,36 @@ class Teacher extends Authenticatable
         return $this->teacherCourseRegistrations()->where('course_id', $courseId)->first();
     }
 
+    /**
+     * @Author: Nhan Nguyen Dinh
+     * @function: getIdentityCardImages()
+     * @Date: 2020-11-20 22:20:42
+     * @Desc:
+     * @Params1:
+     * @Return:
+     */
+
+    public function getIdentityCardImages()
+    {
+        $res = $this->images->where('image_type', \App\Models\Image::TEACHER_IDENTITY_CARD)->all();
+        return $res;
+    }
+
+    /**
+     * @Author: Nhan Nguyen Dinh
+     * @function: getDegreeImages
+     * @Date: 2020-11-20 22:45:59
+     * @Desc:
+     * @Params1:
+     * @Return:
+     */
+    public function getDegreeImages()
+    {
+        $res = $this->images->where('image_type', \App\Models\Image::TEACHER_DEGREE)->all();
+        return $res;
+    }
+
+
     //* #define Relationships
     // public function courses()
     // {
