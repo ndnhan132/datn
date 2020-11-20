@@ -29,14 +29,15 @@ Route::post('/ajax/load-aside-data', 'PageController@ajaxLoadAsideData');
 Route::get('/giao-vien', 'TeacherController@getForTeacherPage')->name('front.forTeacher');
 
 // group quan ly giao vien
-Route::name('front.teacherManager.')->prefix('/ho-so')->group(function () {
+Route::name('front.teacherManager.')->prefix('/ho-so')->middleware(['CheckTeacher'])->group(function () {
     Route::get('/', 'TeacherManagerController@index')->name('index');
     Route::get('/cai-dat-{settingType}.html', 'TeacherManagerController@getManager')->name('getManager');
 });
+Route::prefix('/ajax/')->middleware(['CheckTeacher'])->group(function() {
+    Route::post('teacher-manager/update/general', 'TeacherManagerController@ajaxUpdateGeneral');
+    Route::post('teacher-manager/update/password', 'TeacherManagerController@ajaxUpdatePassword');
+    Route::post('teacher-manager/update/education', 'TeacherManagerController@ajaxUpdateEducation');
+    Route::post('teacher-manager/update/avatar', 'TeacherManagerController@ajaxUpdateAvatar');
 
-Route::post('/ajax/teacher-manager/update/general', 'TeacherManagerController@ajaxUpdateGeneral');
-Route::post('/ajax/teacher-manager/update/password', 'TeacherManagerController@ajaxUpdatePassword');
-Route::post('/ajax/teacher-manager/update/education', 'TeacherManagerController@ajaxUpdateEducation');
-Route::post('/ajax/teacher-manager/update/avatar', 'TeacherManagerController@ajaxUpdateAvatar');
-
-Route::get('/ajax/get-teacher-level', 'TeacherManagerController@ajaxGetTeacherLevel');
+    Route::get('get-teacher-level', 'TeacherManagerController@ajaxGetTeacherLevel');
+});

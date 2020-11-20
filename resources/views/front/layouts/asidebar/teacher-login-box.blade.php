@@ -57,6 +57,16 @@
                                 <span class="btn-teacher-login my-2 btn-login">Đăng nhập</span>
                             </div>
                         </li>
+                        <li class="text-left">
+                            <div class="form-check">
+                                <a >
+                                    <label class="form-check-label ml-1" for="remember">
+                                        <input type="checkbox" class="form-check-input pb-1" name="remember" id="remember">
+                                        Giữ trạng thái đăng nhập
+                                        </label>
+                                </a>
+                            </div>
+                        </li>
                         <li>
                             <img src="{{ asset('/images/icon/help_icon.gif') }}" alt="help">
                             <a href="#">Quên mật khẩu</a>
