@@ -30,6 +30,12 @@
                             <div class="image-thumbnail">
                                 <div class="image-cover">
                                     <img src="{{asset( $item->src )}}" alt="">
+                                    <div class="image-action">
+                                        <div class="body">
+                                            <span class="btn-view"><i class="fas fa-eye"></i></span>
+                                            <span class="btn-del"><i class="fas fa-trash-alt"></i></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             @endforeach
@@ -98,6 +104,20 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="view-image-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Hình ảnh</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        </div>
+      </div>
+    </div>
+  </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.min.js"></script>
 <script>
@@ -120,14 +140,6 @@ $(function() {
                 });
 
     $(document).on('click', '#verify-form .image-upload', function() {
-        // imageCrop.croppie("bind", {
-        //                         url: $('#avatar-form .preview img').attr('src'),
-        //                         zoom: 1
-        //                     })
-        //                     .then(function () {
-        //                         console.log("complete");
-        //                     });
-        // console.log(imageCrop);
         boxSelected = $(this);
         uploadType = $(this).data('upload-type');
         $('#verify-form input[name=file_type]').val(uploadType);
@@ -206,6 +218,17 @@ $(function() {
                 });
     })
 
+    $(document).on('click', '#verify-form .btn-view', function() {
+        var _modal = $('#view-image-modal');
+        _modal.find('.modal-body').empty();
+        var _src = $(this).closest('.image-cover').find('img').attr('src');
+        console.log(_src);
+        _modal.find('.modal-body').append('<img src="' + _src + '" alt="" class="img-thumbnail img-fluid w-100">');
+        _modal.modal('show');
+    });
+    $(document).on('click', '#verify-form .btn-del', function() {
+        alert('del')
+    });
 });
 </script>
 @endsection

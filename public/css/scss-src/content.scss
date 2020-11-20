@@ -210,10 +210,40 @@
             .image-thumbnail, .image-upload{
                 width: 50%;
                 .image-cover{
+                    position: relative;
                     padding: 0.5rem;
                     img{
                         width: 100%;
                         height: 180px;
+                    }
+                    .image-action{
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        opacity: 0.2;
+                        &:hover{
+                            background-color: rgba(0, 0, 0, 0.282);
+                            opacity: 0.9;
+                        }
+                        .body{
+                            width: 100%;
+                            // display:flex;
+                            margin-top: 50%;
+                            text-align: center;
+                            span{
+                                cursor: pointer;
+                                font-size:1rem;
+                                line-height:1rem;
+                                margin: 0 0.5rem;
+                                padding: 0.35rem 1rem;
+                                color: #fff;
+                                border: 3px solid #FFF;
+                                border-radius: 3px;
+                                background-color: transparent;
+                            }
+                        }
                     }
                 }
             }
@@ -223,6 +253,9 @@
                    img{
                         background-color:#DBDBDB;
                     }
+                }
+                .image-action{
+                    display: none;
                 }
             }
         }

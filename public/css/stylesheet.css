@@ -703,14 +703,41 @@ a.text-primary:focus {
       .teacher-manager .content #verify-form .images-box .image-thumbnail, .teacher-manager .content #verify-form .images-box .image-upload {
         width: 50%; }
         .teacher-manager .content #verify-form .images-box .image-thumbnail .image-cover, .teacher-manager .content #verify-form .images-box .image-upload .image-cover {
+          position: relative;
           padding: 0.5rem; }
           .teacher-manager .content #verify-form .images-box .image-thumbnail .image-cover img, .teacher-manager .content #verify-form .images-box .image-upload .image-cover img {
             width: 100%;
             height: 180px; }
+          .teacher-manager .content #verify-form .images-box .image-thumbnail .image-cover .image-action, .teacher-manager .content #verify-form .images-box .image-upload .image-cover .image-action {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.2; }
+            .teacher-manager .content #verify-form .images-box .image-thumbnail .image-cover .image-action:hover, .teacher-manager .content #verify-form .images-box .image-upload .image-cover .image-action:hover {
+              background-color: rgba(0, 0, 0, 0.282);
+              opacity: 0.9; }
+            .teacher-manager .content #verify-form .images-box .image-thumbnail .image-cover .image-action .body, .teacher-manager .content #verify-form .images-box .image-upload .image-cover .image-action .body {
+              width: 100%;
+              margin-top: 50%;
+              text-align: center; }
+              .teacher-manager .content #verify-form .images-box .image-thumbnail .image-cover .image-action .body span, .teacher-manager .content #verify-form .images-box .image-upload .image-cover .image-action .body span {
+                cursor: pointer;
+                font-size: 1rem;
+                line-height: 1rem;
+                margin: 0 0.5rem;
+                padding: 0.35rem 1rem;
+                color: #fff;
+                border: 3px solid #FFF;
+                border-radius: 3px;
+                background-color: transparent; }
       .teacher-manager .content #verify-form .images-box .image-upload {
         cursor: pointer; }
         .teacher-manager .content #verify-form .images-box .image-upload .image-cover img {
           background-color: #DBDBDB; }
+        .teacher-manager .content #verify-form .images-box .image-upload .image-action {
+          display: none; }
 
 footer {
   background: #232b50;
