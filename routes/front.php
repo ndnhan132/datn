@@ -39,6 +39,7 @@ Route::prefix('/ajax/')->middleware(['CheckTeacher'])->group(function() {
     Route::post('teacher-manager/update/education', 'TeacherManagerController@ajaxUpdateEducation');
     Route::post('teacher-manager/update/avatar', 'TeacherManagerController@ajaxUpdateAvatar');
     Route::post('teacher-manager/update/image', 'TeacherManagerController@ajaxUpdateImage');
+    Route::post('teacher-manager/update/delete-image', 'TeacherManagerController@ajaxUpdateDeleteImage');
 
     Route::get('get-teacher-level', 'TeacherManagerController@ajaxGetTeacherLevel');
 });

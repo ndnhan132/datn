@@ -85,4 +85,17 @@ class ImageRepository extends BaseRepository implements ImageRepositoryInterface
         }
         return false;
     }
+
+    public function delete($imageId, $teacherId)
+    {
+        $image = $this->model->where([
+            ['teacher_id', '=', $teacherId],
+            ['id', '=', $imageId],
+        ])->first();
+        if(!$image) return false;
+        if (file_exists($image->src)) {
+            unlink($image->src);
+        }
+        return $image->delete();
+    }
 }

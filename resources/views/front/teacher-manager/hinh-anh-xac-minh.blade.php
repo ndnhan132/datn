@@ -24,11 +24,11 @@
             <div class="form-group col-sm-12">
                 <label class="col-sm-12">Chứng minh nhân dân <small class="text-danger">(Tối đa 2 hình ảnh)</small></label>
                 <div class="col-sm-12">
-                    <div class="images-box d-flex flex-wrap">
+                    <div class="images-box d-flex flex-wrap" data-max="2">
                         @if (count($identityCardImages))
                             @foreach ($identityCardImages as $item)
                             <div class="image-thumbnail">
-                                <div class="image-cover">
+                                <div class="image-cover" data-id="{{ $item->id }}">
                                     <img src="{{asset( $item->src )}}" alt="">
                                     <div class="image-action">
                                         <div class="body">
@@ -44,6 +44,12 @@
                         <div class="image-upload"  data-upload-type="IDENTITY">
                             <div class="image-cover" >
                                 <img src="{{ asset('images/upload.gif') }}" alt="">
+                                <div class="image-action">
+                                    <div class="body">
+                                        <span class="btn-view"><i class="fas fa-eye"></i></span>
+                                        <span class="btn-del"><i class="fas fa-trash-alt"></i></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         @endif
@@ -53,12 +59,18 @@
             <div class="form-group col-sm-12">
                 <label class="col-sm-12">Bằng cấp <small class="text-danger">(Tối đa 4 hình ảnh)</small></label>
                 <div class="col-sm-12">
-                    <div class="images-box d-flex flex-wrap">
+                    <div class="images-box d-flex flex-wrap" data-max="4">
                         @if (count($degreeCardImages))
                             @foreach ($degreeCardImages as $item)
                             <div class="image-thumbnail">
-                                <div class="image-cover">
+                                <div class="image-cover" data-id="{{ $item->id }}">
                                     <img src="{{asset( $item->src )}}" alt="">
+                                    <div class="image-action">
+                                        <div class="body">
+                                            <span class="btn-view"><i class="fas fa-eye"></i></span>
+                                            <span class="btn-del"><i class="fas fa-trash-alt"></i></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             @endforeach
@@ -67,6 +79,12 @@
                         <div class="image-upload" data-upload-type="DEGREE">
                             <div class="image-cover">
                                 <img src="{{ asset('images/upload.gif') }}" alt="">
+                                <div class="image-action">
+                                    <div class="body">
+                                        <span class="btn-view"><i class="fas fa-eye"></i></span>
+                                        <span class="btn-del"><i class="fas fa-trash-alt"></i></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         @endif
@@ -124,6 +142,19 @@
 $(function() {
     var boxSelected ;
     var uploadType;
+    var imageUploadHtml = `
+<div class="image-upload" data-upload-type="DEGREE">
+    <div class="image-cover">
+        <img src="{{ asset('images/upload.gif') }}" alt="">
+        <div class="image-action">
+            <div class="body">
+                <span class="btn-view"><i class="fas fa-eye"></i></span>
+                <span class="btn-del"><i class="fas fa-trash-alt"></i></span>
+            </div>
+        </div>
+    </div>
+</div>
+`;
     var imageCrop = $("#image-croppie").croppie({
                     enableExif: true,
                     viewport: {
@@ -227,7 +258,32 @@ $(function() {
         _modal.modal('show');
     });
     $(document).on('click', '#verify-form .btn-del', function() {
-        alert('del')
+        var _element = $(this);
+        if(confirm('chac chan xoa')){
+            $.ajax({
+                url: '/ajax/teacher-manager/update/delete-image',
+                type: 'POST',
+                dataType: 'json',
+                data: {image_id : _element.closest('.image-cover').data('id')},
+            })
+            .done(function (data) {
+                    console.log(data);
+                    if(data.success){
+                        var _thumb = _element.closest('.image-thumbnail');
+                        var _imagesBox = _element.closest('.images-box');
+                        var _max = _imagesBox.data('max');
+                        _thumb.remove();
+                        if(_imagesBox.find('.image-thumbnail').length == (_max - 1)){
+                            _imagesBox.append(imageUploadHtml);
+                            if(_max == 2){
+                                _imagesBox.find('.image-upload').attr('data-upload-type', "IDENTITY");
+                            }
+                        }
+                    }
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                });
+        }
     });
 });
 </script>

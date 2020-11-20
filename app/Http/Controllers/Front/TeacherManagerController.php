@@ -147,4 +147,17 @@ class TeacherManagerController extends Controller
             'url' => asset($url),
         ));
     }
+
+    public function ajaxUpdateDeleteImage(Request $request)
+    {
+        Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
+        $success = false;
+        // if($request['image_id']) {
+        //     $success = $this->imageRepository->delete($request['image_id'], Auth::guard('teacher')->user()->id);
+        // }
+            $success = true;
+        return response()->json(array(
+            'success' => $success,
+        ));
+    }
 }
