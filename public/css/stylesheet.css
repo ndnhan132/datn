@@ -539,6 +539,64 @@ a.text-primary:focus {
           #asidebar .panel .panel-body .asidebar-list .asidebar-item:hover .asidebar-link {
             color: #339af0; }
 
+#page-container {
+  width: 100%;
+  height: auto;
+  margin-top: 150px; }
+
+.mainbox {
+  background-color: white;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  border-radius: 4px;
+  width: 100%; }
+
+#list-class-page .list-class-item {
+  transition: opacity 0.5s;
+  padding: 0;
+  background-color: white;
+  margin-top: 0.75rem;
+  border-radius: 0.25rem;
+  box-shadow: 0px 0px 3px 0px #e5e5e5;
+  border: 2px solid #18bc9c; }
+  #list-class-page .list-class-item .item-header {
+    padding-left: 0.75rem;
+    padding-top: 0.75rem;
+    background-color: #18bc9c;
+    opacity: 0.75; }
+    #list-class-page .list-class-item .item-header h6 {
+      font-size: 0.975rem;
+      color: #fff; }
+  #list-class-page .list-class-item .item-body {
+    font-size: 0.85rem;
+    color: #4d4d4d;
+    padding: 0.75rem; }
+    #list-class-page .list-class-item .item-body ul li {
+      margin-bottom: 0.35rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden; }
+      #list-class-page .list-class-item .item-body ul li .bold {
+        font-weight: 600;
+        font-size: 0.825rem;
+        color: #111; }
+    #list-class-page .list-class-item .item-body ul .address {
+      -webkit-line-clamp: 2; }
+#list-class-page .list-class-item.received {
+  transition: opacity 0.5s;
+  padding: 0;
+  background-color: white;
+  margin-top: 0.75rem;
+  border-radius: 0.25rem;
+  box-shadow: 0px 0px 3px 0px #e5e5e5;
+  border: 2px solid #fd7e14; }
+  #list-class-page .list-class-item.received .item-header {
+    padding-left: 0.75rem;
+    padding-top: 0.75rem;
+    background-color: #fd7e14;
+    opacity: 0.75; }
+
 .teacher-manager {
   display: flex; }
   .teacher-manager .aside {
@@ -600,64 +658,41 @@ a.text-primary:focus {
     .teacher-manager .content .form-control:disabled, .teacher-manager .content .form-control[readonly] {
       background-color: #f4f8fc;
       opacity: 1; }
-
-#page-container {
-  width: 100%;
-  height: auto;
-  margin-top: 150px; }
-
-.mainbox {
-  background-color: white;
-  padding: 0.75rem;
-  margin-top: 1rem;
-  border-radius: 4px;
-  width: 100%; }
-
-#list-class-page .list-class-item {
-  transition: opacity 0.5s;
-  padding: 0;
-  background-color: white;
-  margin-top: 0.75rem;
-  border-radius: 0.25rem;
-  box-shadow: 0px 0px 3px 0px #e5e5e5;
-  border: 2px solid #18bc9c; }
-  #list-class-page .list-class-item .item-header {
-    padding-left: 0.75rem;
-    padding-top: 0.75rem;
-    background-color: #18bc9c;
-    opacity: 0.75; }
-    #list-class-page .list-class-item .item-header h6 {
-      font-size: 0.975rem;
-      color: #fff; }
-  #list-class-page .list-class-item .item-body {
-    font-size: 0.85rem;
-    color: #4d4d4d;
-    padding: 0.75rem; }
-    #list-class-page .list-class-item .item-body ul li {
-      margin-bottom: 0.35rem;
-      display: -webkit-box;
-      -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;
-      overflow: hidden; }
-      #list-class-page .list-class-item .item-body ul li .bold {
-        font-weight: 600;
-        font-size: 0.825rem;
-        color: #111; }
-    #list-class-page .list-class-item .item-body ul .address {
-      -webkit-line-clamp: 2; }
-#list-class-page .list-class-item.received {
-  transition: opacity 0.5s;
-  padding: 0;
-  background-color: white;
-  margin-top: 0.75rem;
-  border-radius: 0.25rem;
-  box-shadow: 0px 0px 3px 0px #e5e5e5;
-  border: 2px solid #fd7e14; }
-  #list-class-page .list-class-item.received .item-header {
-    padding-left: 0.75rem;
-    padding-top: 0.75rem;
-    background-color: #fd7e14;
-    opacity: 0.75; }
+    .teacher-manager .content .select-avatar {
+      border: 4px solid #606264;
+      border-radius: 4px;
+      position: relative;
+      width: 120px;
+      height: 180px; }
+      .teacher-manager .content .select-avatar i {
+        font-size: 30px;
+        color: #fff;
+        opacity: 0.333;
+        margin-top: 60%; }
+      .teacher-manager .content .select-avatar .preview {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        z-index: 8; }
+        .teacher-manager .content .select-avatar .preview img {
+          width: 100%;
+          height: 100%; }
+      .teacher-manager .content .select-avatar .upload {
+        position: absolute;
+        z-index: 9;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center; }
+        .teacher-manager .content .select-avatar .upload:hover {
+          background-color: rgba(96, 98, 100, 0.5);
+          cursor: pointer; }
+          .teacher-manager .content .select-avatar .upload:hover i {
+            opacity: 1; }
 
 footer {
   background: #232b50;

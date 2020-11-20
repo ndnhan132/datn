@@ -91,5 +91,4 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
         $teacher->reference_tuition = $request->input('reference_tuition');
         return $teacher->save();
     }
-
 }

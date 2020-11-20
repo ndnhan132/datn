@@ -6,22 +6,27 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Teacher\TeacherRepositoryInterface;
 use App\Repositories\TeacherLevel\TeacherLevelRepositoryInterface;
+use App\Repositories\Image\ImageRepositoryInterface;
 use Illuminate\Support\Facades\Log;
 use Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class TeacherManagerController extends Controller
 {
     protected $teacherRepository;
     protected $teacherLevelRepository;
+    protected $imageRepository;
     public function __construct(
         TeacherRepositoryInterface $teacherRepository,
-        TeacherLevelRepositoryInterface $teacherLevelRepository
+        TeacherLevelRepositoryInterface $teacherLevelRepository,
+        ImageRepositoryInterface $imageRepository
         )
     {
         $this->teacherRepository = $teacherRepository;
         $this->teacherLevelRepository = $teacherLevelRepository;
+        $this->imageRepository = $imageRepository;
     }
     public function index()
     {
@@ -92,6 +97,29 @@ class TeacherManagerController extends Controller
         Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
         return response()->json(array(
             'success' => $this->teacherRepository->updateEducation($request)
+        ));
+    }
+
+    public function ajaxUpdateAvatar(Request $request)
+    {
+        Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
+        $teacher = Auth::guard('teacher')->user();
+        $fileExtension = $request->input('file_extension') ?? 'jpg';
+        $fileName      = $request->input('file_name')      ?? (Str::slug($teacher->name, '-') . '.' . $fileExtension);
+        $fileName      = (Str::slug($teacher->name, '-') . '.' . $fileExtension);
+        $fileData      = $request->input('file_data')      ?? '';
+        $fileSrc       = $request->input('file_src')       ?? '';
+        $success = false;
+        if($teacher->getAvatarSrc() == $fileSrc){
+            $success = true;
+        }
+        else{
+            $path = 'uploads/avatar/' . $fileName;
+            $success = $this->imageRepository->updateTeacherAvatar($path, $teacher->id, $fileData);
+        }
+
+        return response()->json(array(
+            'success' => $success,
         ));
     }
 }

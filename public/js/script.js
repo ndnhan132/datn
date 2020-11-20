@@ -151,6 +151,13 @@ $(function () {
         console.log(_formData);
         ajaxTeacherManagerUpdate(_url, _formData);
     });
+    $('.teacher-manager form#avatar-form .btn-submit').on('click', function (event) {
+        event.preventDefault();
+        var _url = '/ajax/teacher-manager/update/avatar';
+        var _formData = $('.teacher-manager form#avatar-form').serialize();
+        console.log(_formData);
+        ajaxTeacherManagerUpdate(_url, _formData);
+    });
 
     // !#function
     function loadTeacherLoginBox() {
@@ -280,7 +287,6 @@ $(function () {
     }
 
     function showSettingAlert($status, $message = null) {
-        console.log(typeof $message);
         if ($status) {
             if ($message) {
                 if (typeof $message == "string") {
