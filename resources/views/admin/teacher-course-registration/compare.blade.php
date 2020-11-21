@@ -26,7 +26,7 @@
                     </tr>
                     <tr>
                         <td><span>Lớp học</span></td>
-                        <td><span>{{ ($course->courseLevel) ? $course->courseLevel->display_name : $course->other_level }}</span></td>
+                        <td><span>{{ ($course->courseLevel) ? $course->courseLevel->display_name : $course->other_teacher_level }}</span></td>
                     </tr>
                     <tr>
                         <td><span>Thời gian dạy</span></td>

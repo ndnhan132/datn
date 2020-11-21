@@ -42,13 +42,21 @@
                         <input type="text" class="form-control" value="{{ $teacher->identity_card }}" name="identity_card">
                     </div>
                 </div>
-                <div class="form-group col-sm-12">
-                    <label class="col-sm-12">Giới tính</label>
-                    <div class="col-sm-12">
-                        <select name="is_male" class="form-control">
-                            <option value="1" {{ ($teacher->is_male == 1) ? 'selected' : '' }}>Nam</option>
-                            <option value="0" {{ ($teacher->is_male == 0) ? 'selected' : '' }}>Nữ</option>
-                        </select>
+                <div class="form-group d-flex">
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-12">Giới tính</label>
+                        <div class="col-sm-12">
+                            <select name="is_male" class="form-control">
+                                <option value="1" {{ ($teacher->is_male == 1) ? 'selected' : '' }}>Nam</option>
+                                <option value="0" {{ ($teacher->is_male == 0) ? 'selected' : '' }}>Nữ</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label class="col-sm-12">Năm sinh</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" value="{{ $teacher->year_of_birth }}" name="year_of_birth">
+                        </div>
                     </div>
                 </div>
             </div>

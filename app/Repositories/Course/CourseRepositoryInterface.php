@@ -11,4 +11,5 @@ interface CourseRepositoryInterface
     public function getNewClassesWithPagination($startFrom, $recordPerPage); // front page
     public function findBySlug($slug);
     public function getWithPagination($startFrom, $recordPerPage, $type, $confirmedRequired);
+    public function findWithData($courseId);
 }

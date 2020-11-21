@@ -51,10 +51,10 @@ class Course extends Model
     public function getRequiredGenderAndLevel()
     {
         $gender = "";
-        if($this->teacher_gender = "MALE") {
+        if($this->teacher_gender == "MALE") {
             $gender = "Nam ";
         }
-        elseif($this->teacher_gender = "FEMALE"){
+        elseif($this->teacher_gender == "FEMALE"){
             $gender = "Nữ ";
         }
         $str = $gender. $this->teacherLevel->display_name ?? '';
@@ -78,7 +78,7 @@ class Course extends Model
         if($this->subject) $subj .= $this->subject->display_name;
         if($this->other_subject) $subj .= ', ' . $this->other_subject;
         if($this->courseLevel) $lvl .= $this->courseLevel->display_name;
-        if($this->otherLevel) $lvl .= ', ' . $this->other_level;
+        if($this->otherLevel) $lvl .= ', ' . $this->other_teacher_level;
 
         return $subj . ' - ' . $lvl;
     }
@@ -126,7 +126,7 @@ class Course extends Model
     {
         $lvl  = '';
         if($this->courseLevel) $lvl .= $this->courseLevel->display_name;
-        if($this->otherLevel) $lvl .= ', ' . $this->other_level;
+        if($this->otherLevel) $lvl .= ', ' . $this->other_teacher_level;
 
         return $lvl;
     }

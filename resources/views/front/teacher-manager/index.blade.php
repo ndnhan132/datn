@@ -10,6 +10,8 @@
     $images = array();
     $images = array_merge($images, $identityCardImages);
     $images = array_merge($images, $degreeCardImages);
+    $registrations = $teacher->teacherCourseRegistrations;
+    $myReceived = $teacher->getMyReceivedRegistration();
 @endphp
 <div class="content- mb-5" id="profile">
     <div>
@@ -77,7 +79,7 @@
                                     </tr>
                                     <tr>
                                         <td class="text-nowrap"><span>-&nbsp;Tình trạng tài khoản</span></td>
-                                        <td><span>{{ $teacher->is_male ? 'Nam' : 'Nữ' }}</span></td>
+                                        <td><span>{{ $teacher->isActive() ? 'Đã kích hoạt' : 'Chưa được xét duyệt' }}</span></td>
                                     </tr>
                                     <tr>
                                         <td class="text-nowrap"><span>-&nbsp;Thông tin thêm</span></td>
@@ -95,7 +97,12 @@
                     <div class="profile-box d-flex flex-wrap">
                         <div class="col-12">
                             <div class="d-flex flex-column">
-                                <h5 class="text-capitalize name">Lớp đã nhận</h5>
+                                <h5 class="text-capitalize name">Lớp đăng nhận</h5>
+                                @if ($myReceived)
+                                @include('front.teacher-manager.registed-course')
+                                @else
+                                <span>Chưa Nhận lớp nào</span>
+                                @endif
                             </div>
                         </div>
                     </div>

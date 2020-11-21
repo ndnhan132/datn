@@ -117,4 +117,9 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
         );
     }
 
+    public function findWithData($courseId)
+    {
+        return $this->model->with(['subject', 'teacherLevel', 'courseLevel'])->where('id', $courseId)->first();
+    }
+
 }

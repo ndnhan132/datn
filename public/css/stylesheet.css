@@ -793,6 +793,43 @@ a.text-primary:focus {
         width: 100%;
         max-width: 135px;
         max-height: 195px; }
+    .teacher-manager #profile .list-course table {
+      width: 100%;
+      empty-cells: show;
+      border-spacing: 0;
+      position: relative;
+      display: block;
+      font-size: 0.9rem; }
+      .teacher-manager #profile .list-course table thead {
+        display: block;
+        position: relative;
+        display: block;
+        width: 100%;
+        overflow-y: scroll; }
+      .teacher-manager #profile .list-course table tbody {
+        max-height: 250px;
+        overflow-y: scroll;
+        display: block;
+        position: relative;
+        width: 100%; }
+        .teacher-manager #profile .list-course table tbody td {
+          padding: 0.5rem; }
+      .teacher-manager #profile .list-course table tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+        margin: 0; }
+        .teacher-manager #profile .list-course table tr i {
+          font-size: 14px;
+          color: #ff0000;
+          background: #FFF;
+          border: 1px solid rgba(204, 204, 204, 0.549);
+          border-radius: 3px;
+          padding: 4px;
+          width: 24px;
+          height: 24px;
+          text-align: center;
+          cursor: pointer; }
 
 footer {
   background: #232b50;

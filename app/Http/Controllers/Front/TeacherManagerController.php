@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Repositories\Teacher\TeacherRepositoryInterface;
 use App\Repositories\TeacherLevel\TeacherLevelRepositoryInterface;
 use App\Repositories\Image\ImageRepositoryInterface;
+use App\Repositories\Course\CourseRepositoryInterface;
 use Illuminate\Support\Facades\Log;
 use Validator;
 use Illuminate\Support\Facades\Auth;
@@ -18,15 +19,19 @@ class TeacherManagerController extends Controller
     protected $teacherRepository;
     protected $teacherLevelRepository;
     protected $imageRepository;
+    protected $courseRepository;
+
     public function __construct(
         TeacherRepositoryInterface $teacherRepository,
         TeacherLevelRepositoryInterface $teacherLevelRepository,
-        ImageRepositoryInterface $imageRepository
+        ImageRepositoryInterface $imageRepository,
+        CourseRepositoryInterface $courseRepository
         )
     {
         $this->teacherRepository = $teacherRepository;
         $this->teacherLevelRepository = $teacherLevelRepository;
         $this->imageRepository = $imageRepository;
+        $this->courseRepository = $courseRepository;
     }
     public function index()
     {
@@ -158,6 +163,14 @@ class TeacherManagerController extends Controller
             // $success = true;
         return response()->json(array(
             'success' => $success,
+        ));
+    }
+    public function ajaxGetCourseById(Request $request, $courseId)
+    {
+        $course = $this->courseRepository->findWithData($courseId);
+        return response()->json(array(
+            'success' => true,
+            'data' => $course,
         ));
     }
 }

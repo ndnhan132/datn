@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
+
 
 class Teacher extends Authenticatable
 {
@@ -144,6 +146,25 @@ class Teacher extends Authenticatable
     {
         if(!is_numeric($this->reference_tuition)) return $this->reference_tuition;
         return number_format($this->reference_tuition, 0, ",", ".");
+    }
+
+    /**
+     * @Author: Nhan Nguyen Dinh
+     * @function: getMyReceivedRegistration()
+     * @Date: 2020-11-21 15:33:48
+     * @Desc:
+     * @Params1:
+     * @Return:
+     */
+    public function getMyReceivedRegistration()
+    {
+        // $myId = Auth::guard('teacher')->user()->id;
+        $myId = $this->id;
+        $res = $this->teacherCourseRegistrations
+                    ->where('teacher_id', $myId)
+                    ->where('registration_status_id', \App\Models\RegistrationStatus::RECEIVED_ID)
+                    ->all();
+        return $res ?? false;
     }
 
     //* #define Relationships

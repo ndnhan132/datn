@@ -8,7 +8,7 @@
             <tr><td class="pr-3">Môn học</td><td> {{ $course->subject->display_name }}</td></tr>
             <tr><td class="pr-3">Môn học khác</td><td> {{ $course->other_subject }}</td></tr>
             <tr><td class="pr-3">Trình độ học sinh</td><td> {{ $course->courseLevel->display_name ?? '' }}</td></tr>
-            <tr><td class="pr-3">Trình độ khác</td><td> {{ $course->other_level }}</td></tr>
+            <tr><td class="pr-3">Trình độ khác</td><td> {{ $course->other_teacher_level }}</td></tr>
             <tr><td class="pr-3">Thời gian</td><td> {{ $course->session_per_week . ' buổi / Tuần' }}</td></tr>
             <tr><td class="pr-3">Email</td><td> {{ $course->time_per_session . ' phút / buổi'}}</td></tr>
             <tr><td class="pr-3">Số lượng học sinh</td><td> {{ $course->num_of_student }}</td></tr>

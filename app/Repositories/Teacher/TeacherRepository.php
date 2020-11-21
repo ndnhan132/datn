@@ -72,6 +72,7 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
         $teacher->is_male = $request->input('is_male');
         $teacher->description = $request->input('description');
         $teacher->identity_card = $request->input('identity_card');
+        $teacher->year_of_birth = $request->input('year_of_birth');
         return $teacher->save();
     }
 
