@@ -1,5 +1,5 @@
 @extends('front.layouts.teacher-manager-master')
-@section('title', 'Cài đặt chung')
+@section('title', 'Học vấn')
 @section('head')
 @endsection
 @section('content')

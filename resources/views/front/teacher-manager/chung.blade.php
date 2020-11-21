@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="form-group col-sm-6">
-                <label class="col-sm-12">Mô tả</label>
+                <label class="col-sm-12">Thông tin thêm</label>
                 <div class="col-sm-12">
                     <textarea name="description" cols="30" rows="7" class="form-control">{{ $teacher->description }}</textarea>
                 </div>

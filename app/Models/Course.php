@@ -93,6 +93,7 @@ class Course extends Model
      */
     public function getDisplayTution()
     {
+        if(!is_numeric($this->tuition_per_month)) return $this->tuition_per_month;
         return number_format($this->tuition_per_month, 0, ",", ".");
     }
 

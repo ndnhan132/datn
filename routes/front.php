@@ -30,7 +30,7 @@ Route::get('/giao-vien', 'TeacherController@getForTeacherPage')->name('front.for
 
 // group quan ly giao vien
 Route::name('front.teacherManager.')->prefix('/ho-so')->middleware(['CheckTeacher'])->group(function () {
-    Route::get('/', 'TeacherManagerController@index')->name('index');
+    Route::get('/thong-tin.html', 'TeacherManagerController@index')->name('index');
     Route::get('/cai-dat-{settingType}.html', 'TeacherManagerController@getManager')->name('getManager');
 });
 Route::prefix('/ajax/')->middleware(['CheckTeacher'])->group(function() {

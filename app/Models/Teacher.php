@@ -132,7 +132,19 @@ class Teacher extends Authenticatable
         $res = $this->images->where('image_type', \App\Models\Image::TEACHER_DEGREE)->all();
         return $res;
     }
-
+    /**
+     * @Author: Nhan Nguyen Dinh
+     * @function: getDisplayTution()
+     * @Date: 2020-11-21 11:19:39
+     * @Desc:
+     * @Params1:
+     * @Return:
+     */
+    public function getDisplayTution()
+    {
+        if(!is_numeric($this->reference_tuition)) return $this->reference_tuition;
+        return number_format($this->reference_tuition, 0, ",", ".");
+    }
 
     //* #define Relationships
     // public function courses()

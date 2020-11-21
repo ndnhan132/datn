@@ -542,7 +542,7 @@ a.text-primary:focus {
 #page-container {
   width: 100%;
   height: auto;
-  margin-top: 150px; }
+  margin-top: 136px; }
 
 .mainbox {
   background-color: white;
@@ -599,21 +599,32 @@ a.text-primary:focus {
 
 .teacher-manager {
   display: flex; }
-  .teacher-manager .aside {
-    border: 2px solid #007bff; }
-    .teacher-manager .aside .header {
-      background-color: #007bff;
-      opacity: 0.8;
-      color: #fff;
-      padding: 0.25rem 0.25rem; }
-    .teacher-manager .aside .body {
-      background: #fff; }
-      .teacher-manager .aside .body a {
-        display: block;
-        width: 100%;
-        padding: 0.15rem 0.5rem; }
-        .teacher-manager .aside .body a:hover {
-          background: #cdcdcd; }
+  .teacher-manager .aside .body {
+    background: #fff; }
+    .teacher-manager .aside .body a {
+      display: block;
+      width: 100%;
+      padding: 0.444rem 0.5rem;
+      font-size: 0.95rem;
+      border-bottom: 1px;
+      border-left: 3px;
+      border-right: 2px;
+      border-top: 0px;
+      border-style: solid;
+      border-color: #e3e4e8;
+      color: #6610f2; }
+      .teacher-manager .aside .body a i {
+        text-align: center;
+        width: 18px;
+        margin-right: 0.75rem;
+        color: #6610f2; }
+    .teacher-manager .aside .body a:hover,
+    .teacher-manager .aside .body a.active {
+      background: #495057;
+      color: #fff !important;
+      border-left-color: #ffc107; }
+    .teacher-manager .aside .body a:first-child {
+      border-top: 1px solid #e3e4e8 !important; }
   .teacher-manager .content {
     border-color: #424242;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -738,6 +749,50 @@ a.text-primary:focus {
           background-color: #DBDBDB; }
         .teacher-manager .content #verify-form .images-box .image-upload .image-action {
           display: none; }
+  .teacher-manager #profile {
+    color: #2d6d91;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    background: transparent;
+    padding: 0;
+    box-shadow: none; }
+    .teacher-manager #profile .form-group {
+      margin: 0;
+      margin-bottom: 15px;
+      padding: 0; }
+    .teacher-manager #profile .profile-box {
+      border-radius: 2px;
+      transition: all 0.1s ease-in-out;
+      box-shadow: none;
+      width: 100%;
+      min-height: 20px;
+      background-color: #fff;
+      padding: 8px; }
+      .teacher-manager #profile .profile-box .name {
+        font-weight: 600; }
+      .teacher-manager #profile .profile-box tr {
+        margin-bottom: 4px; }
+        .teacher-manager #profile .profile-box tr td {
+          vertical-align: top;
+          font-size: 0.95rem; }
+        .teacher-manager #profile .profile-box tr td.text-nowrap {
+          padding-right: 1rem;
+          font-weight: 600; }
+      .teacher-manager #profile .profile-box h4, .teacher-manager #profile .profile-box h5, .teacher-manager #profile .profile-box h6 {
+        border-bottom: 2px solid #2d6d91;
+        padding-bottom: 2px; }
+      .teacher-manager #profile .profile-box .image img {
+        cursor: pointer; }
+    .teacher-manager #profile .profile-box.avatar {
+      width: auto !important;
+      padding: .75rem; }
+      .teacher-manager #profile .profile-box.avatar img {
+        width: 100%;
+        max-width: 135px;
+        max-height: 195px; }
 
 footer {
   background: #232b50;

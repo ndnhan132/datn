@@ -25,8 +25,8 @@ class CreateTeachersTable extends Migration
             $table->string('university');
             $table->string('speciality');
             $table->foreignId('teacher_level_id')->nullable()->constrained()->onDelete('set null');
-            $table->integer('reference_tuition');
-            $table->integer('fee');
+            $table->integer('reference_tuition')->nullable();
+            $table->integer('year_of_birth')->nullable();
             $table->boolean('flag_is_active')->default(false);
             $table->boolean('flag_is_checked')->default(false);
             $table->text('description')->nullable();

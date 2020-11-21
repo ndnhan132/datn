@@ -64,7 +64,7 @@ class DatabaseSeeder extends Seeder
             'speciality' => $faker->name,
             'teacher_level_id' =>$faker->randomElement($teacherLevels->pluck('id')->toArray()),
             'reference_tuition' => $faker->numberBetween($min = 10, $max = 90) . '000000',
-            'fee' => $faker->numberBetween($min = 10, $max = 50),
+            'year_of_birth' => $faker->numberBetween($min = 1970, $max = 2000),
             'flag_is_active' => 1,
             'flag_is_checked' => 1,
         ]);
@@ -81,7 +81,7 @@ class DatabaseSeeder extends Seeder
                 'speciality' => $faker->name,
                 'teacher_level_id' =>$faker->randomElement($teacherLevels->pluck('id')->toArray()),
                 'reference_tuition' => $faker->numberBetween($min = 10, $max = 90) . '000000',
-                'fee' => $faker->numberBetween($min = 10, $max = 50),
+                'year_of_birth' => $faker->numberBetween($min = 1970, $max = 2000),
                 'flag_is_active' => $faker->randomElement($array = array ('0','1')),
                 'flag_is_checked' => $faker->randomElement($array = array ('0','1')),
             ]);

@@ -16,7 +16,7 @@
     @include('front.layouts.header')
     @include('front.layouts.navbar')
     <div id="page-container">
-        <div class="container mt-3 teacher-manager">
+        <div class="container pt-4 teacher-manager">
             <div class="col-md-3 offset-md-1">
                 @include('front.layouts.teacher-manager-aside')
             </div>

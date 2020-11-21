@@ -113,7 +113,7 @@ class TeacherManagerController extends Controller
             $success = true;
         }
         else{
-            $file = 'uploads/avatar/' . $fileName;
+            // $fileName = 'uploads/avatar/' . $fileName;
             $success = $this->imageRepository->updateTeacherAvatar($fileName, $teacher->id, $fileData);
         }
 
@@ -152,10 +152,10 @@ class TeacherManagerController extends Controller
     {
         Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
         $success = false;
-        // if($request['image_id']) {
-        //     $success = $this->imageRepository->delete($request['image_id'], Auth::guard('teacher')->user()->id);
-        // }
-            $success = true;
+        if($request['image_id']) {
+            $success = $this->imageRepository->delete($request['image_id'], Auth::guard('teacher')->user()->id);
+        }
+            // $success = true;
         return response()->json(array(
             'success' => $success,
         ));

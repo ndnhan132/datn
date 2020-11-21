@@ -1,7 +1,7 @@
 #page-container{
     width: 100%;
     height: auto;
-    margin-top: 150px;
+    margin-top: 136px;
 }
 
 .mainbox{
@@ -75,22 +75,42 @@
 .teacher-manager{
     display: flex;
     .aside{
-        border: 2px solid #007bff;
-        .header{
-            background-color: #007bff;
-            opacity: 0.8;
-            color: #fff;
-            padding: 0.25rem 0.25rem;
-        }
+        // border: 2px solid #e3e4e8;
         .body{
-            background: #fff;
+            background:#fff;
             a{
                 display: block;
                 width: 100%;
-                padding: 0.15rem 0.5rem;
-                &:hover{
-                    background: #cdcdcd;
+                padding: 0.444rem 0.5rem;
+                font-size: 0.95rem;
+                border-bottom: 1px;
+                border-left: 3px;
+                border-right: 2px;
+                border-top: 0px;
+                border-style: solid;
+                border-color: #e3e4e8;
+                color: #6610f2;
+                // border-left: 4px solid transparent;
+                i{
+                    text-align: center;
+                    width: 18px;
+                    margin-right: 0.75rem;
+                    color: #6610f2;
                 }
+            }
+            a:hover,
+            a.active{
+                background: #495057;
+                color: #fff !important;
+                border-left-color: #ffc107;
+                // border-bottom-color: transparent;
+                // margin-bottom: -1px;
+                // padding-right: 5px;
+                // margin-right: -15px;
+                // margin-left: -2px;
+            }
+            a:first-child{
+                border-top: 1px solid #e3e4e8!important;
             }
         }
     }
@@ -111,7 +131,6 @@
             padding-left: 15px;
             transition: all 0.1s ease-in-out;
             box-shadow: none;
-            // color: #eee !important;
             font-size: 13px;
             color: #666 !important;
             &::focus{
@@ -125,7 +144,6 @@
             margin: 5px 0;
             font-size: 14px;
             font-weight: 600;
-            // color: #eee !important;
         }
         .form-group{
             margin: 0;
@@ -259,6 +277,62 @@
                 }
             }
         }
-
+    }
+    #profile{
+        color: #2d6d91;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        background: transparent;
+        padding: 0;
+        box-shadow: none;
+        .form-group{
+            margin: 0;
+            margin-bottom: 15px;
+            padding: 0;
+        }
+        .profile-box{
+            // border: 2px solid #e3e4e8;
+            border-radius: 2px;
+            transition: all 0.1s ease-in-out;
+            box-shadow: none;
+            width: 100%;
+            min-height: 20px;
+            background-color: #fff;
+            padding: 8px;
+            span{}
+            .name{
+                font-weight: 600;
+            }
+            tr{
+                margin-bottom: 4px;
+                td{
+                    vertical-align: top;
+                    font-size: 0.95rem;
+                }
+                td.text-nowrap{
+                    padding-right: 1rem;
+                    font-weight: 600;
+                }
+            }
+            h4,h5,h6{
+                border-bottom: 2px solid #2d6d91;
+                padding-bottom: 2px;
+            }
+            .image img{
+                cursor: pointer;
+            }
+        }
+        .profile-box.avatar{
+            width: auto!important;
+            padding: .75rem;
+            img{
+                width: 100%;
+                max-width: 135px;
+                max-height: 195px;
+            }
+        }
     }
 }

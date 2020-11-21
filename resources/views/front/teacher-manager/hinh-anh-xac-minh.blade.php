@@ -1,5 +1,5 @@
 @extends('front.layouts.teacher-manager-master')
-@section('title', 'Cài đặt chung')
+@section('title', 'Xác minh')
 @section('head')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.min.css">
 @endsection

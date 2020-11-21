@@ -35,7 +35,9 @@
                 </li>
                 <li class="nav-item"><a class="nav-link" href="/help/notices">Tin tức</a></li>
                 <li class="nav-item"><a class="nav-link" href="/help/notices">Liên hệ</a></li>
+                @if (Auth::guard('teacher')->check())
                 <li class="nav-item"><a class="nav-link" href="{{ route('front.teacherManager.index') }}">Hồ sơ</a></li>
+                @endif
             </ul>
         </div>
     </div>

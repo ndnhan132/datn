@@ -11,7 +11,7 @@ class ImageRepository extends BaseRepository implements ImageRepositoryInterface
     {
         return Image::class;
     }
-    public function updateTeacherAvatar($filename, $teacherId, $imageData)
+    public function updateTeacherAvatar($fileName, $teacherId, $imageData)
     {
         $src = 'uploads/avatar/' . $fileName;
         $image_array_1 = explode(";", $imageData);
