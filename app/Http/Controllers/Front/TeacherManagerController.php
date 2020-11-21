@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Repositories\Teacher\TeacherRepositoryInterface;
 use App\Repositories\TeacherLevel\TeacherLevelRepositoryInterface;
 use App\Repositories\Image\ImageRepositoryInterface;
+use App\Repositories\TeacherCourseRegistration\TeacherCourseRegistrationRepositoryInterface;
 use App\Repositories\Course\CourseRepositoryInterface;
 use Illuminate\Support\Facades\Log;
 use Validator;
@@ -20,11 +21,13 @@ class TeacherManagerController extends Controller
     protected $teacherLevelRepository;
     protected $imageRepository;
     protected $courseRepository;
+    protected $teacherCourseRegistrationRepository;
 
     public function __construct(
         TeacherRepositoryInterface $teacherRepository,
         TeacherLevelRepositoryInterface $teacherLevelRepository,
         ImageRepositoryInterface $imageRepository,
+        TeacherCourseRegistrationRepositoryInterface $teacherCourseRegistrationRepository,
         CourseRepositoryInterface $courseRepository
         )
     {
@@ -32,6 +35,7 @@ class TeacherManagerController extends Controller
         $this->teacherLevelRepository = $teacherLevelRepository;
         $this->imageRepository = $imageRepository;
         $this->courseRepository = $courseRepository;
+        $this->teacherCourseRegistrationRepository = $teacherCourseRegistrationRepository;
     }
     public function index()
     {
@@ -171,6 +175,26 @@ class TeacherManagerController extends Controller
         return response()->json(array(
             'success' => true,
             'data' => $course,
+        ));
+    }
+
+    public function getRegistrationCourse()
+    {
+        return view('front.teacher-manager.registration-course');
+    }
+
+    public function ajaxDeleteCourse(Request $request)
+    {
+        $teacherId = Auth::guard('teacher')->user()->id;
+        $courseId = $request['courseId'];
+        $success = $this->teacherCourseRegistrationRepository->deleteRegistration($courseId, $teacherId);
+        $registrations = $this->teacherCourseRegistrationRepository->getMyRegistration($teacherId);
+        $html     = view('front.teacher-manager.all-course', compact('registrations'));
+        $html     = strval($html);
+        $html     = trim($html);
+        return response()->json(array(
+            'success' => boolval($success),
+            'html' => $html,
         ));
     }
 }

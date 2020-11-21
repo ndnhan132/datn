@@ -46,7 +46,7 @@
     <h3 class="w-100 text-center">Danh sách gia sư đã đăng ký</h3>
     <div class="table-responsive">
         @php
-        $registrations = $course->teacherCourseRegistrations;
+        $registrations = $course->teacherCourseRegistrations->sortByDesc('id')->all();
         @endphp
         <table class="table table-striped table-bordered">
             <thead class="bg-success text-white">

@@ -163,6 +163,7 @@ class Teacher extends Authenticatable
         $res = $this->teacherCourseRegistrations
                     ->where('teacher_id', $myId)
                     ->where('registration_status_id', \App\Models\RegistrationStatus::RECEIVED_ID)
+                    ->sortByDesc('id')
                     ->all();
         return $res ?? false;
     }

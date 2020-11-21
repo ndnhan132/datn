@@ -2,6 +2,8 @@
     <div class="body">
         <a href="{{ route('front.teacherManager.index') }}" class="text-primary {{ Request::is('ho-so/thong-tin.html') ? 'active' : ''}}">
             <i class="text-primary fas fa-id-badge"></i>Tất cả thông tin</a>
+        <a href="{{ route('front.teacherManager.registrationCourse') }}" class="{{ Request::is('ho-so/lop-dang-ky.html') ? 'active' : ''}}" style="color:purple">
+            <i class="fas fa-id-badge"  style="color:purple"></i>Danh sách lớp</a>
         <a href="{{ route('front.teacherManager.getManager', 'chung') }}" class="text-info {{ Request::is('ho-so/cai-dat-chung.html') ? 'active' : ''}}">
             <i class="text-info fas fa-info-circle"></i>Thông tin chung</a>
         <a href="{{ route('front.teacherManager.getManager', 'hoc-van') }}" class="text-success {{ Request::is('ho-so/cai-dat-hoc-van.html') ? 'active' : ''}}">

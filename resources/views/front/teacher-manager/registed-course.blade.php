@@ -57,6 +57,10 @@
                         <td col-span="2" class="course-val course-email"></td>
                     </tr>
                     <tr>
+                        <td>Lương / tháng</td>
+                        <td col-span="2" class="course-val course-tuition_per_month"></td>
+                    </tr>
+                    <tr>
                         <td>Môn học</td>
                         <td col-span="2" class="course-val course-subject"></td>
                     </tr>
@@ -132,6 +136,7 @@
                     _modal.find('.course-address').empty().append(course.address);
                     _modal.find('.course-phone').empty().append(course.phone);
                     _modal.find('.course-email').empty().append(course.email);
+                    _modal.find('.course-tuition_per_month').empty().append(course.tuition_per_month + ' VND');
                     _modal.find('.course-subject').empty().append(course.subject.display_name);
                     if(course.other_subject){
                         _modal.find('.course-other_subject').empty().append(course.other_subject);

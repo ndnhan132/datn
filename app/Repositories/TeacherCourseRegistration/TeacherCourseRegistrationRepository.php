@@ -44,4 +44,16 @@ class TeacherCourseRegistrationRepository extends BaseRepository implements Teac
         }
         return false;
     }
+    public function deleteRegistration($courseId, $teacherId)
+    {
+        $regis = $this->model->where([
+            ['course_id', '=', $courseId],
+            ['teacher_id', '=', $teacherId]
+        ])->first();
+        return $regis->delete();
+    }
+    public function getMyRegistration($teacherId)
+    {
+        return $this->model->where('teacher_id', '=', $teacherId)->orderBy('id', 'DESC')->get();
+    }
 }

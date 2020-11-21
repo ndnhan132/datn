@@ -31,6 +31,7 @@ Route::get('/giao-vien', 'TeacherController@getForTeacherPage')->name('front.for
 // group quan ly giao vien
 Route::name('front.teacherManager.')->prefix('/ho-so')->middleware(['CheckTeacher'])->group(function () {
     Route::get('/thong-tin.html', 'TeacherManagerController@index')->name('index');
+    Route::get('/lop-dang-ky.html', 'TeacherManagerController@getRegistrationCourse')->name('registrationCourse');
     Route::get('/cai-dat-{settingType}.html', 'TeacherManagerController@getManager')->name('getManager');
 });
 Route::prefix('/ajax/')->middleware(['CheckTeacher'])->group(function() {
@@ -43,4 +44,5 @@ Route::prefix('/ajax/')->middleware(['CheckTeacher'])->group(function() {
 
     Route::get('get-teacher-level', 'TeacherManagerController@ajaxGetTeacherLevel');
     Route::get('get-course-by-id/{courseId}', 'TeacherManagerController@ajaxGetCourseById');
+    Route::post('delete-registration', 'TeacherManagerController@ajaxDeleteCourse');
 });

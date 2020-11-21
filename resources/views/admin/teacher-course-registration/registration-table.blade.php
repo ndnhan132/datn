@@ -14,7 +14,7 @@
                 </thead>
                 <tbody>
                     @php
-                        $registrations = $courseRegistrations->teacherCourseRegistrations;
+                        $registrations = $courseRegistrations->teacherCourseRegistrations->sortByDesc('id')->all();
                     @endphp
                     @foreach ($registrations as $key => $record)
                         @php
