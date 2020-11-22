@@ -130,9 +130,5 @@ class TeacherController extends Controller
         return view('front.layouts.asidebar.teacher-login-box');
     }
 
-    public function getForTeacherPage()
-    {
-        return view('front.teacher.for-teacher');
-    }
 
 }

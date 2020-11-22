@@ -242,7 +242,8 @@ a.text-primary:focus {
     font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 0.95rem;
     color: #5c5c5c;
-    letter-spacing: 0.0625em; }
+    letter-spacing: 0.0625em;
+    white-space: nowrap !important; }
   #mainNav .navbar-nav .nav-item .nav-link.active,
   #mainNav .navbar-nav .nav-item .nav-link:hover {
     color: #fed136; }
@@ -270,8 +271,8 @@ a.text-primary:focus {
           border-left: 1px solid transparent;
           border-right: 1px solid transparent; }
           #mainNav .nav-container .navbar-collapse .navbar-nav li.nav-item a.nav-link {
-            padding: 0.25rem 1.5rem;
-            font-size: 16px;
+            padding: 0.25rem 1.0rem;
+            font-size: 15px;
             line-height: 1.25;
             font-weight: 500;
             color: #6b7280;
@@ -326,7 +327,7 @@ a.text-primary:focus {
             border-left: none;
             border-right: none; }
             #mainNav.navbar-shrink .nav-container .navbar-collapse .navbar-nav li.nav-item .nav-link {
-              padding: 0.25rem 1.0rem; }
+              padding: 0.25rem 0.75rem; }
           #mainNav.navbar-shrink .nav-container .navbar-collapse .navbar-nav li.nav-item:hover {
             border-bottom: 3px solid #18bc9c;
             margin-bottom: -2px; }
@@ -927,5 +928,67 @@ footer {
       color: #fff;
       padding: 0.5rem;
       margin-left: 0.25rem; }
+
+.list-type5 {
+  /* width: 410px; */
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #FAFAFA; }
+
+.list-type5 ol {
+  list-style-type: none;
+  list-style-type: decimal;
+  margin: 0;
+  margin-left: 1em;
+  padding: 0;
+  counter-reset: li-counter; }
+
+.list-type5 ol li {
+  position: relative;
+  margin-bottom: 1.5em;
+  padding: 0.5em;
+  background-color: #F0D756;
+  padding-left: 58px; }
+
+.list-type5 a {
+  text-decoration: none;
+  color: black;
+  font-size: 15px;
+  font-family: 'Raleway', sans-serif; }
+
+.list-type5 li:hover {
+  /* box-shadow: inset -1em 0 #6CD6CC; */
+  box-shadow: inset -2em 0 #6CD6CC;
+  -webkit-transition: box-shadow 0.5s;
+  /* For Safari 3.1 to 6.0 */
+  transition: box-shadow 0.5s;
+  transition: box-shadow 0.25s; }
+
+.list-type5 li:hover a {
+  color: #FFF; }
+
+.list-type5 ol li:before {
+  position: absolute;
+  top: -0.3em;
+  left: -0.5em;
+  width: 1.8em;
+  height: 1.2em;
+  font-size: 2em;
+  line-height: 1.2;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  background-color: #6CD6CC;
+  transform: rotate(-20deg);
+  -ms-transform: rotate(-20deg);
+  -webkit-transform: rotate(-20deg);
+  z-index: 99;
+  overflow: hidden;
+  content: counter(li-counter);
+  counter-increment: li-counter; }
+
+.list-type5 ol li::marker {
+  color: transparent; }
 
 /*# sourceMappingURL=stylesheet.css.map */

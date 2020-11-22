@@ -55,6 +55,7 @@
             // color: #fff;
             color: #5c5c5c;
             letter-spacing: 0.0625em;
+            white-space: nowrap !important;
         }
 
         .nav-link.active,
@@ -100,8 +101,8 @@
                         border-left: 1px solid transparent;
                         border-right: 1px solid transparent;
                         a.nav-link {
-                            padding: 0.25rem 1.5rem;
-                            font-size: 16px;
+                            padding: 0.25rem 1.0rem;
+                            font-size: 15px;
                             line-height: 1.25;
                             font-weight: 500;
                             color: #6b7280;
@@ -182,7 +183,7 @@
                         border-left: none;
                         border-right: none;
                         .nav-link{
-                            padding: 0.25rem 1.0rem;
+                            padding: 0.25rem 0.75rem;
                         }
                     }
                     li.nav-item:hover {

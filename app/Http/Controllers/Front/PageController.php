@@ -59,4 +59,14 @@ class PageController extends Controller
             )
         ));
     }
+
+    public function getForTeacherPage()
+    {
+        return view('front.teacher.for-teacher');
+    }
+
+    public function getForParentPage()
+    {
+        return view('front.course.for-parent');
+    }
 }

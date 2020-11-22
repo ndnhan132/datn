@@ -27,7 +27,16 @@ Route::post('/ajax/teacher-register-course', 'TeacherCourseRegistrationControlle
 Route::post('/ajax/load-aside-data', 'PageController@ajaxLoadAsideData');
 
 
-Route::get('/giao-vien', 'TeacherController@getForTeacherPage')->name('front.forTeacher');
+Route::get('/giao-vien.html', 'PageController@getForTeacherPage')->name('front.forTeacher');
+
+Route::get('/phu-huynh.html', 'PageController@getForParentPage')->name('front.forParent');
+
+
+
+
+
+
+
 
 // group quan ly giao vien
 Route::name('front.teacherManager.')->prefix('/ho-so')->middleware(['CheckTeacher'])->group(function () {
