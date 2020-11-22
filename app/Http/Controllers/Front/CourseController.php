@@ -5,27 +5,76 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Course\CourseRepositoryInterface;
+use App\Repositories\Subject\SubjectRepositoryInterface;
+use App\Repositories\TeacherLevel\TeacherLevelRepositoryInterface;
+use App\Repositories\CourseLevel\CourseLevelRepositoryInterface;
 use Illuminate\Support\Facades\Log;
+use Validator;
 
 class CourseController extends Controller
 {
 
     protected $courseRepository;
+    protected $subjectRepository;
+    protected $courseLevelRepository;
+    protected $teacherLevelRepository;
     public function __construct(
-        CourseRepositoryInterface $courseRepository
+        CourseRepositoryInterface $courseRepository,
+        SubjectRepositoryInterface $subjectRepository,
+        TeacherLevelRepositoryInterface $teacherLevelRepository,
+        CourseLevelRepositoryInterface $courseLevelRepository
         )
     {
         $this->courseRepository = $courseRepository;
+        $this->subjectRepository = $subjectRepository;
+        $this->courseLevelRepository = $courseLevelRepository;
+        $this->teacherLevelRepository = $teacherLevelRepository;
     }
 
     public function getCourseRegisterPage()
     {
-        return view('front.course.course-register');
+        $subjects      = $this->subjectRepository->index();
+        $courseLevels  = $this->courseLevelRepository->index();
+        $teacherLevels = $this->teacherLevelRepository->index();
+        return view('front.course.course-register', compact(['subjects', 'courseLevels', 'teacherLevels']));
     }
 
     public function ajaxStore(Request $request)
     {
-        return $this->courseRepository->store($request);
+        Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
+        $validator = Validator::make(
+            $request->all(),
+            [
+                // 'current_password' => 'required',
+                // 'password' => 'required|confirmed',
+            ],
+            [
+                'required' => ':attribute không được để trống',
+                'confirmed' => ':attribute không khớp nhau',
+            ],
+            [
+                'current_password' => 'Mật khẩu hiện tại',
+                'password' => 'Mật khẩu mới',
+            ]
+        );
+        $success = false;
+        $message = '';
+        $url = '';
+        if ($validator->passes()) {
+            $course = $this->courseRepository->store($request);
+            if($course){
+                $success = true;
+                $url = route('front.teacherRegisterCourse', $course->slug);
+            }
+        }else{
+            $message = $validator->errors()->all();
+        }
+
+        return response()->json(array(
+            'success' => $success,
+            'message' => $message,
+            'url'     => $url,
+        ));
     }
 
     public function getNotReceivedClassPage()

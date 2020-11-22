@@ -329,7 +329,7 @@ $(function () {
                 </div>`;
             }
         }
-        var _alert = $(document).find('.teacher-manager .setting-alert');
+        var _alert = $(document).find('.teacher-manager .form-alert');
         _alert.empty().append($htm);
         // var _myIntervalShow = setInterval(function () {
             _alert.find('.alert').slideDown();

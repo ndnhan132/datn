@@ -3,6 +3,7 @@
 namespace App\Repositories\Course;
 
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Str;
 use App\Models\Course;
 
 class CourseRepository extends BaseRepository implements CourseRepositoryInterface
@@ -54,20 +55,60 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
     public function store($request)
     {
         $course = new Course();
-        $course->code = rand(11111, 99999);
-        $course->subject_id = rand(1,5);
-        $course->course_level_id = rand(1,5);
-        $course->fullname = 'test_' . rand();
-        $course->address = 'test_' . rand();
-        $course->phone = 'test_' . rand();
-        $course->email = 'test_' . rand() . "@gmail.com";
-        $course->time_working = 'T2 - T7';
-        $course->session_per_week = rand(2, 7);
-        $course->time_per_session = '60';
-        $course->num_of_student = rand(1,3);
-        $course->tuition_per_month = rand(1000, 9999) . '000';
-        $course->other_requirement = 'lorem ipsum dolor sit amet, consectetur adip';
-        return $course->save();
+
+        $course->fullname = $request['fullname'];
+        $course->address = $request['address'];
+        $course->phone = $request['phone'];
+        $course->email = $request['email'];
+
+        $course->course_level_id = $request['course_level'] ?? '';
+        $course->other_course_level = $request['course_other_level'] ?? '';
+        $course->subject_id = $request['subject'];
+        $course->other_subject = $request['other_subject'] ?? '';
+        $course->num_of_student = $request['num_of_student'];
+        $course->tuition_per_month = $request['tuition_per_month'];
+        $course->session_per_week = $request['session_per_week'];
+        $course->time_per_session = $request['time_per_session'];
+        $course->time_working = $request['time_working'] ?? '';
+
+        $course->teacher_level_id = $request['teacher_level'];
+        $course->other_teacher_level = $request['other_teacher_level'] ?? '';
+        $gender = 'BOTH';
+        if(isset($request['teacher_gender'])){
+            if($request['teacher_gender'] == 'MALE') $gender = 'MALE';
+            if($request['teacher_gender'] == 'FEMALE') $gender = 'FEMALE';
+        }
+        $course->teacher_gender = $gender;
+        $course->other_requirement = $request['other_requirement'];
+
+        $course->title = time();
+        $course->slug = time();
+        $course->save();
+        $course = $this->model->find($course->id);
+        $title = 'tìm';
+        if ($gender == 'Male') {
+            $title .= ' nam';
+        }elseif ($gender == 'Female') {
+            $title .= ' nữ';
+        }
+        $title .= ' gia sư dạy';
+        if($course->subject){
+            $title .= ' ' . $course->subject->display_name;
+        } else {
+            $title .= ' ' . $course->other_subject;
+        }
+        if($course->courseLevel){
+            $title .= ' ' . $course->courseLevel->display_name;
+        }else{
+            $title .= ' ' . $course->other_course_level;
+        }
+        $course->title = $title;
+        $course->slug = Str::slug($title, '-') . '-' . time();
+        if($course->save()){
+            return $course;
+        }else {
+            return false;
+        }
     }
 
     public function getNewClassesWithPagination($startFrom, $recordPerPage)

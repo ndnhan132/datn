@@ -625,130 +625,100 @@ a.text-primary:focus {
       border-left-color: #ffc107; }
     .teacher-manager .aside .body a:first-child {
       border-top: 1px solid #e3e4e8 !important; }
-  .teacher-manager .content {
-    border-color: #424242;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    border-radius: 3px;
-    padding: 1rem 1.75rem 0.5rem;
-    background-color: #fff; }
-    .teacher-manager .content input, .teacher-manager .content textarea, .teacher-manager .content select {
-      border: 2px solid #e3e4e8;
-      border-radius: 2px;
-      line-height: 14px;
-      padding-left: 15px;
-      transition: all 0.1s ease-in-out;
-      box-shadow: none;
-      font-size: 13px;
-      color: #666 !important; }
-      .teacher-manager .content input::focus, .teacher-manager .content textarea::focus, .teacher-manager .content select::focus {
-        border-color: #007bb3 !important; }
-    .teacher-manager .content input, .teacher-manager .content select {
-      height: 40px !important; }
-    .teacher-manager .content label {
-      margin: 5px 0;
-      font-size: 14px;
-      font-weight: 600; }
-    .teacher-manager .content .form-group {
-      margin: 0;
-      margin-bottom: 15px;
-      padding: 0; }
-    .teacher-manager .content .setting-alert .alert {
-      background-color: #f8f9fa;
-      border-radius: 0;
-      border-left: 3px solid;
-      border-right: none;
-      border-top: none;
-      border-bottom: none;
-      font-size: 13px; }
-    .teacher-manager .content .setting-alert .alert-success {
-      border-color: #28a745;
-      color: #28a745 !important; }
-    .teacher-manager .content .setting-alert .alert-danger {
-      border-color: #dc3545;
-      color: #dc3545 !important; }
-    .teacher-manager .content .form-control:disabled, .teacher-manager .content .form-control[readonly] {
-      background-color: #f4f8fc;
-      opacity: 1; }
-    .teacher-manager .content .select-avatar {
-      border: 4px solid #606264;
-      border-radius: 4px;
-      position: relative;
-      width: 120px;
-      height: 180px; }
-      .teacher-manager .content .select-avatar i {
-        font-size: 30px;
-        color: #fff;
-        opacity: 0.333;
-        margin-top: 60%; }
-      .teacher-manager .content .select-avatar .preview {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        overflow: hidden;
-        z-index: 8; }
-        .teacher-manager .content .select-avatar .preview img {
-          width: 100%;
-          height: 100%; }
-      .teacher-manager .content .select-avatar .upload {
-        position: absolute;
-        z-index: 9;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        text-align: center; }
-        .teacher-manager .content .select-avatar .upload:hover {
-          background-color: rgba(96, 98, 100, 0.5);
-          cursor: pointer; }
-          .teacher-manager .content .select-avatar .upload:hover i {
-            opacity: 1; }
-    .teacher-manager .content #verify-form .images-box {
-      border: 2px solid #e3e4e8;
-      border-radius: 2px;
-      transition: all 0.1s ease-in-out;
-      box-shadow: none;
+  .teacher-manager .form-wrap input,
+  .teacher-manager .form-wrap select {
+    height: 40px !important; }
+  .teacher-manager .form-wrap .form-group {
+    margin: 0;
+    margin-bottom: 15px;
+    padding: 0; }
+  .teacher-manager .form-wrap .select-avatar {
+    border: 4px solid #606264;
+    border-radius: 4px;
+    position: relative;
+    width: 120px;
+    height: 180px; }
+    .teacher-manager .form-wrap .select-avatar i {
+      font-size: 30px;
+      color: #fff;
+      opacity: 0.333;
+      margin-top: 60%; }
+    .teacher-manager .form-wrap .select-avatar .preview {
+      position: absolute;
       width: 100%;
-      min-height: 120px; }
-      .teacher-manager .content #verify-form .images-box .image-thumbnail, .teacher-manager .content #verify-form .images-box .image-upload {
-        width: 50%; }
-        .teacher-manager .content #verify-form .images-box .image-thumbnail .image-cover, .teacher-manager .content #verify-form .images-box .image-upload .image-cover {
-          position: relative;
-          padding: 0.5rem; }
-          .teacher-manager .content #verify-form .images-box .image-thumbnail .image-cover img, .teacher-manager .content #verify-form .images-box .image-upload .image-cover img {
-            width: 100%;
-            height: 180px; }
-          .teacher-manager .content #verify-form .images-box .image-thumbnail .image-cover .image-action, .teacher-manager .content #verify-form .images-box .image-upload .image-cover .image-action {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.2; }
-            .teacher-manager .content #verify-form .images-box .image-thumbnail .image-cover .image-action:hover, .teacher-manager .content #verify-form .images-box .image-upload .image-cover .image-action:hover {
-              background-color: rgba(0, 0, 0, 0.282);
-              opacity: 0.9; }
-            .teacher-manager .content #verify-form .images-box .image-thumbnail .image-cover .image-action .body, .teacher-manager .content #verify-form .images-box .image-upload .image-cover .image-action .body {
-              width: 100%;
-              margin-top: 50%;
-              text-align: center; }
-              .teacher-manager .content #verify-form .images-box .image-thumbnail .image-cover .image-action .body span, .teacher-manager .content #verify-form .images-box .image-upload .image-cover .image-action .body span {
-                cursor: pointer;
-                font-size: 1rem;
-                line-height: 1rem;
-                margin: 0 0.5rem;
-                padding: 0.35rem 1rem;
-                color: #fff;
-                border: 3px solid #FFF;
-                border-radius: 3px;
-                background-color: transparent; }
-      .teacher-manager .content #verify-form .images-box .image-upload {
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: 8; }
+      .teacher-manager .form-wrap .select-avatar .preview img {
+        width: 100%;
+        height: 100%; }
+    .teacher-manager .form-wrap .select-avatar .upload {
+      position: absolute;
+      z-index: 9;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      text-align: center; }
+      .teacher-manager .form-wrap .select-avatar .upload:hover {
+        background-color: rgba(96, 98, 100, 0.5);
         cursor: pointer; }
-        .teacher-manager .content #verify-form .images-box .image-upload .image-cover img {
-          background-color: #DBDBDB; }
-        .teacher-manager .content #verify-form .images-box .image-upload .image-action {
-          display: none; }
+        .teacher-manager .form-wrap .select-avatar .upload:hover i {
+          opacity: 1; }
+  .teacher-manager .form-wrap #verify-form .images-box {
+    border: 2px solid #e3e4e8;
+    border-radius: 2px;
+    transition: all 0.1s ease-in-out;
+    box-shadow: none;
+    width: 100%;
+    min-height: 120px; }
+    .teacher-manager .form-wrap #verify-form .images-box .image-thumbnail,
+    .teacher-manager .form-wrap #verify-form .images-box .image-upload {
+      width: 50%; }
+      .teacher-manager .form-wrap #verify-form .images-box .image-thumbnail .image-cover,
+      .teacher-manager .form-wrap #verify-form .images-box .image-upload .image-cover {
+        position: relative;
+        padding: 0.5rem; }
+        .teacher-manager .form-wrap #verify-form .images-box .image-thumbnail .image-cover img,
+        .teacher-manager .form-wrap #verify-form .images-box .image-upload .image-cover img {
+          width: 100%;
+          height: 180px; }
+        .teacher-manager .form-wrap #verify-form .images-box .image-thumbnail .image-cover .image-action,
+        .teacher-manager .form-wrap #verify-form .images-box .image-upload .image-cover .image-action {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0.2; }
+          .teacher-manager .form-wrap #verify-form .images-box .image-thumbnail .image-cover .image-action:hover,
+          .teacher-manager .form-wrap #verify-form .images-box .image-upload .image-cover .image-action:hover {
+            background-color: rgba(0, 0, 0, 0.282);
+            opacity: 0.9; }
+          .teacher-manager .form-wrap #verify-form .images-box .image-thumbnail .image-cover .image-action .body,
+          .teacher-manager .form-wrap #verify-form .images-box .image-upload .image-cover .image-action .body {
+            width: 100%;
+            margin-top: 50%;
+            text-align: center; }
+            .teacher-manager .form-wrap #verify-form .images-box .image-thumbnail .image-cover .image-action .body span,
+            .teacher-manager .form-wrap #verify-form .images-box .image-upload .image-cover .image-action .body span {
+              cursor: pointer;
+              font-size: 1rem;
+              line-height: 1rem;
+              margin: 0 0.5rem;
+              padding: 0.35rem 1rem;
+              color: #fff;
+              border: 3px solid #FFF;
+              border-radius: 3px;
+              background-color: transparent; }
+    .teacher-manager .form-wrap #verify-form .images-box .image-upload {
+      cursor: pointer; }
+      .teacher-manager .form-wrap #verify-form .images-box .image-upload .image-cover img {
+        background-color: #DBDBDB; }
+      .teacher-manager .form-wrap #verify-form .images-box .image-upload .image-action {
+        display: none; }
   .teacher-manager #profile {
     color: #2d6d91;
     -moz-user-select: none;
@@ -781,7 +751,9 @@ a.text-primary:focus {
         .teacher-manager #profile .profile-box tr td.text-nowrap {
           padding-right: 1rem;
           font-weight: 600; }
-      .teacher-manager #profile .profile-box h4, .teacher-manager #profile .profile-box h5, .teacher-manager #profile .profile-box h6 {
+      .teacher-manager #profile .profile-box h4,
+      .teacher-manager #profile .profile-box h5,
+      .teacher-manager #profile .profile-box h6 {
         border-bottom: 2px solid #2d6d91;
         padding-bottom: 2px; }
       .teacher-manager #profile .profile-box .image img {
@@ -830,6 +802,86 @@ a.text-primary:focus {
           height: 24px;
           text-align: center;
           cursor: pointer; }
+
+.form-wrap {
+  border-color: #424242;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  padding: 1rem 1.75rem 0.5rem;
+  background-color: #fff; }
+  .form-wrap input,
+  .form-wrap textarea,
+  .form-wrap select {
+    border: 2px solid #e3e4e8;
+    border-radius: 2px;
+    line-height: 24px;
+    padding-left: 15px;
+    transition: all 0.1s ease-in-out;
+    box-shadow: none;
+    font-size: 13px;
+    color: #666 !important; }
+    .form-wrap input:focus,
+    .form-wrap textarea:focus,
+    .form-wrap select:focus {
+      border-color: #007bb3 !important;
+      outline: none;
+      box-shadow: none;
+      background-color: #f4f8fc; }
+  .form-wrap input,
+  .form-wrap select {
+    height: 30px !important; }
+  .form-wrap option, .form-wrap select {
+    text-transform: capitalize; }
+  .form-wrap label {
+    margin: 5px 0;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: right; }
+  .form-wrap .form-group {
+    margin: 0;
+    margin-bottom: 8px;
+    padding: 0; }
+  .form-wrap .form-alert .alert {
+    background-color: #f8f9fa;
+    border-radius: 0;
+    border-left: 3px solid;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+    font-size: 13px; }
+  .form-wrap .form-alert .alert-success {
+    border-color: #28a745;
+    color: #28a745 !important; }
+  .form-wrap .form-alert .alert-danger {
+    border-color: #dc3545;
+    color: #dc3545 !important; }
+  .form-wrap .form-control:disabled,
+  .form-wrap .form-control[readonly] {
+    background-color: #f4f8fc;
+    opacity: 1; }
+  .form-wrap .form-control {
+    padding-top: 0;
+    padding-bottom: 0; }
+  .form-wrap legend {
+    display: block;
+    width: auto;
+    padding: 0 5px;
+    margin-bottom: 0;
+    font-size: inherit;
+    line-height: inherit;
+    border: auto;
+    border-bottom: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: 20px;
+    font-size: 16px;
+    color: #2d6d91; }
+  .form-wrap fieldset {
+    border: 2px groove threedface;
+    padding: 5px;
+    border: 2px solid #D8E2EB;
+    margin-bottom: 10px;
+    border-radius: 5px; }
 
 footer {
   background: #232b50;

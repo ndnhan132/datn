@@ -6,9 +6,9 @@
 @php
     $teacher = Auth::guard('teacher')->user();
 @endphp
-<div class="content mb-5">
+<div class="form-wrap mb-5">
     <form action="" method="post" id="general-form">
-        <div class="setting-alert">
+        <div class="form-alert">
         </div>
         <div class="row d-flex flex-wrap border-bottom pb-4">
             <div class="form-group col-sm-6">

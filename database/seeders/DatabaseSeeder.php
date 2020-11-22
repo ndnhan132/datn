@@ -141,7 +141,6 @@ class DatabaseSeeder extends Seeder
             DB::table('courses')->insert([
                 'flag_is_confirmed' => $faker->randomElement($array = array (true, false)),
                 'flag_is_checked' => $faker->randomElement($array = array (true, false)),
-                'code' => $faker->numberBetween($min = 00000, $max = 99999),
                 'subject_id' => $faker->randomElement($subjects->pluck('id')->toArray()),
                 'course_level_id' => $faker->randomElement($courseLevels->pluck('id')->toArray()),
                 'teacher_level_id' =>$faker->randomElement($teacherLevels->pluck('id')->toArray()),

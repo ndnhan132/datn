@@ -16,7 +16,7 @@
     @include('front.layouts.header')
     @include('front.layouts.navbar')
     <div id="page-container">
-        <div class="container mt-3">
+        <div class="container pt-3">
             <div class="d-flex">
                 <div class="col-3 pl-md-0">
                     @include('front.layouts.asidebar')

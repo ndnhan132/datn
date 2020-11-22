@@ -7,9 +7,9 @@
 @php
     $teacher = Auth::guard('teacher')->user();
 @endphp
-<div class="content mb-5">
+<div class="form-wrap mb-5">
     <form action="" method="post" id="avatar-form" enctype='multipart/form-data'>
-        <div class="setting-alert">
+        <div class="form-alert">
         </div>
         <div class="row d-flex flex-wrap border-bottom py-3">
             <div class="form-group col-sm-12">

@@ -13,7 +13,7 @@
     $registrations = $teacher->teacherCourseRegistrations->sortByDesc('id')->all();
     $myReceived = $teacher->getMyReceivedRegistration();
 @endphp
-<div class="content- mb-5" id="profile">
+<div class="form-wrap- mb-5" id="profile">
     <div>
         <div class="row d-flex flex-wrap pb-4">
             <div class="form-group col-sm-12">
