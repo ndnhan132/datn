@@ -19,7 +19,8 @@ Route::get('/nhan-lop/{slug}.html', 'TeacherCourseRegistrationController@getRegi
 Route::get('/ajax/nhan-lop/{slug}', 'TeacherCourseRegistrationController@ajaxReloadRegisterPage');
 
 Route::post('/ajax/teacher-login', 'TeacherController@ajaxLogin')->name('front.teacherLogin');
-Route::get('/ajax/teacher-logout', 'TeacherController@logout')->name('front.teacherLogout');
+Route::get('/ajax/teacher-logout', 'TeacherController@ajaxLogout');
+Route::get('/dang-xuat.html', 'TeacherController@logout')->name('front.teacherLogout');
 Route::get('/ajax/load-teacher-login-box', 'TeacherController@ajaxLoadTeacherLoginBox');
 Route::get('/ajax/load-teacher-course-registration-box/{courseId}', 'TeacherCourseRegistrationController@ajaxLoadTeacherCourseRegistrationBox');
 Route::post('/ajax/teacher-register-course', 'TeacherCourseRegistrationController@ajaxTeacherRegisterCourse');

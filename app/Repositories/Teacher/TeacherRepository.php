@@ -16,19 +16,14 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
     public function store($request)
     {
         $teacher = new Teacher();
-        $teacher->name = 'test_' . rand();
-        $teacher->email = 'test_' . rand() . '@gmail.com';
-        $teacher->password = bcrypt('test_' . rand());
-        $teacher->phone = 'test_' . rand();
-        $teacher->address = 'test_' . rand();
-        $teacher->is_male = rand(0, 1);
-        $teacher->identity_card = rand(1000, 9000) * rand(1000, 9000);
-        $teacher->university = 'test_' . rand();
-        $teacher->speciality = 'test_' . rand();
-        $teacher->level = 'student';
-        $teacher->reference_tuition = rand(10, 90) . '000000';
-        $teacher->fee = rand(10, 50);
-        return $teacher->save();
+        $teacher->name = $request['name'] ?? '';
+        $teacher->email = $request['email'];
+        $teacher->password = bcrypt($request['password']);
+
+        if($teacher->save()){
+            return $teacher;
+        }
+        return false;
     }
 
     public function pagination($startFrom, $recordPerPage)

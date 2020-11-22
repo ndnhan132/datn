@@ -179,8 +179,8 @@
                 console.log(data);
                 if(data.success){
                     alert('Đăng ký thành công');
-                    if(data.url){
-                        window.location.replace(data.url)
+                    if(data.redirect){
+                        window.location.replace(data.redirect)
                     }else{
                         window.location.replace(window.location.hostname + '/lop-can-gia-su.html');
                     }

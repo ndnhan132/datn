@@ -25,7 +25,7 @@
                         </div>
                         <div class="col profile-box ml-3">
                             <div class="d-flex flex-column px-2">
-                                <h4 class="text-capitalize name"> {{ $teacher->name }}</h4>
+                                <h4 class="text-capitalize name"> {{ $teacher->name ?? 'Chưa cập nhật' }}</h4>
                                 <table>
                                     <tr>
                                         <td class="text-nowrap"><span>-&nbsp;Email</span></td>
@@ -33,20 +33,34 @@
                                     </tr>
                                     <tr>
                                         <td class="text-nowrap"><span>-&nbsp;Điện thoại</span></td>
-                                        <td><span>{{ $teacher->phone }}</span></td>
+                                        <td><span>{{ $teacher->phone ?? 'Chưa cập nhật' }}</span></td>
                                     </tr>
                                     <tr>
                                         <td class="text-nowrap"><span>-&nbsp;Địa chỉ</span></td>
-                                        <td><span>{{ $teacher->address }}</span></td>
+                                        <td><span>{{ $teacher->address ?? 'Chưa cập nhật' }}</span></td>
                                     </tr>
                                     <tr>
                                         <td class="text-nowrap"><span>-&nbsp;Giới tính</span></td>
-                                        <td><span>{{ $teacher->is_male ? 'Nam' : 'Nữ' }}</span></td>
+                                        <td>
+                                            @if(!isset($teacher->is_male))
+                                            <span>Chưa cập nhật</span>
+                                            @elseif ($teacher->is_male)
+                                            <span>Nam</span>
+                                            @else
+                                            <span>Nữ</span>
+                                            @endif
+                                        </td>
                                     </tr>
 
                                     <tr>
                                         <td class="text-nowrap"><span>-&nbsp;Năm sinh</span></td>
-                                        <td><span>{{ $teacher->year_of_birth . ' ('. (date("Y") - $teacher->year_of_birth) .' tuổi)' }}</span></td>
+                                        <td>
+                                            @if ($teacher->year_of_birth)
+                                            <span>{{ $teacher->year_of_birth . ' ('. (date("Y") - $teacher->year_of_birth) .' tuổi)' }}</span>
+                                            @else
+                                            <span>Chưa cập nhật</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                 </table>
                             </div>

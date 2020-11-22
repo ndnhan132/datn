@@ -59,12 +59,12 @@ class CourseController extends Controller
         );
         $success = false;
         $message = '';
-        $url = '';
+        $redirect = '';
         if ($validator->passes()) {
             $course = $this->courseRepository->store($request);
             if($course){
                 $success = true;
-                $url = route('front.teacherRegisterCourse', $course->slug);
+                $redirect = route('front.teacherRegisterCourse', $course->slug);
             }
         }else{
             $message = $validator->errors()->all();
@@ -73,7 +73,7 @@ class CourseController extends Controller
         return response()->json(array(
             'success' => $success,
             'message' => $message,
-            'url'     => $url,
+            'redirect'     => $redirect,
         ));
     }
 

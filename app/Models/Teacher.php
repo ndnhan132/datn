@@ -53,7 +53,7 @@ class Teacher extends Authenticatable
     public function getAvatarSrc()
     {
         $res = $this->images->where('image_type', \App\Models\Image::TEACHER_AVATAR)->first();
-        return $res->src ?? '#';
+        return $res->src ?? asset('/images/noavatar.jpg');
     }
 
     /**
@@ -86,7 +86,7 @@ class Teacher extends Authenticatable
         else {
             $gender = "Nữ ";
         }
-        $str = $gender. $this->teacherLevel->display_name ?? '';
+        $str = $gender. ($this->teacherLevel->display_name ?? '');
         $str = strtolower($str);
         $str = ucfirst($str);
         return $str;

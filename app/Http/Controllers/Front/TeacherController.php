@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 use App\Repositories\Teacher\TeacherRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use Validator;
 
 
 class TeacherController extends Controller
@@ -30,7 +30,49 @@ class TeacherController extends Controller
 
     public function ajaxStore(Request $request)
     {
-        return $this->teacherRepository->store($request);
+        Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
+        $validator = Validator::make(
+            $request->all(),
+            [
+                // 'current_password' => 'required',
+                // 'password' => 'required|confirmed',
+            ],
+            [
+                'required' => ':attribute không được để trống',
+                'confirmed' => ':attribute không khớp nhau',
+            ],
+            [
+                'current_password' => 'Mật khẩu hiện tại',
+                'password' => 'Mật khẩu mới',
+            ]
+        );
+        $success = false;
+        $message = '';
+        $redirect = '';
+        if ($validator->passes()) {
+            // $course = $this->courseRepository->store($request);
+            $tmpTeacher = $this->teacherRepository->findByEmail($request['email']);
+            if($tmpTeacher) {
+                $message = 'Email đã được sử dụng';
+            }
+            else{
+                $teacher =  $this->teacherRepository->store($request);
+                if($teacher){
+                    $credentials = $request->only('email', 'password');
+                    Auth::guard('teacher')->attempt($credentials);
+                    $success = true;
+                    $redirect = route('front.teacherManager.index');
+                }
+            }
+        }else{
+            $message = $validator->errors()->all();
+        }
+
+        return response()->json(array(
+            'success'  => $success,
+            'message'  => $message,
+            'redirect' => $redirect,
+        ));
     }
 
     public function ajaxLogin(Request $request)
@@ -65,22 +107,24 @@ class TeacherController extends Controller
         else {
             $message = 'Email ko tồn tại !';
         }
-        //  dd(Auth::guard('teacher')->check());
-        // dd($message);
         return response()->json(array(
             'success' => $success,
             'message' => $message,
         ));
     }
 
-    public function logout()
+    public function ajaxLogout()
     {
         Auth::guard('teacher')->logout();
         return response()->json(array(
             'success' => !Auth::guard('teacher')->check()
         ));
     }
-
+    public function logout()
+    {
+        Auth::guard('teacher')->logout();
+        return redirect()->back();
+    }
     public function ajaxLoadTeacherLoginBox()
     {
         return view('front.layouts.asidebar.teacher-login-box');
