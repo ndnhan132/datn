@@ -39,7 +39,7 @@
                         <a href=""><i class="fas fa-caret-right"></i><span>Gia sư cần biết</span></a>
                     </div>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="/help/notices">Tin tức</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('front.getListNews') }}">Tin tức</a></li>
                 <li class="nav-item"><a class="nav-link" href="/help/notices">Giới thiệu</a></li>
                 <li class="nav-item"><a class="nav-link" href="/help/notices">Liên hệ</a></li>
                 @if (Auth::guard('teacher')->check())

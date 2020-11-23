@@ -5,7 +5,7 @@
         <div class="list-class-item {{ ($course->received()) ? 'received' : '' }}">
             <div class="border-bottom item-header">
                 <h6 class="text-left text-uppercase">
-                    {{ ($course->received()) ? 'Lớp đã có người nhận' : 'Lớp cần  gia sư' }}
+                    {{'#' . $course->id}} {{ ($course->received()) ? 'Lớp đã có người nhận' : 'Lớp cần  gia sư' }}
                 </h6>
             </div>
             <div class="item-body">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Course\CourseRepositoryInterface;
+use App\Repositories\Post\PostRepositoryInterface;
 use App\Repositories\Subject\SubjectRepositoryInterface;
 use App\Repositories\CourseLevel\CourseLevelRepositoryInterface;
 use Illuminate\Support\Facades\Log;
@@ -14,15 +15,18 @@ class PageController extends Controller
     protected $courseRepository;
     protected $subjectRepository;
     protected $courseLevelRepository;
+    protected $postRepository;
 
     public function __construct(
         CourseRepositoryInterface $courseRepository,
         SubjectRepositoryInterface $subjectRepository,
+        PostRepositoryInterface $postRepository,
         CourseLevelRepositoryInterface $courseLevelRepository
         )
     {
         $this->courseRepository = $courseRepository;
         $this->subjectRepository = $subjectRepository;
+        $this->postRepository = $postRepository;
         $this->courseLevelRepository = $courseLevelRepository;
     }
     public function index()
@@ -68,5 +72,32 @@ class PageController extends Controller
     public function getForParentPage()
     {
         return view('front.course.for-parent');
+    }
+
+    public function getListNews()
+    {
+        $startFrom = 0;
+        $recordPerPage = 12;
+        $res = $this->postRepository->getNewsWithPagination($startFrom, $recordPerPage);
+        $count = $res['count'];
+        $articles = $res['data'];
+
+        if ($count % $recordPerPage) {
+            $max = floor($count / $recordPerPage) + 1;
+        } else {
+            $max = floor($count / $recordPerPage);
+        }
+        return view('front.articles.list-articles', compact(['articles', 'count']));
+    }
+
+    public function readNews($slug, Request $request)
+    {
+        if($slug){
+            $post = $this->postRepository->findNewsBySlug($slug);
+            if($post){
+                return view('front.articles.read', compact('post'));
+            }
+        }
+        return redirect()->back();
     }
 }

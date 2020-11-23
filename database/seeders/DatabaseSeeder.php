@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factory;
 require_once 'vendor/autoload.php';
+use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
@@ -33,6 +34,7 @@ class DatabaseSeeder extends Seeder
         DB::table('images')->truncate();
         DB::table('image_types')->truncate();
         DB::table('teacher_levels')->truncate();
+        DB::table('posts')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $faker = \Faker\Factory::create();
@@ -191,6 +193,15 @@ class DatabaseSeeder extends Seeder
                     'image_type' => 'TEACHER_DEGREE'
                 ]);
             }
+        }
+
+        foreach (range(0, 30) as $index) {
+            DB::table('posts')->insert([
+                'title' => $faker->name,
+                'slug' => Str::slug($faker->name, '-'),
+                'content' => $faker->randomHtml(4,5),
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            ]);
         }
     }
 }

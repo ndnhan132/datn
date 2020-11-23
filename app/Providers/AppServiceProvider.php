@@ -24,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
             'RegistrationStatus',
             'TeacherLevel',
             'Image',
+            'Post',
         );
         foreach ($repos as $re) {
             $this->app->bind(

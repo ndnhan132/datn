@@ -15,6 +15,7 @@ Route::get('/lop-can-gia-su.html', 'CourseController@getNotReceivedClassPage')->
 Route::get('/danh-sach-lop.html', 'CourseController@getAllClassPage')->name('front.getAllClassPage');
 Route::get('/ajax/get-list-class', 'CourseController@ajaxGetListClass');
 
+
 Route::get('/nhan-lop/{slug}.html', 'TeacherCourseRegistrationController@getRegisterPage')->name('front.teacherRegisterCourse');
 Route::get('/ajax/nhan-lop/{slug}', 'TeacherCourseRegistrationController@ajaxReloadRegisterPage');
 
@@ -33,8 +34,8 @@ Route::get('/phu-huynh.html', 'PageController@getForParentPage')->name('front.fo
 
 
 
-
-
+Route::get('/tin-tuc.html', 'PageController@getListNews')->name('front.getListNews');
+Route::get('/tin-tuc/{slug}.html', 'PageController@readNews')->name('front.readNews');
 
 
 
