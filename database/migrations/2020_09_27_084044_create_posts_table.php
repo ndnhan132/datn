@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('content');
-            $table->foreignId('post_category_id')->nullable()->constrained()->onDelete('no action');
+            $table->enum('category', ['PAGE', 'NEWS'])->default('PAGE');
             $table->timestamps();
         });
     }

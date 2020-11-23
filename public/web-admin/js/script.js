@@ -29,9 +29,10 @@ function msgErrors(msg) {
     });
     hideSpinner();
 }
-function msgSuccess() {
+function msgSuccess(msg = null) {
+    if(!msg) msg = 'Thành công.'
     Swal.fire({
-        title: 'Success!',
+        title: msg,
         icon: 'success',
         showConfirmButton: false,
         timer: 1500
@@ -97,6 +98,143 @@ $(function () {
         showDetailModal(url);
     });
 
+    $(document).on('click', '.post-manager .btn-delete', function () {
+        var _confirm = confirm('Xoá sẽ không khôi phục được. Chắc chắn xoá!');
+        if (_confirm) {
+            showSpinner();
+            $.ajax({
+                type: 'POST',
+                url: '/quan-ly/bai-viet/ajax/delete',
+                datatype: 'json',
+                data: { id: $(this).data('id')}
+            })
+            .done(function (data) {
+                console.log(data);
+                if (data.success) {
+                    msgSuccess('Xoá thành công.');
+                    reloadMainTable();
+                }
+                hideSpinner();
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                msgErrors(errorThrown);
+                hideSpinner();
+               });
+        }
+    });
+
+    $(document).on('click', '.post-manager .btn-edit', function () {
+        var _postId = $(this).data('id');
+        if (_postId) {
+            var _contentTable = $('#content-table');
+            fadeOutContentTable();
+            showSpinner();
+            $.ajax({
+                type: 'POST',
+                url: '/quan-ly/bai-viet/ajax/get-update',
+                datatype: 'json',
+                data: { id: _postId }
+            })
+            .done(function (data) {
+                console.log(data);
+                if (data.success) {
+                    _contentTable.empty().append(data.html);
+                    hideSpinner();
+                    fadeInContentTable();
+                }
+                hideSpinner();
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                msgErrors(errorThrown);
+                hideSpinner();
+               });
+        }
+    });
+
+    $(document).on('click', '.post-manager #js-form-update .btn-submit', function (event) {
+        var form = document.getElementById('js-form-update');
+        var content = CKEDITOR.instances['input-content'].getData();
+        var formData = new FormData(form);
+        formData.append('content' , content);
+        $.ajax({
+            type: "POST",
+            url: "/quan-ly/bai-viet/ajax/post-update",
+            data: formData,
+            dataType: "text",
+            contentType: false,
+            processData: false,
+        })
+            .done(function (data) {
+                data = JSON.parse(data);
+                if (data.success) {
+                    msgSuccess('Cập nhật thành công');
+                    loadPageTable();
+                } else {
+                    msgErrors();
+                }
+                hideSpinner();
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                msgErrors();
+                hideSpinner();
+                console.log(errorThrown);
+            });
+    });
+
+    $(document).on('click', '.btn-post-create', function () {
+        var _contentTable = $('#content-table');
+        fadeOutContentTable();
+        showSpinner();
+        $.ajax({
+            type: 'GET',
+            url: '/quan-ly/bai-viet/ajax/get-create',
+        })
+        .done(function (data) {
+            console.log(data);
+            if (data.success) {
+                _contentTable.empty().append(data.html);
+                hideSpinner();
+                fadeInContentTable();
+            }
+            hideSpinner();
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            msgErrors(errorThrown);
+            hideSpinner();
+           });
+    });
+
+    $(document).on('click', '.post-manager #js-form-create .btn-submit', function (event) {
+        var form = document.getElementById('js-form-create');
+        var content = CKEDITOR.instances['input-content'].getData();
+        var formData = new FormData(form);
+        formData.append('content' , content);
+        $.ajax({
+            type: "POST",
+            url: "/quan-ly/bai-viet/ajax/post-store",
+            data: formData,
+            dataType: "text",
+            contentType: false,
+            processData: false,
+        })
+            .done(function (data) {
+                data = JSON.parse(data);
+                if (data.success) {
+                    msgSuccess('Tạo thành công');
+                    loadPageTable();
+                } else {
+                    msgErrors();
+                }
+                hideSpinner();
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                msgErrors();
+                hideSpinner();
+                console.log(errorThrown);
+            });
+    });
+
+
     // # function
 
     function reloadMainTable() {
@@ -130,20 +268,7 @@ $(function () {
              //    msgErrors(errorThrown);
             });
     }
-});
 
-// $.ajax({
-//   url: '/',
-//   type: 'POST',
-//   dataType: 'json',
-//   data: {param1: 'value1'},
-// })
-// .done(function(data) {
-//   console.log("success");
-// })
-// .fail(function(jqXHR, textStatus, errorThrown) {
-//   console.log("error");
-// })
-// .always(function(data|jqXHR, textStatus, jqXHR|errorThrown ) {
-//   console.log("complete");
-// });
+
+
+});

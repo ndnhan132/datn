@@ -36,9 +36,9 @@ $asideItems = array(
 'txt3' => 'admin.dashboard.index',
 ],
     'key6' => [
-        'title'       => 'Tin tức',
+        'title'       => 'Tin tức / Trang',
         'fontawesome' => 'fa fa-newspaper-o',
-    'routeName' => 'admin.dashboard.index',
+    'routeName' => 'admin.post.index',
 'uri' => 'admin.dashboard.index',
 'txt3' => 'admin.dashboard.index',
 ],
@@ -54,11 +54,12 @@ $asideItems = array(
 
 
 <div class="app-sidebar__user">
-    <img class="app-sidebar__user-avatar"
-        src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg"
+    <img class="app-sidebar__user-avatar rounded-0 mx-1"
+        src="{{ asset('images/logo/5.png') }}"
+        width="90"
         alt="User Image">
     <div>
-        <p class="app-sidebar__user-name">John Doe</p>
+        <p class="app-sidebar__user-name">{{ Auth::user()->name ?? 'Adminstrator'}}</p>
         <p class="app-sidebar__user-designation">Người Quản Lý</p>
     </div>
 </div>

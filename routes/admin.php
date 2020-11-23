@@ -32,4 +32,14 @@ Route::name('admin.')->group(function(){
     Route::post('/khoa-hoc/ajax/confirm', 'CourseController@ajaxConfirm');
 
     Route::view('/binh-luan', 'admin.comment.index')->name('comment.index');
+
+    Route::get('/bai-viet', 'PostController@index')->name('post.index');
+    Route::get('/bai-viet/ajax/index', 'PostController@ajaxGetTableContent');
+    Route::post('/bai-viet/ajax/delete', 'PostController@ajaxDelete');
+    // Route::post('/bai-viet/ajax/update', 'PostController@ajaxGetUpdate');
+    Route::post('/bai-viet/ajax/get-update', 'PostController@ajaxGetUpdate');
+    Route::post('/bai-viet/ajax/post-update', 'PostController@ajaxPostUpdate');
+    Route::get('/bai-viet/ajax/get-create', 'PostController@ajaxGetCreate');
+    Route::post('/bai-viet/ajax/post-store', 'PostController@ajaxPostStore');
+
 });
