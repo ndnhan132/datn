@@ -8,18 +8,18 @@
             <form id="js-form-create" class="post-form p-3">
             @endif
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="form-group">
+                    <div class="col-lg-12 d-flex flex-wrap">
+                        <div class="form-group col-sm-6 pl-0">
                             <label for="input-name">Name</label>
                             <input class="form-control" id="input-title" name="title" type="text" value="{{ $post->title ?? ''}}">
                             <div class="form-control-feedback"></div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-sm-6 pl-0">
                             <label for="input-slug">Slug</label>
                             <input class="form-control" id="input-slug" name="slug" type="text" value="{{ $post->slug ?? '' }}">
                             <div class="form-control-feedback"></div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-sm-6 pl-0">
                             <label for="input-slug">Thể loại</label>
                             <select class="form-control " id="input-category" name="category">
                                 @if (isset($post))
@@ -31,19 +31,19 @@
                                 @endif
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="input-slug">Slug</label>
+                        <div class="form-group col-sm-6 pl-0">
+                            <label for="input-slug">Đường dẫn</label>
                             @if (isset($post))
                             <input class="form-control" id="input-url" type="text" value="{{ route('front.readNews', $post->slug) }}" readonly>
                             @else
                             <input class="form-control" id="input-url" type="text" readonly>
                             @endif
                             <div class="form-control-feedback"></div>
-                        </div>post
+                        </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="input-content">Content</label>
+                            <label for="input-content">Nội dung</label>
                             <div class="form-control-feedback"></div>
                             <textarea class="form-control" id="input-content" name="content">{{ $post->content ?? '' }}</textarea>
                         </div>

@@ -159,6 +159,47 @@ $(function () {
         ajaxTeacherManagerUpdate(_url, _formData);
     });
 
+    $(document).on('click', '.feedback-form .btn-close', function () {
+        // $('.feedback-form').removeClass('show').addClass('hide');
+        // $('.btn-show-feedback').slideDown();
+        $('.btn-show-feedback').fadeIn();
+        $('.feedback-form').slideUp();
+    });
+    $(document).on('click', '.btn-show-feedback', function () {
+        // $('.feedback-form').removeClass('hide').addClass('show');
+        // $('.btn-show-feedback').slideUp();
+        $('.btn-show-feedback').fadeOut();
+        $('.feedback-form').slideDown();
+
+    });
+    $(document).on('click', '.feedback-submit', function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '/ajax/enquiry-store',
+            type: 'POST',
+            dataType: 'json',
+            data: $('.feedback-form form').serialize(),
+        })
+            .done(function (data) {
+                console.log(data);
+                if (data.success) {
+                    // msgSuccess('Đã gửi.')
+                    alert('Đã gửi.')
+                } else {
+                    alert('fail');
+                }
+                $('.feedback-form form')[0].reset();
+                $('.btn-show-feedback').fadeIn();
+                $('.feedback-form').slideUp();
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log("error");
+                alert(errorThrown);
+                // msgError(errorThrown);
+                $('.feedback-form form')[0].reset();
+            });
+    });
+
     // !#function
     function loadTeacherLoginBox() {
         /* #region   */

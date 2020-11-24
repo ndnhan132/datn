@@ -57,3 +57,5 @@ Route::prefix('/ajax/')->middleware(['CheckTeacher'])->group(function() {
     Route::get('get-course-by-id/{courseId}', 'TeacherManagerController@ajaxGetCourseById');
     Route::post('delete-registration', 'TeacherManagerController@ajaxDeleteCourse');
 });
+
+Route::post('/ajax/enquiry-store', 'EnquiryController@ajaxStore');

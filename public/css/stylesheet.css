@@ -933,6 +933,69 @@ a.text-primary:focus {
     text-decoration: none;
     font-weight: 500; }
 
+.feedback-btn {
+  transform: rotate(-90deg) translateZ(0px);
+  width: 120px;
+  height: 30px;
+  background-color: #af2024;
+  color: #fff;
+  position: fixed;
+  inset: calc(100% - 150px) -45px auto auto !important;
+  z-index: 1000001 !important;
+  cursor: pointer;
+  text-align: center;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-style: solid;
+  border-color: #c52329;
+  border-bottom: 0px; }
+  .feedback-btn span {
+    font-size: 1.1rem;
+    line-height: 30px; }
+
+.feedback-form {
+  display: none;
+  background-color: #CA3438;
+  border-color: #af2024;
+  border-color: #cdcdcd;
+  border-style: solid;
+  border-width: 1px;
+  position: fixed;
+  bottom: 3px;
+  right: 15px; }
+  .feedback-form ul {
+    padding-top: 0px !important; }
+  .feedback-form input, .feedback-form textarea {
+    width: 100%;
+    background-color: #db777a;
+    border: 1px solid #b2494c;
+    border-bottom: 1px solid #d76568;
+    color: #fff;
+    padding: 3px 6px;
+    margin-bottom: 7px;
+    font-size: 14px;
+    text-indent: 4px;
+    width: 222px;
+    max-width: calc(100%);
+    height: auto;
+    max-height: 333px; }
+    .feedback-form input::placeholder, .feedback-form textarea::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #fff;
+      opacity: 1;
+      /* Firefox */ }
+    .feedback-form input:-ms-input-placeholder, .feedback-form textarea:-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: #fff; }
+    .feedback-form input::-ms-input-placeholder, .feedback-form textarea::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: #fff; }
+    .feedback-form input:focus, .feedback-form textarea:focus {
+      outline: none;
+      box-shadow: 0; }
+  .feedback-form .btn-close {
+    cursor: pointer; }
+
 footer {
   background: #232b50;
   background-image: url("../images/bg-1.png"); }
