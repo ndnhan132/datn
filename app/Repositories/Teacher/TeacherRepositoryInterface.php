@@ -11,4 +11,5 @@ interface TeacherRepositoryInterface
     public function updateGeneral($request);
     public function updatePassword($request);
     public function updateEducation($request);
+    public function verifyEmail($id);
 }

@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('slug');
             $table->text('content');
             $table->enum('category', ['PAGE', 'NEWS'])->default('PAGE');
+            $table->string('image')->nullable()->default('/images/noimage.jpg');
             $table->timestamps();
         });
     }

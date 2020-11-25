@@ -3,7 +3,7 @@
 @section('head')
 @endsection
 @section('content')
-<div class="form-wrap mb-4">
+<div class="form-wrap mb-4 p-3">
     @if (Auth::guard('teacher')->check())
     <div class="form-alert">
         <div class="alert alert-danger">
@@ -19,7 +19,7 @@
             xuất</a>
     </div>
     @else
-    <form id="teacher-register-form" method="post">
+    <form id="teacher-register-form" method="post" class="position-relative py-4" >
         @csrf
         <div class="form-alert">
         </div>
@@ -60,13 +60,10 @@
                 </div>
             </div>
         </div>
-
-
-
         <div class="w-100 d-flex py-4">
             <a href="#"
-                class="btn btn-outline-info rounded-pill px-5 mx-auto btn-submit">Gửi
-                đăng ký</a>
+            class="btn btn-outline-info rounded-pill px-5 mx-auto btn-submit">Gửi
+            đăng ký</a>
         </div>
     </form>
     @endif
@@ -75,10 +72,33 @@
 @endsection
 @section('javascript')
 <script type="text/javascript">
+
+
+
 $(document).on('click', 'form#teacher-register-form .btn-submit', function(
     event) {
     event.preventDefault();
     var formData = $('#teacher-register-form').serialize()
+    var _registerBox = $(document).find('#teacher-register-form');
+
+    var _width = _registerBox.outerWidth();
+    var _height = _registerBox.outerHeight();
+    _registerBox.css({width: _width, height: _height});
+    var _loadingStyle = `style="
+    width: ${_width}px;
+    height: ${_height}px;
+    background: transition;
+    position: absolute;
+    top: 0;
+    left:0;
+    z-index: 9999;
+    "`;
+    var loadingHtml = `<div class="d-flex justify-content-center my-auto border-0 loading-spinner" ${_loadingStyle}>
+        <div class="spinner-border my-auto" role="status" style="color: teal; ">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>`;
+    _registerBox.append(loadingHtml);
     $.ajax({
             url: '/front/ajax/teacher/store',
             type: 'POST',
@@ -90,11 +110,6 @@ $(document).on('click', 'form#teacher-register-form .btn-submit', function(
             console.log(data);
             if (data.success) {
                 alert('Đăng ký thành công');
-                if (data.redirect) {
-                    window.location.replace(data.redirect)
-                } else {
-                    window.location.replace(window.location.hostname + '/lop-can-gia-su.html');
-                }
             }
             else {
                 if(data.message && typeof data.message == 'string')
@@ -102,6 +117,9 @@ $(document).on('click', 'form#teacher-register-form .btn-submit', function(
                     alert(data.message);
                 }
             }
+            _registerBox.find('.loading-spinner').remove();
+            _registerBox.empty();
+            _registerBox.append(data.html);
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
             console.log("error");

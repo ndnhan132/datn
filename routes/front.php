@@ -59,3 +59,7 @@ Route::prefix('/ajax/')->middleware(['CheckTeacher'])->group(function() {
 });
 
 Route::post('/ajax/enquiry-store', 'EnquiryController@ajaxStore');
+
+
+
+Route::get('/account/verify-email', 'TeacherController@verifyTeacherEmail')->name('front.verifyTeacherEmail');

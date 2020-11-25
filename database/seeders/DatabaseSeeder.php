@@ -25,8 +25,6 @@ class DatabaseSeeder extends Seeder
         DB::table('courses')->truncate();
         DB::table('course_levels')->truncate();
         DB::table('posts')->truncate();
-        DB::table('post_categories')->truncate();
-        DB::table('ratings')->truncate();
         DB::table('registration_statuses')->truncate();
         DB::table('registration_types')->truncate();
         DB::table('subjects')->truncate();
@@ -56,7 +54,7 @@ class DatabaseSeeder extends Seeder
         $teacherLevels = DB::table('teacher_levels')->get();
         DB::table('teachers')->insert([
             'name' => $faker->name,
-            'email' => 'testteacher@gmail.com',
+            'email' => 'giasu@gmail.com',
             'password' => bcrypt('111111'),
             'phone'   => $faker->e164PhoneNumber,
             'address' => $faker->address,
@@ -69,6 +67,7 @@ class DatabaseSeeder extends Seeder
             'year_of_birth' => $faker->numberBetween($min = 1970, $max = 2000),
             'flag_is_active' => 1,
             'flag_is_checked' => 1,
+            'email_verified_at' => now(),
         ]);
         foreach (range(0, 30) as $index) {
             DB::table('teachers')->insert([
@@ -90,19 +89,19 @@ class DatabaseSeeder extends Seeder
         }
         $subjects = array(
             'Maths' => 'Toán',
-            'Physical' => 'Vật lý',
-            'Chemistry' => 'Hoá học',
-            'Vietnamese' => 'Tiếng việt',
-            'English' => 'Tiếng việt',
-            'Biology' => 'Tiếng việt',
-            'History' => 'Tiếng việt',
-            'Geography' => 'Tiếng việt',
-            'Painting' => 'Tiếng việt',
-            'Chinese' => 'Tiếng việt',
-            'Japanese' => 'Tiếng việt',
-            'Piano' => 'Tiếng việt',
-            'Organ' => 'Tiếng việt',
-            'Guitar' => 'Tiếng việt',
+            'Physical' => 'Vật Lý',
+            'Chemistry' => 'Hoá Học',
+            'Vietnamese' => 'Tiếng Việt',
+            'English' => 'Tiếng Anh',
+            'Biology' => 'Sinh học',
+            'History' => 'Lịch sử',
+            'Geography' => 'Địa Lý',
+            'Painting' => 'Hội Hoạ',
+            'Chinese' => 'Tiếng Trung',
+            'Japanese' => 'Tiếng Nhật',
+            'Piano' => 'Đàn Piano',
+            'Organ' => 'Đàn Organ',
+            'Guitar' => 'Đàn Guitar',
         );
         foreach($subjects as $key => $val) {
             DB::table('subjects')->insert([

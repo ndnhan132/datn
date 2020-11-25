@@ -30,7 +30,7 @@ class CreateTeachersTable extends Migration
             $table->boolean('flag_is_active')->default(false);
             $table->boolean('flag_is_checked')->default(false);
             $table->text('description')->nullable();
-            $table->timestamp('last_modified')->nullable();
+            $table->integer('last_modified')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

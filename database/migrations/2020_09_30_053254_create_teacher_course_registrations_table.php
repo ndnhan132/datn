@@ -18,7 +18,7 @@ class CreateTeacherCourseRegistrationsTable extends Migration
             $table->foreignId('teacher_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('course_id')->nullable()->constrained()->onDelete('cascade');
             // $table->foreignId('registration_type_id')->nullable()->constrained()->onDelete('cascade');
-            $table->boolean('is_teacher_registered')->default(true);
+            // $table->boolean('is_teacher_registered')->default(true);
             $table->foreignId('registration_status_id')->nullable()->constrained()->onDelete('set null');
             $table->timestamps();
         });

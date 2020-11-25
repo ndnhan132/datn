@@ -38,7 +38,7 @@ class TeacherCourseRegistrationRepository extends BaseRepository implements Teac
             $registration = new TeacherCourseRegistration();
             $registration->teacher_id = $teacherId;
             $registration->course_id = $courseId;
-            $registration->is_teacher_registered = true;
+            // $registration->is_teacher_registered = true;
             $registration->registration_status_id = 1;
             return $registration->save() ? true : false;
         }

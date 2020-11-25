@@ -99,6 +99,10 @@
                                         <td class="text-nowrap"><span>-&nbsp;Thông tin thêm</span></td>
                                         <td><span>{{ $teacher->description ?? 'Chưa cập nhật' }}</span></td>
                                     </tr>
+                                    <tr>
+                                        <td class="text-nowrap"><span>-&nbsp;Cập nhật lần cuối</span></td>
+                                        <td><span>{{ date( 'd-m-Y', $teacher->last_modified) ?? 'Chưa cập nhật' }}</span></td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>

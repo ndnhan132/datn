@@ -19,6 +19,7 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
         $teacher->name = $request['name'] ?? '';
         $teacher->email = $request['email'];
         $teacher->password = bcrypt($request['password']);
+        $teacher->last_modified = time();
 
         if($teacher->save()){
             return $teacher;
@@ -68,6 +69,7 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
         $teacher->description = $request->input('description');
         $teacher->identity_card = $request->input('identity_card');
         $teacher->year_of_birth = $request->input('year_of_birth');
+        $teacher->last_modified = time();
         return $teacher->save();
     }
 
@@ -85,6 +87,12 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
         $teacher->speciality = $request->input('speciality');
         $teacher->teacher_level_id = $request->input('teacher_level_id');
         $teacher->reference_tuition = $request->input('reference_tuition');
+        return $teacher->save();
+    }
+    public function verifyEmail($id)
+    {
+        $teacher = $this->model->find($id);
+        $teacher->email_verified_at = now();
         return $teacher->save();
     }
 }

@@ -74,6 +74,8 @@ $(function () {
                 console.log(data);
                 if (data.success) {
                     loadTeacherLoginBox();
+                }else{
+                    alert(data.message);
                 }
             });
         /* #endregion */
