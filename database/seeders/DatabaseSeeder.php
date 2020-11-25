@@ -155,7 +155,7 @@ class DatabaseSeeder extends Seeder
                 'num_of_student' => $faker->numberBetween($min = 1, $max = 3),
                 'tuition_per_month' => $faker->numberBetween($min = 1000, $max = 3000) . '000',
                 'other_requirement' => $faker->text(70),
-                'slug' => $faker->slug . '.html',
+                'slug' => $faker->slug,
                 'title' => $faker->text(100),
             ]);
         }

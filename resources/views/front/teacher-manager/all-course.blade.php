@@ -16,7 +16,7 @@
             @foreach ($registrations as $reg)
                 <tr>
                     <td><span>{{$reg->course->getSubjectAndLevel() ?? ''}}</span></td>
-                    <td><span>{{$reg->course->getRequiredGenderAndLevel() ?? ''}}</span></td>
+                    <td><span>{{$reg->course->getDisplayTeacherLevelAndGender() ?? ''}}</span></td>
                     <td><span>{{$reg->course->getDisplayTution() ?? ''}}</span></td>
                     <td><span class="text-capitalize">{{ $reg->registrationStatus->display_name }}</span></td>
                     <td class="text-center">

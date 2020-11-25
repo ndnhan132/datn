@@ -17,7 +17,7 @@ Route::get('/ajax/get-list-class', 'CourseController@ajaxGetListClass');
 
 
 Route::get('/nhan-lop/{slug}.html', 'TeacherCourseRegistrationController@getRegisterPage')->name('front.teacherRegisterCourse');
-Route::get('/ajax/nhan-lop/{slug}', 'TeacherCourseRegistrationController@ajaxReloadRegisterPage');
+Route::get('/ajax/nhan-lop/{slug}.html', 'TeacherCourseRegistrationController@ajaxReloadRegisterPage');
 
 Route::post('/ajax/teacher-login', 'TeacherController@ajaxLogin')->name('front.teacherLogin');
 Route::get('/ajax/teacher-logout', 'TeacherController@ajaxLogout');

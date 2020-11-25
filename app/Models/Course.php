@@ -130,6 +130,74 @@ class Course extends Model
 
         return $lvl;
     }
+/**
+ * @Author: Nhan Nguyen Dinh
+ * @function:getDisplayTimeAll()
+ * @Date: 2020-11-25 23:21:13
+ * @Desc:
+ * @Params1:
+ * @Return:
+ */
+
+    public function getDisplayTimeAll()
+    {
+        $time =  $this->time_working;
+        if($this->session_per_week){
+            $time .= ', '  . $this->session_per_week . ' buổi/tuần';
+        }
+        if($this->time_per_session){
+            $time .= ', ' . $this->time_per_session .' phút/buổi';
+        }
+        $time .= '.';
+        return $time;
+    }
+
+    /**
+     * @Author: Nhan Nguyen Dinh
+     * @function:  getDisplayTeacherLevel()
+     * @Date: 2020-11-25 23:29:17
+     * @Desc:
+     * @Params1:
+     * @Return:
+     */
+
+    public function getDisplayTeacherLevel()
+    {
+        $lv = '';
+        if($this->teacherLevel) {
+            $lv .= $this->teacherLevel->display_name;
+        }
+        if($this->other_teacher_level){
+            $lv .= ', ' . $this->other_teacher_level;
+        }
+        $lv .= '.';
+        return $lv;
+    }
+/**
+ * @Author: Nhan Nguyen Dinh
+ * @function:  getDisplayTeacherLevelAndGender
+ * @Date: 2020-11-25 23:31:27
+ * @Desc:
+ * @Params1:
+ * @Return:
+ */
+
+ public function getDisplayTeacherLevelAndGender()
+ {
+    $gender = "";
+    if($this->teacher_gender == "MALE") {
+        $gender = "Nam ";
+    }
+    elseif($this->teacher_gender == "FEMALE"){
+        $gender = "Nữ ";
+    }
+
+    $str = $gender. $this->getDisplayTeacherLevel();
+    $str = strtolower($str);
+    $str = ucfirst($str);
+    return $str;
+ }
+
 
     //* #define Relationships
     public function subject()

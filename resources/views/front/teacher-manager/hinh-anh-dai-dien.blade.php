@@ -40,22 +40,21 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Hình ảnh đại diện</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <div><input type='file' value="upload" id="choose_image"></div>
-          <div>
-              <div id="image-croppie">
-
-              </div>
-          </div>
+            <div>
+                <div id="image-croppie"></div>
+            </div>
+            <input type='file' value="upload" id="choose_image" class="d-none">
+            <div class="d-flex justify-content-center" onclick="document.getElementById('choose_image').click()"><button>Chọn File</button></div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary btn-save">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+          <button type="button" class="btn btn-primary btn-save">Ok</button>
         </div>
       </div>
     </div>
@@ -72,7 +71,7 @@ $(function() {
                         type: "square",
                     },
                     boundary: {
-                        width: 250,
+                        width: 200,
                         height: 300,
                     },
                     showZoomer: false,

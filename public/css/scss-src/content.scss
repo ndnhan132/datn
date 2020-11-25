@@ -654,3 +654,23 @@
 //     -o-transition: all 1s ease;
 //     transition: all 1s ease;
 // }
+
+
+.coursedetail-box{
+    border-radius: 2px;
+    transition: all 0.1s ease-in-out;
+    box-shadow: none;
+    width: 100%;
+    min-height: 20px;
+    background-color: #fff;
+    padding: 28px;
+    color: #2d6d91;
+    .text-nowrap{
+        padding-right: 1rem;
+        font-weight: 600;
+    }
+    tr td {
+        vertical-align: top;
+        font-size: 0.95rem;
+    }
+}

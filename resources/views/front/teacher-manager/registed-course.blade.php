@@ -13,7 +13,7 @@
         @foreach ($myReceived as $reg)
             <tr>
                 <td><span>{{$reg->course->getSubjectAndLevel() ?? ''}}</span></td>
-                <td><span>{{$reg->course->getRequiredGenderAndLevel() ?? ''}}</span></td>
+                <td><span>{{$reg->course->getDisplayTeacherLevelAndGender() ?? ''}}</span></td>
                 <td><span>{{$reg->course->getDisplayTution() ?? ''}}</span></td>
                 @if ($reg->updated_at)
                 <td><span>{{date_format( $reg->updated_at, 'd/m/Y') }}</span></td>

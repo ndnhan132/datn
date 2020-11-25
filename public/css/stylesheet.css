@@ -996,6 +996,22 @@ a.text-primary:focus {
   .feedback-form .btn-close {
     cursor: pointer; }
 
+.coursedetail-box {
+  border-radius: 2px;
+  transition: all 0.1s ease-in-out;
+  box-shadow: none;
+  width: 100%;
+  min-height: 20px;
+  background-color: #fff;
+  padding: 28px;
+  color: #2d6d91; }
+  .coursedetail-box .text-nowrap {
+    padding-right: 1rem;
+    font-weight: 600; }
+  .coursedetail-box tr td {
+    vertical-align: top;
+    font-size: 0.95rem; }
+
 footer {
   background: #232b50;
   background-image: url("../images/bg-1.png"); }

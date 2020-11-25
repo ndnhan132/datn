@@ -26,7 +26,7 @@
                         <span class="font-weight-bold--">Số buổi: </span><span class="bold">{{ $course->session_per_week . ' Buổi/Tuần - ' . $course->time_per_session . ' Phút/Buổi'}}</span>
                     </li>
                     <li>
-                        <span class="font-weight-bold--">Yêu cầu: </span><span class="bold">{{ $course->getRequiredGenderAndLevel() }}</span>
+                        <span class="font-weight-bold--">Yêu cầu: </span><span class="bold">{{ $course->getDisplayTeacherLevelAndGender() }}</span>
                     </li>
 
                 {{-- <p class="card-text">flg confirm {{ $course->flag_is_confirmed }}</p>
@@ -34,7 +34,7 @@
                 <p class="card-text">status: {{ ($course->received()) ? 'received' : 'not received' }}</p> --}}
                 </ul>
 
-                {{-- <p class="card-text">{{ $course->getRequiredGenderAndLevel() }}</p> --}}
+                {{-- <p class="card-text">{{ $course->getDisplayTeacherLevelAndGender() }}</p> --}}
                 <div class="w-100 d-flex mt-0">
                     @if ($course->received())
                     <a href="{{ route('front.teacherRegisterCourse', $course->slug) }}" class="btn btn-sm rounded-pill- rounded-0 text-uppercase px-2 py-1 ml-auto text-white" style="background: orange;">Xem chi tiết</a>

@@ -117,7 +117,10 @@ $(function () {
             .done(function (data) {
                 console.log(data);
                 if (data.success) {
+                    alert('Nhận lớp thành công.')
                     reloadRegisterPageContent();
+                } else {
+                    alert('Nhận lớp thất bại.');
                 }
             });
         /* #endregion */
@@ -229,7 +232,6 @@ $(function () {
         if (_registrationBox) {
             _registrationBox.empty();
             // _registrationBox.fadeOut();
-            _registrationBox.append(loadingHtml);
             _registrationBox.load('/ajax/load-teacher-course-registration-box/' + $(document).find('#teacher-course-registration-box').data('course-id'));
             // _registrationBox.fadeIn();
         }
@@ -237,8 +239,8 @@ $(function () {
     }
 
     function reloadRegisterPageContent() {
-        var _url = '/ajax/nhan-lop/' + 'eveniet-similique-incidunt-nam-cumque-dolorem-quas-debitis.html';
-        $(document).find('#teacher-register-course-content').load(_url);
+        var _url = '/ajax' + window.location.pathname;
+        $(document).find('#teacher-register-course-page-content').load(_url);
     }
 
     function loadAsidebarBoxContent() {
