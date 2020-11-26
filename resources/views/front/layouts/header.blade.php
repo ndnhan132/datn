@@ -24,7 +24,7 @@
                         <a href="{{ route('front.getCourseRegisterPage') }}"><i class="fas fa-caret-right"></i><span>Đăng ký tìm gia sư</span></a>
                         <a href="{{ route('front.home') }}"><i class="fas fa-caret-right"></i><span>Bảng giá tham khảo</span></a>
                         <a href="{{ route('front.home') }}"><i class="fas fa-caret-right"></i><span>Phụ huynh cần biết</span></a>
-                        <a href="{{ route('front.home') }}"><i class="fas fa-caret-right"></i><span>Gia sư tiêu biểu</span></a>
+                        <a href="{{ route('front.getAllTeachersPage') }}"><i class="fas fa-caret-right"></i><span>Danh sách gia sư</span></a>
                     </div>
                 </li>
                 <li class="nav-item  position-relative">

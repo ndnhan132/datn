@@ -32,6 +32,20 @@ Route::get('/giao-vien.html', 'PageController@getForTeacherPage')->name('front.f
 
 Route::get('/phu-huynh.html', 'PageController@getForParentPage')->name('front.forParent');
 
+Route::get('/danh-sach-gia-su.html', 'TeacherController@getAllTeachersPage')->name('front.getAllTeachersPage');
+Route::get('/gia-su/{slug}.html', 'TeacherController@getDetailTeacherPage')->name('front.getDetailTeacherPage');
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Route::get('/tin-tuc.html', 'PageController@getListNews')->name('front.getListNews');
@@ -59,7 +73,4 @@ Route::prefix('/ajax/')->middleware(['CheckTeacher'])->group(function() {
 });
 
 Route::post('/ajax/enquiry-store', 'EnquiryController@ajaxStore');
-
-
-
 Route::get('/account/verify-email', 'TeacherController@verifyTeacherEmail')->name('front.verifyTeacherEmail');

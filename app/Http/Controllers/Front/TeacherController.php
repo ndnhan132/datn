@@ -243,4 +243,10 @@ EOF;
         }
         return view('front.teacher.verify-email', compact(['success', 'error']));
     }
+
+    public function getAllTeachersPage()
+    {
+        $teachers = $this->teacherRepository->index();
+        return view('front.teacher.list-teacher', compact('teachers'));
+    }
 }

@@ -167,8 +167,30 @@ class Teacher extends Authenticatable
                     ->all();
         return $res ?? false;
     }
+/**
+ * @Author: Nhan Nguyen Dinh
+ * @function:getAge
+ * @Date: 2020-11-26 00:53:34
+ * @Desc:
+ * @Params1:
+ * @Return:
+ */
 
-    //* #define Relationships
+ public function getAge()
+ {
+     $year  = $this->year_of_birth;
+     if(is_numeric($year)){
+         try {
+             return date('Y') - $year;
+         } catch(Exception $e){
+            return false;
+         }
+     }
+     return false;
+ }
+
+
+    //* #define RelationshipsP
     // public function courses()
     // {
     //     return $this->belongsToMany('App\Models\Courses');
