@@ -93,7 +93,12 @@
                                     </tr>
                                     <tr>
                                         <td class="text-nowrap"><span>-&nbsp;Tình trạng tài khoản</span></td>
-                                        <td><span>{{ $teacher->isActive() ? 'Đã kích hoạt' : 'Chưa được xét duyệt' }}</span></td>
+                                        @if ($teacher->isActive())
+                                        <td><span>Đã kích hoạt</span></td>
+                                        @elseif($teacher->canSendRequestConfirmation())
+                                        <td><span>Chưa được xét duyệt</span> <a href="">Gửi yêu cầu xét duyệt</a></td>
+                                        @else
+                                        @endif
                                     </tr>
                                     <tr>
                                         <td class="text-nowrap"><span>-&nbsp;Thông tin thêm</span></td>

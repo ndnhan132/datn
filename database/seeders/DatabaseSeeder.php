@@ -29,7 +29,6 @@ class DatabaseSeeder extends Seeder
         DB::table('subjects')->truncate();
         DB::table('teacher_course_registrations')->truncate();
         DB::table('images')->truncate();
-        DB::table('image_types')->truncate();
         DB::table('teacher_levels')->truncate();
         DB::table('posts')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
@@ -64,8 +63,25 @@ class DatabaseSeeder extends Seeder
             'teacher_level_id' =>$faker->randomElement($teacherLevels->pluck('id')->toArray()),
             'reference_tuition' => $faker->numberBetween($min = 10, $max = 90) . '000000',
             'year_of_birth' => $faker->numberBetween($min = 1970, $max = 2000),
-            'flag_is_active' => 1,
+            'flag_is_teacher' => 1,
             'flag_is_checked' => 1,
+            'email_verified_at' => now(),
+        ]);
+        DB::table('teachers')->insert([
+            'name' => $faker->name,
+            'email' => 'tkmoi@gmail.com',
+            'password' => bcrypt('111111'),
+            'phone'   => $faker->e164PhoneNumber,
+            'address' => $faker->address,
+            'is_male' => $faker->randomElement($array = array ('0','1')),
+            'identity_card' => $faker->numberBetween($min = 1000, $max = 9000) * $faker->numberBetween($min = 1000, $max = 9000),
+            'university' =>$faker->name,
+            'speciality' => $faker->name,
+            'teacher_level_id' =>$faker->randomElement($teacherLevels->pluck('id')->toArray()),
+            'reference_tuition' => $faker->numberBetween($min = 10, $max = 90) . '000000',
+            'year_of_birth' => $faker->numberBetween($min = 1970, $max = 2000),
+            'flag_is_teacher' => 0,
+            'flag_is_checked' => 0,
             'email_verified_at' => now(),
         ]);
         foreach (range(0, 30) as $index) {
@@ -82,7 +98,7 @@ class DatabaseSeeder extends Seeder
                 'teacher_level_id' =>$faker->randomElement($teacherLevels->pluck('id')->toArray()),
                 'reference_tuition' => $faker->numberBetween($min = 10, $max = 90) . '000000',
                 'year_of_birth' => $faker->numberBetween($min = 1970, $max = 2000),
-                'flag_is_active' => $faker->randomElement($array = array ('0','1')),
+                'flag_is_teacher' => $faker->randomElement($array = array ('0','1')),
                 'flag_is_checked' => $faker->randomElement($array = array ('0','1')),
             ]);
         }
@@ -137,7 +153,7 @@ class DatabaseSeeder extends Seeder
         $subjects = DB::table('subjects')->get();
         $courseLevels = DB::table('course_levels')->get();
 
-        foreach (range(0, 150) as $index) {
+        foreach (range(0, 50) as $index) {
             DB::table('courses')->insert([
                 'flag_is_confirmed' => $faker->randomElement($array = array (true, false)),
                 'flag_is_checked' => $faker->randomElement($array = array (true, false)),
@@ -159,7 +175,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        $teachers = DB::table('teachers')->where('flag_is_active', '1')->get();
+        $teachers = DB::table('teachers')->where('flag_is_teacher', '1')->get();
         $courses= DB::table('courses')->get();
         $registrationStatuses = DB::table('registration_statuses')->get();
         foreach($courses as $course) {

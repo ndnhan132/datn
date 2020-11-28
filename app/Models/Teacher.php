@@ -65,8 +65,22 @@ class Teacher extends Authenticatable
      */
     public function isActive()
     {
-        return $this->flag_is_checked && $this->flag_is_active;
+        return $this->flag_is_checked && $this->flag_is_teacher;
     }
+/**
+ * @Author: Nhan Nguyen Dinh
+ * @function: canSendRequestConfirmation
+ * @Date: 2020-11-28 23:42:40
+ * @Desc:
+ * @Params1:
+ * @Return:
+ */
+
+    public function canSendRequestConfirmation(){
+        $lastConfirmAt = $this->request_confirmation_at ?? 0;
+        if((time() - $lastConfirmAt) < (3) )
+    }
+
 
     /**
      * @Author: Nhan Nguyen Dinh
