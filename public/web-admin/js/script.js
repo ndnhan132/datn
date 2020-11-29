@@ -234,11 +234,90 @@ $(function () {
             });
     });
 
+    // ! pagination
+    $(document).on('change', '.footer-control select.record_per_page', function (event) {
+        event.preventDefault();
+        showSpinner();
+        console.log($(this).val());
+        var _inputRecordPerPage = $(document).find('#page-control-form input[name=record_per_page]');
+        if (_inputRecordPerPage) {
+            _inputRecordPerPage.val($(this).val());
+        }
+        setPageNum(1);
+        reloadMainTable();
+    });
+    $(document).on('change', 'select.teacher_account_status', function (event) {
+        event.preventDefault();
+        showSpinner();
+        console.log($(this).val());
+        var _inputTeacherAccountStatus = $(document).find('#page-control-form input[name=teacher_account_status]');
+        if (_inputTeacherAccountStatus) {
+            _inputTeacherAccountStatus.val($(this).val());
+        }
+        setPageNum(1);
+        reloadMainTable();
+    });
+    $(document).on('change', 'select.teacher_level', function (event) {
+        event.preventDefault();
+        showSpinner();
+        console.log($(this).val());
+        var _inputTeacherLevel = $(document).find('#page-control-form input[name=teacher_level]');
+        if (_inputTeacherLevel) {
+            _inputTeacherLevel.val($(this).val());
+        }
+        setPageNum(1);
+        reloadMainTable();
+    });
+    // ! end pagination
+    $(document).on('keypress', '#form-search', function (e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+            return false;
+          }
+    });
+    $(document).on('change', '#form-search select[name=search_criterion]', function (event) {
+        event.preventDefault();
+        var _btnSearch = $(document).find('#form-search .btn-submit');
+        if ($(this).val() == 'no') {
+            _btnSearch.hide();
+            $(document).find('#page-control-form input[name=is_search]').val(0);
+        } else {
+            _btnSearch.show();
+            $(document).find('#page-control-form input[name=is_search]').val(1);
+        }
+    });
+    $(document).on('click', '#form-search .btn-submit', function (event) {
+        event.preventDefault();
+        showSpinner();
+        setPageNum(1);
+        reloadMainTable();
+    });
+    // ! teacher account manager
+    $(document).on('click', '.footer-control .pag-link', function (event) {
+        event.preventDefault();
+        showSpinner();
+        setPageNum($(this).data('pagenum'));
+        reloadMainTable();
+    });
+    // ! end teacher account manager
 
     // # function
 
     function reloadMainTable() {
-        $url = pathName + '/ajax/index?page=' + pageNum;
+        $url = pathName + '/ajax/index';
+        var queryString = $('#page-control-form').serialize();
+        if (queryString.length) {
+            $url += '?' + queryString;
+        }
+        if ($('#page-control-form').find('input[name=is_search]').length) {
+            var isSearch = $('#page-control-form').find('input[name=is_search]').val();
+            if(isSearch){
+                var searchString = $('#form-search').serialize();
+                if (queryString.length) {
+                    $url += '&' + searchString;
+                }
+            }
+        }
         console.log('reload ' + $url);
         var _contentTable = $('#content-table');
         fadeOutContentTable();
@@ -250,6 +329,10 @@ $(function () {
     }
     function setPageNum(num) {
         pageNum = num;
+        var _inputPageNum = $(document).find('input[name=page]');
+        if (_inputPageNum) {
+            _inputPageNum.val(num);
+        }
     }
     function showDetailModal(url) {
         showSpinner();

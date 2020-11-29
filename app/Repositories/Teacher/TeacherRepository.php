@@ -6,6 +6,7 @@ use App\Repositories\BaseRepository;
 use App\Models\Teacher;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use App\Models\TeacherAccountStatus;
 
 class TeacherRepository extends BaseRepository implements TeacherRepositoryInterface
 {
@@ -28,13 +29,29 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
         return false;
     }
 
-    public function pagination($startFrom, $recordPerPage)
+    public function pagination($startFrom, $recordPerPage, $teacherAccountStatus, $teacherLevelId, $searchText, $searchCriterion)
     {
-        $data = $this->model->orderBy('id', 'DESC')
+        $query = $this->model;
+        if($teacherAccountStatus) {
+            if($teacherAccountStatus == 'NEW') {
+                $query = $query->whereNull('teacher_account_status_id');
+            }
+            elseif(in_array($teacherAccountStatus, array(TeacherAccountStatus::CONFIRMED_ID, TeacherAccountStatus::INELIGIBLE_ID, TeacherAccountStatus::REQUEST_VERIFICATION_ID))){
+                $query = $query->where('teacher_account_status_id', $teacherAccountStatus);
+            }
+        }
+        if($teacherLevelId && is_numeric($teacherLevelId)) {
+            $query = $query->where('teacher_level_id', $teacherLevelId);
+        }
+        if($searchCriterion && $searchCriterion) {
+            $query = $query->where($searchCriterion, 'like', '%' . $searchText . '%');
+        }
+
+        $count = $query->count();
+        $data = $query->orderBy('id', 'DESC')
                     ->offset($startFrom)
                     ->limit($recordPerPage)
                     ->get();
-        $count = $this->model->get()->count();
 
         return array(
             'data' => $data,

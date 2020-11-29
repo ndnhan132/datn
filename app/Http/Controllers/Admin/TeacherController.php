@@ -6,14 +6,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Teacher\TeacherRepositoryInterface;
 use Illuminate\Support\Facades\Log;
+use App\Repositories\TeacherLevel\TeacherLevelRepositoryInterface;
 
 class TeacherController extends Controller
 {
     protected $teacherRepository;
-
-    public function __construct(TeacherRepositoryInterface $teacherRepository)
+    protected $teacherLevelRepository;
+    public function __construct(
+        TeacherLevelRepositoryInterface $teacherLevelRepository,
+        TeacherRepositoryInterface $teacherRepository
+        )
     {
         $this->teacherRepository = $teacherRepository;
+        $this->teacherLevelRepository = $teacherLevelRepository;
     }
 
     public function index()
@@ -24,11 +29,28 @@ class TeacherController extends Controller
     public function ajaxGetTableContent(Request $request)
     {
         Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
-        isset($request['recordPerPage']) ? $recordPerPage = $request['record-per-page'] : $recordPerPage = 10;
+        isset($request['record_per_page']) ? $recordPerPage = $request['record_per_page'] : $recordPerPage = 10;
         isset($request['page']) ? ($page = $request['page']) : ($page = 1);
         $startFrom = ($page - 1) * $recordPerPage;
+        $teacherAccountStatus = false;
+        if(isset($request['teacher_account_status'])){
+            $teacherAccountStatus = $request['teacher_account_status'];
+        }
+        $teacherLevelId = false;
+        if(isset($request['teacher_level'])){
+            $teacherLevelId = $request['teacher_level'];
+        }
+        $searchText = false;
+        if(isset($request['search_text'])){
+            $searchText = $request['search_text'];
+        }
+        $searchCriterion = false;
+        if(isset($request['search_criterion'])){
+            $searchCriterion = $request['search_criterion'];
+        }
 
-        $res = $this->teacherRepository->pagination($startFrom, $recordPerPage);
+        $teacherLevels = $this->teacherLevelRepository->index();
+        $res = $this->teacherRepository->pagination($startFrom, $recordPerPage, $teacherAccountStatus, $teacherLevelId, $searchText, $searchCriterion);
         $count = $res['count'];
         $teachers = $res['data'];
 
@@ -38,7 +60,7 @@ class TeacherController extends Controller
             $max = floor($count / $recordPerPage);
         }
 
-        return view('admin.teacher.main-table', compact(['teachers', 'max', 'page']));
+        return view('admin.teacher.main-table', compact(['teachers', 'max', 'page', 'startFrom', 'recordPerPage', 'count', 'teacherAccountStatus', 'teacherLevels', 'teacherLevelId', 'searchText', 'searchCriterion' ]));
     }
 
     public function ajaxShow(Request $request, $teacherId)

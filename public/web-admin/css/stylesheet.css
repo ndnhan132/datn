@@ -177,7 +177,7 @@ a.text-primary:focus {
     .app-content .app-title h1 {
       font-size: 1.3rem; }
   .app-content .tile {
-    padding: 10px;
+    padding: 0.75rem;
     margin-bottom: 1rem;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px; }
@@ -191,18 +191,16 @@ a.text-primary:focus {
       padding: 10px;
       margin: -10px -10px 15px; }
   .app-content .label-status, .app-content .label-status-success, .app-content .label-status-secondary, .app-content .label-status-warning, .app-content .label-status-danger, .app-content .label-status-info {
-    border: 0.2rem solid;
     color: #fff;
     text-align: center;
-    border-radius: 2px;
-    padding: 0.15rem 0.15rem;
-    display: inline-block;
-    min-width: 80px;
+    border-radius: 50rem;
+    padding: 0.2rem 0.5rem;
     -moz-user-select: none;
     -ms-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
-    -webkit-touch-callout: none; }
+    -webkit-touch-callout: none;
+    min-width: 80px; }
   .app-content .label-status-success {
     background-color: #51cf66;
     border-color: #8ce99a; }
@@ -313,5 +311,45 @@ a.text-primary:focus {
 
 .fadeOut {
   opacity: 0; }
+
+.footer-control {
+  min-height: 33px;
+  max-height: 40px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem; }
+  .footer-control .record_per_page {
+    width: auto !important;
+    padding: 4px 12px !important;
+    line-height: 1.5;
+    height: calc(1.5em + 12px + 0px); }
+  .footer-control .control-pagination .pag-link .pag-button {
+    display: block;
+    border: 1px solid transparent;
+    border-radius: 50rem;
+    color: #2e2e2e;
+    line-height: 30px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin-left: 4px; }
+  .footer-control .control-pagination .pag-link:hover .pag-button {
+    border: 1px solid #6c757d; }
+  .footer-control .control-pagination .pag-link.active .pag-button {
+    color: #FFF;
+    background-color: #007bff;
+    border: 1px solid #6c757d; }
+
+select.teacher_level,
+select.teacher_account_status {
+  width: auto !important;
+  padding: 4px 12px !important;
+  line-height: 1.5;
+  height: calc(1.5em + 12px + 0px);
+  text-align: center;
+  text-align-last: center;
+  letter-spacing: -1px; }
+  select.teacher_level option,
+  select.teacher_account_status option {
+    text-align: left; }
 
 /*# sourceMappingURL=stylesheet.css.map */
