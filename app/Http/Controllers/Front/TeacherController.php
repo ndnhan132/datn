@@ -265,17 +265,17 @@ EOF;
         $page = 1;
         $startFrom = 0;
         $res     = $this->teacherRepository->getFrontListWithPagination($startFrom, $recordPerPage);
-        $count   = $res['count'];
+        $total   = $res['total'];
         $teachers = $res['data'];
         $teacherLevels = $this->teacherLevelRepository->index();
         $courseLevels = $this->courseLevelRepository->index();
         $subjects = $this->subjectRepository->index();
-        if ($count % $recordPerPage) {
-            $max = floor($count / $recordPerPage) + 1;
+        if ($total % $recordPerPage) {
+            $max = floor($total / $recordPerPage) + 1;
         } else {
-            $max = floor($count / $recordPerPage);
+            $max = floor($total / $recordPerPage);
         }
-        return view('front.teacher.list-teacher',  compact(['teachers', 'max', 'page', 'count', 'teacherLevels','courseLevels', 'subjects']));
+        return view('front.teacher.list-teacher',  compact(['teachers', 'max', 'page', 'total', 'teacherLevels','courseLevels', 'subjects']));
     }
 
     public function ajaxGetListTeacher(Request $request)
@@ -303,15 +303,15 @@ EOF;
 
 
         $res     = $this->teacherRepository->getFrontListWithPagination($startFrom, $recordPerPage, $teacherLevelId, $gender, $courseLevelId, $subjectId);
-        $count   = $res['count'];
+        $total   = $res['total'];
         $teachers = $res['data'];
 
-        if ($count % $recordPerPage) {
-            $max = floor($count / $recordPerPage) + 1;
+        if ($total % $recordPerPage) {
+            $max = floor($total / $recordPerPage) + 1;
         } else {
-            $max = floor($count / $recordPerPage);
+            $max = floor($total / $recordPerPage);
         }
-        $html = view('front.teacher.list-teacher-content',  compact(['teachers', 'max', 'page', 'count']));
+        $html = view('front.teacher.list-teacher-content',  compact(['teachers', 'max', 'page', 'total']));
         $html = strval($html);
         $html = trim($html);
 

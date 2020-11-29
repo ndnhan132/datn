@@ -47,7 +47,7 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
             $query = $query->where($searchCriterion, 'like', '%' . $searchText . '%');
         }
 
-        $count = $query->count();
+        $total = $query->count();
         $data = $query->orderBy('id', 'DESC')
                     ->offset($startFrom)
                     ->limit($recordPerPage)
@@ -55,7 +55,7 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
 
         return array(
             'data' => $data,
-            'count' => $count
+            'total' => $total
         );
     }
     // public function markAsChecked($teacher)
@@ -144,14 +144,14 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
             });
         }
 
-        $count = $query->count();
+        $total = $query->count();
         $data = $query->orderBy('id', 'DESC')
         ->offset($startFrom)
         ->limit($recordPerPage)
         ->get();
         return array(
             'data' => $data,
-            'count' => $count
+            'total' => $total
         );
     }
 }

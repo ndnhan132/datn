@@ -31,12 +31,12 @@ class PostController extends Controller
         $startFrom = ($page - 1) * $recordPerPage;
 
         $posts = $this->postRepository->pagination($startFrom, $recordPerPage);
-        $count = $this->postRepository->index()->count();
+        $total = $this->postRepository->index()->count();
 
-        if ($count % $recordPerPage) {
-            $max = floor($count / $recordPerPage) + 1;
+        if ($total % $recordPerPage) {
+            $max = floor($total / $recordPerPage) + 1;
         } else {
-            $max = floor($count / $recordPerPage);
+            $max = floor($total / $recordPerPage);
         }
 
         return view('admin.post.main-table', compact(['posts', 'max', 'page']));

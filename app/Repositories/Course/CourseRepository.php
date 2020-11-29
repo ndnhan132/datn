@@ -44,11 +44,11 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
                     ->offset($startFrom)
                     ->limit($recordPerPage)
                     ->get();
-        $count = $this->model->where('flag_is_confirmed', true)->count();
+        $total = $this->model->where('flag_is_confirmed', true)->count();
 
         return array(
             'data' => $data,
-            'count' => $count
+            'total' => $total
         );
     }
 
@@ -117,12 +117,12 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
         //                    ->where('flag_is_checked', true)
         //                    ->where('flag_is_confirmed', true)
         //                    ->get();
-        // $count = $this->model->where('flag_is_checked', true)
+        // $total = $this->model->where('flag_is_checked', true)
         //                     ->where('flag_is_confirmed', true)
         //                     ->count();
         // return array(
         //     'data' => $data,
-        //     'count' => $count
+        //     'total' => $total
         // );
     }
 
@@ -146,7 +146,7 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
             });
         }
 
-        $count = $query->count();
+        $total = $query->count();
         $data = $query->orderBy('id', 'DESC')
                       ->offset($startFrom)
                       ->limit($recordPerPage)
@@ -154,7 +154,7 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
 
         return array(
         'data' => $data,
-        'count' => $count
+        'total' => $total
         );
     }
 

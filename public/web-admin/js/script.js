@@ -278,7 +278,7 @@ $(function () {
     $(document).on('change', '#form-search select[name=search_criterion]', function (event) {
         event.preventDefault();
         var _btnSearch = $(document).find('#form-search .btn-submit');
-        if ($(this).val() == 'no') {
+        if ($(this).val() == '') {
             _btnSearch.hide();
             $(document).find('#page-control-form input[name=is_search]').val(0);
         } else {

@@ -30,12 +30,12 @@ class CourseController extends Controller
         $startFrom = ($page - 1) * $recordPerPage;
 
         $courses = $this->courseRepository->pagination($startFrom, $recordPerPage);
-        $count = $this->courseRepository->index()->count();
+        $total = $this->courseRepository->index()->count();
 
-        if ($count % $recordPerPage) {
-            $max = floor($count / $recordPerPage) + 1;
+        if ($total % $recordPerPage) {
+            $max = floor($total / $recordPerPage) + 1;
         } else {
-            $max = floor($count / $recordPerPage);
+            $max = floor($total / $recordPerPage);
         }
 
         return view('admin.course.main-table', compact(['courses', 'max', 'page']));

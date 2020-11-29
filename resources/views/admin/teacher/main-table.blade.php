@@ -10,7 +10,7 @@
                         $searchCriterion = '';
                     }
                 @endphp
-                <option value="no">Không search</option>
+                <option value="">Không search</option>
                 <option value="name" {{ $searchCriterion == 'name' ? 'selected' : '' }}>Họ tên</option>
                 <option value="email" {{ $searchCriterion == 'email' ? 'selected' : '' }}>Email</option>
                 <option value="address" {{ $searchCriterion == 'address' ? 'selected' : '' }}>Địa chỉ</option>
@@ -23,6 +23,13 @@
         <div class="form-group my-2">
             <button class="form-control ml-2 btn-submit" style="display: none"><i class="fa fa-search"></i></button>
         </div>
+        <div class="text-right col">
+            @if ($totalRequestVerify > 0)
+            <span class="text-danger">* Có {{ $totalRequestVerify }} tài khoản cần xét duyệt</span>
+            @else
+            <span class="text-success">* Không có tài khoản cần xét duyệt</span>
+            @endif
+        </div>
     </form>
     <div class="col-md-12 px-0">
         <div class="tile">
@@ -32,6 +39,7 @@
                         <tr>
                             <th>Thứ tự</th>
                             <th class="text-left">Họ tên</th>
+                            <th class="text-left">Email</th>
                             <th class="text-center py-1">
                                 <select name="teacher_level" id="" class="form-control teacher_level rounded-pill mx-auto text-center text-capitalize">
                                     <option value="">Trình độ</option>
@@ -58,7 +66,8 @@
                         @foreach ($teachers as $record)
                         <tr>
                             <td class="text-center">#{{ $record->id }}</td>
-                            <td class=""><span>{{ $record->name }}</span></td>
+                            <td class=""><span>{{ $record->name ?? 'Chưa cập nhật' }}</span></td>
+                            <td class=""><span>{{ $record->email }}</span></td>
                             <td class="text-center"><span>{{ $record->teacherLevel->display_name ?? 'Chưa cập nhật' }}</span></td>
                             <td class="text-center">
                                 @if ($record->isRequestVerification())
@@ -99,14 +108,14 @@
             <option value="10" {{ $recordPerPage == 10 ? 'selected' : ''}}>10 nội dung/trang</option>
             <option value="15" {{ $recordPerPage == 15 ? 'selected' : ''}}>15 nội dung/trang</option>
             <option value="20" {{ $recordPerPage == 20 ? 'selected' : ''}}>20 nội dung/trang</option>
-            <option value="30" {{ $recordPerPage == 30 ? 'selected' : ''}}>40 nội dung/trang</option>
+            <option value="30" {{ $recordPerPage == 30 ? 'selected' : ''}}>30 nội dung/trang</option>
             <option value="50" {{ $recordPerPage == 50 ? 'selected' : ''}}>50 nội dung/trang</option>
             <option value="100" {{ $recordPerPage == 100 ? 'selected' : ''}}>100 nội dung/trang</option>
         </select>
     </div>
     <div class="col-sm-4 text-center align-middle d-flex h-100">
         <span class="center-counttext my-auto mx-auto py-1">
-            Từ {{ '#' . ($startFrom + 1) . ' đến #' . ( ($count > $recordPerPage) ? ($startFrom + $recordPerPage) : ($startFrom + $count)) }} trên tổng số {{ $count }}
+            Từ {{ '#' . ($startFrom + 1) . ' đến #' . ( ($total > $recordPerPage) ? ($startFrom + $recordPerPage) : ($startFrom + $total)) }} trên tổng số {{ $total }}
         </span>
     </div>
     <div class="col-sm-4 align-middle d-flex h-100">

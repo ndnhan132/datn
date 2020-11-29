@@ -1,8 +1,8 @@
-@isset($count)
+@isset($total)
 <div class="w-100 opacity_transition_effect">
     <div class="col-12">
         <div class="breadcrumbs">
-            <span>{{ $count }} bài viết</span>
+            <span>{{ $total }} bài viết</span>
         </div>
     </div>
 </div>

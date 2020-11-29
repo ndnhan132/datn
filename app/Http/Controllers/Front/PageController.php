@@ -79,15 +79,15 @@ class PageController extends Controller
         $startFrom = 0;
         $recordPerPage = 12;
         $res = $this->postRepository->getNewsWithPagination($startFrom, $recordPerPage);
-        $count = $res['count'];
+        $total = $res['total'];
         $articles = $res['data'];
 
-        if ($count % $recordPerPage) {
-            $max = floor($count / $recordPerPage) + 1;
+        if ($total % $recordPerPage) {
+            $max = floor($total / $recordPerPage) + 1;
         } else {
-            $max = floor($count / $recordPerPage);
+            $max = floor($total / $recordPerPage);
         }
-        return view('front.articles.list-articles', compact(['articles', 'count']));
+        return view('front.articles.list-articles', compact(['articles', 'total']));
     }
 
     public function readNews($slug, Request $request)

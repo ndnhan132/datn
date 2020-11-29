@@ -41,11 +41,11 @@ class TeacherCourseRegistrationController extends Controller
         $startFrom = ($page - 1) * $recordPerPage;
         $res = $this->courseRepository->teacherCourseRegistrationPagination($startFrom, $recordPerPage);
         $teacherCourseRegistrations = $res['data'];
-        $count = $res['count'];
-        if ($count % $recordPerPage) {
-            $max = floor($count / $recordPerPage) + 1;
+        $total = $res['total'];
+        if ($total % $recordPerPage) {
+            $max = floor($total / $recordPerPage) + 1;
         } else {
-            $max = floor($count / $recordPerPage);
+            $max = floor($total / $recordPerPage);
         }
 
         return view('admin.teacher-course-registration.main-table', compact(['teacherCourseRegistrations', 'max', 'page']));

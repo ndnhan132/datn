@@ -22,11 +22,11 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
                     ->offset($startFrom)
                     ->limit($recordPerPage)
                     ->get();
-        $count = $this->model->get()->count();
+        $total = $this->model->get()->count();
 
         return array(
             'data' => $data,
-            'count' => $count
+            'total' => $total
         );
     }
 

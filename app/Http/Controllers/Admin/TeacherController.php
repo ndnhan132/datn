@@ -50,17 +50,19 @@ class TeacherController extends Controller
         }
 
         $teacherLevels = $this->teacherLevelRepository->index();
+        $totalRequestVerify = $this->teacherRepository->index()->where('teacher_account_status_id', \App\Models\TeacherAccountStatus::REQUEST_VERIFICATION_ID)->all();
+        $totalRequestVerify = count($totalRequestVerify);
         $res = $this->teacherRepository->pagination($startFrom, $recordPerPage, $teacherAccountStatus, $teacherLevelId, $searchText, $searchCriterion);
-        $count = $res['count'];
+        $total = $res['total'];
         $teachers = $res['data'];
 
-        if ($count % $recordPerPage) {
-            $max = floor($count / $recordPerPage) + 1;
+        if ($total % $recordPerPage) {
+            $max = floor($total / $recordPerPage) + 1;
         } else {
-            $max = floor($count / $recordPerPage);
+            $max = floor($total / $recordPerPage);
         }
 
-        return view('admin.teacher.main-table', compact(['teachers', 'max', 'page', 'startFrom', 'recordPerPage', 'count', 'teacherAccountStatus', 'teacherLevels', 'teacherLevelId', 'searchText', 'searchCriterion' ]));
+        return view('admin.teacher.main-table', compact(['teachers', 'max', 'page', 'startFrom', 'recordPerPage', 'total', 'teacherAccountStatus', 'teacherLevels', 'teacherLevelId', 'searchText', 'searchCriterion', 'totalRequestVerify' ]));
     }
 
     public function ajaxShow(Request $request, $teacherId)

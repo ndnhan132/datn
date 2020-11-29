@@ -272,6 +272,9 @@ class Teacher extends Authenticatable
     return 'chưa chập nhật';
  }
 
+
+
+
     //* #define RelationshipsP
     // public function courses()
     // {

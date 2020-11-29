@@ -86,13 +86,13 @@ class CourseController extends Controller
         $confirmedRequired = true;
         $type = 'NOT_RECEIVED';
         $res     = $this->courseRepository->getWithPagination($startFrom, $recordPerPage, $type, $confirmedRequired);
-        $count   = $res['count'];
+        $total   = $res['total'];
         $courses = $res['data'];
 
-        if ($count % $recordPerPage) {
-            $max = floor($count / $recordPerPage) + 1;
+        if ($total % $recordPerPage) {
+            $max = floor($total / $recordPerPage) + 1;
         } else {
-            $max = floor($count / $recordPerPage);
+            $max = floor($total / $recordPerPage);
         }
 
         return view('front.course.list-class-page', compact(['courses', 'max', 'page', 'type']));
@@ -107,13 +107,13 @@ class CourseController extends Controller
         $confirmedRequired = true;
         $type    = 'ALL';
         $res     = $this->courseRepository->getWithPagination($startFrom, $recordPerPage,  $type, $confirmedRequired);
-        $count   = $res['count'];
+        $total   = $res['total'];
         $courses = $res['data'];
 
-        if ($count % $recordPerPage) {
-            $max = floor($count / $recordPerPage) + 1;
+        if ($total % $recordPerPage) {
+            $max = floor($total / $recordPerPage) + 1;
         } else {
-            $max = floor($count / $recordPerPage);
+            $max = floor($total / $recordPerPage);
         }
 
         return view('front.course.list-class-page', compact(['courses', 'max', 'page', 'type']));
@@ -128,12 +128,12 @@ class CourseController extends Controller
         $confirmedRequired = true;
         isset($request['type']) ? ($type = $request['type']) : ($type = 'ALL');
         $res     = $this->courseRepository->getWithPagination($startFrom, $recordPerPage,  $type, $confirmedRequired);
-        $count   = $res['count'];
+        $total   = $res['total'];
         $courses = $res['data'];
-        if ($count % $recordPerPage) {
-            $max = floor($count / $recordPerPage) + 1;
+        if ($total % $recordPerPage) {
+            $max = floor($total / $recordPerPage) + 1;
         } else {
-            $max = floor($count / $recordPerPage);
+            $max = floor($total / $recordPerPage);
         }
 
         return view('front.course.list-class-table', compact(['courses', 'max', 'page']));
