@@ -197,4 +197,21 @@ class TeacherManagerController extends Controller
             'html' => $html,
         ));
     }
+
+    public function ajaxSendRequestConfirmation(Request $request)
+    {
+        $teacherId = Auth::guard('teacher')->user()->id;
+        $success = false;
+        $message = false;
+        if(Auth::guard('teacher')->user()->canSendRequestConfirmation()) {
+            $success = $this->teacherRepository->sendRequestConfirmation($teacherId);
+        }
+        else {
+            $message = 'Không thể yêu cầu xét duyệt lúc này.';
+        }
+        return response()->json(array(
+            'success' => $success,
+            'message' => $message,
+        ));
+    }
 }

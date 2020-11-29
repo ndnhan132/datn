@@ -5,6 +5,7 @@ namespace App\Repositories\Teacher;
 use App\Repositories\BaseRepository;
 use App\Models\Teacher;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class TeacherRepository extends BaseRepository implements TeacherRepositoryInterface
 {
@@ -94,5 +95,46 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
         $teacher = $this->model->find($id);
         $teacher->email_verified_at = now();
         return $teacher->save();
+    }
+    public function sendRequestConfirmation($teacherId)
+    {
+        $teacher = $this->model->find($teacherId);
+        $teacher->request_confirmation_at = time();
+        $teacher->teacher_account_status_id = \App\Models\TeacherAccountStatus::REQUEST_VERIFICATION_ID;
+        return $teacher->save();
+    }
+
+    public function getFrontListWithPagination($startFrom, $recordPerPage, $teacherLevelId = false, $gender = 'BOTH', $courseLevelId = false, $subjectId = false)
+    {
+        $query = $this->model->where('teacher_account_status_id',\App\Models\TeacherAccountStatus::CONFIRMED_ID);
+        if($teacherLevelId) {
+            $query = $query->where('teacher_level_id', $teacherLevelId);
+        }
+        if($gender == 'MALE'){
+            $query = $query->where('is_male', true);
+        }
+        elseif($gender == 'FEMALE') {
+            $query = $query->where('is_male', false);
+        }
+        if($courseLevelId) {
+            $query = $query->whereHas('courseLevels', function($q) use ($courseLevelId){
+                return $q->where('course_level_id', $courseLevelId);
+            });
+        }
+        if($subjectId) {
+            $query = $query->whereHas('subjects', function($q) use ($subjectId){
+                return $q->where('subject_id', $subjectId);
+            });
+        }
+
+        $count = $query->count();
+        $data = $query->orderBy('id', 'DESC')
+        ->offset($startFrom)
+        ->limit($recordPerPage)
+        ->get();
+        return array(
+            'data' => $data,
+            'count' => $count
+        );
     }
 }

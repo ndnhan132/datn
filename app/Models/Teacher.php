@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Log;
 
 class Teacher extends Authenticatable
 {
@@ -43,6 +43,26 @@ class Teacher extends Authenticatable
     ];
 
     //* #define my functions
+    /**
+     * @Author: Nhan Nguyen Dinh
+     * @function:
+     * @Date: 2020-11-29 00:27:59
+     * @Desc:   check status account
+     * @Params1:
+     * @Return:
+     */
+    public function isConfirmed()
+    {
+        return $this->teacher_account_status_id == \App\Models\TeacherAccountStatus::CONFIRMED_ID;
+    }
+    public function isIneligible()
+    {
+        return $this->teacher_account_status_id == \App\Models\TeacherAccountStatus::INELIGIBLE_ID;
+    }
+    public function isRequestVerification()
+    {
+        return $this->teacher_account_status_id == \App\Models\TeacherAccountStatus::REQUEST_VERIFICATION_ID;
+    }
 
     /**
      * @Author: Nhan Nguyen Dinh
@@ -63,10 +83,10 @@ class Teacher extends Authenticatable
      * @Desc:
      * @Return:
      */
-    public function isActive()
-    {
-        return $this->flag_is_checked && $this->flag_is_teacher;
-    }
+    // public function isActive()
+    // {
+        // return $this->flag_is_checked && $this->flag_is_teacher;
+    // }
 /**
  * @Author: Nhan Nguyen Dinh
  * @function: canSendRequestConfirmation
@@ -77,8 +97,16 @@ class Teacher extends Authenticatable
  */
 
     public function canSendRequestConfirmation(){
-        $lastConfirmAt = $this->request_confirmation_at ?? 0;
-        if((time() - $lastConfirmAt) < (3) )
+        if(!$this->isConfirmed()){
+            $lastSentAt = $this->request_confirmation_at ?? 0;
+            $diffTime = time() - $lastSentAt;
+            $threeDays = 3 * 24 * 60 * 60;
+            $threeDays = 20;
+            if($diffTime >  $threeDays) {
+                return true;
+            }
+        }
+        return false;
     }
 
 
@@ -202,7 +230,47 @@ class Teacher extends Authenticatable
      }
      return false;
  }
+ /**
+  * @Author: Nhan Nguyen Dinh
+  * @function:
+  * @Date: 2020-11-29 01:53:09
+  * @Desc:
+  * @Params1:
+  * @Return:
+  */
+  public function getDisplaySubject()
+  {
+      if($this->subjects){
+            $str = '';
+            foreach($this->subjects as $key => $sbj){
+                if($key != 0) $str .= ' - ';
+                $str .= $sbj->display_name;
+            }
+            return $str;
+      }
+      return 'chưa chập nhật';
+  }
+/**
+ * @Author: Nhan Nguyen Dinh
+ * @function:
+ * @Date: 2020-11-29 10:33:52
+ * @Desc:
+ * @Params1:
+ * @Return:
+ */
 
+ public function getDisplayCourseLevel()
+ {
+    if($this->courseLevels){
+        $str = '';
+        foreach($this->courseLevels as $key => $lvl){
+            if($key != 0) $str .= ' - ';
+            $str .= $lvl->display_name;
+        }
+        return $str;
+    }
+    return 'chưa chập nhật';
+ }
 
     //* #define RelationshipsP
     // public function courses()
@@ -224,4 +292,21 @@ class Teacher extends Authenticatable
     {
         return $this->belongsTo('App\Models\TeacherLevel');
     }
+
+    public function teacherAccountStatus()
+    {
+        return $this->belongsTo('App\Models\TeacherAccountStatus');
+    }
+
+    public function subjects()
+    {
+        return $this->belongsToMany('App\Models\Subject', 'subject_teachers');
+    }
+    public function courseLevels()
+    {
+        return $this->belongsToMany('App\Models\CourseLevel', 'course_level_teachers');
+    }
+
+
+
 }

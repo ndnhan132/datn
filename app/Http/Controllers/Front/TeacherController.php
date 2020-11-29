@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Repositories\Teacher\TeacherRepositoryInterface;
+use App\Repositories\TeacherLevel\TeacherLevelRepositoryInterface;
+use App\Repositories\CourseLevel\CourseLevelRepositoryInterface;
+use App\Repositories\Subject\SubjectRepositoryInterface;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Validator;
@@ -20,11 +24,21 @@ class TeacherController extends Controller
 {
 
     protected $teacherRepository;
+    protected $courseLevelRepository;
+    protected $teacherLevelRepository;
+    protected $subjectRepository;
+
     public function __construct(
-        TeacherRepositoryInterface $teacherRepository
+        TeacherRepositoryInterface $teacherRepository,
+        TeacherLevelRepositoryInterface $teacherLevelRepository,
+        CourseLevelRepositoryInterface $courseLevelRepository,
+        SubjectRepositoryInterface $subjectRepository
         )
     {
         $this->teacherRepository = $teacherRepository;
+        $this->teacherLevelRepository = $teacherLevelRepository;
+        $this->subjectRepository = $subjectRepository;
+        $this->courseLevelRepository = $courseLevelRepository;
     }
 
     public function getTeacherRegisterPage()
@@ -246,7 +260,78 @@ EOF;
 
     public function getAllTeachersPage()
     {
-        $teachers = $this->teacherRepository->index();
-        return view('front.teacher.list-teacher', compact('teachers'));
+        Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
+        $recordPerPage = 12;
+        $page = 1;
+        $startFrom = 0;
+        $res     = $this->teacherRepository->getFrontListWithPagination($startFrom, $recordPerPage);
+        $count   = $res['count'];
+        $teachers = $res['data'];
+        $teacherLevels = $this->teacherLevelRepository->index();
+        $courseLevels = $this->courseLevelRepository->index();
+        $subjects = $this->subjectRepository->index();
+        if ($count % $recordPerPage) {
+            $max = floor($count / $recordPerPage) + 1;
+        } else {
+            $max = floor($count / $recordPerPage);
+        }
+        return view('front.teacher.list-teacher',  compact(['teachers', 'max', 'page', 'count', 'teacherLevels','courseLevels', 'subjects']));
+    }
+
+    public function ajaxGetListTeacher(Request $request)
+    {
+        Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
+        isset($request['recordPerPage']) ? $recordPerPage = $request['record-per-page'] : $recordPerPage = 12;
+        isset($request['page']) ? ($page = $request['page']) : ($page = 1);
+        $startFrom = ($page - 1) * $recordPerPage;
+        $teacherLevelId = false;
+        if(isset($request['teacher_level']) && $request['teacher_level'] != ''){
+            $teacherLevelId = $request['teacher_level'];
+        }
+        $gender = false;
+        if(isset($request['gender']) && in_array($request['gender'], array('MALE', 'BOTH', 'FEMALE'))) {
+            $gender = $request['gender'];
+        }
+        $courseLevelId = false;
+        if(isset($request['course_level']) && is_numeric($request['course_level'])) {
+            $courseLevelId = $request['course_level'];
+        }
+        $subjectId = false;
+        if(isset($request['subject']) && is_numeric($request['subject'])) {
+            $subjectId = $request['subject'];
+        }
+
+
+        $res     = $this->teacherRepository->getFrontListWithPagination($startFrom, $recordPerPage, $teacherLevelId, $gender, $courseLevelId, $subjectId);
+        $count   = $res['count'];
+        $teachers = $res['data'];
+
+        if ($count % $recordPerPage) {
+            $max = floor($count / $recordPerPage) + 1;
+        } else {
+            $max = floor($count / $recordPerPage);
+        }
+        $html = view('front.teacher.list-teacher-content',  compact(['teachers', 'max', 'page', 'count']));
+        $html = strval($html);
+        $html = trim($html);
+
+        return response()->json(array(
+            'success' => true,
+            'html'    => $html,
+        ));
+    }
+
+    public function ajaxGetTeacherById($teacherId, Request $request)
+    {
+        $success = false;
+        $teacher = $this->teacherRepository->find($teacherId);
+        $html = view('admin.post.create', compact('teacher'));
+        $html = strval($html);
+        $html = trim($html);
+        if($html) $success = true;
+        return response()->json(array(
+            'success' => $success,
+            'html' => $html,
+        ));
     }
 }

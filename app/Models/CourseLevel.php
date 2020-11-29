@@ -14,4 +14,9 @@ class CourseLevel extends Model
     {
         return $this->hasMany('App\Models\Courses');
     }
+
+    public function teachers()
+    {
+        return $this->belongsToMany('App\Models\Teacher', 'course_level_teachers');
+    }
 }

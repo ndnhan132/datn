@@ -12,4 +12,6 @@ interface TeacherRepositoryInterface
     public function updatePassword($request);
     public function updateEducation($request);
     public function verifyEmail($id);
+    public function sendRequestConfirmation($teacherId);
+    public function getFrontListWithPagination($startFrom, $recordPerPage, $teacherLevelId = false, $gender = 'BOTH',$courseLevelId = false, $subjectId = false);
 }

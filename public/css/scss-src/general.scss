@@ -99,3 +99,11 @@ input:focus{
         // left: 0;
     }
 }
+
+
+.hover_cursor_progress:hover{
+    cursor: progress !important;
+}
+.opacity_transition_effect{
+    transition: opacity 0.5s;
+}

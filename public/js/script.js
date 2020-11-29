@@ -129,9 +129,24 @@ $(function () {
     // $(document).on('hv', '')
 
     var pageNum = 1;
-    $(document).on('click', '.pagination-item', function () {
+    $(document).on('click', '#list-class-page .pagination-item', function () {
         pageNum = $(this).data('pagenum') ? $(this).data('pagenum') : 1;
         reloadListCourse();
+    });
+    $(document).on('click', '#list-teachers .pagination-item', function () {
+        pageNum = $(this).data('pagenum') ? $(this).data('pagenum') : 1;
+        reloadListTeacher();
+    });
+    $(document).on('keypress', '#teacher-search-form', function (e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+            return false;
+          }
+    });
+    $(document).on('change', '#teacher-search-form .input-onchange', function () {
+        pageNum = 1;
+        console.log($(this).val());
+        reloadListTeacher();
     });
 
     //! teacher manager
@@ -285,14 +300,61 @@ $(function () {
         $url = '/ajax/get-list-class?page=' + pageNum + '&type=' + _contentTable.data('type');
         console.log('reload ' + $url);
         // document.getElementById('list-class-page').firstElementChild.style.opacity = '0';
-        _contentTable.find('.list-class-page').css('opacity', '0');
+        // _contentTable.find('.list-class-page').css('opacity', '0');
+        _contentTable.find('#list-class-page').css('opacity', '0');
         _contentTable.load($url, function () {
             console.log('load Index');
             //scroll top
             scroll2Top();
             // document.getElementById('list-class-page').firstElementChild.style.opacity = '1';
-            _contentTable.find('.list-class-page').css('opacity', '1');
+            // _contentTable.find('.list-class-page').css('opacity', '1');
+            _contentTable.find('#list-class-page').css('opacity', '1');
         });
+        /* #endregion */
+    }
+
+    function reloadListTeacher() {
+        /* #region   */
+        var _listTeachers = $('#list-teachers');
+        var queryString = $('#teacher-search-form').serialize();
+        $url = '/ajax/get-list-teacher?page=' + pageNum;
+        if (queryString.length) {
+            $url += '&' + queryString;
+        }
+        console.log('reload ' + $url);
+        // document.getElementById('list-class-page').firstElementChild.style.opacity = '0';
+        // _listTeachers.find('.list-class-page').css('opacity', '0');
+        opacity_transition_effect_fade_out();
+        $('#teacher-search-form input[name=page]').val(pageNum);
+        var formData = $('#teacher-search-form').serialize();
+        $(document).find('body').addClass('hover_cursor_progress');
+        $.ajax({
+            url: '/ajax/get-list-teacher',
+            type: 'POST',
+            dataType: 'json',
+            data: formData,
+        })
+            .done(function (data) {
+                console.log(data);
+                scroll2Top();
+                if (data.success) {
+                    _listTeachers.empty().append(data.html);
+                }
+                else {
+                    alert('Error');
+                }
+                $(document).find('body').removeClass('hover_cursor_progress');
+                opacity_transition_effect_fade_in();
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log("error");
+                alert(errorThrown);
+                $(document).find('body').removeClass('hover_cursor_progress');
+                opacity_transition_effect_fade_in();
+            });
+
+
+
         /* #endregion */
     }
 
@@ -384,5 +446,14 @@ $(function () {
             _alert.find('.alert').slideUp('slow');
             clearInterval(_myIntervalHide);
         }, 4000);
+    }
+
+    function opacity_transition_effect_fade_in()
+    {
+        $(document).find('.opacity_transition_effect').css('opacity', '1');
+    }
+    function opacity_transition_effect_fade_out()
+    {
+        $(document).find('.opacity_transition_effect').css('opacity', '0');
     }
 });

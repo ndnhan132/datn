@@ -15,6 +15,6 @@ $teacher = Auth::guard('teacher')->user();
 
 @else
 <div class=" w-100 py-3">
-    <span class="text-danger font-weight-bold">* Bạn cần đăng nhập để đăng ký lớp học này</span>
+    <span class="text-danger font-weight-bold">* Gia sư cần đăng nhập để đăng ký nhận dạy lớp học này</span>
 </div>
 @endif

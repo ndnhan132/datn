@@ -32,18 +32,14 @@ class CreateTeachersTable extends Migration
 
             $table->timestamp('email_verified_at')->nullable();
 
-            $table->integer('request_confirmation_at')->nullable();
-            $table->boolean('flag_is_checked')->default(false);
-            $table->boolean('flag_is_teacher')->default(false); // tài khoản đã là gia sư
+            $table->unsignedInteger('request_confirmation_at')->default(0);
+            $table->foreignId('teacher_account_status_id')->nullable()->constrained()->onDelete('set null');
+
+            // $table->boolean('flag_is_checked')->default(false);
+            // $table->boolean('flag_is_teacher')->default(false); // tài khoản đã là gia sư
 
             $table->rememberToken();
             $table->timestamps();
-            /*
-            $flag_is_teacher = true => đã là gia Sư
-            $flag_is_checked = true  && flag_is_teacher = false => ko dat yeu cau
-            $flag_is_checked = true  && flag_is_teacher = false &&
-            $flag_is_checked = false => chưa xét duyệt
-            */
         });
     }
 

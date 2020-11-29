@@ -34,8 +34,8 @@ Route::get('/phu-huynh.html', 'PageController@getForParentPage')->name('front.fo
 
 Route::get('/danh-sach-gia-su.html', 'TeacherController@getAllTeachersPage')->name('front.getAllTeachersPage');
 Route::get('/gia-su/{slug}.html', 'TeacherController@getDetailTeacherPage')->name('front.getDetailTeacherPage');
-
-
+Route::post('/ajax/get-list-teacher', 'TeacherController@ajaxGetListTeacher');
+Route::get('/ajax/get-teacher-by-id/{teacherId}', 'TeacherController@ajaxGetTeacherById');
 
 
 
@@ -67,9 +67,11 @@ Route::prefix('/ajax/')->middleware(['CheckTeacher'])->group(function() {
     Route::post('teacher-manager/update/image', 'TeacherManagerController@ajaxUpdateImage');
     Route::post('teacher-manager/update/delete-image', 'TeacherManagerController@ajaxUpdateDeleteImage');
 
-    Route::get('get-teacher-level', 'TeacherManagerController@ajaxGetTeacherLevel');
     Route::get('get-course-by-id/{courseId}', 'TeacherManagerController@ajaxGetCourseById');
     Route::post('delete-registration', 'TeacherManagerController@ajaxDeleteCourse');
+
+    Route::get('get-teacher-level', 'TeacherManagerController@ajaxGetTeacherLevel');
+    Route::get('teacher-manager/send-request-confirmation', 'TeacherManagerController@ajaxSendRequestConfirmation');
 });
 
 Route::post('/ajax/enquiry-store', 'EnquiryController@ajaxStore');

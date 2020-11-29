@@ -17,20 +17,25 @@
                     <tbody>
                         @foreach ($teachers as $record)
                         <tr>
-                            <td class="text-center"><img src="{{ asset($record->getAvatarSrc()) }}" alt="" width="55" height="70" /></td>
-                            <td class="text-center"><span>{{ $record->name }}</span></td>
-                            <td class="text-center"><span>{{ $record->teacherLevel->display_name }}</span></td>
+                            <td class="text-center"></td>
+                            <td class=""><span>{{ $record->name }}</span></td>
+                            <td class=""><span>{{ $record->getGenderAndLevel() }}</span></td>
                             <td class="text-center">
-                                @if (!$record->flag_is_checked)
-                                    <span class="label-status-warning">Chưa Xem xét</span>
-                                @elseif($record->isActive())
-                                    <span class="label-status-success">Đã xét duyệt</span>
+                                @if ($record->isRequestVerification())
+                                    <span class="label-status bg-warning text-white py-1 px-2 rounded-pill">Yêu cầu</span>
+                                @elseif($record->isConfirmed())
+                                    <span class="label-status-success- bg-success text-white py-1 px-2 rounded-pill">Đã xét duyệt</span>
+                                @elseif($record->isIneligible())
+                                    <span class="label-status-secondary- bg-secondary text-white py-1 px-2 rounded-pill">Không hợp lệ</span>
                                 @else
-                                    <span class="label-status-secondary">Không hợp lệ</span>
+                                <span class="bg-success text-white py-1 px-2 rounded-pill">Chưa Xem xét</span>
                                 @endif
                             </td>
                             <td class="text-center">
                                 <span class="btn btn-sm btn-info- btn-detail label-status-info" data-type="teacher" data-teacher-id="{{ $record->id }}">Chi tiết</span>
+                            </td>
+                            <td class="text-center">
+                                <span>Xóa</span>
                             </td>
                         </tr>
                         @endforeach

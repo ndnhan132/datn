@@ -92,21 +92,26 @@
                                         <td><span>{{ $teacher->reference_tuition ?$teacher->getDisplayTution() . ' Vnđ/Tháng' : 'Chưa cập nhật' }}</span></td>
                                     </tr>
                                     <tr>
-                                        <td class="text-nowrap"><span>-&nbsp;Tình trạng tài khoản</span></td>
-                                        @if ($teacher->isActive())
-                                        <td><span>Đã kích hoạt</span></td>
-                                        @elseif($teacher->canSendRequestConfirmation())
-                                        <td><span>Chưa được xét duyệt</span> <a href="">Gửi yêu cầu xét duyệt</a></td>
-                                        @else
-                                        @endif
-                                    </tr>
-                                    <tr>
                                         <td class="text-nowrap"><span>-&nbsp;Thông tin thêm</span></td>
                                         <td><span>{{ $teacher->description ?? 'Chưa cập nhật' }}</span></td>
                                     </tr>
                                     <tr>
                                         <td class="text-nowrap"><span>-&nbsp;Cập nhật lần cuối</span></td>
                                         <td><span>{{ date( 'd-m-Y', $teacher->last_modified) ?? 'Chưa cập nhật' }}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-nowrap"><span>-&nbsp;Tình trạng tài khoản</span></td>
+                                        <td class="account-status">
+                                            @if ($teacher->isConfirmed())
+                                            <span>Đã kích hoạt</span>
+                                            @elseif($teacher->canSendRequestConfirmation())
+                                            <span>Chưa được xét duyệt</span> <a href="#" class="btn-send-request-confirmation">Gửi yêu cầu xét duyệt</a>
+                                            @elseif ($teacher->isRequestVerification())
+                                            <span>Đăng xử lý yêu cầu xét duyệt</span>
+                                            @else
+                                            <span>không đạt yêu cầu</span> <a href="#" class="btn-send-request-confirmation">Gửi yêu cầu xét duyệt</a>
+                                            @endif
+                                        </td>
                                     </tr>
                                 </table>
                             </div>
@@ -181,6 +186,32 @@ $(function() {
         _modal.find('.modal-body').empty();
         _modal.find('.modal-body').append('<img src="' + $(this).attr('src') + '" alt="" class="img-thumbnail img-fluid w-100">');
         _modal.modal('show');
+    });
+    $(document).on('click', '.btn-send-request-confirmation', function(event) {
+        event.preventDefault();
+        $is_confirm = confirm('Chắc chắn gửi yêu cầu.');
+        if($is_confirm){
+            $.ajax({
+                url: '/ajax/teacher-manager/send-request-confirmation',
+                type: 'GET',
+            })
+            .done(function(data) {
+                console.log(data);
+                if(data.success){
+                    alert('Gửi yêu cầu thành công');
+                    $('.account-status').empty().append('<span>Đăng xử lý yêu cầu xét duyệt</span>');
+                }
+                else if(data.message) {
+                    // msgError(data.message);
+                    alert(data.message);
+                }
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log("error");
+                alert(errorThrown);
+                // msgError(errorThrown);
+            });
+        }
     });
 });
 </script>

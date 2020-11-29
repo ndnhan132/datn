@@ -76,6 +76,12 @@ input:focus {
     top: -2px;
     left: 0; }
 
+.hover_cursor_progress:hover {
+  cursor: progress !important; }
+
+.opacity_transition_effect {
+  transition: opacity 0.5s; }
+
 .btn-primary {
   color: #FFF;
   background-color: #18bc9c;

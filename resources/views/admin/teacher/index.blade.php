@@ -45,5 +45,5 @@
 
 @endsection
 @section('javascript')
-{{-- <script src="{{asset('/web-admin/js/onepage/teacher-course-registration.js') . '?' . time() }}" type="text/javascript"></script> --}}
+
 @endsection

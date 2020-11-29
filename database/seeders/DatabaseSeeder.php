@@ -31,6 +31,10 @@ class DatabaseSeeder extends Seeder
         DB::table('images')->truncate();
         DB::table('teacher_levels')->truncate();
         DB::table('posts')->truncate();
+        DB::table('teacher_account_statuses')->truncate();
+        DB::table('subject_teachers')->truncate();
+        DB::table('course_level_teachers')->truncate();
+        DB::table('teacher_account_statuses')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $faker = \Faker\Factory::create();
@@ -49,6 +53,19 @@ class DatabaseSeeder extends Seeder
                 ]);
         }
         unset($teacherLevels);
+
+        $teacherAccountStatuses = array(
+            'CONFIRMED' => 'đã xác nhận',
+            'INELIGIBLE' => 'không đạt điều kiện',
+            'REQUEST_VERIFICATION' => 'yêu cầu xác nhận',
+        );
+        foreach($teacherAccountStatuses as $key => $val) {
+            DB::table('teacher_account_statuses')->insert([
+                'name' => $key,
+                'display_name' => $val,
+            ]);
+        }
+
         $teacherLevels = DB::table('teacher_levels')->get();
         DB::table('teachers')->insert([
             'name' => $faker->name,
@@ -63,10 +80,12 @@ class DatabaseSeeder extends Seeder
             'teacher_level_id' =>$faker->randomElement($teacherLevels->pluck('id')->toArray()),
             'reference_tuition' => $faker->numberBetween($min = 10, $max = 90) . '000000',
             'year_of_birth' => $faker->numberBetween($min = 1970, $max = 2000),
-            'flag_is_teacher' => 1,
-            'flag_is_checked' => 1,
+            'teacher_account_status_id' => '1',
             'email_verified_at' => now(),
         ]);
+
+
+
         DB::table('teachers')->insert([
             'name' => $faker->name,
             'email' => 'tkmoi@gmail.com',
@@ -80,11 +99,10 @@ class DatabaseSeeder extends Seeder
             'teacher_level_id' =>$faker->randomElement($teacherLevels->pluck('id')->toArray()),
             'reference_tuition' => $faker->numberBetween($min = 10, $max = 90) . '000000',
             'year_of_birth' => $faker->numberBetween($min = 1970, $max = 2000),
-            'flag_is_teacher' => 0,
-            'flag_is_checked' => 0,
+            'teacher_account_status_id' => '2',
             'email_verified_at' => now(),
         ]);
-        foreach (range(0, 30) as $index) {
+        foreach (range(0, 200) as $index) {
             DB::table('teachers')->insert([
                 'name' => $faker->name,
                 'email' => $faker->freeEmail,
@@ -98,10 +116,12 @@ class DatabaseSeeder extends Seeder
                 'teacher_level_id' =>$faker->randomElement($teacherLevels->pluck('id')->toArray()),
                 'reference_tuition' => $faker->numberBetween($min = 10, $max = 90) . '000000',
                 'year_of_birth' => $faker->numberBetween($min = 1970, $max = 2000),
-                'flag_is_teacher' => $faker->randomElement($array = array ('0','1')),
-                'flag_is_checked' => $faker->randomElement($array = array ('0','1')),
+                'teacher_account_status_id' => $faker->randomElement($array = array (null,'1', '2', '3','1','1','1','1')),
             ]);
         }
+
+
+
         $subjects = array(
             'Maths' => 'Toán',
             'Physical' => 'Vật Lý',
@@ -130,6 +150,14 @@ class DatabaseSeeder extends Seeder
             'grade_2' => 'lớp 2',
             'grade_3' => 'lớp 3',
             'grade_4' => 'lớp 4',
+            'grade_5' => 'lớp 5',
+            'grade_6' => 'lớp 6',
+            'grade_7' => 'lớp 7',
+            'grade_8' => 'lớp 8',
+            'grade_9' => 'lớp 9',
+            'grade_10' => 'lớp 10',
+            'grade_11' => 'lớp 11',
+            'grade_12' => 'lớp 12',
         );
         foreach($courseLevels as $key => $val) {
             DB::table('course_levels')->insert([
@@ -137,6 +165,22 @@ class DatabaseSeeder extends Seeder
                 'display_name' => $val,
             ]);
         }
+
+        $courseLvs = DB::table('course_levels')->get();
+        \App\Models\Teacher::all()->each(function ($teacher) use ($courseLvs) {
+            $teacher->courseLevels()->attach(
+                $courseLvs->random(rand(1, 5))->pluck('id')
+            );
+        });
+
+        $subjects = DB::table('subjects')->get();
+        \App\Models\Teacher::all()->each(function ($teacher) use ($subjects) {
+            $teacher->subjects()->attach(
+                $subjects->random(rand(1, 5))->pluck('id')
+            );
+        });
+
+
         $registrationStatuses = array(
             'pending' => 'chờ duyệt',
             'eligible' => 'đủ điều kiện',
@@ -149,6 +193,7 @@ class DatabaseSeeder extends Seeder
                 'display_name' => $val,
             ]);
         }
+
 
         $subjects = DB::table('subjects')->get();
         $courseLevels = DB::table('course_levels')->get();
@@ -175,7 +220,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        $teachers = DB::table('teachers')->where('flag_is_teacher', '1')->get();
+        $teachers = DB::table('teachers')->where('teacher_account_status_id', '1')->get();
         $courses= DB::table('courses')->get();
         $registrationStatuses = DB::table('registration_statuses')->get();
         foreach($courses as $course) {
@@ -217,5 +262,6 @@ class DatabaseSeeder extends Seeder
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ]);
         }
+
     }
 }
