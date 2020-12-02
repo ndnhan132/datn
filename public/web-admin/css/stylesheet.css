@@ -26,6 +26,13 @@ a {
 a:hover, a:focus, a:visisted {
   text-decoration: none !important; }
 
+button:focus {
+  outline: none !important; }
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5; }
+
 .btn-primary {
   color: #FFF;
   background-color: #0283c8;
@@ -299,7 +306,8 @@ a.text-primary:focus {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out; }
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 2rem; }
   #content-table .cover-container {
     opacity: 0;
     width: 100%;
@@ -339,6 +347,10 @@ a.text-primary:focus {
     background-color: #007bff;
     border: 1px solid #6c757d; }
 
+select.select_course_level,
+select.select_subject,
+select.course_status,
+select.is_received,
 select.teacher_level,
 select.teacher_account_status {
   width: auto !important;
@@ -348,6 +360,10 @@ select.teacher_account_status {
   text-align: center;
   text-align-last: center;
   letter-spacing: -1px; }
+  select.select_course_level option,
+  select.select_subject option,
+  select.course_status option,
+  select.is_received option,
   select.teacher_level option,
   select.teacher_account_status option {
     text-align: left; }

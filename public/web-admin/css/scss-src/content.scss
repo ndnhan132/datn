@@ -183,6 +183,7 @@
     -webkit-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
+    margin-bottom: 2rem;
     .cover-container{
         opacity: 0;
         width: 100%;
@@ -238,6 +239,11 @@
         }
     }
 }
+
+select.select_course_level,
+select.select_subject,
+select.course_status,
+select.is_received,
 select.teacher_level,
 select.teacher_account_status{
     width: auto!important;

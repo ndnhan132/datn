@@ -72,6 +72,14 @@ $(function () {
         showSpinner();
         reloadMainTable();
     });
+    $(document).on('click', '.btn-table-reset-reload', function () {
+        showSpinner();
+        document.getElementById("page-control-form").reset();
+        document.getElementById("form-search").reset();
+        $("#page-control-form input[type=hidden]").val('');
+        $('#page-control-form option').attr('selected', false);
+        reloadMainTable();
+    });
 
 
     $(document).on('click', '.pagination-item', function () {
@@ -246,6 +254,9 @@ $(function () {
         setPageNum(1);
         reloadMainTable();
     });
+
+
+    //! Teacher
     $(document).on('change', 'select.teacher_account_status', function (event) {
         event.preventDefault();
         showSpinner();
@@ -268,6 +279,57 @@ $(function () {
         setPageNum(1);
         reloadMainTable();
     });
+    // ! end Teacher
+
+    // ! course
+    $(document).on('change', 'select.is_received', function (event) {
+        event.preventDefault();
+        showSpinner();
+        console.log($(this).val());
+        var _inputIsReceived = $(document).find('#page-control-form input[name=is_received]');
+        if (_inputIsReceived) {
+            _inputIsReceived.val($(this).val());
+        }
+        setPageNum(1);
+        reloadMainTable();
+    });
+
+    $(document).on('change', 'select.course_status', function (event) {
+        event.preventDefault();
+        showSpinner();
+        console.log($(this).val());
+        var _inputCourseStatus = $(document).find('#page-control-form input[name=course_status]');
+        if (_inputCourseStatus) {
+            _inputCourseStatus.val($(this).val());
+        }
+        setPageNum(1);
+        reloadMainTable();
+    });
+    $(document).on('change', 'select.select_subject', function (event) {
+        event.preventDefault();
+        showSpinner();
+        console.log($(this).val());
+        var _inputSelectSubject = $(document).find('#page-control-form input[name=select_subject]');
+        if (_inputSelectSubject) {
+            _inputSelectSubject.val($(this).val());
+        }
+        setPageNum(1);
+        reloadMainTable();
+    });
+    $(document).on('change', 'select.select_course_level', function (event) {
+        event.preventDefault();
+        showSpinner();
+        console.log($(this).val());
+        var _inputSelectCourseLevel = $(document).find('#page-control-form input[name=select_course_level]');
+        if (_inputSelectCourseLevel) {
+            _inputSelectCourseLevel.val($(this).val());
+        }
+        setPageNum(1);
+        reloadMainTable();
+    });
+    // ! end course
+
+
     // ! end pagination
     $(document).on('keypress', '#form-search', function (e) {
         if (e.keyCode == 13) {

@@ -197,6 +197,29 @@ class Course extends Model
     $str = ucfirst($str);
     return $str;
  }
+/**
+ * @Author: Nhan Nguyen Dinh
+ * @function:
+ * @Date: 2020-12-02 22:21:31
+ * @Desc:
+ * @Params1:
+ * @Return:
+ */
+    public function isConfirmed()
+    {
+        //đã xác nhận
+        return boolval($this->flag_is_confirmed);
+    }
+    public function isUnConfirmed()
+    {
+        // đã xác nhận và đã đọc
+        return !$this->flag_is_confirmed && $this->flag_is_checked;
+    }
+    public function isNew()
+    {
+        // chưa đọc
+        return !$this->flag_is_confirmed && !$this->flag_is_checked;
+    }
 
 
     //* #define Relationships

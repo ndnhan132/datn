@@ -197,10 +197,16 @@ class DatabaseSeeder extends Seeder
         $subjects = DB::table('subjects')->get();
         $courseLevels = DB::table('course_levels')->get();
 
-        foreach (range(0, 50) as $index) {
+        foreach (range(0, 250) as $index) {
+            $flag_is_confirmed = $faker->randomElement($array = array (true, false));
+            if($flag_is_confirmed) {
+                $flag_is_checked = true;
+            }else{
+                $flag_is_checked = $faker->randomElement($array = array (true, false));
+            }
             DB::table('courses')->insert([
-                'flag_is_confirmed' => $faker->randomElement($array = array (true, false)),
-                'flag_is_checked' => $faker->randomElement($array = array (true, false)),
+                'flag_is_confirmed' => $flag_is_confirmed,
+                'flag_is_checked' => $flag_is_checked,
                 'subject_id' => $faker->randomElement($subjects->pluck('id')->toArray()),
                 'course_level_id' => $faker->randomElement($courseLevels->pluck('id')->toArray()),
                 'teacher_level_id' =>$faker->randomElement($teacherLevels->pluck('id')->toArray()),
@@ -220,7 +226,7 @@ class DatabaseSeeder extends Seeder
         }
 
         $teachers = DB::table('teachers')->where('teacher_account_status_id', '1')->get();
-        $courses= DB::table('courses')->get();
+        $courses= DB::table('courses')->where('flag_is_confirmed', true)->get();
         $registrationStatuses = DB::table('registration_statuses')->get();
         foreach($courses as $course) {
             foreach(range(0,2) as $index){

@@ -5,6 +5,7 @@ namespace App\Repositories\Course;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Str;
 use App\Models\Course;
+use Illuminate\Support\Facades\Log;
 
 class CourseRepository extends BaseRepository implements CourseRepositoryInterface
 {
@@ -22,12 +23,51 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
                            ->get();
     }
 
-    public function pagination($startFrom, $recordPerPage)
+    public function pagination($startFrom, $recordPerPage, $is_received, $course_status, $select_subject, $select_course_level, $searchText, $searchCriterion)
     {
-        return $this->model->orderBy('id', 'DESC')
+        $query = $this->model;
+
+        if ($is_received === 'NO') {
+            $query = $query->whereDoesntHave('teacherCourseRegistrations', function($q) {
+                return $q->where('registration_status_id', \App\Models\RegistrationStatus::RECEIVED_ID);
+            });
+        }
+        elseif ($is_received === 'YES') {
+            $query = $query->whereHas('teacherCourseRegistrations', function($q) {
+                return $q->where('registration_status_id', \App\Models\RegistrationStatus::RECEIVED_ID);
+            });
+        }
+        if($course_status === "NEW") {
+            $query = $query->where('flag_is_confirmed', false)->where('flag_is_checked',false);
+        }
+        elseif($course_status === "YES") {
+            $query = $query->where('flag_is_confirmed', true);
+        }
+        elseif($course_status === "NO") {
+            $query = $query->where('flag_is_confirmed', false)->where('flag_is_checked',true);
+        }
+
+        if($select_subject){
+            $query = $query->where('subject_id', $select_subject);
+        }
+        if($select_course_level){
+            $query = $query->where('course_level_id', $select_course_level);
+        }
+
+        if($searchCriterion && $searchCriterion) {
+            $query = $query->where($searchCriterion, 'like', '%' . $searchText . '%');
+        }
+        Log::warning($query->toSql());
+
+        $total = $query->count();
+        $data = $query->orderBy('id', 'DESC')
                     ->offset($startFrom)
                     ->limit($recordPerPage)
                     ->get();
+        return array(
+            'data' => $data,
+            'total' => $total
+        );
     }
 
     public function confirm($courseId, $isConfirmed)
@@ -162,5 +202,8 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
     {
         return $this->model->with(['subject', 'teacherLevel', 'courseLevel'])->where('id', $courseId)->first();
     }
-
+    public function getTotalNewCourse()
+    {
+        return $this->model->where('flag_is_confirmed', false)->where('flag_is_checked',false)->count();
+    }
 }

@@ -11,8 +11,10 @@
 		<h1>
 			<i class="fa fa-th-list"></i>
 			&nbsp;&nbsp;Giáo viên
-			<span type="button" class="btn-table-reload px-3"><i
-					class="fa fa-refresh"></i></span>
+			<span type="button" class="btn-table-reload px-3">
+				<i class="fa fa-refresh"></i>
+			</span>
+			<span type="button" class="btn-table-reset-reload px-3">Reset</span>
 		</h1>
 	</div>
 	<ul class="app-breadcrumb breadcrumb">

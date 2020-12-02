@@ -29,8 +29,14 @@ class TeacherController extends Controller
     public function ajaxGetTableContent(Request $request)
     {
         Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
-        isset($request['record_per_page']) ? $recordPerPage = $request['record_per_page'] : $recordPerPage = 10;
-        isset($request['page']) ? ($page = $request['page']) : ($page = 1);
+        $recordPerPage = 10;
+        if(isset($request['record_per_page']) && is_numeric($request['record_per_page']) && $request['record_per_page'] > 0) {
+            $recordPerPage = $request['record_per_page'];
+        }
+        $page = 1;
+        if(isset($request['page']) && is_numeric($request['page']) && $request['page'] > 1) {
+            $page = $request['page'];
+        }
         $startFrom = ($page - 1) * $recordPerPage;
         $teacherAccountStatus = false;
         if(isset($request['teacher_account_status'])){

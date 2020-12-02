@@ -5,15 +5,25 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Course\CourseRepositoryInterface;
+use App\Repositories\CourseLevel\CourseLevelRepositoryInterface;
+use App\Repositories\Subject\SubjectRepositoryInterface;
 use Illuminate\Support\Facades\Log;
 
 class CourseController extends Controller
 {
     protected $courseRepository;
+    protected $subjectRepository;
+    protected $courseLevelRepository;
 
-    public function __construct(CourseRepositoryInterface $courseRepository)
+    public function __construct(
+        CourseRepositoryInterface $courseRepository,
+        SubjectRepositoryInterface $subjectRepository,
+        CourseLevelRepositoryInterface $courseLevelRepository
+        )
     {
         $this->courseRepository = $courseRepository;
+        $this->subjectRepository = $subjectRepository;
+        $this->courseLevelRepository = $courseLevelRepository;
     }
 
     public function index()
@@ -25,20 +35,79 @@ class CourseController extends Controller
     public function ajaxGetTableContent(Request $request)
     {
         Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
-        isset($request['recordPerPage']) ? $recordPerPage = $request['record-per-page'] : $recordPerPage = 10;
-        isset($request['page']) ? ($page = $request['page']) : ($page = 1);
+
+        $recordPerPage = 10;
+        if(isset($request['record_per_page']) && is_numeric($request['record_per_page']) && $request['record_per_page'] > 0) {
+            $recordPerPage = $request['record_per_page'];
+        }
+        $page = 1;
+        if(isset($request['page']) && is_numeric($request['page']) && $request['page'] > 1) {
+            $page = $request['page'];
+        }
         $startFrom = ($page - 1) * $recordPerPage;
 
-        $courses = $this->courseRepository->pagination($startFrom, $recordPerPage);
-        $total = $this->courseRepository->index()->count();
+        $is_received = false;
+        if(isset($request['is_received']) && in_array($request['is_received'], array('YES', 'NO'))){
+            $is_received = strval($request['is_received']);
+        }
+        $course_status = false;
+        if(isset($request['course_status']) && in_array($request['course_status'], array('YES', 'NO', 'NEW'))){
+            $course_status = strval($request['course_status']);
+        }
+        $select_subject = false;
+        if(isset($request['select_subject']) && is_numeric($request['select_subject'])){
+            $select_subject = strval($request['select_subject']);
+        }
+        $select_course_level = false;
+        if(isset($request['select_course_level']) && is_numeric($request['select_course_level'])){
+            $select_course_level = strval($request['select_course_level']);
+        }
+        $searchText = false;
+        if(isset($request['search_text'])){
+            $searchText = $request['search_text'];
+        }
+        $searchCriterion = false;
+        if(isset($request['search_criterion'])){
+            $searchCriterion = $request['search_criterion'];
+        }
 
+        $res = $this->courseRepository->pagination(
+                                                        $startFrom
+                                                        ,$recordPerPage
+                                                        ,$is_received
+                                                        ,$course_status
+                                                        ,$select_subject
+                                                        ,$select_course_level
+                                                        ,$searchText
+                                                        ,$searchCriterion
+                                                    );
+        $total = $res['total'];
+        $courses = $res['data'];
         if ($total % $recordPerPage) {
             $max = floor($total / $recordPerPage) + 1;
         } else {
             $max = floor($total / $recordPerPage);
         }
-
-        return view('admin.course.main-table', compact(['courses', 'max', 'page']));
+        $subjects = $this->subjectRepository->index();
+        $courseLevels = $this->courseLevelRepository->index();
+        $totalNewCourse = $this->courseRepository->getTotalNewCourse();
+        return view('admin.course.main-table', compact([
+                                                        'courses',
+                                                        'max',
+                                                        'page',
+                                                        'startFrom',
+                                                        'recordPerPage',
+                                                        'total',
+                                                        'is_received',
+                                                        'course_status',
+                                                        'subjects',
+                                                        'courseLevels',
+                                                        'select_subject',
+                                                        'select_course_level',
+                                                        'totalNewCourse',
+                                                        'searchText',
+                                                        'searchCriterion'
+                                                    ]));
     }
 
     public function ajaxShow(Request $request, $courseId)
