@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder
         DB::table('course_levels')->truncate();
         DB::table('posts')->truncate();
         DB::table('registration_statuses')->truncate();
-        DB::table('registration_types')->truncate();
         DB::table('subjects')->truncate();
         DB::table('teacher_course_registrations')->truncate();
         DB::table('images')->truncate();

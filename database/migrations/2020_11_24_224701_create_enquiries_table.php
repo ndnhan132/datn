@@ -15,10 +15,11 @@ class CreateEnquiriesTable extends Migration
     {
         Schema::create('enquiries', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('title')->nullable();
+            $table->string('name', '50')->nullable();
+            $table->string('email', '50')->nullable();
+            $table->string('phone', '20')->nullable();
+            $table->string('title', '100')->nullable();
+            $table->boolean('flag_is_checked')->default(false);
             $table->text('content');
             $table->timestamps();
         });

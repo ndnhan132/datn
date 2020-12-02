@@ -16,7 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->text('content');
             $table->enum('category', ['PAGE', 'NEWS'])->default('PAGE');
             $table->string('image')->nullable()->default('/images/noimage.jpg');

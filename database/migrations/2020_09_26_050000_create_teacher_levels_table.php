@@ -16,7 +16,7 @@ class CreateTeacherLevelsTable extends Migration
         Schema::create('teacher_levels', function (Blueprint $table) {
             $table->id();
             // $table->string('name');
-            $table->string('display_name');
+            $table->string('display_name', 50);
             $table->timestamps();
         });
     }

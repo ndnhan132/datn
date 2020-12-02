@@ -15,15 +15,15 @@ class CreateTeachersTable extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('address')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('name', '50')->nullable();
+            $table->string('email', '50')->unique();
+            $table->string('password', '100');
+            $table->string('address', '100')->nullable();
+            $table->string('phone', '20')->nullable();
             $table->boolean('is_male')->nullable();
-            $table->string('identity_card')->nullable();
-            $table->string('university')->nullable();
-            $table->string('speciality')->nullable();
+            $table->string('identity_card', '20')->nullable();
+            $table->string('university', '100')->nullable();
+            $table->string('speciality', '50')->nullable();
             $table->foreignId('teacher_level_id')->nullable()->constrained()->onDelete('set null');
             $table->integer('reference_tuition')->nullable();
             $table->integer('year_of_birth')->nullable();
