@@ -48,7 +48,14 @@ class TeacherCourseRegistrationController extends Controller
             $max = floor($total / $recordPerPage);
         }
 
-        return view('admin.teacher-course-registration.main-table', compact(['teacherCourseRegistrations', 'max', 'page']));
+        return view('admin.teacher-course-registration.main-table', compact([
+                                                                            'teacherCourseRegistrations',
+                                                                            'max',
+                                                                            'page',
+                                                                            'startFrom',
+                                                                            'recordPerPage',
+                                                                            'total'
+                                                                        ]));
     }
 
     public function ajaxGetTeacherRegistration(Request $request, $courseId)

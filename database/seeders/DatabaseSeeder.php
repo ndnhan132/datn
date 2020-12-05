@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
         DB::table('subject_teachers')->truncate();
         DB::table('course_level_teachers')->truncate();
         DB::table('teacher_account_statuses')->truncate();
+        DB::table('enquiries')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $faker = \Faker\Factory::create();
@@ -264,6 +265,18 @@ class DatabaseSeeder extends Seeder
                 'title' => $faker->name,
                 'slug' => Str::slug($faker->name, '-'),
                 'content' => $faker->randomHtml(4,5),
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            ]);
+        }
+
+        foreach (range(0, 200) as $index) {
+            DB::table('enquiries')->insert([
+                'flag_is_checked' => $faker->randomElement($array = array (true, false)),
+                'name' => $faker->name,
+                'email' => $faker->safeEmail,
+                'phone' => $faker->e164PhoneNumber,
+                'title' => $faker->text(77),
+                'content' => $faker->text(200),
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ]);
         }

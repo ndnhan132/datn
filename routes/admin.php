@@ -31,7 +31,7 @@ Route::name('admin.')->group(function(){
     Route::get('/khoa-hoc/ajax/show/{courseId}', 'CourseController@ajaxShow');
     Route::post('/khoa-hoc/ajax/confirm', 'CourseController@ajaxConfirm');
 
-    Route::view('/binh-luan', 'admin.comment.index')->name('comment.index');
+
 
     Route::get('/bai-viet', 'PostController@index')->name('post.index');
     Route::get('/bai-viet/ajax/index', 'PostController@ajaxGetTableContent');
@@ -42,4 +42,8 @@ Route::name('admin.')->group(function(){
     Route::get('/bai-viet/ajax/get-create', 'PostController@ajaxGetCreate');
     Route::post('/bai-viet/ajax/post-store', 'PostController@ajaxPostStore');
 
+
+    Route::get('/lien-he', 'EnquiryController@index')->name('enquiry.index');
+    Route::get('/lien-he/ajax/index', 'EnquiryController@ajaxGetTableContent');
+    Route::get('/lien-he/ajax/show/{enquiryId}', 'EnquiryController@ajaxShow');
 });

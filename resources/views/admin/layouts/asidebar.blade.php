@@ -31,16 +31,16 @@ $asideItems = array(
     'key6' => [
         'title'       => 'Tin tức/Trang',
         'fontawesome' => 'fa fa-newspaper-o',
-    'routeName' => 'admin.post.index',
-'uri' => 'admin.dashboard.index',
+        'routeName'   => 'admin.post.index',
+        'uri'         => 'quan-ly-bai-viet',
 'txt3' => 'admin.dashboard.index',
 ],
     'key7' => [
         'title'       => 'Liên hệ',
         'fontawesome' => 'fa fa-envelope',
-    'routeName' => 'admin.dashboard.index',
-'uri' => 'admin.dashboard.index',
-'txt3' => 'admin.dashboard.index',
+        'routeName'   => 'admin.enquiry.index',
+        'uri'         => 'quan-ly/lien-he',
+        'txt3' => 'admin.dashboard.index',
 ],
 );
 @endphp

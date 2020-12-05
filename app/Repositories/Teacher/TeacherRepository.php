@@ -43,7 +43,7 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
         if($teacherLevelId && is_numeric($teacherLevelId)) {
             $query = $query->where('teacher_level_id', $teacherLevelId);
         }
-        if($searchCriterion && $searchCriterion) {
+        if($searchText && $searchCriterion) {
             $query = $query->where($searchCriterion, 'like', '%' . $searchText . '%');
         }
 

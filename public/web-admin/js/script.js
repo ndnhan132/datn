@@ -328,7 +328,57 @@ $(function () {
         reloadMainTable();
     });
     // ! end course
+    // ! enquiry
+    $(document).on('change', 'select.enquiry_status', function (event) {
+        event.preventDefault();
+        showSpinner();
+        console.log($(this).val());
+        var _inputEnquiryStatus = $(document).find('#page-control-form input[name=enquiry_status]');
+        if (_inputEnquiryStatus) {
+            _inputEnquiryStatus.val($(this).val());
+        }
+        setPageNum(1);
+        reloadMainTable();
+    });
+    $(document).on('click', '.btn-enquiry-detail', function (event) {
+        event.preventDefault();
+        showSpinner();
+        var _enquiry = $(this).data('enquiry');
+        if (_enquiry) {
+            var _modal = $(document).find('.modal-enquiry-detail');
+            _modal.find('.field-val').empty();
+            $.ajax({
+                type: 'GET',
+                url: '/quan-ly/lien-he/ajax/show/'+ _enquiry,
+            })
+                .done(function (data) {
+                    if (data.success && data.data) {
+                        $('.field-val-name').text(data.data.name);
+                        $('.field-val-phone').text(data.data.phone);
+                        $('.field-val-email').text(data.data.email);
+                        $('.field-val-content').text(data.data.content);
+                        if (data.data.flag_is_checked) {
+                        $('.field-val-status').text("Đã xử lý");
+                        } else {
+                        $('.field-val-status').text("Chưa xử lý");
+                        }
+                    _modal.modal('show');
+                }else{
+                        alert('errors');
+                }
 
+            hideSpinner();
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            //    msgErrors(errorThrown);
+            alert(errorThrown)
+            hideSpinner();
+        });
+    }
+    });
+
+
+    // ! end enquiry
 
     // ! end pagination
     $(document).on('keypress', '#form-search', function (e) {

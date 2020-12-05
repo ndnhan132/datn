@@ -54,7 +54,7 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
             $query = $query->where('course_level_id', $select_course_level);
         }
 
-        if($searchCriterion && $searchCriterion) {
+        if($searchText && $searchCriterion) {
             $query = $query->where($searchCriterion, 'like', '%' . $searchText . '%');
         }
         Log::warning($query->toSql());

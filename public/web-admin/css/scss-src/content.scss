@@ -257,3 +257,27 @@ select.teacher_account_status{
         text-align:left;
     }
 }
+
+
+.enquiry-status{
+    font-size: 1.15rem;
+}
+.enquiry-table {
+    table-layout: fixed;
+    width: 100%;
+    white-space: nowrap;
+    td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .r-1,.r-2,.r-3,.r-4,.r-6{
+        width:auto;
+    }
+    .r-5{
+        width: 50%;
+    }
+}
+.btn-enquiry-detail:hover{
+    cursor: pointer;
+}

@@ -135,7 +135,7 @@
     <input type="hidden" value="{{ $page ?? '1' }}" name="page">
     <input type="hidden" value="{{ $recordPerPage ?? '10' }}" name="record_per_page">
 
-    @if (isset($textSearch) && $textSearch != '')
+    @if (isset($searchText) && $searchText != '')
         <input type="hidden" name="is_search" value="1">
     @else
         <input type="hidden" name="is_search" value="0">
