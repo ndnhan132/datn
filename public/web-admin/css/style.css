@@ -347,7 +347,7 @@ a.text-primary:focus {
     background-color: #007bff;
     border: 1px solid #6c757d; }
 
-.select_custom_control {
+select.select_custom_control {
   width: auto !important;
   padding: 4px 12px !important;
   line-height: 1.5;
@@ -356,7 +356,7 @@ a.text-primary:focus {
   text-align-last: center;
   letter-spacing: -1px;
   text-transform: capitalize; }
-  .select_custom_control option {
+  select.select_custom_control option {
     text-align: left;
     text-transform: capitalize;
     letter-spacing: -1px; }
@@ -380,4 +380,4 @@ a.text-primary:focus {
 .btn-enquiry-detail:hover {
   cursor: pointer; }
 
-/*# sourceMappingURL=stylesheet.css.map */
+/*# sourceMappingURL=style.css.map */

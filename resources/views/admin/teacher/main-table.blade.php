@@ -21,7 +21,7 @@
             </select>
         </div>
         <div class="form-group my-2">
-            <button class="form-control ml-2 btn-submit" style="display: none"><i class="fa fa-search"></i></button>
+            <button class="form-control ml-2 btn-submit"><i class="fa fa-search"></i></button>
         </div>
         <div class="text-right col">
             @if ($totalRequestVerify > 0)

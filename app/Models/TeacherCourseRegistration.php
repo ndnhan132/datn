@@ -44,16 +44,48 @@ class TeacherCourseRegistration extends Model
     {
         return !( (!$this->isReceived()) && $this->course->received() );
     }
+    /**
+     * @Author: Nhan Nguyen Dinh
+     * @function:
+     * @Date: 2020-12-05 22:26:09
+     * @Desc:
+     * @Params1:
+     * @Return:
+     */
+
+    public function getStatusColor()
+    {
+        $status = $this->registration_status_id;
+        switch ($this->registration_status_id) {
+            case \App\Models\RegistrationStatus::INELIGIBLE_ID:
+                return 'secondary';
+                break;
+            case \App\Models\RegistrationStatus::PENDING_ID:
+                return 'warning';
+                break;
+            case \App\Models\RegistrationStatus::RECEIVED_ID:
+                return 'success';
+                break;
+            case \App\Models\RegistrationStatus::ELIGIBLE_ID:
+                return 'info';
+                break;
+            default:
+                return '';
+                break;
+        }
+    }
 
     //* #define Relationships
     public function teacher()
     {
         return $this->belongsTo('App\Models\Teacher');
     }
+
     public function course()
     {
         return $this->belongsTo('App\Models\Course');
     }
+
     public function registrationStatus()
     {
         return $this->belongsTo('App\Models\RegistrationStatus');

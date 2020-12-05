@@ -20,7 +20,7 @@
             </select>
         </div>
         <div class="form-group my-2">
-            <button class="form-control ml-2 btn-submit" style="display: none"><i class="fa fa-search"></i></button>
+            <button class="form-control ml-2 btn-submit"><i class="fa fa-search"></i></button>
         </div>
         <span type="button" class="btn btn-sm btn-outline-dark rounded-pill btn-table-reset-reload px-3 ml-2">Reset</span>
         <div class="text-right col">

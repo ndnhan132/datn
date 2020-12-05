@@ -23,7 +23,7 @@
 		<li class="breadcrumb-item active"><a href="#"></a></li>
 	</ul>
 </div>
-<div class="row teacher-course-registration" id="content-table">
+<div class="row teacher-course-registration---" id="content-table">
 	@include('admin.layouts.blank')
 </div>
 

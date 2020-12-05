@@ -80,25 +80,26 @@ $(function () {
             url: '/quan-ly/dang-ky-nhan-lop/ajax/confirm-status',
             type: 'POST',
             dataType: 'json',
-                data: {
-                    registrationStatus: registrationStatus,
-                    registrationId: registrationId,
-                },
+            data: {
+                registrationStatus: registrationStatus,
+                registrationId: registrationId,
+            },
         })
             .done(function (data) {
                 console.log(data);
                 if (data.success) {
-                    loadTeacherRegistrationTable(courseId);
+                    // loadTeacherRegistrationTable(courseId);
+                    reloadMainTable();
                 } else {
-                    alert(data.message);
+                    msgErrors(data.message);
                 }
                 $(document).find('.btn-modal-dismiss').click();
-                showSpinner();
-        })
-        .fail(function(jqXHR, textStatus, errorThrown) {
-            console.log("error");
-        })
-        .always(function() {
-        });
+                hideSpinner();
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log("error");
+                msgErrors();
+                hideSpinner();
+            });
     }
 });

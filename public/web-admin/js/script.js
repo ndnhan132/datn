@@ -364,14 +364,14 @@ $(function () {
                         }
                     _modal.modal('show');
                 }else{
-                        alert('errors');
+                        msgErrors();
                 }
 
             hideSpinner();
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
             //    msgErrors(errorThrown);
-            alert(errorThrown)
+            msgErrors();
             hideSpinner();
         });
     }
@@ -391,10 +391,10 @@ $(function () {
         event.preventDefault();
         var _btnSearch = $(document).find('#form-search .btn-submit');
         if ($(this).val() == '') {
-            _btnSearch.hide();
+            // _btnSearch.hide();
             $(document).find('#page-control-form input[name=is_search]').val(0);
         } else {
-            _btnSearch.show();
+            // _btnSearch.show();
             $(document).find('#page-control-form input[name=is_search]').val(1);
         }
     });
@@ -413,7 +413,55 @@ $(function () {
     });
     // ! end teacher account manager
 
-    // # function
+
+    // ! teacher course registration
+    $(document).on('click', '.teacher-course-registration .registration-btn-compare', function(){
+        var registrationId = ($(this).data('registration-id')) ? $(this).data('registration-id') : '';
+        if(registrationId != '') {
+            registrationCompareTeacherVsCourse(registrationId);
+        }
+    });
+
+    $(document).on('click', '#js-teacher-course-registration-compare .btn-confirm', function () {
+        var registrationStatus = $(this).data('status');
+        var registrationId = $(this).data('registration-id');
+        var courseId = $(this).data('course-id');
+        if (registrationStatus && registrationId) {
+            Swal.fire({
+                title: 'Chắc chắn thay đổi trạng thái.',
+                showDenyButton: true,
+                confirmButtonText: `Chắc chắn`,
+                denyButtonText: 'Huỷ',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    confirmStatus(registrationStatus,  registrationId, courseId);
+                }
+            });
+        }
+    });
+
+    $(document).on('change', 'select.select_registration_status', function (event) {
+        event.preventDefault();
+        showSpinner();
+        console.log($(this).val());
+        var _inputregistration_status = $(document).find('#page-control-form input[name=select_registration_status]');
+        if (_inputregistration_status) {
+            _inputregistration_status.val($(this).val());
+        }
+        setPageNum(1);
+        reloadMainTable();
+    });
+
+    // ! end teacher course registration
+
+
+
+
+
+
+
+
+    // !# function
 
     function reloadMainTable() {
         $url = pathName + '/ajax/index';
@@ -464,6 +512,56 @@ $(function () {
             });
     }
 
+    function registrationCompareTeacherVsCourse(registrationId) {
+        showSpinner();
+        var _modal = $(document).find('#js-modal-course-registration-compare');
+        _modal.find('.modal-body').empty();
+        $.ajax({
+            url: '/quan-ly/dang-ky-nhan-lop/ajax/compare/' + registrationId,
+            type: 'GET',
+        })
+        .done(function(data) {
+            _modal.find('.modal-body').append(data.html)
+            _modal.modal('show');
+            // $(document).find('.btn-modal-dismiss').click();
+            // $(document).find('.btn-table-reload').click();
+            hideSpinner();
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            console.log("error");
+        })
+        .always(function() {
+        });
+    }
 
+    function confirmStatus(registrationStatus, registrationId, courseId) {
+        showSpinner();
+
+        $.ajax({
+            url: '/quan-ly/dang-ky-nhan-lop/ajax/confirm-status',
+            type: 'POST',
+            dataType: 'json',
+                data: {
+                    registrationStatus: registrationStatus,
+                    registrationId: registrationId,
+                },
+        })
+            .done(function (data) {
+                console.log(data);
+                if (data.success) {
+                    msgSuccess('Thay đổi trạng thái thành công.');
+                    reloadMainTable();
+                } else {
+                    msgErrors(data.message);
+                }
+                $(document).find('.btn-modal-dismiss').click();
+                showSpinner();
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            msgErrors();
+        })
+        .always(function() {
+        });
+    }
 
 });

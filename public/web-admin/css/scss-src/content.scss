@@ -240,12 +240,7 @@
     }
 }
 
-select.select_course_level,
-select.select_subject,
-select.course_status,
-select.is_received,
-select.teacher_level,
-select.teacher_account_status{
+.select_custom_control{
     width: auto!important;
     padding: 4px 12px !important;
     line-height: 1.5;
@@ -253,8 +248,12 @@ select.teacher_account_status{
     text-align: center;
     text-align-last: center;
     letter-spacing: -1px;
+    text-transform: capitalize;
+
     option{
         text-align:left;
+        text-transform: capitalize;
+        letter-spacing: -1px;
     }
 }
 

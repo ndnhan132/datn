@@ -182,10 +182,10 @@ class DatabaseSeeder extends Seeder
 
 
         $registrationStatuses = array(
-            'pending' => 'chờ duyệt',
+            'pending' => 'chưa kiểm tra',
             'eligible' => 'đủ điều kiện',
             'received' => 'đã nhận',
-            'ineligible' => 'không đạt',
+            'ineligible' => 'không đủ điều kiện',
         );
         foreach($registrationStatuses as $key => $val) {
             DB::table('registration_statuses')->insert([

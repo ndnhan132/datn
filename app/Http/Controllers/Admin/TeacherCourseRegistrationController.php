@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Repositories\TeacherCourseRegistration\TeacherCourseRegistrationRepositoryInterface;
 use App\Repositories\Course\CourseRepositoryInterface;
 use App\Repositories\RegistrationStatus\RegistrationStatusRepositoryInterface;
+use App\Repositories\Teacher\TeacherRepositoryInterface;
+use App\Repositories\TeacherLevel\TeacherLevelRepositoryInterface;
 use Illuminate\Support\Facades\Log;
 
 class TeacherCourseRegistrationController extends Controller
@@ -14,16 +16,22 @@ class TeacherCourseRegistrationController extends Controller
     protected $teacherCourseRegistrationRepository;
     protected $courseRepository;
     protected $registrationStatusRepository;
+    protected $teacherRepository;
+    protected $teacherLevelRepository;
 
     public function __construct(
         TeacherCourseRegistrationRepositoryInterface $teacherCourseRegistrationRepository,
         CourseRepositoryInterface $courseRepository,
-        RegistrationStatusRepositoryInterface $registrationStatusRepository
+        RegistrationStatusRepositoryInterface $registrationStatusRepository,
+        TeacherLevelRepositoryInterface $teacherLevelRepository,
+        TeacherRepositoryInterface $teacherRepository
         )
     {
         $this->teacherCourseRegistrationRepository = $teacherCourseRegistrationRepository;
         $this->courseRepository = $courseRepository;
         $this->registrationStatusRepository = $registrationStatusRepository;
+        $this->teacherRepository = $teacherRepository;
+        $this->teacherLevelRepository = $teacherLevelRepository;
 
     }
 
@@ -36,10 +44,35 @@ class TeacherCourseRegistrationController extends Controller
     public function ajaxGetTableContent(Request $request)
     {
         Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
-        isset($request['recordPerPage']) ? $recordPerPage = $request['record-per-page'] : $recordPerPage = 10;
-        isset($request['page']) ? ($page = $request['page']) : ($page = 1);
+        $recordPerPage = 10;
+        if(isset($request['record_per_page'])&& is_numeric($request['record_per_page'])){
+            $recordPerPage = $request['record_per_page'];
+        }
+        $page = 1;
+        if(isset($request['page']) && is_numeric($request['page']) && $request['page'] > 1) {
+            $page = $request['page'];
+        }
         $startFrom = ($page - 1) * $recordPerPage;
-        $res = $this->courseRepository->teacherCourseRegistrationPagination($startFrom, $recordPerPage);
+        $select_registration_status = false;
+        if(isset($request['select_registration_status']) && is_numeric($request['select_registration_status'])){
+            $select_registration_status = $request['select_registration_status'];
+        }
+        $searchText = false;
+        if(isset($request['search_text']) && strlen($request['search_text']) > 0){
+            $searchText = $request['search_text'];
+        }
+        $searchCriterion = false;
+        if(isset($request['search_criterion'])){
+            $searchCriterion = $request['search_criterion'];
+        }
+
+        $res = $this->teacherCourseRegistrationRepository->pagination(
+                                                                        $startFrom,
+                                                                        $recordPerPage,
+                                                                        $select_registration_status,
+                                                                        $searchText,
+                                                                        $searchCriterion
+                                                                    );
         $teacherCourseRegistrations = $res['data'];
         $total = $res['total'];
         if ($total % $recordPerPage) {
@@ -47,14 +80,20 @@ class TeacherCourseRegistrationController extends Controller
         } else {
             $max = floor($total / $recordPerPage);
         }
-
+        $registrationStatuses = $this->registrationStatusRepository->index();
+        $totalNewRegistration = $this->teacherCourseRegistrationRepository->getTotalNewRegistration();
         return view('admin.teacher-course-registration.main-table', compact([
                                                                             'teacherCourseRegistrations',
                                                                             'max',
                                                                             'page',
                                                                             'startFrom',
                                                                             'recordPerPage',
-                                                                            'total'
+                                                                            'total',
+                                                                            'registrationStatuses',
+                                                                            'select_registration_status',
+                                                                            'totalNewRegistration',
+                                                                            'searchText',
+                                                                            'searchCriterion'
                                                                         ]));
     }
 

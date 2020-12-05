@@ -8,4 +8,6 @@ interface TeacherCourseRegistrationRepositoryInterface
     public function confirmStatus($registrationId, $statusId);
     public function teacherRegisterCourse($courseId);
     public function deleteRegistration($courseId, $teacherId);
+    public function pagination($startFrom, $recordPerPage, $select_registration_status, $searchText, $searchCriterion);
+    public function getTotalNewRegistration();
 }
