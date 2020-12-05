@@ -22,7 +22,9 @@
         <div class="form-group my-2">
             <button class="form-control ml-2 btn-submit"><i class="fa fa-search"></i></button>
         </div>
-        <span type="button" class="btn btn-sm btn-outline-dark rounded-pill btn-table-reset-reload px-3 ml-2">Reset</span>
+        <div class="form-group my-2">
+            <button class="form-control ml-2 btn-table-reset-reload" type="reset"><i class="fa fa-refresh"></i></button>
+        </div>
         <div class="text-right col">
             @if ($totalNewCourse > 0)
             <span class="text-danger">* Có {{ $totalNewCourse }} lớp cần xét duyệt</span>
@@ -35,14 +37,14 @@
     <div class="col-md-12 px-0">
         <div class="tile">
             <div class="table-responsive">
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered- table-striped">
                     <thead>
                         <tr>
                             <th>mã số</th>
                             <th>Người gửi</th>
                             <th>tg đăng ký</th>
                             <th class="text-center py-1">
-                                <select name="select_course_level"  class="form-control select_course_level rounded-pill mx-auto text-center">
+                                <select name="select_course_level"  class="form-control select_custom_control select_course_level rounded-pill mx-auto text-center">
                                     <option value="">Trình độ</option>
                                     @foreach ($courseLevels as $item)
                                     <option value="{{$item->id}}" {{ ($select_course_level == $item->id) ? 'selected' : '' }}>{{ $item->display_name}}</option>
@@ -50,7 +52,7 @@
                                 </select>
                             </th>
                             <th class="text-center py-1">
-                                <select name="select_subject"  class="form-control select_subject rounded-pill mx-auto text-center">
+                                <select name="select_subject"  class="form-control select_custom_control select_subject rounded-pill mx-auto text-center">
                                     <option value="">Môn học</option>
                                     @foreach ($subjects as $item)
                                     <option value="{{$item->id}}" {{ ($select_subject == $item->id) ? 'selected' : '' }}>{{ $item->display_name}}</option>
@@ -58,7 +60,7 @@
                                 </select>
                             </th>
                             <th class="text-center py-1">
-                                <select name="course_status"  class="form-control course_status rounded-pill mx-auto text-center">
+                                <select name="course_status"  class="form-control select_custom_control course_status rounded-pill mx-auto text-center">
                                     <option value="">Xét duyệt</option>
                                     <option value="YES" {{ ($course_status === 'YES') ? 'selected' : '' }}>Thông qua</option>
                                     <option value="NO" {{ ($course_status === 'NO') ? 'selected' : '' }}>Không hợp lệ</option>
@@ -66,7 +68,7 @@
                                 </select>
                             </th>
                             <th class="text-center py-1">
-                                <select name="is_received" class="form-control is_received rounded-pill mx-auto text-center">
+                                <select name="is_received" class="form-control select_custom_control is_received rounded-pill mx-auto text-center">
                                     <option value="">Trạng thái</option>
                                     <option value="YES" {{ ($is_received === 'YES') ? 'selected' : '' }}>Đã nhận</option>
                                     <option value="NO" {{ ($is_received === 'NO') ? 'selected' : '' }}>Chưa nhận</option>
@@ -86,7 +88,7 @@
                                 <span>{{ $course->fullname }}</span>
                             </td>
                             <td class="text-center">
-                                <span>{{ $course->created_at ?? '--/--/-- --:--' }}</span>
+                                <span>{{ (new Carbon\Carbon($course->created_at))->setTimeZone('Asia/Ho_Chi_Minh')->isoFormat('DD/MM') ?? '--/--' }}</span>
                             </td>
                             <td class="text-center">
                                 <span>{{ $course->courseLevel->display_name ?? $course->other_course_level }}</span>

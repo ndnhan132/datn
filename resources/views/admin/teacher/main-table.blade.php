@@ -23,6 +23,9 @@
         <div class="form-group my-2">
             <button class="form-control ml-2 btn-submit"><i class="fa fa-search"></i></button>
         </div>
+        <div class="form-group my-2">
+            <button class="form-control ml-2 btn-table-reset-reload" type="reset"><i class="fa fa-refresh"></i></button>
+        </div>
         <div class="text-right col">
             @if ($totalRequestVerify > 0)
             <span class="text-danger">* Có {{ $totalRequestVerify }} tài khoản cần xét duyệt</span>
@@ -34,14 +37,14 @@
     <div class="col-md-12 px-0">
         <div class="tile">
             <div class="table-responsive">
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered- table-striped">
                     <thead>
                         <tr>
                             <th>Thứ tự</th>
                             <th class="text-left">Họ tên</th>
                             <th class="text-left">Email</th>
                             <th class="text-center py-1">
-                                <select name="teacher_level" id="" class="form-control teacher_level rounded-pill mx-auto text-center text-capitalize">
+                                <select name="teacher_level" id="" class="form-control select_custom_control teacher_level rounded-pill mx-auto text-center text-capitalize">
                                     <option value="">Trình độ</option>
                                     @foreach ($teacherLevels as $item)
                                     <option value="{{ $item->id }}" {{ $item->id == $teacherLevelId ? 'selected' : ''}}>{{ $item->display_name }}</option>
@@ -49,7 +52,7 @@
                                 </select>
                             </th>
                             <th class="text-center py-1">
-                                <select name="teacher_account_status" id="" class="form-control teacher_account_status rounded-pill mx-auto text-center">
+                                <select name="teacher_account_status" id="" class="form-control select_custom_control teacher_account_status rounded-pill mx-auto text-center">
                                     <option value="">Trạng thái</option>
                                     <option value="{{ \App\Models\TeacherAccountStatus::CONFIRMED_ID }}" {{ \App\Models\TeacherAccountStatus::CONFIRMED_ID == $teacherAccountStatus ? 'selected' : '' }}><span>Đã xét duyệt</span></option>
                                     <option value="{{ \App\Models\TeacherAccountStatus::INELIGIBLE_ID }}" {{ \App\Models\TeacherAccountStatus::INELIGIBLE_ID == $teacherAccountStatus ? 'selected' : '' }}>Không phù hợp</option>

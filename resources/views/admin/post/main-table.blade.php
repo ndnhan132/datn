@@ -2,7 +2,7 @@
     <div class="col-md-12 px-0">
         <div class="tile">
             <div class="table-responsive">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered- table-hover">
                     <thead>
                         <tr>
                             <th>mã số</th>

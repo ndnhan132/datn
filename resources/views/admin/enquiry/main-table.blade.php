@@ -6,7 +6,7 @@
         </div>
         <div class="form-group my-2">
             trạng thái
-            <select name="enquiry_status" class="form-control ml-2 enquiry_status">
+            <select name="enquiry_status" class="form-control select_custom_control ml-2 enquiry_status">
                 <option value="ALL">Tất cả</option>
                 <option value="CHECKED" {{ $enquiry_status == 'CHECKED' ? 'selected' : '' }}>Đã xử lý</option>
                 <option value="UNCHECKED" {{ $enquiry_status == 'UNCHECKED' ? 'selected' : '' }}>Chưa xử lý ({{ $totalUnChecked ?? '' }})</option>
@@ -15,7 +15,9 @@
         <div class="form-group my-2">
             <button class="form-control ml-2 btn-submit" style=""><i class="fa fa-search"></i></button>
         </div>
-        <span type="button" class="btn btn-sm btn-outline-dark rounded-pill btn-table-reset-reload px-3 ml-2">Reset</span>
+        <div class="form-group my-2">
+            <button class="form-control ml-2 btn-table-reset-reload" type="reset"><i class="fa fa-refresh"></i></button>
+        </div>
     </form>
 
     <div class="col-md-12 px-0">

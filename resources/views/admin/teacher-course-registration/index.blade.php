@@ -11,7 +11,7 @@
 		<h1>
 			<i class="fa fa-th-list"></i>
 			&nbsp;&nbsp;Đăng ký nhận lớp
-			<span type="button" class="btn-table-reload px-3"><i
+			<span type="button" class="btn-table-reload px-3 d-none"><i
 					class="fa fa-refresh"></i></span>
 		</h1>
 	</div>

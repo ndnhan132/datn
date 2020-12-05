@@ -9,7 +9,7 @@
                 <h1>
                     <i class="fa fa-file-text-o"></i>
                     &nbsp;&nbsp;Quản lý giáo viên
-                    <span type="button" class="btn-table-reload px-3"><i
+                    <span type="button" class="btn-table-reload px-3 d-none"><i
                             class="fa fa-refresh"></i></span>
                             <span type="button" class="btn-post-create px-3"><i
                                 class="fa fa-plus-circle"></i></span>

@@ -23,7 +23,9 @@
         <div class="form-group my-2">
             <button class="form-control ml-2 btn-submit"><i class="fa fa-search"></i></button>
         </div>
-        <span type="button" class="btn btn-sm btn-outline-dark rounded-pill btn-table-reset-reload px-3 ml-2">Reset</span>
+        <div class="form-group my-2">
+            <button class="form-control ml-2 btn-table-reset-reload" type="reset"><i class="fa fa-refresh"></i></button>
+        </div>
         <div class="text-right col">
             @if ($totalNewRegistration > 0)
             <span class="text-danger">* Có {{ $totalNewRegistration }} đăng ký cần xét duyệt</span>
@@ -38,15 +40,15 @@
             <div class="table-responsive">
                 <table class="table table-bordered- table-striped">
                     <thead>
-                        <tr class="text-center bg-primary" style="background-image:none">
-                            <td></td>
-                            <td colspan="3">Bên yêu cầu</td>
-                            <td colspan="2">Bên nhận</td>
-                            <td>Trạng thái</td>
-                            <td colspan="2">Tác vụ</td>
+                        <tr class="text-center">
+                            <th>#</th>
+                            <th colspan="3">Bên yêu cầu</th>
+                            <th colspan="2">Bên nhận</th>
+                            <th>Trạng thái</th>
+                            <th colspan="2">Tác vụ</th>
                         </tr>
-                        <tr class=" bg-primary" style="background-image:none">
-                            <td>mã số</td>
+                        <tr class="">
+                            <th>mã số</th>
                             <th class="text-left">họ tên</th>
                             <th class="text-left">tg đăng ký</th>
                             <th class="text-left">
@@ -66,8 +68,8 @@
                                     @endforeach
                                 </select>
                             </th>
-                            <td>Xem</td>
-                            <td>Xoá</td>
+                            <th>Xem</th>
+                            <th>Xoá</th>
                         </tr>
                     </thead>
                     <tbody>
