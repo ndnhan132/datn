@@ -50,4 +50,7 @@ Route::name('admin.')->group(function(){
     Route::get('/lien-he/ajax/show/{enquiryId}', 'EnquiryController@ajaxShow');
     Route::post('/lien-he/ajax/delete', 'EnquiryController@ajaxDelete');
     Route::post('/lien-he/ajax/change-status', 'EnquiryController@ajaxChangeStatus');
+
+    Route::post('ckeditor/upload', 'PageController@upload')->name('ckeditor.upload');
+
 });

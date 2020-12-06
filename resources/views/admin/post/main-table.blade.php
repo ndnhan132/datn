@@ -1,16 +1,12 @@
 <div class="cover-container">
     <form class="col-md-12 px-0 form-inline" id="form-search">
         <div class="form-group my-2 pl-1">
-            <input type="text" name="search_text" class="form-control ml-2" placeholder="Search" value="{{ $searchText ?? '' }}">
+            <input type="text" name="search_text" class="form-control ml-2" placeholder="Search" value="{{ $search_text ?? '' }}">
         </div>
         <div class="form-group my-2">
-            <select name="search_criterion" class="form-control ml-2">
-                @php
-                    if(!isset($searchCriterion)){
-                        $searchCriterion = '';
-                    }
-                @endphp
-                <option value="">Không tìm kiếm</option>
+            <select name="select_category" class="form-control ml-2 select_category">
+                <option value="NEWS" {{ $select_category == 'NEWS' ? 'selected' : '' }}>Tin tức</option>
+                <option value="PAGE" {{ $select_category == 'PAGE' ? 'selected' : '' }}>Trang</option>
             </select>
         </div>
         <div class="form-group my-2">
@@ -18,6 +14,9 @@
         </div>
         <div class="form-group my-2">
             <button class="form-control ml-2 btn-table-reset-reload" type="reset"><i class="fa fa-refresh"></i></button>
+        </div>
+        <div class="form-group my-2">
+            <button class="form-control ml-2 btn-post-create" type="reset"><i class="fa fa-plus-circle"></i></button>
         </div>
     </form>
 
@@ -39,7 +38,7 @@
                         @foreach ($posts as $post)
                         <tr>
                             <td class="text-center">
-                                <span>{{ $post->id }}</span>
+                                <span>#{{ $post->id }}</span>
                             </td>
                             <td>
                                 <span>{{ $post->title }}</span>
@@ -55,7 +54,11 @@
                                 @endif
                             </td>
                             <td class="text-center">
+                                @if ($post->category == 'PAGE')
+                                <a class="" href="{{ route('front.readPage', $post->slug ) }}" target="_blank">Xem</a>
+                                @else
                                 <a class="" href="{{ route('front.readNews', $post->slug ) }}" target="_blank">Xem</a>
+                                @endif
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center">
@@ -87,5 +90,5 @@
         <input type="hidden" name="is_search" value="0">
     @endif
 
-    <input type="hidden" value="{{ $select_registration_status ?? '' }}" name="select_registration_status">
+    <input type="hidden" value="{{ $select_category ?? 'NEWS' }}" name="select_category">
 </form>

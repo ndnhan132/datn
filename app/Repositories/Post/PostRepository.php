@@ -18,11 +18,12 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
     }
     public function getNewsWithPagination($startFrom, $recordPerPage)
     {
-        $data = $this->model->orderBy('id', 'DESC')
+        $data = $this->model->where('category', 'NEWS')
+                    ->orderBy('id', 'DESC')
                     ->offset($startFrom)
                     ->limit($recordPerPage)
                     ->get();
-        $total = $this->model->get()->count();
+        $total = $this->model->where('category', 'NEWS')->get()->count();
 
         return array(
             'data' => $data,
@@ -64,12 +65,27 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
         return $post->save();
     }
 
-    public function pagination($startFrom, $recordPerPage)
+    public function pagination($startFrom, $recordPerPage, $select_category, $searchText)
     {
-        return $this->model->orderBy('id', 'DESC')
+        $query = $this->model;
+
+        if ($select_category) {
+            $query = $query->where('category', $select_category);
+        }
+        if($searchText) {
+            $query = $query->where('title', 'like', '%' . $searchText . '%')
+                           ->orWhere('slug', 'like', '%' . $searchText . '%');
+        }
+
+        $total = $query->count();
+        $data = $query->orderBy('id', 'DESC')
                     ->offset($startFrom)
                     ->limit($recordPerPage)
                     ->get();
+        return array(
+            'data' => $data,
+            'total' => $total
+        );
     }
 
 }

@@ -49,7 +49,8 @@ Route::get('/ajax/get-teacher-by-id/{teacherId}', 'TeacherController@ajaxGetTeac
 
 
 Route::get('/tin-tuc.html', 'PageController@getListNews')->name('front.getListNews');
-Route::get('/tin-tuc/{slug}.html', 'PageController@readNews')->name('front.readNews');
+Route::get('/tin-tuc/{slug}.html', 'PageController@readPost')->name('front.readNews');
+Route::get('/trang/{slug}.html', 'PageController@readPost')->name('front.readPage');
 
 
 

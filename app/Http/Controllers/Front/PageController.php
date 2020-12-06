@@ -90,7 +90,7 @@ class PageController extends Controller
         return view('front.articles.list-articles', compact(['articles', 'total']));
     }
 
-    public function readNews($slug, Request $request)
+    public function readPost($slug, Request $request)
     {
         if($slug){
             $post = $this->postRepository->findNewsBySlug($slug);

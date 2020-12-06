@@ -15,11 +15,6 @@
 					class="fa fa-refresh"></i></span>
 		</h1>
 	</div>
-	<ul class="app-breadcrumb breadcrumb">
-		<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-		<li class="breadcrumb-item">Tables</li>
-		<li class="breadcrumb-item active"><a href="#"></a></li>
-	</ul>
 </div>
 <div class="row teacher-course-registration" id="content-table">
 	@include('admin.layouts.blank')

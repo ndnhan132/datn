@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('content');
-            $table->enum('category', ['PAGE', 'NEWS'])->default('PAGE');
+            $table->enum('category', ['PAGE', 'NEWS'])->default('NEWS');
             $table->string('image')->nullable()->default('/images/noimage.jpg');
             $table->timestamps();
         });

@@ -1,5 +1,5 @@
 
-<a class="app-header__logo bg-primary" href="index.html">{{ ucfirst(request()->server()['SERVER_NAME']) }}</a>
+<a class="app-header__logo bg-primary" href="{{ route('front.home') }}" target="_blank">{{ ucfirst(request()->server()['SERVER_NAME']) }}</a>
 <!-- Sidebar toggle button-->
 <a class="app-sidebar__toggle" href="#"
     data-toggle="sidebar" aria-label="Hide Sidebar">

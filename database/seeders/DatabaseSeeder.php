@@ -269,6 +269,27 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        $listPages = array(
+            'giới thiệu',
+            'phương thức liên hệ',
+            'thông báo',
+            'hợp đồng gia sư',
+            'hướng dẫn nhận lớp',
+            'hướng dẫn đăng ký làm gia sư',
+            'gia sư cần biết',
+            'bảng giá tham khảo',
+            'phụ huynh cần biết',
+        );
+        foreach ($listPages as $value) {
+            DB::table('posts')->insert([
+                'title' => $value,
+                'slug' => Str::slug($value, '-'),
+                'content' => '<h1 style="text-align: center; color: yellow;"><center>' . $value . '</center></h1><br><hr><br>' . $faker->text(500),
+                'category' => 'PAGE',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            ]);
+        }
+
         foreach (range(0, 200) as $index) {
             DB::table('enquiries')->insert([
                 'flag_is_checked' => $faker->randomElement($array = array (true, false)),

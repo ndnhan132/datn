@@ -36,8 +36,20 @@ class PostController extends Controller
         }
         $startFrom = ($page - 1) * $recordPerPage;
 
-        $posts = $this->postRepository->pagination($startFrom, $recordPerPage);
-        $total = $this->postRepository->index()->count();
+
+        $select_category = 'NEWS';
+        if(isset($request['select_category']))
+        {
+            if($request['select_category'] == 'PAGE') $select_category = 'PAGE';
+        }
+        $search_text = false;
+        if(isset($request['search_text']) && strlen($request['search_text']) > 0){
+            $search_text = $request['search_text'];
+        }
+
+        $res = $this->postRepository->pagination($startFrom, $recordPerPage, $select_category, $search_text);
+        $total = $res['total'];
+        $posts = $res['data'];
 
         if ($total % $recordPerPage) {
             $max = floor($total / $recordPerPage) + 1;
@@ -51,7 +63,9 @@ class PostController extends Controller
                                                         'page',
                                                         'total',
                                                         'startFrom',
-                                                        'recordPerPage'
+                                                        'recordPerPage',
+                                                        'search_text',
+                                                        'select_category'
                                                         ]));
     }
 

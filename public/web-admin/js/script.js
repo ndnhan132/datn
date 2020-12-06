@@ -108,6 +108,8 @@ $(function () {
         showDetailModal(url);
     });
 
+
+    // ! post
     $(document).on('click', '.post-manager .btn-delete', function () {
         var _confirm = confirm('Xóa sẽ không khôi phục được. Chắc chắn xóa!');
         if (_confirm) {
@@ -243,6 +245,18 @@ $(function () {
                 console.log(errorThrown);
             });
     });
+    $(document).on('change', 'select.select_category', function (event) {
+        event.preventDefault();
+        showSpinner();
+        console.log($(this).val());
+        var _input_select_category = $(document).find('#page-control-form input[name=select_category]');
+        if (_input_select_category) {
+            _input_select_category.val($(this).val());
+        }
+        setPageNum(1);
+        reloadMainTable();
+    });
+    // !end  post
 
     // ! pagination
     $(document).on('change', '.footer-control select.record_per_page', function (event) {

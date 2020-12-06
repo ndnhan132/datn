@@ -4,13 +4,23 @@
             @if (isset($post))
             <form id="js-form-update" class="post-form p-3">
                 <input type="hidden" name="id" value="{{ $post->id}}">
+                @if ($post->category == 'PAGE')
+                <div class="col-md-12 pl-0">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Lưu ý!</strong> Khi thay đổi tiêu đề trang có thể sẽ thay đổi đường dẫn đang được sử dụng.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                </div>
+                @endif
             @else
             <form id="js-form-create" class="post-form p-3">
             @endif
                 <div class="row">
                     <div class="col-lg-12 d-flex flex-wrap">
                         <div class="form-group col-sm-6 pl-0">
-                            <label for="input-name">Name</label>
+                            <label for="input-name">Tiêu đề</label>
                             <input class="form-control" id="input-title" name="title" type="text" value="{{ $post->title ?? ''}}">
                             <div class="form-control-feedback"></div>
                         </div>
@@ -34,7 +44,15 @@
                         <div class="form-group col-sm-6 pl-0">
                             <label for="input-slug">Đường dẫn</label>
                             @if (isset($post))
-                            <input class="form-control" id="input-url" type="text" value="{{ route('front.readNews', $post->slug) }}" readonly>
+                            @php
+                            if($post->category == 'PAGE'){
+                                $url = route('front.readPage', $post->slug);
+
+                            }else{
+                                $url = route('front.readNews', $post->slug);
+                            }
+                            @endphp
+                            <input class="form-control" id="input-url" type="text" value="{{ $url ?? '' }}" readonly>
                             @else
                             <input class="form-control" id="input-url" type="text" readonly>
                             @endif
@@ -68,8 +86,12 @@
             }
         };
         waitForLoadFormNew("#input-content", function () {
-            CKEDITOR.config.height = 300;
-            CKEDITOR.replace('input-content');
+            // CKEDITOR.config.height = 300;
+            CKEDITOR.replace('input-content', {
+                height: 300,
+                filebrowserUploadUrl: "{{route('admin.ckeditor.upload')}}",
+                filebrowserUploadMethod: 'form'
+           });
         });
     });
 

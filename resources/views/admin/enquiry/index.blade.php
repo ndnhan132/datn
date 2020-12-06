@@ -9,18 +9,13 @@
 <div class="app-title">
 	<div>
 		<h1>
-			<i class="fa fa-th-list"></i>
+			<i class="fa fa-envelope"></i>
 			&nbsp;&nbsp;Liên hệ
 			<span type="button" class="btn-table-reload px-3 d-none"><i
 					class="fa fa-refresh"></i></span>
 
 		</h1>
 	</div>
-	<ul class="app-breadcrumb breadcrumb">
-		<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-		<li class="breadcrumb-item">Tables</li>
-		<li class="breadcrumb-item active"><a href="#"></a></li>
-	</ul>
 </div>
 <div class="row" id="content-table">
 	@include('admin.layouts.blank')
