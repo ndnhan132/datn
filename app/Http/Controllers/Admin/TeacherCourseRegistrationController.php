@@ -147,4 +147,22 @@ class TeacherCourseRegistrationController extends Controller
             'message' => 'Có lỗi xảy ra',
         ));
     }
+
+    public function ajaxDelete(Request $request) {
+        $success = false;
+        $message = false;
+        if(isset($request['recordId'])) {
+            $id = $request['recordId'];
+            if($this->teacherCourseRegistrationRepository->find($id)->isReceived()) {
+                $message = "Không thể xóa lớp đã được nhận!";
+            }
+            elseif($this->teacherCourseRegistrationRepository->destroy($id)) {
+                $success = true;
+            }
+        }
+        return response()->json(array(
+            'success' => $success,
+            'message' => $message,
+        ));
+    }
 }

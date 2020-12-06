@@ -58,4 +58,11 @@ class EnquiryRepository extends BaseRepository implements EnquiryRepositoryInter
     {
         return $this->model->where('flag_is_checked', false)->count();
     }
+
+    public function changeStatus($recordId, $isChecked)
+    {
+        $rc = $this->model->find($recordId);
+        $rc->flag_is_checked = $isChecked;
+        return $rc->save();
+    }
 }

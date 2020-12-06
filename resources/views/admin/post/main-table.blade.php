@@ -1,8 +1,30 @@
 <div class="cover-container">
+    <form class="col-md-12 px-0 form-inline" id="form-search">
+        <div class="form-group my-2 pl-1">
+            <input type="text" name="search_text" class="form-control ml-2" placeholder="Search" value="{{ $searchText ?? '' }}">
+        </div>
+        <div class="form-group my-2">
+            <select name="search_criterion" class="form-control ml-2">
+                @php
+                    if(!isset($searchCriterion)){
+                        $searchCriterion = '';
+                    }
+                @endphp
+                <option value="">Không tìm kiếm</option>
+            </select>
+        </div>
+        <div class="form-group my-2">
+            <button class="form-control ml-2 btn-submit"><i class="fa fa-search"></i></button>
+        </div>
+        <div class="form-group my-2">
+            <button class="form-control ml-2 btn-table-reset-reload" type="reset"><i class="fa fa-refresh"></i></button>
+        </div>
+    </form>
+
     <div class="col-md-12 px-0">
         <div class="tile">
             <div class="table-responsive">
-                <table class="table table-bordered- table-hover">
+                <table class="table table-bordered- table-striped">
                     <thead>
                         <tr>
                             <th>mã số</th>
@@ -53,17 +75,17 @@
         </div>
     </div>
 
-    @isset($max)
-    @if($max > 1)
-    <div class="pagination-wrapper">
-        <ul class="pagination pagination-sm flex-wrap justify-content-center">
-            @for($i = 1; $i <= $max; $i++) <li
-                class="page-item {{ $i == $page ? 'active' : '' }}"><button
-                    class="page-link pagination-item"
-                    data-pagenum="{{ $i }}">{{ $i }}</button></li>
-                @endfor
-        </ul>
-    </div>
-    @endif
-    @endisset
+    @include('admin.layouts.pagination')
 </div>
+<form id="page-control-form" class="d-none">
+    <input type="hidden" value="{{ $page ?? '1' }}" name="page">
+    <input type="hidden" value="{{ $recordPerPage ?? '10' }}" name="record_per_page">
+
+    @if (isset($textSearch) && $textSearch != '')
+        <input type="hidden" name="is_search" value="1">
+    @else
+        <input type="hidden" name="is_search" value="0">
+    @endif
+
+    <input type="hidden" value="{{ $select_registration_status ?? '' }}" name="select_registration_status">
+</form>

@@ -82,4 +82,41 @@ class EnquiryController extends Controller
             'data' => $enquiry,
         ));
     }
+    public function ajaxDelete(Request $request) {
+        $success = false;
+        $message = false;
+        if(isset($request['recordId'])) {
+            $id = $request['recordId'];
+            if(!$this->enquiryRepository->find($id)->flag_is_checked) {
+                $message = "Không thể xóa liên hệ chưa xử lý!";
+            }
+            elseif($this->enquiryRepository->destroy($id)) {
+                $success = true;
+            }
+        }
+        return response()->json(array(
+            'success' => $success,
+            'message' => $message,
+        ));
+    }
+
+    public function ajaxChangeStatus(Request $request)
+    {
+        $success = false;
+        if(isset($request['isChecked'], $request['recordId']))
+        {
+            $isChecked = $request['isChecked'];
+            $recordId = $request['recordId'];
+            if($isChecked == 'YES' || $isChecked == 'NO'){
+                $isChecked = ($isChecked == 'YES');
+                if($this->enquiryRepository->changeStatus($recordId, $isChecked)){
+                    $success = true;
+                }
+            }
+        }
+
+        return response()->json(array(
+            'success' => $success,
+        ));
+    }
 }

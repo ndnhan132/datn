@@ -71,4 +71,5 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
                     ->limit($recordPerPage)
                     ->get();
     }
+
 }

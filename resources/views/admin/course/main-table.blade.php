@@ -120,7 +120,9 @@
                             </td>
                             <td class="text-center">
                                 <span>
-                                    <button class="btn-outline-danger btn-delete" data-id="{{ $course->id }}" {{ $course->received() ? 'disabled' : '' }} ><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    <button class="btn-outline-danger btn-delete-record" data-record-id="{{ $course->id }}" {{ $course->received() ? 'disabled' : '' }}>
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </button>
                                 </span>
                             </td>
                         </tr>

@@ -26,8 +26,14 @@ class PostController extends Controller
     public function ajaxGetTableContent(Request $request)
     {
         Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
-        isset($request['recordPerPage']) ? $recordPerPage = $request['record-per-page'] : $recordPerPage = 10;
-        isset($request['page']) ? ($page = $request['page']) : ($page = 1);
+        $recordPerPage = 10;
+        if(isset($request['record_per_page']) && is_numeric($request['record_per_page']) && $request['record_per_page'] > 0) {
+            $recordPerPage = $request['record_per_page'];
+        }
+        $page = 1;
+        if(isset($request['page']) && is_numeric($request['page']) && $request['page'] > 1) {
+            $page = $request['page'];
+        }
         $startFrom = ($page - 1) * $recordPerPage;
 
         $posts = $this->postRepository->pagination($startFrom, $recordPerPage);
@@ -39,21 +45,31 @@ class PostController extends Controller
             $max = floor($total / $recordPerPage);
         }
 
-        return view('admin.post.main-table', compact(['posts', 'max', 'page']));
+        return view('admin.post.main-table', compact([
+                                                        'posts',
+                                                        'max',
+                                                        'page',
+                                                        'total',
+                                                        'startFrom',
+                                                        'recordPerPage'
+                                                        ]));
     }
 
 
 
-    public function ajaxDelete(Request $request)
-    {
+    public function ajaxDelete(Request $request) {
         $success = false;
-        if($request['id']) {
-            $success = $this->postRepository->destroy($request['id']);
-        };
+        if(isset($request['recordId'])) {
+            $id = $request['recordId'];
+            if($this->postRepository->destroy($id)) {
+                $success = true;
+            }
+        }
         return response()->json(array(
-            'success' => $success,
+            'success' => $success
         ));
     }
+
     public function ajaxGetUpdate(Request $request)
     {
         if($request['id']) {
@@ -99,4 +115,6 @@ class PostController extends Controller
             'success' => $success,
         ));
     }
+
+
 }

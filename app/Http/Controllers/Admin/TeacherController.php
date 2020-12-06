@@ -113,4 +113,17 @@ class TeacherController extends Controller
             'message' => 'Có lỗi xảy ra!'
         ));
     }
+
+    public function ajaxDelete(Request $request) {
+        $success = false;
+        if(isset($request['recordId'])) {
+            $id = $request['recordId'];
+            if($this->teacherRepository->destroy($id)) {
+                $success = true;
+            }
+        }
+        return response()->json(array(
+            'success' => $success
+        ));
+    }
 }

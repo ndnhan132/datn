@@ -2,10 +2,12 @@ showSpinner();
 var myInterval = setInterval(hideSpinner, 2000);
 function showSpinner() {
     $('#spinner').css('display', 'block');
+    $(document).find('body').addClass('hover_cursor_progress');
     var myInterval = setInterval(hideSpinner, 5000);
 }
 function hideSpinner() {
     $('#spinner').css('display', 'none');
+    $(document).find('body').removeClass('hover_cursor_progress');
     clearInterval(myInterval);
 }
 function fadeInContentTable()
@@ -107,7 +109,7 @@ $(function () {
     });
 
     $(document).on('click', '.post-manager .btn-delete', function () {
-        var _confirm = confirm('Xoá sẽ không khôi phục được. Chắc chắn xoá!');
+        var _confirm = confirm('Xóa sẽ không khôi phục được. Chắc chắn xóa!');
         if (_confirm) {
             showSpinner();
             $.ajax({
@@ -119,7 +121,7 @@ $(function () {
             .done(function (data) {
                 console.log(data);
                 if (data.success) {
-                    msgSuccess('Xoá thành công.');
+                    msgSuccess('Xóa thành công.');
                     reloadMainTable();
                 }
                 hideSpinner();
@@ -377,6 +379,25 @@ $(function () {
     }
     });
 
+    $(document).on('click', '.btn-change-post-status', function (event) {
+        event.preventDefault();
+        var _recordId = $(this).data('record-id');
+        if(!isNaN(_recordId) && _recordId > 0) {
+            Swal.fire({
+                title: 'Thay đổi trạng thái?',
+                showDenyButton: true,
+                // showCancelButton: true,
+                confirmButtonText: 'Đã xử lý',
+                denyButtonText: 'Chưa xử lý',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    changePostStatus(_recordId, 'YES');
+                } else if (result.isDenied) {
+                    changePostStatus(_recordId, 'NO');
+                }
+            });
+        }
+    });
 
     // ! end enquiry
 
@@ -454,6 +475,23 @@ $(function () {
 
     // ! end teacher course registration
 
+    // ! delete record
+    $(document).on('click', '.btn-delete-record', function (event) {
+        Swal.fire({
+            title: 'Chắc chắn xóa.',
+            showDenyButton: true,
+            confirmButtonText: `Chắc chắn`,
+            denyButtonText: 'Huỷ',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var _recordId = $(this).data('record-id');
+                console.log(isNaN(_recordId));
+                if (!isNaN(_recordId) && _recordId > 0) {
+                    deleteRecord(_recordId);
+                }
+            }
+        });
+    });
 
 
 
@@ -487,6 +525,7 @@ $(function () {
             fadeInContentTable();
         });
     }
+
     function setPageNum(num) {
         pageNum = num;
         var _inputPageNum = $(document).find('input[name=page]');
@@ -541,10 +580,10 @@ $(function () {
             url: '/quan-ly/dang-ky-nhan-lop/ajax/confirm-status',
             type: 'POST',
             dataType: 'json',
-                data: {
-                    registrationStatus: registrationStatus,
-                    registrationId: registrationId,
-                },
+            data: {
+                registrationStatus: registrationStatus,
+                registrationId: registrationId,
+            },
         })
             .done(function (data) {
                 console.log(data);
@@ -555,13 +594,67 @@ $(function () {
                     msgErrors(data.message);
                 }
                 $(document).find('.btn-modal-dismiss').click();
-                showSpinner();
-        })
-        .fail(function(jqXHR, textStatus, errorThrown) {
-            msgErrors();
-        })
+                hideSpinner();
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                msgErrors();
+            })
         .always(function() {
         });
     }
 
+    function deleteRecord(recordId) {
+        $url = pathName + '/ajax/delete';
+        console.log('delete ' + $url);
+        showSpinner();
+
+        $.ajax({
+            url: $url,
+            type: 'POST',
+            dataType: 'json',
+            data: { recordId: recordId },
+        })
+            .done(function (data) {
+                console.log(data);
+                if (data.success) {
+                    msgSuccess('Xóa thành công.');
+                } else {
+                    msgErrors((data.message ? data.message : ''));
+                }
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                msgErrors();
+            }).always(function () {
+                reloadMainTable();
+                hideSpinner();
+            });
+    }
+
+    function changePostStatus(_recordId, _newStatus)
+    {
+        showSpinner();
+        $.ajax({
+            type: 'POST',
+            url: '/quan-ly/lien-he/ajax/change-status',
+            dataType: 'json',
+            data: {
+                recordId: _recordId,
+                isChecked: _newStatus,
+            },
+        })
+            .done(function (data) {
+                if(data.success){
+                    msgSuccess('Thay đổi thành công.');
+                } else if(data.message){
+                    msgErrors(data.message ? data.message : '');
+                }
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                msgErrors();
+            })
+            .always(function () {
+                hideSpinner();
+                reloadMainTable();
+            });
+    }
 });

@@ -2,7 +2,7 @@
 
     <form class="col-md-12 px-0 form-inline" id="form-search">
         <div class="form-group my-2 pl-1">
-            <input type="text" name="search_text" class="form-control ml-2" placeholder="Search" value="{{ $enquiry_status ?? '' }}">
+            <input type="text" name="search_text" class="form-control ml-2" placeholder="Search" value="{{ $search_text ?? '' }}">
         </div>
         <div class="form-group my-2">
             trạng thái
@@ -42,9 +42,13 @@
                             </td>
                             <td class="text-center enquiry-status">
                                 @if ($enquiry->flag_is_checked)
-                                <span><i class="fa fa-check-circle-o text-success"></i></span>
+                                <span class="btn-change-post-status" data-record-id="{{ $enquiry->id }}">
+                                    <i class="fa fa-check-circle-o text-success"></i>
+                                </span>
                                 @else
-                                <span><i class="fa fa-clock-o text-warning"></i></span>
+                                <span class="btn-change-post-status" data-record-id="{{ $enquiry->id }}">
+                                    <i class="fa fa-clock-o text-warning"></i>
+                                </span>
                                 @endif
                             </td>
                             <td class="text-nowrap">
@@ -59,7 +63,9 @@
                             </td>
                             <td class="text-center">
                                 <span>
-                                    <button class="btn-outline-danger btn-delete" data-id="{{ $enquiry->id }}"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    <button class="btn-outline-danger btn-delete-record" data-record-id="{{ $enquiry->id }}" {{ !$enquiry->flag_is_checked ? 'disabled' : '' }}>
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </button>
                                 </span>
                             </td>
                         </tr>
@@ -106,7 +112,7 @@
     <input type="hidden" value="{{ $page ?? '1' }}" name="page">
     <input type="hidden" value="{{ $recordPerPage ?? '10' }}" name="record_per_page">
 
-    @if (isset($enquiry_status) && $enquiry_status != '')
+    @if (isset($search_text) && $search_text != '')
         <input type="hidden" name="is_search" value="1">
     @else
         <input type="hidden" name="is_search" value="0">

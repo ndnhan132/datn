@@ -69,7 +69,7 @@
                                 </select>
                             </th>
                             <th>Xem</th>
-                            <th>Xoá</th>
+                            <th>Xóa</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -106,8 +106,8 @@
                             </td>
                             <td class="text-center">
                                 <span>
-                                    <button class="btn-outline-danger btn-delete" data-id="{{ $record->id }}">
-                                        <i class="fa fa-trash-o"></i>
+                                    <button class="btn-outline-danger btn-delete-record" data-record-id="{{ $record->id }}" {{ $record->isReceived() ? 'disabled' : '' }}>
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
                                     </button>
                                 </span>
                             </td>
