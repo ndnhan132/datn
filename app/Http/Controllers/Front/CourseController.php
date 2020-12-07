@@ -115,8 +115,19 @@ class CourseController extends Controller
         } else {
             $max = floor($total / $recordPerPage);
         }
+        $teacherLevels = $this->teacherLevelRepository->index();
+        $courseLevels = $this->courseLevelRepository->index();
+        $subjects = $this->subjectRepository->index();
 
-        return view('front.course.list-class-page', compact(['courses', 'max', 'page', 'type']));
+        return view('front.course.list-class-page', compact([
+                                                                'courses',
+                                                                'max',
+                                                                'page',
+                                                                'type',
+                                                                'teacherLevels',
+                                                                'courseLevels',
+                                                                'subjects'
+                                                            ]));
     }
 
     public function ajaxGetListClass(Request $request)
@@ -130,13 +141,26 @@ class CourseController extends Controller
         $res     = $this->courseRepository->getWithPagination($startFrom, $recordPerPage,  $type, $confirmedRequired);
         $total   = $res['total'];
         $courses = $res['data'];
+
         if ($total % $recordPerPage) {
             $max = floor($total / $recordPerPage) + 1;
         } else {
             $max = floor($total / $recordPerPage);
         }
 
-        return view('front.course.list-class-table', compact(['courses', 'max', 'page']));
+        $html = view('front.course.list-class-table', compact([
+                                                                'courses',
+                                                                'max',
+                                                                'page',
+                                                                'total',
+                                                            ]));
+        $html = strval($html);
+        $html = trim($html);
+
+        return response()->json(array(
+            'success' => true,
+            'html'    => $html,
+        ));
     }
 
 }

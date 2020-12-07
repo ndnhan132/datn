@@ -149,6 +149,12 @@ $(function () {
         reloadListTeacher();
     });
 
+    $(document).on('change', '#course-search-form .input-onchange', function () {
+        pageNum = 1;
+        console.log($(this).val());
+        reloadListCourse();
+    });
+
     //! teacher manager
     $('.teacher-manager form#general-form .btn-submit').on('click', function (event) {
         event.preventDefault();
@@ -296,20 +302,41 @@ $(function () {
 
     function reloadListCourse() {
         /* #region   */
-        var _contentTable = $('#list-class-page');
-        $url = '/ajax/get-list-class?page=' + pageNum + '&type=' + _contentTable.data('type');
-        console.log('reload ' + $url);
-        // document.getElementById('list-class-page').firstElementChild.style.opacity = '0';
-        // _contentTable.find('.list-class-page').css('opacity', '0');
-        _contentTable.find('#list-class-page').css('opacity', '0');
-        _contentTable.load($url, function () {
-            console.log('load Index');
-            //scroll top
-            scroll2Top();
-            // document.getElementById('list-class-page').firstElementChild.style.opacity = '1';
-            // _contentTable.find('.list-class-page').css('opacity', '1');
-            _contentTable.find('#list-class-page').css('opacity', '1');
-        });
+        var _listClass = $('#list-class-page');
+        // var queryString = $('#course-search-form').serialize();
+        // $url = '/ajax/get-list-class?page=' + pageNum + '&type=' + _contentTable.data('type');
+        // if (queryString.length) {
+        //     $url += '&' + queryString;
+        // }
+        // console.log('reload ' + $url);
+        opacity_transition_effect_fade_out();
+        $('#course-search-form input[name=page]').val(pageNum);
+        var formData = $('#course-search-form').serialize();
+        $(document).find('body').addClass('hover_cursor_progress');
+        $.ajax({
+            url: '/ajax/get-list-class',
+            type: 'POST',
+            dataType: 'json',
+            data: formData,
+        })
+            .done(function (data) {
+                console.log(data);
+                scroll2Top();
+                if (data.success) {
+                    _listClass.empty().append(data.html);
+                }
+                else {
+                    alert('Error');
+                }
+                $(document).find('body').removeClass('hover_cursor_progress');
+                opacity_transition_effect_fade_in();
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log("error");
+                alert(errorThrown);
+                $(document).find('body').removeClass('hover_cursor_progress');
+                opacity_transition_effect_fade_in();
+            });
         /* #endregion */
     }
 

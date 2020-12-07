@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/is', function(){
     echo 'xxxx';
 });
-Route::name('admin.')->group(function(){
+Route::name('admin.')->middleware(['CheckAdminLogin'])->group(function(){
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
     Route::get('/dashboard', 'DashboardController@index');
     Route::get('/index', 'DashboardController@index');
@@ -54,3 +54,7 @@ Route::name('admin.')->group(function(){
     Route::post('ckeditor/upload', 'PageController@upload')->name('ckeditor.upload');
 
 });
+Route::get('dang-nhap', 'PageController@getLogin')->name('admin.getLogin');
+Route::post('dang-nhap', 'PageController@postLogin')->name('admin.postLogin');
+Route::post('ajax/users/login', 'PageController@ajaxPostLogin');
+Route::get('dang-xuat', 'PageController@logout')->name('admin.logout');

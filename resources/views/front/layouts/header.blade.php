@@ -12,11 +12,13 @@
                     <a class="nav-link" href="{{ route('front.home') }}">Trang chủ</a>
                 </li>
                 <li class="nav-item  position-relative">
-                    <a class="nav-link" href="{{ route('front.getNotReceivedClassPage') }}"><span>Lớp mới</span><i class="fas fa-angle-down pl-2"></i></a>
-                    <div class="sub-menu py-1 mt-2 fade-down fade-up-">
+                    <a class="nav-link" href="{{ route('front.getAllClassPage') }}"><span>Lớp mới</span>
+                        {{-- <i class="fas fa-angle-down pl-2"></i> --}}
+                    </a>
+                    {{-- <div class="sub-menu py-1 mt-2 fade-down fade-up-">
                         <a href="{{ route('front.getNotReceivedClassPage') }}"><i class="fas fa-caret-right"></i><span>Lớp chưa giao</span></a>
                         <a href="{{ route('front.getAllClassPage') }}"><i class="fas fa-caret-right"></i><span>Tất cả các lớp</span></a>
-                    </div>
+                    </div> --}}
                 </li>
                 <li class="nav-item  position-relative">
                     <a class="nav-link" href="{{ route('front.forParent')}}"><span>Phụ huynh</span><i class="fas fa-angle-down pl-2"></i></a>

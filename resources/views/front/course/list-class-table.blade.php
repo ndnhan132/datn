@@ -1,5 +1,4 @@
-@include('front.home.header-title', ['title' => 'Danh sách lớp mới'])
-<div class="d-flex flex-wrap">
+<div class="d-flex flex-wrap  opacity_transition_effect">
     @foreach ($courses as $course)
     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 pl-3 pr-0">
         <div class="list-class-item {{ ($course->received()) ? 'received' : '' }}">
@@ -47,10 +46,9 @@
     </div>
     @endforeach
 </div>
-{{-- {{ dd($max)}} --}}
 @isset($max)
 @if($max > 1)
-<div class="pagination-wrapper mt-3">
+<div class="pagination-wrapper mt-3  opacity_transition_effect">
     <ul class="pagination pagination-sm flex-wrap justify-content-center">
         @for($i = 1; $i <= $max; $i++) <li
             class="page-item {{ $i == $page ? 'active' : '' }}"><button

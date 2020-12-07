@@ -14,6 +14,7 @@ Route::get('/lop-can-gia-su.html', 'CourseController@getNotReceivedClassPage')->
 // tat ca cac lop
 Route::get('/danh-sach-lop.html', 'CourseController@getAllClassPage')->name('front.getAllClassPage');
 Route::get('/ajax/get-list-class', 'CourseController@ajaxGetListClass');
+Route::post('/ajax/get-list-class', 'CourseController@ajaxGetListClass');
 
 
 Route::get('/nhan-lop/{slug}.html', 'TeacherCourseRegistrationController@getRegisterPage')->name('front.teacherRegisterCourse');

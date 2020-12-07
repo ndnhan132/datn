@@ -764,7 +764,7 @@ a.text-primary:focus {
         border-bottom: 2px solid #2d6d91;
         padding-bottom: 2px; }
       .teacher-manager #profile .profile-box .image img {
-        cursor: pointer; }
+        cursor: zoom-in; }
     .teacher-manager #profile .profile-box.avatar {
       width: auto !important;
       padding: .75rem; }
@@ -1044,6 +1044,78 @@ a.text-primary:focus {
     border: 1px dotted #e0e0e0;
     border-left: none;
     border-right: none; }
+
+.list-teacher-page {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.5rem;
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: .125rem;
+  margin-bottom: 2.5rem; }
+  .list-teacher-page .title {
+    margin-bottom: 1.5rem; }
+    .list-teacher-page .title .title-icon {
+      height: 32px !important;
+      margin-right: 10px !important;
+      width: 32px !important;
+      color: #707070;
+      display: inline-block;
+      stroke-width: 0;
+      stroke: currentColor;
+      fill: currentColor; }
+    .list-teacher-page .title h3 {
+      font-size: 1.75rem;
+      letter-spacing: .012em;
+      word-spacing: .016em;
+      font-family: Roboto-Medium;
+      font-weight: 500; }
+  .list-teacher-page .filter {
+    background-color: #f4f4f4;
+    margin-bottom: 1.5rem; }
+    .list-teacher-page .filter .input-onchange {
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      appearance: none;
+      box-shadow: none;
+      height: calc(1.5em + .876rem + 2px);
+      padding: .438rem 1.75rem .438rem .75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #444;
+      vertical-align: middle;
+      border: 1px solid #707070;
+      border-radius: .125rem;
+      background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 9'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' fill='%23707070' d='M0.292892 1.70712L1.70711 0.292908L7 5.5858L12.2929 0.292908L13.7071 1.70712L7 8.41423L0.292892 1.70712Z' /%3e%3c/svg%3e") right 0.75rem center/14px 9px no-repeat #fff; }
+    .list-teacher-page .filter label {
+      color: #111;
+      font-family: Roboto-Medium;
+      font-weight: 500;
+      font-size: 1.111rem;
+      line-height: 1.5; }
+  .list-teacher-page .total-results {
+    border-bottom: 3px solid #bbb;
+    color: #000;
+    font-weight: 400;
+    margin: 0px 0px 10px 0;
+    padding: 5px 0px 15px 0px;
+    width: 100%;
+    display: block; }
+    .list-teacher-page .total-results span {
+      color: #000;
+      color: #116095;
+      font-size: 18px;
+      text-decoration: none;
+      font-weight: 500; }
 
 footer {
   background: #232b50;
