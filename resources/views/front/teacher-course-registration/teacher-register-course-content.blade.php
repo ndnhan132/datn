@@ -104,13 +104,13 @@
                         </td>
                         <td class="text-center">
                             @if ($record->isReceived())
-                            <span class="text-success">Đã nhận</span>
+                            <span class="label-status bg-success">Đã nhận</span>
                             @elseif ($record->isPendding())
-                            <span class="text-warning">Chưa Kiểm tra</span>
+                            <span class="label-status bg-warning">Chưa Kiểm tra</span>
                             @elseif ($record->isEligible())
-                            <span class="text-info">Đủ điều kiên</span>
+                            <span class="label-status bg-info">Đủ điều kiên</span>
                             @else
-                            <span class="text-secondary">Không đủ điều
+                            <span class="label-status bg-secondary">Không đủ điều
                                 kiên</span>
                             @endif
                         </td>

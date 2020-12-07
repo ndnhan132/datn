@@ -1,3 +1,12 @@
+@isset($total)
+<div class="w-100 opacity_transition_effect">
+    <div class="col-12 px-0">
+        <div class="total-results">
+            <span>{{ $total }} Kết quả tìm thấy</span>
+        </div>
+    </div>
+</div>
+@endisset
 <div class="d-flex flex-wrap  opacity_transition_effect">
     @foreach ($courses as $course)
     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 pl-3 pr-0">

@@ -18,8 +18,8 @@
         <input type="hidden" value="1" name="page">
         <div class="row d-flex flex-wrap">
             @isset($teacherLevels)
-            <div class="form-group col-sm-6 px-0">
-                <label class="col-sm-12">Trình độ hiện tại</label>
+            <div class="form-group col-sm-4 px-0">
+                <label class="col-sm-12">Trình độ giáo viên</label>
                 <div class="col-sm-12">
                     <select name="teacher_level" class="form-control input-onchange">
                         <option value="">Toàn bộ</option>
@@ -30,17 +30,17 @@
                 </div>
             </div>
             @endisset
-            <div class="form-group col-sm-6 px-0">
-                <label class="col-sm-12">Giới tính</label>
+            {{-- <div class="form-group col-sm-6 px-0">
+                <label class="col-sm-12">Trình độ học sinh</label>
                 <div class="col-sm-12">
                     <select name="gender" class="form-control input-onchange">
-                        <option value="BOTH">Cả hai</option>
+                        <option value="">Toàn bộ</option>
                         <option value="MALE">Nam</option>
                         <option value="FEMALE">Nữ</option>
                     </select>
                 </div>
-            </div>
-            <div class="form-group col-sm-6 px-0">
+            </div> --}}
+            <div class="form-group col-sm-4 px-0">
                 <label class="col-sm-12">Lớp dạy</label>
                 <div class="col-sm-12">
                     <select name="course_level" class="form-control input-onchange text-capitalize">
@@ -51,7 +51,7 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group col-sm-6 px-0">
+            <div class="form-group col-sm-4 px-0">
                 <label class="col-sm-12">Môn dạy</label>
                 <div class="col-sm-12">
                     <select name="subject" class="form-control input-onchange text-capitalize">

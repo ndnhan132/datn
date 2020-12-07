@@ -106,7 +106,7 @@ class CourseController extends Controller
         $recordPerPage = 12;
         $confirmedRequired = true;
         $type    = 'ALL';
-        $res     = $this->courseRepository->getWithPagination($startFrom, $recordPerPage,  $type, $confirmedRequired);
+        $res     = $this->courseRepository->getWithPagination($startFrom, $recordPerPage,  $type, $confirmedRequired, false, false, false);
         $total   = $res['total'];
         $courses = $res['data'];
 
@@ -124,6 +124,7 @@ class CourseController extends Controller
                                                                 'max',
                                                                 'page',
                                                                 'type',
+                                                                'total',
                                                                 'teacherLevels',
                                                                 'courseLevels',
                                                                 'subjects'
@@ -138,10 +139,37 @@ class CourseController extends Controller
         $startFrom = ($page - 1) * $recordPerPage;
         $confirmedRequired = true;
         isset($request['type']) ? ($type = $request['type']) : ($type = 'ALL');
-        $res     = $this->courseRepository->getWithPagination($startFrom, $recordPerPage,  $type, $confirmedRequired);
+
+        $select_teacher_level = false;
+        if(isset($request['teacher_level'])) {
+            if(is_numeric($request['teacher_level']) && $request['teacher_level'] > 0){
+                $select_teacher_level = $request['teacher_level'];
+            }
+        }
+        $select_course_level = false;
+        if(isset($request['course_level'])) {
+            if(is_numeric($request['course_level']) && $request['course_level'] > 0){
+                $select_course_level = $request['course_level'];
+            }
+        }
+        $select_subject = false;
+        if(isset($request['subject'])) {
+            if(is_numeric($request['subject']) && $request['subject'] > 0){
+                $select_subject = $request['subject'];
+            }
+        }
+
+        $res     = $this->courseRepository->getWithPagination(
+                                                                $startFrom,
+                                                                $recordPerPage,
+                                                                $type,
+                                                                $confirmedRequired,
+                                                                $select_teacher_level,
+                                                                $select_course_level,
+                                                                $select_subject
+                                                            );
         $total   = $res['total'];
         $courses = $res['data'];
-
         if ($total % $recordPerPage) {
             $max = floor($total / $recordPerPage) + 1;
         } else {

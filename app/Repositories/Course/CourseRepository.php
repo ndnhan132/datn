@@ -171,7 +171,7 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
         return $this->model->where('slug', $slug)->first();
     }
 
-    public function getWithPagination($startFrom, $recordPerPage, $type, $confirmedRequired)
+    public function getWithPagination($startFrom, $recordPerPage, $type, $confirmedRequired, $select_teacher_level, $select_course_level,$select_subject)
     {
         $query = $this->model;
         if($confirmedRequired) {
@@ -184,6 +184,15 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
             $query = $query->whereDoesntHave('teacherCourseRegistrations', function($q) {
                 return $q->where('registration_status_id', \App\Models\RegistrationStatus::RECEIVED_ID);
             });
+        }
+        if($select_teacher_level){
+            $query = $query->where('teacher_level_id', $select_teacher_level);
+        }
+        if($select_course_level){
+            $query = $query->where('course_level_id', $select_course_level);
+        }
+        if($select_subject){
+            $query = $query->where('subject_id', $select_subject);
         }
 
         $total = $query->count();
