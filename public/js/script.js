@@ -54,7 +54,7 @@ $(function () {
     //! end header scroll
 
     //! load aside data
-    var asidebarInterval = setInterval(loadAsidebarBoxContent, 100);
+    // var asidebarInterval = setInterval(loadAsidebarBoxContent, 100);
 
     $(document).on('click', '.btn-teacher-show-login', function (event) {
         event.preventDefault();

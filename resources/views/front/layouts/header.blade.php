@@ -12,7 +12,7 @@
                     <a class="nav-link" href="{{ route('front.home') }}">Trang chủ</a>
                 </li>
                 <li class="nav-item  position-relative">
-                    <a class="nav-link" href="{{ route('front.getAllClassPage') }}"><span>Lớp mới</span>
+                    <a class="nav-link" href="{{ route('front.getAllClassPage') }}"><span>Lớp hiện có</span>
                         {{-- <i class="fas fa-angle-down pl-2"></i> --}}
                     </a>
                     {{-- <div class="sub-menu py-1 mt-2 fade-down fade-up-">
@@ -39,6 +39,7 @@
                         <a href="{{ route('front.readPage', 'huong-dan-nhan-lop') }}"><i class="fas fa-caret-right"></i><span>Hướng dẫn nhận lớp</span></a>
                         <a href="{{ route('front.readPage', 'hop-dong-gia-su') }}"><i class="fas fa-caret-right"></i><span>Hợp đồng gia sư</span></span></a>
                         <a href="{{ route('front.readPage', 'gia-su-can-biet') }}"><i class="fas fa-caret-right"></i><span>Gia sư cần biết</span></a>
+                        <a href="#"><i class="fas fa-caret-right"></i><span><span>Hướng dẫn thanh toán</span></a>
                     </div>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('front.getListNews') }}">Tin tức</a></li>

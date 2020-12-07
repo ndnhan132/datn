@@ -233,7 +233,7 @@
 
                 .asidebar-item {
                     // margin: 0.25rem 0;
-                    margin-right: 0.25rem;
+                    margin-right: 0rem;
                     margin-left: 0.25rem;
                     padding: 0.25rem 0;
                     // box-shadow: 0px 0px 3px 0px #e5e5e5;
@@ -245,8 +245,12 @@
                         display: block;
                         padding: 0.25rem 0.5rem 0.25rem 0;
                         text-transform: capitalize;
-                        font-size: 1.005rem;
+                        font-size: 0.975rem;
                         color: #868e96;
+                        letter-spacing: -0.02em;
+                        word-spacing: -0.02em;
+                        font-family: Roboto-Medium;
+
                         &:before {
                             content: '\f0da';
                             font-family: fontAwesome;

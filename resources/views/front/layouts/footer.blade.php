@@ -1,11 +1,33 @@
 <footer class="container-fluid">
     <div class="container text-white pt-5 pb-4 information">
         <div class="row">
-            <div class="col-md-2 col-12">
+            <div class="col-md-3 col-12">
                 <div class="align-top m-0 h-100">
 <div>
 <img src="{{ asset('/images/logo/5.png')}}" alt="footer icon" class="img-fluid">
 </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-12">
+                <div class="align-top m-0 h-100">
+                    <h5 class="text-uppercase">Tiêu chí làm việc</h5>
+                    <ul class="list-unstyled">
+                        @php
+                            $tieuchi = array(
+                                'Học gia sư là phải tiến bộ hơn',
+                                'Chỉ hợp tác với gia sư giỏi',
+                                'Học phí hợp lý',
+                                'Cam kết chất lượng',
+                                'Tư vấn tận tình'
+                            );
+                        @endphp
+                        @foreach ($tieuchi as $item)
+                        <li>
+                            <a href=""><i class="fas fa-check border-0"></i>&nbsp;&nbsp;{{ $item }}</a>
+                        </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
 
@@ -61,13 +83,13 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-4 col-12">
+            {{-- <div class="col-md-4 col-12">
                 <div class="align-top m-0 h-100">
                     <h5 class="text-warning">BẢN ĐỒ</h5>
                     <div class="bg-white" style="height: 200px;">
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     <div class="row social border-top border-dark">

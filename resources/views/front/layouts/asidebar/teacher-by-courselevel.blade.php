@@ -6,7 +6,7 @@
         gia su</a>
 </p> --}}
 <ul class="list-unstyled asidebar-list">
-    @isset($courseLevels)
+    {{-- @isset($courseLevels)
     @foreach ($courseLevels as $level)
     <li class="asidebar-item">
         <a href="" class="asidebar-link">
@@ -14,5 +14,18 @@
         </a>
     </li>
     @endforeach
-    @endisset
+    @endisset --}}
+    @php
+    $itemArray = array();
+    $itemArray[] = array (
+        'title' => 'T',
+);
+    @endphp
+    @foreach ($itemArray as $level)
+    <li class="asidebar-item">
+        <a href="" class="asidebar-link">
+            {{ $level['title'] }}
+        </a>
+    </li>
+    @endforeach
 </ul>

@@ -13,6 +13,44 @@
     </div>
     <div class="panel" id="asidebar-teacher-by-courselevel">
         <div class="panel-header">
+            Phụ huynh
+        </div>
+        <div class="panel-body asidebar-box-body">
+            @include('front.layouts.asidebar.leftbar1')
+        </div>
+    </div>
+    <div class="panel">
+        <div class="panel-header">
+            Gia sư
+        </div>
+        <div class="panel-body asidebar-box-body">
+            @include('front.layouts.asidebar.leftbar2')
+        </div>
+    </div>
+    <div class="panel">
+        <div class="panel-header">
+            Chính sách
+        </div>
+        <div class="panel-body asidebar-box-body">
+            @include('front.layouts.asidebar.leftbar3')
+        </div>
+    </div>
+    <div class="panel">
+        <div class="panel-header">
+            Fanpage
+        </div>
+        <div class="panel-body asidebar-box-body">
+        </div>
+    </div>
+    <div class="panel">
+        <div class="panel-header">
+            bản đồ
+        </div>
+        <div class="panel-body asidebar-box-body">
+        </div>
+    </div>
+    {{-- <div class="panel" id="asidebar-teacher-by-courselevel">
+        <div class="panel-header">
             Gia sư các khối lớp
         </div>
         <div class="panel-body asidebar-box-body">
@@ -31,5 +69,5 @@
         <div class="panel-body asidebar-box-body">
             @include('front.layouts.asidebar.loading')
         </div>
-    </div>
+    </div> --}}
 </div>

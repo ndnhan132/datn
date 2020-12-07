@@ -519,7 +519,7 @@ a.text-primary:focus {
     #asidebar .panel .panel-body .asidebar-list {
       margin-bottom: 0; }
       #asidebar .panel .panel-body .asidebar-list .asidebar-item {
-        margin-right: 0.25rem;
+        margin-right: 0rem;
         margin-left: 0.25rem;
         padding: 0.25rem 0;
         border-bottom: 1px solid #e3e3e3; }
@@ -529,8 +529,11 @@ a.text-primary:focus {
           display: block;
           padding: 0.25rem 0.5rem 0.25rem 0;
           text-transform: capitalize;
-          font-size: 1.005rem;
-          color: #868e96; }
+          font-size: 0.975rem;
+          color: #868e96;
+          letter-spacing: -0.02em;
+          word-spacing: -0.02em;
+          font-family: Roboto-Medium; }
           #asidebar .panel .panel-body .asidebar-list .asidebar-item .asidebar-link:before {
             content: '\f0da';
             font-family: fontAwesome;
