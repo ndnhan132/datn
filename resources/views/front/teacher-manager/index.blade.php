@@ -89,7 +89,7 @@
                                     </tr>
                                     <tr>
                                         <td class="text-nowrap"><span>-&nbsp;Lương tham khảo</span></td>
-                                        <td><span>{{ $teacher->reference_tuition ?$teacher->getDisplayTution() . ' Vnđ/Tháng' : 'Chưa cập nhật' }}</span></td>
+                                        <td><span>{{ $teacher->reference_tuition ?$teacher->getDisplayTution() . ' Vnđ/Buổi' : 'Chưa cập nhật' }}</span></td>
                                     </tr>
                                     <tr>
                                         <td class="text-nowrap"><span>-&nbsp;Thông tin thêm</span></td>
@@ -164,7 +164,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="view-image-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-custom" id="view-image-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

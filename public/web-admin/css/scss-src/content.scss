@@ -42,6 +42,7 @@
         -webkit-user-select: none;
         -webkit-touch-callout: none;
         min-width: 80px;
+        letter-spacing: -1px;
     }
     .label-status-success{
         @extend .label-status;
@@ -85,16 +86,7 @@
             border: 1px solid #dee2e6;
         }
     }
-    .modal-custom{
-        .modal-header{
-            background: #0283c8 url(../images/title.png) no-repeat right top;
-            background-size: auto 100%;
-        }
-        .modal-body{
-            max-height: calc(80vh);
-            overflow-x: auto;
-        }
-    }
+
 table{
 
     thead {
@@ -290,4 +282,29 @@ table{
 }
 .btn-change-post-status:hover{
     cursor: pointer;
+}
+
+#js-teacher-course-registration-compare{
+    tr {
+        margin-bottom: 4px;
+        td {
+            vertical-align: top;
+            font-size: 0.9rem;
+        }
+        td.text-nowrap {
+            padding-right: 1rem;
+            font-weight: 600;
+        }
+    }
+}
+
+.modal-custom{
+    .modal-header{
+        background: #0283c8 url(../images/title.png) no-repeat right top;
+        background-size: auto 100%;
+    }
+    .modal-body{
+        max-height: calc(80vh);
+        overflow-x: auto;
+    }
 }

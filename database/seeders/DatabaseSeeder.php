@@ -39,14 +39,20 @@ class DatabaseSeeder extends Seeder
 
         $faker = \Faker\Factory::create();
         DB::table('users')->insert([
-            'name' => $faker->name,
-            'email' => 'testadmin@gmail.com',
+            'name' => 'Nguời quản lý',
+            'email' => 'admin@giasudanang.com',
             'password' => bcrypt('111111'),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ]);
 
-        $teacherLevels = array('Học sinh','Sinh viên chưa ra trường', 'Sinh viên đã ra trường', 'Giáo viên', 'Giảng viên đại học');
+        $teacherLevels = array(
+                                'Học sinh',
+                                'Sinh viên chưa ra trường',
+                                'Sinh viên đã ra trường',
+                                'Giáo viên',
+                                'Giảng viên đại học'
+                            );
         foreach($teacherLevels as $lv) {
             DB::table('teacher_levels')->insert([
                 'display_name' => $lv,
@@ -68,16 +74,16 @@ class DatabaseSeeder extends Seeder
 
         $teacherLevels = DB::table('teacher_levels')->get();
         DB::table('teachers')->insert([
-            'name' => $faker->name,
+            'name' => 'Nguyễn Đình Nhân',
             'email' => 'giasu@gmail.com',
             'password' => bcrypt('111111'),
-            'phone'   => $faker->e164PhoneNumber,
-            'address' => $faker->address,
-            'is_male' => $faker->randomElement($array = array ('0','1')),
+            'phone'   => '+84368054220',
+            'address' => 'Tôn Đức Thắng, Quân Liên Chiểu, Tp Đà Nẵng',
+            'is_male' => true,
             'identity_card' => $faker->numberBetween($min = 1000, $max = 9000) * $faker->numberBetween($min = 1000, $max = 9000),
-            'university' =>$faker->name,
+            'university' => 'Đh BKDN',
             'speciality' => $faker->name,
-            'teacher_level_id' =>$faker->randomElement($teacherLevels->pluck('id')->toArray()),
+            'teacher_level_id' => 2,
             'reference_tuition' => $faker->numberBetween($min = 10, $max = 90) . '000000',
             'year_of_birth' => $faker->numberBetween($min = 1970, $max = 2000),
             'teacher_account_status_id' => '1',
@@ -114,7 +120,7 @@ class DatabaseSeeder extends Seeder
                 'university' =>$faker->name,
                 'speciality' => $faker->name,
                 'teacher_level_id' =>$faker->randomElement($teacherLevels->pluck('id')->toArray()),
-                'reference_tuition' => $faker->numberBetween($min = 10, $max = 90) . '000000',
+                'reference_tuition' => $faker->numberBetween($min = 100, $max = 500) . '000',
                 'year_of_birth' => $faker->numberBetween($min = 1970, $max = 2000),
                 'teacher_account_status_id' => $faker->randomElement($array = array (null,'1', '2', '3','1','1','1','1')),
             ]);

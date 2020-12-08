@@ -74,7 +74,7 @@
                                     <option value="NO" {{ ($is_received === 'NO') ? 'selected' : '' }}>Chưa nhận</option>
                                 </select>
                             </th>
-                            <th>Yêu cầu</th>
+                            {{-- <th>Yêu cầu</th> --}}
                             <th>Tác vụ</th>
                         </tr>
                     </thead>
@@ -115,10 +115,15 @@
                                     @endif
                                 @endif
                             </td>
-                            <td class="text-center">
+                            {{-- <td class="text-center">
                                 <span class="btn btn-sm btn-info- btn-detail label-status-info" data-type="course" data-course-id="{{ $course->id }}" data-can-confirm="yes">Chi tiết</span>
-                            </td>
+                            </td> --}}
                             <td class="text-center">
+                                <span>
+                                    <button class="btn- btn-sm- btn-info- btn-outline-info btn-detail" data-type="course" data-course-id="{{ $course->id }}" data-can-confirm="yes">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                </span>
                                 <span>
                                     <button class="btn-outline-danger btn-delete-record" data-record-id="{{ $course->id }}" {{ $course->received() ? 'disabled' : '' }}>
                                         <i class="fa fa-trash-o" aria-hidden="true"></i>

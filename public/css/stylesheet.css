@@ -20,7 +20,9 @@ body {
   /* font-family: "Source Sans Pro", arial, tahoma; */
   font-family: Roboto, sans-serif !important;
   color: #343a40;
-  background: #efefef; }
+  background: #efefef;
+  text-align: justify;
+  text-justify: inter-word; }
 
 a {
   text-decoration: none !important; }
@@ -76,8 +78,10 @@ input:focus {
     top: -2px;
     left: 0; }
 
-.hover_cursor_progress:hover {
+.hover_cursor_progress {
   cursor: progress !important; }
+  .hover_cursor_progress * {
+    cursor: progress !important; }
 
 .opacity_transition_effect {
   transition: opacity 0.5s; }
@@ -1131,6 +1135,27 @@ a.text-primary:focus {
       font-size: 18px;
       text-decoration: none;
       font-weight: 500; }
+
+.teacher-detail {
+  text-align: justify;
+  text-justify: inter-word; }
+  .teacher-detail h4 {
+    font-family: 'avo', Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: 400;
+    color: #1ebb61;
+    line-height: 28px;
+    border-bottom: 2px solid #2d6d91;
+    padding-bottom: 2px; }
+  .teacher-detail tr {
+    margin-bottom: 4px; }
+    .teacher-detail tr td {
+      vertical-align: top;
+      font-size: 0.95rem; }
+    .teacher-detail tr td.text-nowrap {
+      padding-right: 1rem;
+      font-weight: 600; }
 
 footer {
   background: #232b50;

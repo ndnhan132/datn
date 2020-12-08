@@ -61,7 +61,7 @@
                                 </select>
                             </th>
                             <th>Số lớp nhận</th>
-                            <th>Chi tiết</th>
+                            {{-- <th>Chi tiết</th> --}}
                             <th>Tác vụ</th>
                         </tr>
                     </thead>
@@ -74,11 +74,11 @@
                             <td class="text-center"><span>{{ $record->teacherLevel->display_name ?? 'Chưa cập nhật' }}</span></td>
                             <td class="text-center">
                                 @if ($record->isRequestVerification())
-                                    <span class="label-status bg-warning">Yêu cầu</span>
+                                    <span class="label-status bg-warning">Yêu cầu xác nhận</span>
                                 @elseif($record->isConfirmed())
-                                    <span class="label-status bg-success">Đã xét duyệt</span>
+                                    <span class="label-status bg-success">Đã xác nhận</span>
                                 @elseif($record->isIneligible())
-                                    <span class="label-status bg-secondary">Không hợp lệ</span>
+                                    <span class="label-status bg-secondary">Không đạt điều kiên</span>
                                 @else
                                 <span class="label-status bg-success">Chưa Xem xét</span>
                                 @endif
@@ -90,10 +90,15 @@
                                 <span>--</span>
                                 @endif
                             </td>
-                            <td class="text-center">
+                            {{-- <td class="text-center">
                                 <span class="btn btn-sm btn-info- btn-detail label-status-info" data-type="teacher" data-teacher-id="{{ $record->id }}">Chi tiết</span>
-                            </td>
+                            </td> --}}
                             <td class="text-center">
+                                <span >
+                                    <button class="btn- btn-sm- btn-info- btn-outline-info btn-detail" data-type="teacher" data-teacher-id="{{ $record->id }}">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </button>
+                                    </span>
                                 <span>
                                     <button class="btn-outline-danger btn-delete-record" data-record-id="{{ $record->id }}">
                                         <i class="fa fa-trash-o" aria-hidden="true"></i>

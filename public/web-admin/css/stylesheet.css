@@ -210,7 +210,8 @@ a.text-primary:focus {
     -khtml-user-select: none;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
-    min-width: 80px; }
+    min-width: 80px;
+    letter-spacing: -1px; }
   .app-content .label-status-success {
     background-color: #51cf66;
     border-color: #8ce99a; }
@@ -239,12 +240,6 @@ a.text-primary:focus {
       padding: 0.35rem 0.55rem;
       border-radius: 0;
       border: 1px solid #dee2e6; }
-  .app-content .modal-custom .modal-header {
-    background: #0283c8 url(../images/title.png) no-repeat right top;
-    background-size: auto 100%; }
-  .app-content .modal-custom .modal-body {
-    max-height: calc(80vh);
-    overflow-x: auto; }
   .app-content table thead th:first-child {
     border-left: 1px solid #cfcfcf; }
   .app-content table thead tr {
@@ -385,5 +380,21 @@ a.text-primary:focus {
 
 .btn-change-post-status:hover {
   cursor: pointer; }
+
+#js-teacher-course-registration-compare tr {
+  margin-bottom: 4px; }
+  #js-teacher-course-registration-compare tr td {
+    vertical-align: top;
+    font-size: 0.9rem; }
+  #js-teacher-course-registration-compare tr td.text-nowrap {
+    padding-right: 1rem;
+    font-weight: 600; }
+
+.modal-custom .modal-header {
+  background: #0283c8 url(../images/title.png) no-repeat right top;
+  background-size: auto 100%; }
+.modal-custom .modal-body {
+  max-height: calc(80vh);
+  overflow-x: auto; }
 
 /*# sourceMappingURL=stylesheet.css.map */

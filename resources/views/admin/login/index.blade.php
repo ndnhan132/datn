@@ -28,7 +28,7 @@
                 <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>Đăng nhập</h3>
                 <div class="form-group">
                     <label class="control-label">Email</label>
-                    <input class="form-control" type="text" name="email" placeholder="Email" autofocus value="testadmin@gmail.com">
+                    <input class="form-control" type="text" name="email" placeholder="Email" autofocus value="admin@giasudanang.com">
                 </div>
                 <div class="form-group">
                     <label class="control-label">Mật khẩu</label>

@@ -26,6 +26,9 @@ body {
     font-family:  Roboto, sans-serif !important;;
     color: #343a40;
     background:rgba(239, 239, 239, 1);
+
+    text-align: justify;
+    text-justify: inter-word;
 }
 a {
     text-decoration: none !important;
@@ -101,8 +104,11 @@ input:focus{
 }
 
 
-.hover_cursor_progress:hover{
+.hover_cursor_progress{
     cursor: progress !important;
+    *{
+    cursor: progress !important;
+    }
 }
 .opacity_transition_effect{
     transition: opacity 0.5s;

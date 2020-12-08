@@ -93,8 +93,6 @@
         var _modal = $(document).find('#view-teacher-modal');
         $(document).find('body').addClass('hover_cursor_progress');
         _modal.find('.modal-body').empty();
-        // _modal.modal('show');
-        // $(document).find('body').removeClass('hover_cursor_progress');
         $.ajax({
                 url: '/ajax/get-teacher-by-id/' + _teacher,
                 type: 'GET',

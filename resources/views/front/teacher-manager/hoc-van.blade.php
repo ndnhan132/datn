@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="form-group col-sm-6">
-                <label class="col-sm-12">Học phí tham khảo <small class="text-danger">(theo tháng)</small></label>
+                <label class="col-sm-12">Học phí tham khảo <small class="text-danger">(một buổi)</small></label>
                 <div class="col-sm-12">
                     <input type="text" class="form-control" value="{{ $teacher->reference_tuition }}" name="reference_tuition">
                 </div>

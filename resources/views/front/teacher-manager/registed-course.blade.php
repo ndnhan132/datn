@@ -57,7 +57,7 @@
                         <td col-span="2" class="course-val course-email"></td>
                     </tr>
                     <tr>
-                        <td>Lương / tháng</td>
+                        <td>Lương / buổi</td>
                         <td col-span="2" class="course-val course-tuition_per_month"></td>
                     </tr>
                     <tr>

@@ -799,3 +799,30 @@
 }
 
 }
+
+
+.teacher-detail{
+    text-align: justify;
+    text-justify: inter-word;
+    h4{
+        font-family: 'avo', Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        text-decoration: none;
+        font-weight: 400;
+        color: #1ebb61;
+        line-height: 28px;
+        border-bottom: 2px solid #2d6d91;
+        padding-bottom: 2px;
+    }
+    tr {
+        margin-bottom: 4px;
+        td {
+            vertical-align: top;
+            font-size: 0.95rem;
+        }
+        td.text-nowrap {
+            padding-right: 1rem;
+            font-weight: 600;
+        }
+    }
+}

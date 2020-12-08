@@ -325,7 +325,7 @@ EOF;
     {
         $success = false;
         $teacher = $this->teacherRepository->find($teacherId);
-        $html = view('admin.post.create', compact('teacher'));
+        $html = view('front.teacher.detail', compact('teacher'));
         $html = strval($html);
         $html = trim($html);
         if($html) $success = true;

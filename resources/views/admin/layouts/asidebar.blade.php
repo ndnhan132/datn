@@ -8,7 +8,7 @@ $asideItems = array(
         'txt3'        => 'admin.dashboard.index',
     ],
     'teacher' => [
-        'title'       => 'Gia sư',
+        'title'       => 'Danh sách gia sư',
         'fontawesome' => 'fa fa-pie-chart',
         'routeName'   => 'admin.teacher.index',
         'uri'         => 'quan-ly/giao-vien',
