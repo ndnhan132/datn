@@ -66,7 +66,7 @@ class TeacherController extends Controller
             ]
         );
         $success = false;
-        $message = '';
+        $message = 'Có lỗi xảy ra!';
         $redirect = '';
         if ($validator->passes()) {
             // $course = $this->courseRepository->store($request);
@@ -162,7 +162,8 @@ class TeacherController extends Controller
         $webMailName = 'Gia Sư Đà Nẵng';
 
 
-        $recipientMail = 'ndnhan132@gmail.com';
+        $recipientMail = $teacher->email;
+        // $recipientMail = 'ndnhan132@gmail.com';
         $teacherName = $teacher->name ?? 'Quý vị';
         $recipientName = $teacherName ;
         $subject = 'KÍCH HOẠT TÀI KHOẢN';
@@ -181,7 +182,6 @@ class TeacherController extends Controller
 <p>Sau khi kích hoạt bạn có thể sử dụng {$recipientMail} để đăng nhập.</p>
 Xin trân trọng!
 EOF;
-
 
         $debug = false;
         $mail = new PHPMailer(true);

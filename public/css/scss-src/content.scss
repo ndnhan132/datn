@@ -132,6 +132,9 @@
     }
 
     .form-wrap {
+        label{
+            text-align: left!important;
+        }
         input,
         select {
             height: 40px !important;
@@ -824,5 +827,18 @@
             padding-right: 1rem;
             font-weight: 600;
         }
+    }
+}
+
+
+
+.modal-custom{
+    .modal-header{
+        // background: #0283c8 url(../images/title.png) no-repeat right top;
+        background-size: auto 100%;
+    }
+    .modal-body{
+        max-height: calc(80vh);
+        overflow-x: auto;
     }
 }

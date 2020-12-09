@@ -121,12 +121,15 @@ class Teacher extends Authenticatable
 
     public function getGenderAndLevel()
     {
+        if(!$this->teacherLevel) return 'Chưa cập nhật';
         $gender = "";
-        if($this->is_male) {
-            $gender = "Nam ";
-        }
-        else {
-            $gender = "Nữ ";
+        if($this->is_male != null) {
+            if($this->is_male) {
+                $gender = "Nam ";
+            }
+            else {
+                $gender = "Nữ ";
+            }
         }
         $str = $gender. ($this->teacherLevel->display_name ?? '');
         $str = strtolower($str);

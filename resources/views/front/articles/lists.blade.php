@@ -3,7 +3,7 @@
         <div class="w-100 d-flex">
             <div class="news-img col-lg-4 col-md-4 col-sm-4 col-xs-12">
                 <a href="">
-                    <img src="{{ asset('images/noimage.jpg') }}" alt="@">
+                    <img src="{{ asset($item->image ?? 'images/noimage.jpg') }}" alt="@">
                 </a>
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">

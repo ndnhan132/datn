@@ -7,6 +7,7 @@ Route::get('/dang-ky-tim-gia-su.html', 'CourseController@getCourseRegisterPage')
 Route::post('/front/ajax/course/store', 'CourseController@ajaxStore');
 
 Route::get('/dang-ky-lam-gia-su.html', 'TeacherController@getTeacherRegisterPage')->name('front.getTeacherRegisterPage');
+Route::post('/dang-ky-lam-gia-su.html', 'TeacherController@getTeacherRegisterPage');
 Route::post('/front/ajax/teacher/store', 'TeacherController@ajaxStore');
 
 // lop moi chua giao
@@ -52,7 +53,7 @@ Route::get('/ajax/get-teacher-by-id/{teacherId}', 'TeacherController@ajaxGetTeac
 Route::get('/tin-tuc.html', 'PageController@getListNews')->name('front.getListNews');
 Route::get('/tin-tuc/{slug}.html', 'PageController@readPost')->name('front.readNews');
 Route::get('/trang/{slug}.html', 'PageController@readPost')->name('front.readPage');
-
+Route::get('/ajax/get-list-news', 'PageController@ajaxGetListNews');
 
 
 // group quan ly giao vien

@@ -5,8 +5,7 @@
             <input type="text" name="search_text" class="form-control ml-2" placeholder="Search" value="{{ $search_text ?? '' }}">
         </div>
         <div class="form-group my-2">
-            trạng thái
-            <select name="enquiry_status" class="form-control select_custom_control ml-2 enquiry_status">
+            <select name="enquiry_status" class="form-control select_custom_control- ml-2 enquiry_status">
                 <option value="ALL">Tất cả</option>
                 <option value="CHECKED" {{ $enquiry_status == 'CHECKED' ? 'selected' : '' }}>Đã xử lý</option>
                 <option value="UNCHECKED" {{ $enquiry_status == 'UNCHECKED' ? 'selected' : '' }}>Chưa xử lý ({{ $totalUnChecked ?? '' }})</option>
@@ -82,28 +81,40 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Chi tiết</h5>
+          <h5 class="modal-title">Chi tiết liên hệ</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div class="d-flex flex-column">
-              <label for="">Họ tên</label>
-              <div class="field-val field-val-name"></div>
-              <label for="">Điện thoại</label>
-              <div class="field-val field-val-phone"></div>
-              <label for="">Email</label>
-              <div class="field-val field-val-email"></div>
-              <label for="">Trạng thái</label>
-              <div class="field-val field-val-status"></div>
-              <label for="">Nội dung</label>
-              <div class="field-val field-val-content"></div>
+                <div class="row">
+                    <label for="" class="col-3 font-weight-bold">Họ tên</label>
+                    <div class="field-val field-val-name col-9 mb-2"></div>
+                </div>
+                <div class="row">
+                    <label for="" class="col-3 font-weight-bold">Điện thoại</label>
+                    <div class="field-val field-val-phone col-9 mb-2"></div>
+                </div>
+                <div class="row">
+                    <label for="" class="col-3 font-weight-bold">Email</label>
+                    <div class="field-val field-val-email col-9 mb-2"></div>
+                </div>
+                <div class="row">
+                    <label for="" class="col-3 font-weight-bold">Trạng thái</label>
+                    <div class="field-val field-val-status col-9 mb-2"></div>
+                </div>
+                <div class="row">
+              <label for="" class="col-12 font-weight-bold">Nội dung</label>
+                </div>
+                <div class="row">
+                    <div class="field-val field-val-content col-12 mb-2"></div>
+                </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
+          <button type="button" class="btn btn-primary">Đóng</button>
         </div>
       </div>
     </div>

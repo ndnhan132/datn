@@ -6,13 +6,13 @@
 </a>
 <!-- Navbar Right Menu-->
 <ul class="app-nav">
-    <li class="app-search">
+    {{-- <li class="app-search">
         <input class="app-search__input" type="search" placeholder="Search">
         <button class="app-search__button">
 <i class="fa fa-search">
 </i>
 </button>
-    </li>
+    </li> --}}
     <!--Notification Menu-->
     <li class="dropdown">
 <a class="app-nav__item" href="#"

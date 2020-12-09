@@ -19,14 +19,14 @@ function fadeOutContentTable()
     document.getElementById('content-table').firstElementChild.style.opacity = '0';
 }
 
-function msgErrors(msg) {
+function msgErrors(msg = null) {
     if (!msg) {
         msg = "Có lỗi xảy ra !"
     }
 
     Swal.fire({
         icon: 'error',
-        title: 'Oops...',
+        // title: 'Oops...',
         text: msg,
     });
     hideSpinner();

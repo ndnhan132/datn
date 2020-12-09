@@ -1,3 +1,23 @@
+function msgErrors(msg = null) {
+    if (!msg) {
+        msg = "Có lỗi xảy ra !"
+    }
+
+    Swal.fire({
+        icon: 'error',
+        // title: 'Oops...',
+        text: msg,
+    });
+}
+function msgSuccess(msg = null) {
+    if(!msg) msg = 'Thành công.'
+    Swal.fire({
+        title: msg,
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500
+    });
+}
 $(function () {
 
     //! start header scroll
@@ -64,6 +84,7 @@ $(function () {
     $(document).on('click', '.btn-teacher-login', function (event) {
         /* #region   */
         event.preventDefault();
+        $(document).find('body').addClass('hover_cursor_progress');
         $.ajax({
             url: '/ajax/teacher-login',
             type: 'POST',
@@ -75,8 +96,9 @@ $(function () {
                 if (data.success) {
                     loadTeacherLoginBox();
                 }else{
-                    alert(data.message);
+                    msgErrors(data.message);
                 }
+        $(document).find('body').addClass('hover_cursor_progress');
             });
         /* #endregion */
     });
@@ -105,24 +127,35 @@ $(function () {
         event.preventDefault();
         var courseId = $(document).find('#teacher-course-registration-box').data('course-id');
         if (!courseId) {
-            alert('Error');
+            msgErrors('Error');
             return;
         }
-        $.ajax({
-            url: '/ajax/teacher-register-course',
-            type: 'POST',
-            dataType: 'json',
-            data: { courseId: courseId },
-        })
-            .done(function (data) {
-                console.log(data);
-                if (data.success) {
-                    alert('Nhận lớp thành công.')
-                    reloadRegisterPageContent();
-                } else {
-                    alert('Nhận lớp thất bại.');
-                }
-            });
+        Swal.fire({
+            title: 'Bạn chắc chắn muốn đăng ký lớp này!',
+            showDenyButton: true,
+            // showCancelButton: true,
+            confirmButtonText: 'Đăng ký',
+            denyButtonText: 'Không',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/ajax/teacher-register-course',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { courseId: courseId },
+                })
+                    .done(function (data) {
+                        console.log(data);
+                        if (data.success) {
+                            msgSuccess('Nhận lớp thành công.')
+                            reloadRegisterPageContent();
+                        } else {
+                            msgErrors('Nhận lớp thất bại.');
+                        }
+                    });
+            }
+        });
+
         /* #endregion */
     });
 
@@ -136,6 +169,10 @@ $(function () {
     $(document).on('click', '#list-teachers .pagination-item', function () {
         pageNum = $(this).data('pagenum') ? $(this).data('pagenum') : 1;
         reloadListTeacher();
+    });
+    $(document).on('click', '#list-news .pagination-item', function () {
+        pageNum = $(this).data('pagenum') ? $(this).data('pagenum') : 1;
+        reloadListNews();
     });
     $(document).on('keypress', '#teacher-search-form', function (e) {
         if (e.keyCode == 13) {
@@ -209,22 +246,37 @@ $(function () {
             .done(function (data) {
                 console.log(data);
                 if (data.success) {
-                    // msgSuccess('Đã gửi.')
-                    alert('Đã gửi.')
+                    msgSuccess('Đã gửi.');
                 } else {
-                    alert('fail');
+                    msgErrors();
                 }
                 $('.feedback-form form')[0].reset();
                 $('.btn-show-feedback').fadeIn();
                 $('.feedback-form').slideUp();
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
-                console.log("error");
-                alert(errorThrown);
-                // msgError(errorThrown);
+                console.log(errorThrown);
+                msgErrors();
                 $('.feedback-form form')[0].reset();
             });
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // !#function
     function loadTeacherLoginBox() {
@@ -326,14 +378,14 @@ $(function () {
                     _listClass.empty().append(data.html);
                 }
                 else {
-                    alert('Error');
+                    msgErrors();
                 }
                 $(document).find('body').removeClass('hover_cursor_progress');
                 opacity_transition_effect_fade_in();
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
-                console.log("error");
-                alert(errorThrown);
+                console.log(errorThrown);
+                msgErrors();
                 $(document).find('body').removeClass('hover_cursor_progress');
                 opacity_transition_effect_fade_in();
             });
@@ -368,14 +420,14 @@ $(function () {
                     _listTeachers.empty().append(data.html);
                 }
                 else {
-                    alert('Error');
+                    msgErrors();
                 }
                 $(document).find('body').removeClass('hover_cursor_progress');
                 opacity_transition_effect_fade_in();
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
-                console.log("error");
-                alert(errorThrown);
+                console.log(errorThrown);
+                msgErrors();
                 $(document).find('body').removeClass('hover_cursor_progress');
                 opacity_transition_effect_fade_in();
             });
@@ -383,6 +435,18 @@ $(function () {
 
 
         /* #endregion */
+    }
+    function reloadListNews()
+    {
+        var _url = '/ajax/get-list-news?page=' + pageNum;
+        console.log(_url);
+        opacity_transition_effect_fade_out();
+        $(document).find('body').addClass('hover_cursor_progress');
+        $('#list-news').load(_url, function () {
+            scroll2Top();
+            $(document).find('body').removeClass('hover_cursor_progress');
+            opacity_transition_effect_fade_in();
+        });
     }
 
     function scroll2Top() {

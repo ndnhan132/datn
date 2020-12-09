@@ -28,18 +28,18 @@
         </tbody>
     </table>
 </div>
-<div class="modal fade" id="view-course-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-custom" id="view-course-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title course-title" id="exampleModalLabel"></h5>
+          <h5 class="modal-title course-title border-0 text-capitalize" id="exampleModalLabel"></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
             <div>
-                <table class="table table-bordered">
+                <table class="table table-sm table-bordered">
                     <tr>
                         <td>Người gửi</td>
                         <td col-span="2" class="course-val course-name">asdasdasd</td>

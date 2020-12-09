@@ -1,19 +1,19 @@
 <table class="mb-0 w-100 table table-sm table-bordered text-left text-capitalize">
     <tbody>
-        <tr><td class="pr-3">Họ & tên</td><td> {{ $course->fullname }}</td></tr>
-            <tr><td class="pr-3">Thời gian dạy</td><td> {{ $course->time_working }}</td></tr>
-            <tr><td class="pr-3">Điện thoại</td><td> {{ $course->phone }}</td></tr>
-            <tr><td class="pr-3">E-mail</td><td> {{ $course->email }}</td></tr>
-            <tr><td class="pr-3">Địa chỉ</td><td> {{ $course->address }}</td></tr>
-            <tr><td class="pr-3">Môn học</td><td> {{ $course->subject->display_name }}</td></tr>
-            <tr><td class="pr-3">Môn học khác</td><td> {{ $course->other_subject }}</td></tr>
-            <tr><td class="pr-3">Trình độ học sinh</td><td> {{ $course->courseLevel->display_name ?? '' }}</td></tr>
-            <tr><td class="pr-3">Trình độ khác</td><td> {{ $course->other_teacher_level }}</td></tr>
-            <tr><td class="pr-3">Thời gian</td><td> {{ $course->session_per_week . ' buổi / Tuần' }}</td></tr>
-            <tr><td class="pr-3">Email</td><td> {{ $course->time_per_session . ' phút / buổi'}}</td></tr>
-            <tr><td class="pr-3">Số lượng học sinh</td><td> {{ $course->num_of_student }}</td></tr>
-            <tr><td class="pr-3">Yêu cầu khác</td><td> {{ $course->other_requirement }}</td></tr>
-            <tr><td class="pr-3">Thời gian tạo</td><td> {{ $course->created_at ?? '--/--/-- --:--'}}</td></tr>
+        <tr><td class="pr-3 text-nowrap" >Họ & tên</td><td> {{ $course->fullname }}</td></tr>
+            <tr><td class="pr-3 text-nowrap" >Thời gian dạy</td><td> {{ $course->time_working }}</td></tr>
+            <tr><td class="pr-3 text-nowrap" >Điện thoại</td><td> {{ $course->phone }}</td></tr>
+            <tr><td class="pr-3 text-nowrap" >E-mail</td><td> {{ $course->email }}</td></tr>
+            <tr><td class="pr-3 text-nowrap" >Địa chỉ</td><td> {{ $course->address }}</td></tr>
+            <tr><td class="pr-3 text-nowrap" >Môn học</td><td> {{ $course->subject->display_name }}</td></tr>
+            <tr><td class="pr-3 text-nowrap" >Môn học khác</td><td> {{ $course->other_subject ?? 'Không' }}</td></tr>
+            <tr><td class="pr-3 text-nowrap" >Trình độ học sinh</td><td> {{ $course->courseLevel->display_name ?? '' }}</td></tr>
+            <tr><td class="pr-3 text-nowrap" >Trình độ khác</td><td> {{ $course->other_teacher_level ?? 'Không' }}</td></tr>
+            <tr><td class="pr-3 text-nowrap" >Thời gian</td><td> {{ $course->session_per_week . ' buổi / Tuần' }}</td></tr>
+            <tr><td class="pr-3 text-nowrap" >Email</td><td> {{ $course->time_per_session . ' phút / buổi'}}</td></tr>
+            <tr><td class="pr-3 text-nowrap" >Số lượng học sinh</td><td> {{ $course->num_of_student }}</td></tr>
+            <tr><td class="pr-3 text-nowrap" >Yêu cầu khác</td><td> {{ $course->other_requirement }}</td></tr>
+            <tr><td class="pr-3 text-nowrap" >Thời gian tạo</td><td> {{ $course->created_at ?? '--/--/-- --:--'}}</td></tr>
         </tbody>
     </table>
 

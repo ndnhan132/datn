@@ -14,7 +14,7 @@
         <div class="form-alert">
         </div>
         <div class="row d-flex flex-wrap pb-4">
-            <div class="form-group col-sm-12">
+            <div class="form-group col-sm-12 d-none">
                 {{-- <label class="col-sm-12">Tải lên</small></label> --}}
                 <div class="col-sm-12">
                     <div class="images-box d-flex flex-wrap border-warning">
@@ -260,8 +260,16 @@ $(function() {
     });
     $(document).on('click', '#verify-form .btn-del', function() {
         var _element = $(this);
-        if(confirm('chac chan xoa')){
-            $.ajax({
+
+        Swal.fire({
+            title: 'Bạn chắc chắn muốn xoá ảnh!',
+            showDenyButton: true,
+            // showCancelButton: true,
+            confirmButtonText: 'Xoá',
+            denyButtonText: 'Không',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
                 url: '/ajax/teacher-manager/update/delete-image',
                 type: 'POST',
                 dataType: 'json',
@@ -284,7 +292,8 @@ $(function() {
                 })
                 .fail(function (jqXHR, textStatus, errorThrown) {
                 });
-        }
+            }
+        });
     });
 });
 </script>

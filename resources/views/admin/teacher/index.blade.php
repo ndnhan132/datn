@@ -9,8 +9,8 @@
 <div class="app-title">
 	<div>
 		<h1>
-			<i class="fa fa-th-list"></i>
-			&nbsp;&nbsp;Giáo viên
+			<i class="fa fa-graduation-cap"></i>
+			&nbsp;&nbsp;Danh sách gia sư
 			<span type="button" class="btn-table-reload px-3 d-none">
 				<i class="fa fa-refresh"></i>
 			</span>

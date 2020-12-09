@@ -9,8 +9,12 @@
 @else
 <div class="row">
     <div class="w-100 d-flex flex-wrap text-center py-5">
-        <h3 class="col-12 text-primary mb-4">Đăng ký Thất bại</h3>
-        <p class="col-4 offset-4">Có lỗi xảy ra trong quá trình đăng ký vui lòng <button class="btn btn-sm btn-outline-info">thử lại</button>.</p>
+        <h3 class="col-12 text-danger mb-4">Đăng ký thất bại</h3>
+        <p class="col-4 offset-4">Có lỗi xảy ra trong quá trình đăng ký.</p> <div class="col-4"></div>
+        <p class="col-4 offset-4">
+            <a href="<script>location.reload()</script>"><button class="btn btn-sm btn-outline-info">thử lại</button></a>
+        </p> <div class="col-4"></div>
+
     </div>
 </div>
 @endif

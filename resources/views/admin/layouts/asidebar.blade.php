@@ -9,21 +9,21 @@ $asideItems = array(
     ],
     'teacher' => [
         'title'       => 'Danh sách gia sư',
-        'fontawesome' => 'fa fa-pie-chart',
+        'fontawesome' => 'fa fa-graduation-cap',
         'routeName'   => 'admin.teacher.index',
         'uri'         => 'quan-ly/giao-vien',
         'txt3'        => 'admin.dashboard.index',
     ],
     'key3' => [
         'title'       => 'Đăng ký nhận lớp',
-        'fontawesome' => 'fa fa-laptop',
+        'fontawesome' => 'fa fa-registered',
         'routeName'   => 'admin.teacherCourseRegistration.index',
         'uri'         => 'quan-ly/dang-ky-nhan-lop',
         'txt3'        => 'admin.dashboard.index',
 ],
     'key4' => [
         'title'       => 'Danh sách lớp',
-        'fontawesome' => 'fa fa-ravelry',
+        'fontawesome' => 'fa fa-file-text-o',
         'routeName' => 'admin.course.index',
         'uri' => 'quan-ly/khoa-hoc',
         'txt3' => 'admin.dashboard.index',
@@ -32,7 +32,7 @@ $asideItems = array(
         'title'       => 'Tin tức/Trang',
         'fontawesome' => 'fa fa-newspaper-o',
         'routeName'   => 'admin.post.index',
-        'uri'         => 'quan-ly-bai-viet',
+        'uri'         => 'quan-ly/bai-viet',
 'txt3' => 'admin.dashboard.index',
 ],
     'key7' => [
@@ -53,7 +53,7 @@ $asideItems = array(
         alt="User Image">
     <div>
         <p class="app-sidebar__user-name">{{ Auth::user()->name ?? 'Adminstrator'}}</p>
-        <p class="app-sidebar__user-designation">Người Quản Lý</p>
+        {{-- <p class="app-sidebar__user-designation">Người Quản Lý</p> --}}
     </div>
 </div>
 <ul class="app-menu">

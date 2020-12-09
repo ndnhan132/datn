@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', 'Danh sách gia sư')
+@section('title', 'Danh sách lớp')
 @section('head')
 <style>
 
@@ -9,8 +9,8 @@
 <div class="app-title">
 	<div>
 		<h1>
-			<i class="fa fa-th-list"></i>
-			&nbsp;&nbsp;Quản lý giáo viên
+			<i class="fa fa-file-text-o"></i>
+			&nbsp;&nbsp;Danh sách Lớp
 			<span type="button" class="btn-table-reload px-3 d-none"><i
 					class="fa fa-refresh"></i></span>
 

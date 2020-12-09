@@ -1,18 +1,20 @@
-<table class="mb-0 w-100 table table-sm table-bordered text-left text-capitalize">
+<table class="mb-0 w-100 table table-sm table-bordered text-left text-capitalize"  style="table-layout:fixed">
     <tbody>
-        <tr><td class="pr-3">E-mail</td><td> {{ $teacher->email  ?? 'Chưa cập nhật'}}</td></tr>
-        <tr><td class="pr-3">Họ & tên</td><td> {{ $teacher->name ?? 'Chưa cập nhật' }}</td></tr>
-        <tr><td class="pr-3">Giới tính</td><td> {{ $teacher->is_male ? 'Nam' : 'Nữ' }}</td></tr>
-        <tr><td class="pr-3">Điện thoại</td><td> {{ $teacher->phone  ?? 'Chưa cập nhật'}}</td></tr>
-        <tr><td class="pr-3">Năm sinh</td><td> {{ $teacher->year_of_birth ?? 'Chưa cập nhật' }}</td></tr>
-        <tr><td class="pr-3">Địa chỉ</td><td> {{ $teacher->address  ?? 'Chưa cập nhật'}}</td></tr>
-        <tr><td class="pr-3">Đại học</td><td> {{ $teacher->university ?? 'Chưa cập nhật' }}</td></tr>
-        <tr><td class="pr-3">Chuyên ngành</td><td> {{ $teacher->speciality ?? 'Chưa cập nhật' }}</td></tr>
-        <tr><td class="pr-3">Môn dạy</td><td> {{ $teacher->getDisplaySubject() }}</td></tr>
-        <tr><td class="pr-3">Lương tham khảo</td><td> {{ $teacher->reference_tuition ?$teacher->getDisplayTution() . ' Vnđ/Buổi' : 'Chưa cập nhật' }}</td></tr>
-        <tr><td class="pr-3">Trạng thái tài khoản</td><td> {{ $teacher->teacherAccountStatus->display_name ?? 'Tài khoản đăng ký mới' }}</td></tr>
-        <tr><td class="pr-3">Thời gian tạo</td><td> {{ (new Carbon\Carbon($teacher->verify_email_at))->setTimeZone('Asia/Ho_Chi_Minh')->isoFormat('DD/MM/YYYY') ?? '--/--/----' }}</td></tr>
-        <tr><td class="pr-3">Thông tin thêm</td><td> {{ $teacher->description ?? 'Không'}}</td></tr>
+        <tr><td class="pr-3" COLSPAN="2">E-mail</td><td colspan="5"> {{ $teacher->email  ?? 'Chưa cập nhật'}}</td></tr>
+        <tr><td class="pr-3" COLSPAN="2">Họ & tên</td><td colspan="5"> {{ $teacher->name ?? 'Chưa cập nhật' }}</td></tr>
+        <tr><td class="pr-3" COLSPAN="2">Giới tính</td><td colspan="5"> {{ $teacher->is_male ? 'Nam' : 'Nữ' }}</td></tr>
+        <tr><td class="pr-3" COLSPAN="2">Điện thoại</td><td colspan="5"> {{ $teacher->phone  ?? 'Chưa cập nhật'}}</td></tr>
+        <tr><td class="pr-3" COLSPAN="2">Năm sinh</td><td colspan="5"> {{ $teacher->year_of_birth ?? 'Chưa cập nhật' }}</td></tr>
+        <tr><td class="pr-3" COLSPAN="2">Cmnd</td><td colspan="5"> {{ $teacher->identity_card ?? 'Chưa cập nhật' }}</td></tr>
+        <tr><td class="pr-3" COLSPAN="2">Địa chỉ</td><td colspan="5"> {{ $teacher->address  ?? 'Chưa cập nhật'}}</td></tr>
+        <tr><td class="pr-3" COLSPAN="2">Đại học</td><td colspan="5"> {{ $teacher->university ?? 'Chưa cập nhật' }}</td></tr>
+        <tr><td class="pr-3" COLSPAN="2">Chuyên ngành</td><td colspan="5"> {{ $teacher->speciality ?? 'Chưa cập nhật' }}</td></tr>
+        <tr><td class="pr-3" COLSPAN="2">Môn dạy</td><td colspan="5"> {{ $teacher->getDisplaySubject() }}</td></tr>
+        <tr><td class="pr-3" COLSPAN="2">Lớp dạy</td><td colspan="5"> {{ $teacher->getDisplayCourseLevel() }}</td></tr>
+        <tr><td class="pr-3" COLSPAN="2">Lương tham khảo</td><td colspan="5"> {{ $teacher->reference_tuition ?$teacher->getDisplayTution() . ' Vnđ/Buổi' : 'Chưa cập nhật' }}</td></tr>
+        <tr><td class="pr-3" COLSPAN="2">Trạng thái tài khoản</td><td colspan="5"> {{ $teacher->teacherAccountStatus->display_name ?? 'Tài khoản đăng ký mới' }}</td></tr>
+        <tr><td class="pr-3" COLSPAN="2">Thời gian tạo</td><td colspan="5"> {{ (new Carbon\Carbon($teacher->verify_email_at))->setTimeZone('Asia/Ho_Chi_Minh')->isoFormat('DD/MM/YYYY') ?? '--/--/----' }}</td></tr>
+        <tr><td class="pr-3" COLSPAN="2">Thông tin thêm</td><td colspan="5"> {{ $teacher->description ?? 'Không'}}</td></tr>
         </tbody>
     </table>
     @php

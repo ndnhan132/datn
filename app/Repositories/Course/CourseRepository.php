@@ -142,6 +142,7 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
         }else{
             $title .= ' ' . $course->other_course_level;
         }
+        $title = strtolower($title);
         $course->title = $title;
         $course->slug = Str::slug($title, '-') . '-' . time();
         if($course->save()){

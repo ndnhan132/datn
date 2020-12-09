@@ -30,7 +30,7 @@
                             class="text-danger">(*)</span></label>
                     <div class="col-sm-6">
                         <input type="text" class="form-control" name="email"
-                            value="test{{ time() }}@gmail.com">
+                            value="user{{ time() }}@gmail.com">
                         <div class="form-control-feedback">(Sử dụng để đăng
                             nhập)
                         </div>
@@ -39,7 +39,7 @@
                 <div class="form-group col-sm-12 row">
                     <label class="col-sm-3">Họ tên</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="name" value="test {{ time() }}">
+                        <input type="text" class="form-control" name="name" value="user {{ time() }}">
                     </div>
                 </div>
                 <div class="form-group col-sm-12 row">
@@ -98,7 +98,8 @@ $(document).on('click', 'form#teacher-register-form .btn-submit', function(
             <span class="sr-only">Loading...</span>
         </div>
     </div>`;
-    _registerBox.append(loadingHtml);
+    // _registerBox.append(loadingHtml);
+    $(document).find('body').addClass('hover_cursor_progress');
     $.ajax({
             url: '/front/ajax/teacher/store',
             type: 'POST',
@@ -109,21 +110,37 @@ $(document).on('click', 'form#teacher-register-form .btn-submit', function(
             // alert(data)
             console.log(data);
             if (data.success) {
-                alert('Đăng ký thành công');
+                console.log('Đăng ký thành công');
+                Swal.fire({
+                    title: 'Đăng ký thành công',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             }
             else {
                 if(data.message && typeof data.message == 'string')
                 {
-                    alert(data.message);
+                    console.log(data.message);
+                    msg = data.message ? data.message : "Có lỗi xảy ra!";
+                    Swal.fire({
+                        icon: 'error',
+                        text: msg,
+                    });
                 }
             }
             _registerBox.find('.loading-spinner').remove();
             _registerBox.empty();
             _registerBox.append(data.html);
+            $(document).find('body').removeClass('hover_cursor_progress');
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
-            console.log("error");
-            alert(errorThrown);
+            console.log("error+ " + errorThrown);
+            Swal.fire({
+                icon: 'error',
+                text: 'Có lỗi xảy ra!',
+            });
+            $(document).find('body').removeClass('hover_cursor_progress');
         });
 });
 </script>

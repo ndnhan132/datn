@@ -76,8 +76,9 @@ class PageController extends Controller
 
     public function getListNews()
     {
-        $startFrom = 0;
         $recordPerPage = 12;
+        $page = 1;
+        $startFrom = 0;
         $res = $this->postRepository->getNewsWithPagination($startFrom, $recordPerPage);
         $total = $res['total'];
         $articles = $res['data'];
@@ -87,7 +88,30 @@ class PageController extends Controller
         } else {
             $max = floor($total / $recordPerPage);
         }
-        return view('front.articles.list-articles', compact(['articles', 'total']));
+        return view('front.articles.list-articles', compact(['articles', 'total', 'max', 'page', 'recordPerPage']));
+    }
+
+    public function ajaxGetListNews(Request $request)
+    {
+        $recordPerPage = 12;
+        if(isset($request['recordPerPage'])) {
+            $recordPerPage = $request['record-per-page'];
+        }
+        $page = 1;
+        if(isset($request['page'])) {
+            $page = $request['page'];
+        }
+        $startFrom = ($page - 1) * $recordPerPage;
+        $res = $this->postRepository->getNewsWithPagination($startFrom, $recordPerPage);
+        $total = $res['total'];
+        $articles = $res['data'];
+
+        if ($total % $recordPerPage) {
+            $max = floor($total / $recordPerPage) + 1;
+        } else {
+            $max = floor($total / $recordPerPage);
+        }
+        return view('front.articles.lists', compact(['articles', 'total', 'max', 'page', 'recordPerPage']));
     }
 
     public function readPost($slug, Request $request)

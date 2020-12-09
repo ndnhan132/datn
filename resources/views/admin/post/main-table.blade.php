@@ -62,12 +62,22 @@
                             </td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <button class="btn btn-sm btn-warning text-white btn-edit" data-id="{{ $post->id }}">
+                                    {{-- <button class="btn btn-sm btn-warning text-white btn-edit" data-id="{{ $post->id }}">
                                         <i class="fa fa-edit m-0"></i>
                                     </button>
                                     <button class="btn btn-sm btn-danger text-white ml-2 btn-delete" data-id="{{ $post->id }}">
                                         <i class="fa fa-trash m-0"></i>
-                                    </button>
+                                    </button> --}}
+                                    <span>
+                                        <button class="btn-outline-warning btn-edit" data-id="{{ $post->id }}">
+                                            <i class="fa fa-edit m-0"></i>
+                                        </button>
+                                    </span>
+                                    <span>
+                                        <button class="btn-outline-danger ml-2 btn-delete" data-id="{{ $post->id }}">
+                                            <i class="fa fa-trash m-0"></i>
+                                        </button>
+                                    </span>
                                 </div>
                             </td>
                         </tr>

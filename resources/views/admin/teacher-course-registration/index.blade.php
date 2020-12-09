@@ -9,7 +9,7 @@
 <div class="app-title">
 	<div>
 		<h1>
-			<i class="fa fa-th-list"></i>
+			<i class="fa fa-registered"></i>
 			&nbsp;&nbsp;Đăng ký nhận lớp
 			<span type="button" class="btn-table-reload px-3 d-none"><i
 					class="fa fa-refresh"></i></span>
