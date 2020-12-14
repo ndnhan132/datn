@@ -93,8 +93,8 @@ class Course extends Model
      */
     public function getDisplayTution()
     {
-        if(!is_numeric($this->tuition_per_month)) return $this->tuition_per_month;
-        return number_format($this->tuition_per_month, 0, ",", ".");
+        if(!is_numeric($this->tuition_per_session)) return $this->tuition_per_session;
+        return number_format($this->tuition_per_session, 0, ",", ".");
     }
 
     /**
@@ -246,6 +246,10 @@ class Course extends Model
     public function teacherLevel()
     {
         return $this->belongsTo('App\Models\TeacherLevel');
+    }
+    public function parentRegisters()
+    {
+        return $this->hasMany('App\Models\ParentRegister');
     }
 
     //* #define Accessors

@@ -17,7 +17,7 @@ class CreateImagesTable extends Migration
             $table->id();
             $table->foreignId('teacher_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('src');
-            $table->enum('image_type', ['TEACHER_AVATAR', 'TEACHER_IDENTITY_CARD', 'SLIDE', 'TEACHER_DEGREE'])->nullable();
+            $table->enum('image_type', ['TEACHER_AVATAR', 'TEACHER_IDENTITY_CARD', 'TEACHER_DEGREE'])->nullable();
             $table->timestamps();
         });
     }

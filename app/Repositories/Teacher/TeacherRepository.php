@@ -105,7 +105,14 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
         $teacher->speciality = $request->input('speciality');
         $teacher->teacher_level_id = $request->input('teacher_level_id');
         $teacher->reference_tuition = $request->input('reference_tuition');
-        return $teacher->save();
+        $rs = $teacher->save();
+        if($request['course_level']) {
+            $teacher->courseLevels()->sync($request['course_level']);
+        }
+        if($request['subject']) {
+            $teacher->subjects()->sync($request['subject']);
+        }
+        return $rs;
     }
     public function verifyEmail($id)
     {

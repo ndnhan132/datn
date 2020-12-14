@@ -9,6 +9,8 @@ use App\Repositories\TeacherLevel\TeacherLevelRepositoryInterface;
 use App\Repositories\Image\ImageRepositoryInterface;
 use App\Repositories\TeacherCourseRegistration\TeacherCourseRegistrationRepositoryInterface;
 use App\Repositories\Course\CourseRepositoryInterface;
+use App\Repositories\CourseLevel\CourseLevelRepositoryInterface;
+use App\Repositories\Subject\SubjectRepositoryInterface;
 use Illuminate\Support\Facades\Log;
 use Validator;
 use Illuminate\Support\Facades\Auth;
@@ -22,12 +24,16 @@ class TeacherManagerController extends Controller
     protected $imageRepository;
     protected $courseRepository;
     protected $teacherCourseRegistrationRepository;
+    protected $courseLevelRepository;
+    protected $subjectRepository;
 
     public function __construct(
         TeacherRepositoryInterface $teacherRepository,
         TeacherLevelRepositoryInterface $teacherLevelRepository,
         ImageRepositoryInterface $imageRepository,
         TeacherCourseRegistrationRepositoryInterface $teacherCourseRegistrationRepository,
+        CourseLevelRepositoryInterface $courseLevelRepository,
+        SubjectRepositoryInterface $subjectRepository,
         CourseRepositoryInterface $courseRepository
         )
     {
@@ -36,6 +42,8 @@ class TeacherManagerController extends Controller
         $this->imageRepository = $imageRepository;
         $this->courseRepository = $courseRepository;
         $this->teacherCourseRegistrationRepository = $teacherCourseRegistrationRepository;
+        $this->subjectRepository = $subjectRepository;
+        $this->courseLevelRepository = $courseLevelRepository;
     }
     public function index()
     {
@@ -53,7 +61,13 @@ class TeacherManagerController extends Controller
     public function getManager(Request $request, $settingType)
     {
         if(view()->exists('front.teacher-manager.' . $settingType)) {
-            return view('front.teacher-manager.' . $settingType);
+            $courseLevels = '';
+            $subjects = '';
+            if($settingType == 'hoc-van'){
+                $courseLevels = $this->courseLevelRepository->index();
+                $subjects = $this->subjectRepository->index();
+            }
+            return view('front.teacher-manager.' . $settingType, compact(['courseLevels', 'subjects']));
         }
     }
     public function ajaxUpdateGeneral(Request $request)
@@ -104,9 +118,37 @@ class TeacherManagerController extends Controller
     public function ajaxUpdateEducation(Request $request)
     {
         Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
-        return response()->json(array(
-            'success' => $this->teacherRepository->updateEducation($request)
-        ));
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'university' => 'nullable|max:100',
+                'speciality' => 'nullable|max:50',
+                'teacher_level_id' => 'required',
+                'reference_tuition' => 'nullable|numeric',
+            ],
+            [
+                'required' => ':attribute không được để trống',
+                'max' => ':attribute quá dài',
+                'numeric' => ':attribute phải là số',
+            ],
+            [
+                'university' => 'Đại học',
+                'speciality' => 'Chuyên ngành',
+                'teacher_level_id' => 'Trình độ giáo viên',
+                'reference_tuition' => 'Học phí',
+            ]
+        );
+        $message = false;
+        $success = false;
+        if ($validator->passes()) {
+            $success = $this->teacherRepository->updateEducation($request);
+        } else {
+            $message =  $validator->errors()->all();
+        }
+        return response()->json([
+            'success' => $successzf,
+            'message' => $message,
+        ]);
     }
 
     public function ajaxUpdateAvatar(Request $request)

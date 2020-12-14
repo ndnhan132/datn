@@ -37,6 +37,44 @@
                     <input type="text" class="form-control" value="{{ $teacher->reference_tuition }}" name="reference_tuition">
                 </div>
             </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-12">Nhân dạy lớp</label>
+                <div class="col-sm-12">
+                    {{-- <input type="text" class="form-control" value="{{ $teacher->reference_tuition }}" name="reference_tuition"> --}}
+                    <div class="d-flex flex-wrap">
+                        @php
+                            $myLv = $teacher->getMyCourseLevelId();
+                        @endphp
+                        @foreach ($courseLevels as $item)
+                        {{-- <div class="form-check"> --}}
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="course_level[]" id="1_inlineCheckbox{{$item->id }}" value="{{$item->id }}"  style="height: 20px!important" {{ in_array($item->id, $myLv) ? 'checked="checked"' : '' }}>
+                                <label class="form-check-label text-capitalize" for="1_inlineCheckbox{{$item->id }}">{{ $item->display_name }}</label>
+                              </div>
+                        {{-- </div> --}}
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label class="col-sm-12">Nhân dạy môn</label>
+                <div class="col-sm-12">
+                    {{-- <input type="text" class="form-control" value="{{ $teacher->reference_tuition }}" name="reference_tuition"> --}}
+                    <div class="d-flex flex-wrap">
+                        @php
+                            $myLv = $teacher->getMySubjectId();
+                        @endphp
+                        @foreach ($subjects as $item)
+                        {{-- <div class="form-check"> --}}
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="subject[]" id="2_inlineCheckbox{{$item->id }}" value="{{$item->id }}"  style="height: 20px!important" {{ in_array($item->id, $myLv) ? 'checked="checked"' : '' }}>
+                                <label class="form-check-label text-capitalize" for="2_inlineCheckbox{{$item->id }}">{{ $item->display_name }}</label>
+                              </div>
+                        {{-- </div> --}}
+                        @endforeach
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="w-100 d-flex py-4">
             <a href="#" class="btn btn-info rounded-pill text-uppercase px-5 mx-auto btn-submit">Lưu</a>
@@ -67,5 +105,6 @@ $(function() {
         }
     });
 });
+
 </script>
 @endsection

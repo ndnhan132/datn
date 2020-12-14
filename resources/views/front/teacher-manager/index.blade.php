@@ -88,6 +88,14 @@
                                         <td><span>{{ $teacher->teacherLevel->display_name ?? 'Chưa cập nhật'  }}</span></td>
                                     </tr>
                                     <tr>
+                                        <td class="text-nowrap"><span>-&nbsp;Nhận dạy</span></td>
+                                        <td><span>{{ $teacher->getDisplayCourseLevel() ?? 'Chưa cập nhật'  }}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-nowrap"><span>-&nbsp;Các môn</span></td>
+                                        <td><span>{{ $teacher->getDisplaySubject() ?? 'Chưa cập nhật'  }}</span></td>
+                                    </tr>
+                                    <tr>
                                         <td class="text-nowrap"><span>-&nbsp;Lương tham khảo</span></td>
                                         <td><span>{{ $teacher->reference_tuition ?$teacher->getDisplayTution() . ' Vnđ/Buổi' : 'Chưa cập nhật' }}</span></td>
                                     </tr>

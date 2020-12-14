@@ -11,10 +11,10 @@
                     }
                 @endphp
                 <option value="">Không tìm kiếm</option>
-                <option value="COURSE_FULLNAME" {{ $searchCriterion == 'COURSE_FULLNAME' ? 'selected' : '' }}>Họ tên người gửi</option>
+                {{-- <option value="COURSE_FULLNAME" {{ $searchCriterion == 'COURSE_FULLNAME' ? 'selected' : '' }}>Họ tên người gửi</option>
                 <option value="COURSE_EMAIL" {{ $searchCriterion == 'COURSE_EMAIL' ? 'selected' : '' }}>Email</option>
                 <option value="COURSE_ADDRESS" {{ $searchCriterion == 'COURSE_ADDRESS' ? 'selected' : '' }}>Địa chỉ</option>
-                <option value="COURSE_PHONE" {{ $searchCriterion == 'COURSE_PHONE' ? 'selected' : '' }}>Điện thoại</option>
+                <option value="COURSE_PHONE" {{ $searchCriterion == 'COURSE_PHONE' ? 'selected' : '' }}>Điện thoại</option> --}}
                 <option value="TEACHER_FULLNAME" {{ $searchCriterion == 'TEACHER_FULLNAME' ? 'selected' : '' }}>Họ tên người gửi</option>
                 <option value="TEACHER_EMAIL" {{ $searchCriterion == 'TEACHER_EMAIL' ? 'selected' : '' }}>Email</option>
                 <option value="TEACHER_PHONE" {{ $searchCriterion == 'TEACHER_PHONE' ? 'selected' : '' }}>Điện thoại</option>
@@ -42,17 +42,16 @@
                     <thead>
                         <tr class="text-center">
                             <th>#</th>
-                            <th colspan="3">Bên yêu cầu</th>
-                            <th colspan="2">Bên nhận</th>
+                            <th colspan="2">Yêu cầu lớp</th>
+                            <th colspan="2">Giáo viên đăng ký</th>
                             <th>Trạng thái</th>
                             <th colspan="2">Tác vụ</th>
                         </tr>
                         <tr class="">
                             <th>mã số</th>
-                            <th class="text-left">họ tên</th>
-                            <th class="text-left">tg đăng ký</th>
+                            <th class="text-left">Môn học</th>
                             <th class="text-left">
-                                trình độ lớp
+                                khối lớp
                             </th>
                             <th class="text-left">
                                 Họ tên
@@ -79,9 +78,6 @@
                                 <span>#{{ $record->id }}</span>
                             </td>
                             <td class="text-left">
-                                <span>{{ $record->course->fullname }}</span>
-                            </td>
-                            <td class="text-left">
                                 <span>{{ $record->course->getDisplaySubject() }}</span>
                             </td>
                             <td class="text-left">
@@ -106,7 +102,7 @@
                             </td>
                             <td class="text-center">
                                 <span>
-                                    <button class="btn-outline-danger btn-delete-record" data-record-id="{{ $record->id }}" {{ $record->isReceived() ? 'disabled' : '' }}>
+                                    <button class="btn-outline-danger btn-delete-record" data-record-id="{{ $record->id }}" >
                                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                                     </button>
                                 </span>

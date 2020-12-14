@@ -28,7 +28,7 @@ class ImageRepository extends BaseRepository implements ImageRepositoryInterface
             $image->image_type =  \App\Models\Image::TEACHER_AVATAR;
         }
         if (file_exists($image->src)) {
-            unlink($image->src);
+            // unlink($image->src);
         }
         $image->src = $src;
 
@@ -74,7 +74,7 @@ class ImageRepository extends BaseRepository implements ImageRepositoryInterface
                 $image->image_type =  $image_type;
             }
             if (file_exists($image->src)) {
-                unlink($image->src);
+                // unlink($image->src);
             }
             $image->src = $src;
         }
@@ -94,7 +94,7 @@ class ImageRepository extends BaseRepository implements ImageRepositoryInterface
         ])->first();
         if(!$image) return false;
         if (file_exists($image->src)) {
-            unlink($image->src);
+            // unlink($image->src);
         }
         return $image->delete();
     }

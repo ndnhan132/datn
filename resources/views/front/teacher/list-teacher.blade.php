@@ -6,17 +6,17 @@
 {{-- @include('front.home.header-title', ['title' => 'Danh sách gia sư']) --}}
 
 <div class="list-teacher-page">
-        <div class="d-flex align-items-center title">
+        <div class="d-flex align-items-center title mb-3">
             <div class="title-icon">
             <img src="{{ asset('images/icon/graduation-cap-solid.svg') }}" alt="al">
             </div>
             <h3>Danh sách gia sư</h3>
         </div>
-        <form method="GET" class="col-12 p-3 filter" id="teacher-search-form">
+        <form method="GET" class="col-12 px-3 py-1 filter mb-3" id="teacher-search-form">
             <input type="hidden" value="1" name="page">
             <div class="row d-flex flex-wrap">
                 @isset($teacherLevels)
-                <div class="form-group col-sm-6 px-0">
+                <div class="form-group col-sm-6 mb-1 px-0">
                     <label class="col-sm-12">Trình độ hiện tại</label>
                     <div class="col-sm-12">
                         <select name="teacher_level" class="form-control input-onchange">
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 @endisset
-                <div class="form-group col-sm-6 px-0">
+                <div class="form-group col-sm-6 mb-1 px-0">
                     <label class="col-sm-12">Giới tính</label>
                     <div class="col-sm-12">
                         <select name="gender" class="form-control input-onchange">
@@ -38,7 +38,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group col-sm-6 px-0">
+                <div class="form-group col-sm-6 mb-1 px-0">
                     <label class="col-sm-12">Lớp dạy</label>
                     <div class="col-sm-12">
                         <select name="course_level" class="form-control input-onchange text-capitalize">
@@ -49,7 +49,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group col-sm-6 px-0">
+                <div class="form-group col-sm-6 mb-1 px-0">
                     <label class="col-sm-12">Môn dạy</label>
                     <div class="col-sm-12">
                         <select name="subject" class="form-control input-onchange text-capitalize">

@@ -19,7 +19,7 @@
                     <td class="text-capitalize">{{ $course->subject->display_name }}</td>
                     <td>{{ $course->time_working }}</td>
                     <td>{{ $course->address }}</td>
-                    <td>{{ $course->tuition_per_month . ' đ/tháng' }}</td>
+                    <td>{{ $course->tuition_per_session . ' đ/tháng' }}</td>
                 <td>
                 <span title="{{ $course->other_requirement }}">{{ (strlen($course->other_requirement) > 50) ? (substr($course->other_requirement, 0, 50). '...') : ($course->other_requirement) }}</span>
             </td>

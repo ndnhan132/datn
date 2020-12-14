@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
             'Image',
             'Post',
             'Enquiry',
+            'ParentRegister'
         );
         foreach ($repos as $re) {
             $this->app->bind(

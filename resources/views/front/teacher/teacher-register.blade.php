@@ -30,7 +30,7 @@
                             class="text-danger">(*)</span></label>
                     <div class="col-sm-6">
                         <input type="text" class="form-control" name="email"
-                            value="user{{ time() }}@gmail.com">
+                            value="">
                         <div class="form-control-feedback">(Sử dụng để đăng
                             nhập)
                         </div>
@@ -39,7 +39,7 @@
                 <div class="form-group col-sm-12 row">
                     <label class="col-sm-3">Họ tên</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" name="name" value="user {{ time() }}">
+                        <input type="text" class="form-control" name="name" value="">
                     </div>
                 </div>
                 <div class="form-group col-sm-12 row">
@@ -47,7 +47,7 @@
                             class="text-danger">(*)</span></label>
                     <div class="col-sm-6">
                         <input type="password" class="form-control"
-                            name="password" value="111111">
+                            name="password" value="">
                     </div>
                 </div>
                 <div class="form-group col-sm-12 row">
@@ -55,7 +55,7 @@
                             class="text-danger">(*)</span></label>
                     <div class="col-sm-6">
                         <input type="password" class="form-control"
-                            name="password_confirmation" value="111111">
+                            name="password_confirmation" value="">
                     </div>
                 </div>
             </div>

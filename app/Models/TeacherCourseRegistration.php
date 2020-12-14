@@ -36,16 +36,6 @@ class TeacherCourseRegistration extends Model
 
     /**
      * @Author: Nhan Nguyen Dinh
-     * @Date: 2020-10-25 16:11:38
-     * @Desc: Đăng ký được thay đổi điều kiện trong trường hợp thay đổi cho đăng ký đã nhận hoặc khoá học chưa ai nhận
-     * @Return: boolean
-     */
-    public function canChangeStatus()
-    {
-        return !( (!$this->isReceived()) && $this->course->received() );
-    }
-    /**
-     * @Author: Nhan Nguyen Dinh
      * @function:
      * @Date: 2020-12-05 22:26:09
      * @Desc:

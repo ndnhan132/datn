@@ -6,6 +6,14 @@ Route::get('/', 'PageController@index')->name('front.home');
 Route::get('/dang-ky-tim-gia-su.html', 'CourseController@getCourseRegisterPage')->name('front.getCourseRegisterPage');
 Route::post('/front/ajax/course/store', 'CourseController@ajaxStore');
 
+Route::get('front/ajax/course/get-subject-by-courselevel', 'CourseController@ajaxGetSubjectByCourselevel');
+Route::get('/front/ajax/course/get-course-by-courselevel-and-subject', 'CourseController@ajaxGetCourseByCourselevelAndSubject');
+
+Route::get('/front/ajax/parent-register/show-teacher-preview/{teacherId}', 'ParentRegisterController@ajaxParentRegisterPreviewTeacher');
+Route::post('/front/ajax/parent-register/store', 'ParentRegisterController@ajaxStore');
+
+Route::get('/front/ajax/get-parent-register-by-id/{parentRegisterId}', 'ParentRegisterController@ajaxGetParentRegisterById');
+
 Route::get('/dang-ky-lam-gia-su.html', 'TeacherController@getTeacherRegisterPage')->name('front.getTeacherRegisterPage');
 Route::post('/dang-ky-lam-gia-su.html', 'TeacherController@getTeacherRegisterPage');
 Route::post('/front/ajax/teacher/store', 'TeacherController@ajaxStore');
@@ -38,8 +46,6 @@ Route::get('/danh-sach-gia-su.html', 'TeacherController@getAllTeachersPage')->na
 Route::get('/gia-su/{slug}.html', 'TeacherController@getDetailTeacherPage')->name('front.getDetailTeacherPage');
 Route::post('/ajax/get-list-teacher', 'TeacherController@ajaxGetListTeacher');
 Route::get('/ajax/get-teacher-by-id/{teacherId}', 'TeacherController@ajaxGetTeacherById');
-
-
 
 
 

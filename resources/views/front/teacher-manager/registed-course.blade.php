@@ -3,7 +3,7 @@
         <thead class="bg-primary text-white">
             <tr class="text-nowrap">
                 <th>Môn học</th>
-                <th>Yêu cầu</th>
+                <th>Người gửi</th>
                 <th>Học phí</th>
                 <th>Thời gian</th>
                 <th class="text-center"><span>Xem</span></th>
@@ -13,15 +13,11 @@
         @foreach ($myReceived as $reg)
             <tr>
                 <td><span>{{$reg->course->getSubjectAndLevel() ?? ''}}</span></td>
-                <td><span>{{$reg->course->getDisplayTeacherLevelAndGender() ?? ''}}</span></td>
-                <td><span>{{$reg->course->getDisplayTution() ?? ''}}</span></td>
-                @if ($reg->updated_at)
-                <td><span>{{date_format( $reg->updated_at, 'd/m/Y') }}</span></td>
-                @else
-                <td><span>--/--/----</span></td>
-                @endif
+                <td><span>{{$reg->fullname ?? ''}}</span></td>
+                <td><span>{{$reg->getDisplayTution() ?? ''}}</span></td>
+                <td><span>{{ $reg->time_working }}</span></td>
                 <td class="text-center">
-                    <span class="btn-view-course" data-course="{{ $reg->course_id }}"><i class="fas fa-eye"></i></span>
+                    <span class="btn-view-parentregister" data-parentregister="{{ $reg->id }}"><i class="fas fa-eye"></i></span>
                 </td>
             </tr>
         @endforeach
@@ -40,73 +36,45 @@
         <div class="modal-body">
             <div>
                 <table class="table table-sm table-bordered">
-                    <tr>
+                    <tr class="showIfReceived">
                         <td>Người gửi</td>
-                        <td col-span="2" class="course-val course-name">asdasdasd</td>
+                        <td colspan="2" class="course-val course-name"></td>
                     </tr>
-                    <tr>
+                    <tr class="showIfReceived">
                         <td>Địa chỉ</td>
-                        <td col-span="2" class="course-val course-address"></td>
+                        <td colspan="2" class="course-val course-address"></td>
                     </tr>
-                    <tr>
+                    <tr class="showIfReceived">
                         <td>Điện thoại</td>
-                        <td col-span="2" class="course-val course-phone"></td>
+                        <td colspan="2" class="course-val course-phone"></td>
                     </tr>
-                    <tr>
+                    <tr  class="showIfReceived">
                         <td>Email</td>
-                        <td col-span="2" class="course-val course-email"></td>
+                        <td colspan="2" class="course-val course-email"></td>
                     </tr>
                     <tr>
                         <td>Lương / buổi</td>
-                        <td col-span="2" class="course-val course-tuition_per_month"></td>
+                        <td colspan="2" class="course-val course-tuition_per_session"></td>
                     </tr>
                     <tr>
                         <td>Môn học</td>
-                        <td col-span="2" class="course-val course-subject"></td>
-                    </tr>
-                    <tr>
-                        <td>Môn học khác</td>
-                        <td col-span="2" class="course-val course-other_subject"></td>
+                        <td colspan="2" class="course-val course-subject"></td>
                     </tr>
                     <tr>
                         <td>Khối lớp</td>
-                        <td col-span="2" class="course-val course-level"></td>
+                        <td colspan="2" class="course-val course-level"></td>
                     </tr>
-                    <tr>
-                        <td>Khối lớp khác</td>
-                        <td col-span="2" class="course-val course-other_level"></td>
-                    </tr>
-                    <tr>
-                        <td>Yêu cầu giáo viên</td>
-                        <td col-span="2" class="course-val course-teacher_level"></td>
-                    </tr>
-                    <tr>
-                        <td>Yêu cầu giáo viên khác</td>
-                        <td col-span="2" class="course-val course-other_teacher_level"></td>
-                    </tr>
-                    <tr>
-                        <td>Yêu cầu giới tính</td>
-                        <td col-span="2" class="course-val course-teacher_gender"></td>
-                    </tr>
-                    <tr>
+                    <tr   class="showIfReceived">
                         <td>Thời gian dạy</td>
-                        <td col-span="2" class="course-val course-time_working"></td>
+                        <td colspan="2" class="course-val course-time_working"></td>
                     </tr>
                     <tr>
                         <td>Số buổi / tuần</td>
-                        <td col-span="2" class="course-val course-session_per_week"></td>
-                    </tr>
-                    <tr>
-                        <td>Số học sinh</td>
-                        <td col-span="2" class="course-val course-num_of_student"></td>
-                    </tr>
-                    <tr>
-                        <td>Yêu cầu khác</td>
-                        <td col-span="2" class="course-val course-other_requirement"></td>
+                        <td colspan="2" class="course-val course-session_per_week"></td>
                     </tr>
                     <tr>
                         <td>Ngày gửi</td>
-                        <td col-span="2" class="course-val course-created_at">dasdsad</td>
+                        <td colspan="2" class="course-val course-created_at">dasdsad</td>
                     </tr>
                 </table>
             </div>
@@ -131,39 +99,60 @@
                 if(data.success){
                     var course = data.data;
                     console.log(course);
+                    if(course.isReceived){
+                        $(document).find('.showIfReceived').show();
+                    }else{
+                        $(document).find('.showIfReceived').hide();
+                    }
                     _modal.find('.modal-title').empty().append(course.title);
                     _modal.find('.course-name').empty().append(course.fullname);
                     _modal.find('.course-address').empty().append(course.address);
                     _modal.find('.course-phone').empty().append(course.phone);
                     _modal.find('.course-email').empty().append(course.email);
-                    _modal.find('.course-tuition_per_month').empty().append(course.tuition_per_month + ' VND');
+                    _modal.find('.course-tuition_per_session').empty().append(course.tuition_per_session + ' VND');
                     _modal.find('.course-subject').empty().append(course.subject.display_name);
-                    if(course.other_subject){
-                        _modal.find('.course-other_subject').empty().append(course.other_subject);
-                    }else{
-                        _modal.find('.course-other_subject').empty().append('Không');
-                    }
                     _modal.find('.course-level').empty().append(course.course_level.display_name);
-                    if(course.other_course_level){
-                        _modal.find('.course-other_level').empty().append(course.other_course_level);
-                    }else{
-                        _modal.find('.course-other_level').empty().append('Không');
-                    }
-                    _modal.find('.course-teacher_level').empty().append(course.teacher_level.display_name);
-                    var gender = 'Không';
-                    if(course.teacher_gender == 'MALE') gender = 'Nam';
-                    if(course.teacher_gender == 'FEMALE') gender = 'Nữ';
-                    _modal.find('.course-teacher_gender').empty().append(gender);
-                    if(course.other_teacher_level){
-                        _modal.find('.course-other_teacher_level').empty().append(course.other_teacher_level);
-                    }else{
-                        _modal.find('.course-other_teacher_level').empty().append('Không');
-                    }
-                    _modal.find('.course-time_working').empty().append(course.time_working);
                     _modal.find('.course-session_per_week').empty().append(course.session_per_week);
-                    _modal.find('.course-num_of_student').empty().append(course.num_of_student);
-                    _modal.find('.course-other_requirement').empty().append(course.other_requirement);
                     _modal.find('.course-created_at').empty().append(course.created_at);
+                    _modal.modal('show');
+                }
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log("error");
+                alert(errorThrown);
+            });
+        });
+
+        $(document).on('click', '.btn-view-parentregister', function() {
+            var _modal = $('#view-course-modal');
+            var parentRegisterId = $(this).data('parentregister');
+            _modal.find('.modal-body .course-val').empty();
+
+            $.ajax({
+                url: '/front/ajax/get-parent-register-by-id/' + parentRegisterId,
+                type: 'GET',
+            })
+            .done(function(data) {
+                console.log(data);
+                if(data.success){
+                    var register = data.data;
+                    console.log(register);
+                    if(register.isReceived){
+                        $(document).find('.showIfReceived').show();
+                    }else{
+                        $(document).find('.showIfReceived').hide();
+                    }
+                    _modal.find('.modal-title').empty().append(register.title);
+                    _modal.find('.course-name').empty().append(register.fullname);
+                    _modal.find('.course-address').empty().append(register.address);
+                    _modal.find('.course-phone').empty().append(register.phone);
+                    _modal.find('.course-email').empty().append(register.email);
+                    _modal.find('.course-tuition_per_session').empty().append(register.tuition_per_session + ' VND');
+                    _modal.find('.course-subject').empty().append(register.subject);
+                    _modal.find('.course-level').empty().append(register.course_level);
+                    _modal.find('.course-time_working').empty().append(register.time_working);
+                    _modal.find('.course-session_per_week').empty().append(register.session_per_week);
+                    _modal.find('.course-created_at').empty().append(register.created_at);
                     _modal.modal('show');
                 }
             })

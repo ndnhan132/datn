@@ -13,4 +13,6 @@ interface CourseRepositoryInterface
     public function getWithPagination($startFrom, $recordPerPage, $type, $confirmedRequired, $select_teacher_level, $select_course_level,$select_subject);
     public function findWithData($courseId);
     public function getTotalNewCourse();
+    public function getByCourseLevelId($courseLevelId);
+    public function getByCourseLevelIdAndSubject($courseLevelId, $subjectId);
 }

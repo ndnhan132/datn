@@ -191,4 +191,57 @@ class CourseController extends Controller
         ));
     }
 
+    public function ajaxGetSubjectByCourselevel(Request $request)
+    {
+        $courseLevelId = $request['courselevel'] ?? '0';
+        $courses = $this->courseRepository->getByCourseLevelId($courseLevelId);
+        $subjects = array();
+        foreach ($courses as $course) {
+            $subjects[] = array (
+                'subject_id' => $course->subject_id,
+                'subject_name' => $course->subject->display_name,
+            );
+        }
+        return response()->json(array(
+            'success' => true,
+            'data'    => $subjects,
+        ));
+    }
+
+    public function ajaxGetCourseByCourselevelAndSubject(Request $request)
+    {
+        $courseLevelId = $request['courselevel'] ?? '0';
+        $subjectId = $request['subject'] ?? '0';
+        $course = $this->courseRepository->getByCourseLevelIdAndSubject($courseLevelId, $subjectId);
+        $msg = '';
+        $success = false;
+        $teacher = '';
+        if($course) {
+            $success = true;
+            $regs = $course->teacherCourseRegistrations;
+            if($regs){
+                $teacher = array();
+                foreach($regs as $reg){
+                    if($reg->registration_status_id == \App\models\RegistrationStatus::ELIGIBLE_ID){
+                        $teacher[] = array(
+                            'teacher_id' => $reg->teacher->id,
+                            'teacher_name' => $reg->teacher->name,
+                            'teacher_avatar' => asset($reg->teacher->getAvatarSrc()),
+                            'teacher_level' => $reg->teacher->getGenderAndLevel(),
+                        );
+                    }
+                }
+            }
+        }else{
+            $msg = 'Không tìm thấy lớp này.';
+        }
+        return response()->json(array(
+            'success' => $success,
+            'data'    => $course,
+            'message' => $msg,
+            'teacher' => $teacher,
+        ));
+    }
+
+
 }

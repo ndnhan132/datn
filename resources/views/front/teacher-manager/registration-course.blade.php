@@ -43,8 +43,15 @@
 <script>
     $(function() {
         $(document).on('click', '.btn-del-registration', function() {
-            var _isDel = confirm('Are you sure you want to delete this course?');
-            if(_isDel){
+            Swal.fire({
+            title: 'Bạn chắc chắn xoá đăng ký lớp này!',
+            showDenyButton: true,
+            // showCancelButton: true,
+            confirmButtonText: 'Xoá',
+            denyButtonText: 'Không',
+        }).then((result) => {
+            if (result.isConfirmed) {
+
                 $.ajax({
                     url: '/ajax/delete-registration',
                     type: 'POST',
@@ -55,9 +62,18 @@
                     console.log(data);
                     if(data.success){
                         $(document).find('#all-courses').empty().append(data.html);
+                        Swal.fire({
+                            title: 'Đã xoá',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     }
                 });
             }
+        });
+
+
         });
     });
 </script>

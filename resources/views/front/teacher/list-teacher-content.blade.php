@@ -10,7 +10,7 @@
 <div class="d-flex flex-wrap opacity_transition_effect">
     @foreach ($teachers as $teacher)
     <article class="teacher-item col-sm-6 px-0 border-bottom">
-        <div class="w-100 d-flex bg-white p-3">
+        <div class="w-100 d-flex bg-white p-2">
             <div class="teacher-img col-lg-4 col-md-4 col-sm-4 col-xs-12">
                 <a href="" class="btn-view-teacher-modal" data-teacher="{{ $teacher->id }}">
                     <img src="{{ $teacher->getAvatarSrc() }}" alt="@">

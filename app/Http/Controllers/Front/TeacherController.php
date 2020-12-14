@@ -157,7 +157,7 @@ class TeacherController extends Controller
 
     public function sendActiveTeacherAccountMail($teacher)
     {
-        $webMail = 'web.sp.nhan@gmail.com';
+        $webMail = 'ndnhans1@gmail.com';
         $webMailPass = 'ndnhan187539115';
         $webMailName = 'Gia Sư Đà Nẵng';
 

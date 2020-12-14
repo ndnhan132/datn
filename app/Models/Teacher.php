@@ -205,11 +205,16 @@ class Teacher extends Authenticatable
     {
         // $myId = Auth::guard('teacher')->user()->id;
         $myId = $this->id;
-        $res = $this->teacherCourseRegistrations
-                    ->where('teacher_id', $myId)
-                    ->where('registration_status_id', \App\Models\RegistrationStatus::RECEIVED_ID)
-                    ->sortByDesc('id')
-                    ->all();
+        // $res = $this->teacherCourseRegistrations
+        //             ->where('teacher_id', $myId)
+        //             ->where('registration_status_id', \App\Models\RegistrationStatus::RECEIVED_ID)
+        //             ->sortByDesc('id')
+        //             ->all();
+        $res = $this->parentRegisters
+        ->where('teacher_id', $myId)
+        ->where('flag_is_confirmed', true)
+        ->sortByDesc('id')
+        ->all();
         return $res ?? false;
     }
 /**
@@ -276,6 +281,29 @@ class Teacher extends Authenticatable
  }
 
 
+ public function getMyCourseLevelId()
+ {
+     $lvs = array();
+     if($this->courseLevels){
+        foreach($this->courseLevels as $record)
+        {
+            $lvs[] = $record->id;
+        }
+     }
+     return $lvs;
+ }
+
+ public function getMySubjectId()
+ {
+     $lvs = array();
+     if($this->subjects){
+        foreach($this->subjects as $record)
+        {
+            $lvs[] = $record->id;
+        }
+     }
+     return $lvs;
+ }
 
 
     //* #define RelationshipsP
@@ -313,6 +341,10 @@ class Teacher extends Authenticatable
         return $this->belongsToMany('App\Models\CourseLevel', 'course_level_teachers');
     }
 
+    public function parentRegisters()
+    {
+        return $this->hasMany('App\Models\ParentRegister');
+    }
 
 
 }

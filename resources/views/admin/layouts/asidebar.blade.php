@@ -28,6 +28,13 @@ $asideItems = array(
         'uri' => 'quan-ly/khoa-hoc',
         'txt3' => 'admin.dashboard.index',
 ],
+'key5' => [
+        'title'       => 'Phụ huynh đăng ký lớp',
+        'fontawesome' => 'fa fa-file-text',
+        'routeName' => 'admin.parentRegister.index',
+        'uri' => 'quan-ly/phu-huynh-dang-ky',
+        'txt3' => 'admin.dashboard.index',
+],
     'key6' => [
         'title'       => 'Tin tức/Trang',
         'fontawesome' => 'fa fa-newspaper-o',

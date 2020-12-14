@@ -789,7 +789,7 @@
     color: #000;
     font-weight: 400;
     margin: 0px 0px 10px 0;
-    padding: 5px 0px 15px 0px;
+    padding: 5px 0px 5px 0px;
     width: 100%;
     display: block;
     span{
@@ -840,5 +840,14 @@
     .modal-body{
         max-height: calc(80vh);
         overflow-x: auto;
+    }
+}
+
+.showIfReceived{
+    display: none;
+}
+.teacher_manager_checkbox{
+    input{
+        height: 20px!important;
     }
 }

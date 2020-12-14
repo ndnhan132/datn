@@ -103,6 +103,10 @@ $(function () {
                 var teacherId = ($(this).data('teacher-id')) ? $(this).data('teacher-id') : '';
                 url = '/quan-ly/giao-vien/ajax/show/' + teacherId;
                 break;
+                case 'parentregister':
+                    var parentRegisterId = ($(this).data('parentregister-id')) ? $(this).data('parentregister-id') : '';
+                    url = '/quan-ly/phu-huynh-dang-ky/ajax/show/' + parentRegisterId;
+                    break;
         }
 
         showDetailModal(url);
@@ -343,6 +347,119 @@ $(function () {
         setPageNum(1);
         reloadMainTable();
     });
+
+    $(document).on('click', '.btn-course-create', function (event) {
+        event.preventDefault();
+        var _modal = $(document).find('.modal-create-course');
+        if (_modal.length) {
+            _modal.find('select[name="course_level"').val('');
+            _modal.find('input[name="course_id"').val('');
+            _modal.find('select[name="subject"').val('');
+            _modal.find('input[name="tuition_per_session"').val('');
+            _modal.find('.coursealert').text('');
+            _modal.modal('show');
+        }
+    });
+    $(document).on('click', '.btn-course-edit', function (event) {
+        event.preventDefault();
+        var courseId = $(this).data('id');
+        $.ajax({
+            type: 'GET',
+            url: '/quan-ly/khoa-hoc/ajax/get-course-by-id?courseid=' +  courseId,
+        })
+            .done(function (data) {
+                console.log(data);
+                if (data.success && data.data) {
+                    $('.new-course-form input[name=course_id]').val(data.data.id);
+                    $('.new-course-form select[name=course_level]').val(data.data.course_level_id);
+                    $('.new-course-form select[name=subject]').val(data.data.subject_id);
+                    $('.new-course-form input[name=tuition_per_session]').val(data.data.tuition_per_session);
+                    $('.new-course-form .coursealert').text('* Lớp đã tồn tại : chỉnh sửa');
+                    var _modal = $(document).find('.modal-create-course');
+                    if (_modal.length) {
+                        _modal.modal('show');
+                    }
+                }
+            hideSpinner();
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            //    msgErrors(errorThrown);
+            msgErrors();
+            hideSpinner();
+        });
+
+
+    });
+
+    $(document).on('change', '.new-course-form select.selectOnChange', function (event) {
+        event.preventDefault();
+        var _course_level = $('.new-course-form select[name=course_level]').val();
+        var _subject = $('.new-course-form select[name=subject]').val();
+        console.log(_course_level, _subject);
+        if(_course_level && _subject) {
+            showSpinner();
+            $.ajax({
+                type: 'GET',
+                url: '/quan-ly/khoa-hoc/ajax/get-course-by-courselevel-and-subject?courselevel=' +  _course_level + '&subject=' + _subject,
+            })
+                .done(function (data) {
+                    console.log(data);
+                    if (data.success && data.data) {
+                        $('.new-course-form input[name=course_id]').val(data.data.id);
+                        $('.new-course-form input[name=tuition_per_session]').val(data.data.tuition_per_session);
+                        $('.new-course-form .coursealert').text('* Lớp đã tồn tại : chỉnh sửa');
+                    }else{
+                        // msgErrors();
+                        $('.new-course-form input[name=course_id]').val();
+                        $('.new-course-form input[name=tuition_per_session]').val('');
+                        $('.new-course-form .coursealert').text('* Lớp chưa tồn tại: tạo mới');
+                    }
+                hideSpinner();
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                //    msgErrors(errorThrown);
+                msgErrors();
+                hideSpinner();
+            });
+        }
+    });
+
+    $(document).on('click', '.new-course-form button[type="submit"]', function (event) {
+        event.preventDefault();
+        var _course_level = $('.new-course-form select[name=course_level]').val();
+        var _subject = $('.new-course-form select[name=subject]').val();
+        var _course_id = $('.new-course-form select[name=course_id]').val();
+        console.log(_course_level, _subject, _course_id);
+        if(_course_level && _subject) {
+            showSpinner();
+            var formData = $('.new-course-form').serialize();
+            $.ajax({
+                type: 'POST',
+                url: '/quan-ly/khoa-hoc/ajax/update-course',
+                type: 'POST',
+                dataType: 'json',
+                data: formData,
+            })
+                .done(function (data) {
+                    console.log(data);
+                    if (data.success) {
+                        msgSuccess('Lưu thành công')
+                    }else{
+                            msgErrors();
+                    }
+                    reloadMainTable();
+                    hideSpinner();
+                    $(document).find('.modal-create-course').modal('hide');
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                //    msgErrors(errorThrown);
+                $(document).find('.modal-create-course').modal('hide');
+                msgErrors();
+                hideSpinner();
+            });
+        }
+    });
+
     // ! end course
     // ! enquiry
     $(document).on('change', 'select.enquiry_status', function (event) {

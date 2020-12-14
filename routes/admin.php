@@ -33,6 +33,16 @@ Route::name('admin.')->middleware(['CheckAdminLogin'])->group(function(){
     Route::get('/khoa-hoc/ajax/show/{courseId}', 'CourseController@ajaxShow');
     Route::post('/khoa-hoc/ajax/confirm', 'CourseController@ajaxConfirm');
     Route::post('/khoa-hoc/ajax/delete', 'CourseController@ajaxDelete');
+    Route::get('/khoa-hoc/ajax/get-course-by-courselevel-and-subject', 'CourseController@ajaxGetCourseByCourselevelAndSubject');
+    Route::post('/khoa-hoc/ajax/update-course', 'CourseController@ajaxUpdateCourse');
+    Route::get('/khoa-hoc/ajax/get-course-by-id', 'CourseController@ajaxGetCourseById');
+
+    // Phụ huynh đăng ký lớp
+    Route::get('/phu-huynh-dang-ky', 'ParentRegisterController@index')->name('parentRegister.index');
+    Route::get('/phu-huynh-dang-ky/ajax/index', 'ParentRegisterController@ajaxGetTableContent');
+    Route::get('/phu-huynh-dang-ky/ajax/show/{parentRegisterId}', 'ParentRegisterController@ajaxShow');
+    Route::post('/phu-huynh-dang-ky/ajax/confirm', 'ParentRegisterController@ajaxConfirm');
+    Route::post('/phu-huynh-dang-ky/ajax/delete', 'ParentRegisterController@ajaxDelete');
 
 
 

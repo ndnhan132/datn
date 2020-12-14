@@ -29,7 +29,9 @@ class CourseController extends Controller
     public function index()
     {
         Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
-        return view('admin.course.index');
+        $subjects = $this->subjectRepository->index();
+        $courseLevels = $this->courseLevelRepository->index();
+        return view('admin.course.index', compact(['courseLevels', 'subjects']));
     }
 
     public function ajaxGetTableContent(Request $request)
@@ -90,7 +92,7 @@ class CourseController extends Controller
         }
         $subjects = $this->subjectRepository->index();
         $courseLevels = $this->courseLevelRepository->index();
-        $totalNewCourse = $this->courseRepository->getTotalNewCourse();
+        // $totalNewCourse = $this->courseRepository->getTotalNewCourse();
         return view('admin.course.main-table', compact([
                                                         'courses',
                                                         'max',
@@ -104,7 +106,7 @@ class CourseController extends Controller
                                                         'courseLevels',
                                                         'select_subject',
                                                         'select_course_level',
-                                                        'totalNewCourse',
+                                                        // 'totalNewCourse',
                                                         'searchText',
                                                         'searchCriterion'
                                                     ]));
@@ -158,16 +160,67 @@ class CourseController extends Controller
         $message = false;
         if(isset($request['recordId'])) {
             $id = $request['recordId'];
-            if($this->courseRepository->find($id)->received()) {
-                $message = "Không thể xóa lớp đã được nhận!";
-            }
-            elseif($this->teacherCourseRegistrationRepository->destroy($id)) {
+            if($this->courseRepository->destroy($id)) {
                 $success = true;
             }
         }
         return response()->json(array(
             'success' => $success,
             'message' => $message,
+        ));
+    }
+
+    public function ajaxGetCourseByCourselevelAndSubject(Request $request)
+    {
+        $courseLevelId = $request['courselevel'] ?? '0';
+        $subjectId = $request['subject'] ?? '0';
+        $course = $this->courseRepository->getByCourseLevelIdAndSubject($courseLevelId, $subjectId);
+        $msg = '';
+        $success = false;
+        if($course) {
+            $success = true;
+        }else{
+            $msg = 'Không tìm thấy lớp này.';
+        }
+        return response()->json(array(
+            'success' => $success,
+            'data'    => $course,
+            'message' => $msg,
+        ));
+    }
+
+    public function ajaxUpdateCourse(Request $request)
+    {
+        $courseId = false;
+        $isUpdate = false;
+        if(isset($request['course_id'])){
+            $courseId = $request['course_id'];
+            if(is_numeric($courseId) && $courseId > 0){
+                $isUpdate = true;
+            }
+        }
+        if($isUpdate){
+            $success = $this->courseRepository->update($courseId, $request);
+        }
+        else{
+            $success = $this->courseRepository->store($request);
+        }
+        return response()->json(array(
+            'success' => $success,
+        ));
+    }
+
+    public function ajaxGetCourseById(Request $request)
+    {
+        $courseId = $request['courseid'];
+        if($courseId){
+            return response()->json(array(
+                'success' => true,
+                'data' => $this->courseRepository->find($courseId),
+            ));
+        }
+        return response()->json(array(
+            'success' => false,
         ));
     }
 }

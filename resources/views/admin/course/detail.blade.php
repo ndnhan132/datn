@@ -1,34 +1,26 @@
 <table class="mb-0 w-100 table table-sm table-bordered text-left text-capitalize">
     <tbody>
-        <tr><td class="pr-3 text-nowrap" >Họ & tên</td><td> {{ $course->fullname }}</td></tr>
-            <tr><td class="pr-3 text-nowrap" >Thời gian dạy</td><td> {{ $course->time_working }}</td></tr>
-            <tr><td class="pr-3 text-nowrap" >Điện thoại</td><td> {{ $course->phone }}</td></tr>
-            <tr><td class="pr-3 text-nowrap" >E-mail</td><td> {{ $course->email }}</td></tr>
-            <tr><td class="pr-3 text-nowrap" >Địa chỉ</td><td> {{ $course->address }}</td></tr>
             <tr><td class="pr-3 text-nowrap" >Môn học</td><td> {{ $course->subject->display_name }}</td></tr>
-            <tr><td class="pr-3 text-nowrap" >Môn học khác</td><td> {{ $course->other_subject ?? 'Không' }}</td></tr>
-            <tr><td class="pr-3 text-nowrap" >Trình độ học sinh</td><td> {{ $course->courseLevel->display_name ?? '' }}</td></tr>
-            <tr><td class="pr-3 text-nowrap" >Trình độ khác</td><td> {{ $course->other_teacher_level ?? 'Không' }}</td></tr>
-            <tr><td class="pr-3 text-nowrap" >Thời gian</td><td> {{ $course->session_per_week . ' buổi / Tuần' }}</td></tr>
-            <tr><td class="pr-3 text-nowrap" >Email</td><td> {{ $course->time_per_session . ' phút / buổi'}}</td></tr>
-            <tr><td class="pr-3 text-nowrap" >Số lượng học sinh</td><td> {{ $course->num_of_student }}</td></tr>
-            <tr><td class="pr-3 text-nowrap" >Yêu cầu khác</td><td> {{ $course->other_requirement }}</td></tr>
+            <tr><td class="pr-3 text-nowrap" >Khối lớp</td><td> {{ $course->courseLevel->display_name ?? '' }}</td></tr>
+            <tr><td class="pr-3 text-nowrap" >Số buổi/tuần</td><td> {{ $course->session_per_week ?? '' }}</td></tr>
+            <tr><td class="pr-3 text-nowrap" >Học phí</td><td> {{ $course->tuition_per_session ?? '' }}</td></tr>
+            <tr><td class="pr-3 text-nowrap" >Số giáo viên đăng ký</td><td> {{ ($course->teacherCourseRegistrations->count()) }}</td></tr>
+            <tr><td class="pr-3 text-nowrap" >Số phụ huynh đăng ký</td><td> {{ ($course->parentRegisters->count()) }}</td></tr>
             <tr><td class="pr-3 text-nowrap" >Thời gian tạo</td><td> {{ $course->created_at ?? '--/--/-- --:--'}}</td></tr>
         </tbody>
     </table>
 
-    @if ($canConfirm && !$course->received())
     <div class="w-100 text-right pt-3">
-        <button class="btn btn-sm btn-primary px-3 btn-confirm" data-course-id="{{ $course->id }}" data-is-confirmed="1">
+        {{-- <button class="btn btn-sm btn-primary px-3 btn-confirm" data-course-id="{{ $course->id }}" data-is-confirmed="1">
             Thông qua
         </button>
         &nbsp;&nbsp;&nbsp;
         <button class="btn btn-sm btn-secondary btn-confirm" data-course-id="{{ $course->id }}" data-is-confirmed="0">
             Ko đạt
-        </button>
+        </button> --}}
         &nbsp;&nbsp;&nbsp;
         <button class="btn btn-sm btn-secondary px-3 btn-modal-dismiss"  data-dismiss="modal">
-           Huỷ
+           Đóng
         </button>
     </div>
 <script type="text/javascript">
@@ -65,10 +57,3 @@
         }
     });
 </script>
-@elseif($course->received())
-<div class="w-100 text-right pt-3">
-    <span class="text-danger float-left border-bottom">
-        * Khoá học này đã có người nhận. Không thể thay đổi trạng thái!
-    </span>
-</div>
-@endif

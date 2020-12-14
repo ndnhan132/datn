@@ -372,6 +372,8 @@ a.text-primary:focus {
     text-overflow: ellipsis; }
   .enquiry-table .r-1, .enquiry-table .r-2, .enquiry-table .r-3, .enquiry-table .r-4, .enquiry-table .r-6 {
     width: auto; }
+  .enquiry-table .r-3 {
+    width: 20%; }
   .enquiry-table .r-5 {
     width: 50%; }
 
