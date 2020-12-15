@@ -115,7 +115,7 @@ $(function () {
                 }else{
                     msgErrors(data.message);
                 }
-        $(document).find('body').addClass('hover_cursor_progress');
+        $(document).find('body').removeClass('hover_cursor_progress');
             });
         /* #endregion */
     });
@@ -265,7 +265,11 @@ $(function () {
                 if (data.success) {
                     msgSuccess('Đã gửi.');
                 } else {
-                    msgErrors();
+                    if (data.message) {
+                        showValidatorAlert(data.message);
+                    } else {
+                        msgErrors();
+                    }
                 }
                 $('.feedback-form form')[0].reset();
                 $('.btn-show-feedback').fadeIn();

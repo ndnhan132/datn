@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Post\PostRepositoryInterface;
 use Illuminate\Support\Facades\Log;
+use Validator;
+
 
 class PostController extends Controller
 {
@@ -105,10 +107,39 @@ class PostController extends Controller
 
     public function ajaxPostUpdate(Request $request)
     {
-        $success = $this->postRepository->update($request['id'] , $request);
-        return response()->json(array(
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'title' => 'required|max:255|unique:posts,title,'.$request['id'],
+                'slug' => 'required|max:255',
+                'content' => 'required',
+                'image' => 'nullable|image',
+            ],
+            [
+                'required' => ':attribute không được để trống',
+                'max' => ':attribute tối đa :max ký tự',
+                'numeric' => ':attribute phải là số',
+                'image' => ':attribute không đúng định dạng',
+                'unique' => ':attribute đã tồn tại',
+            ],
+            [
+                'title' => 'Tiêu đề',
+                'slug' => 'Đường dẫn',
+                'content' => 'Nội dung',
+                'image' => 'Hình ảnh',
+            ]
+        );
+        $message = false;
+        $success = false;
+        if ($validator->passes()) {
+            $success = $this->postRepository->update($request['id'] , $request);
+        } else {
+            $message =  $validator->errors()->all();
+        }
+        return response()->json([
             'success' => $success,
-        ));
+            'message' => $message,
+        ]);
     }
 
     public function ajaxGetCreate()
@@ -124,10 +155,41 @@ class PostController extends Controller
 
     public function ajaxPostStore(Request $request)
     {
-        $success = $this->postRepository->store($request);
-        return response()->json(array(
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'title' => 'required|max:255|unique:posts',
+                'slug' => 'required|max:255',
+                'content' => 'required',
+                'image' => 'nullable|image',
+            ],
+            [
+                'required' => ':attribute không được để trống',
+                'max' => ':attribute tối đa :max ký tự',
+                'numeric' => ':attribute phải là số',
+                'image' => ':attribute không đúng định dạng',
+                'unique' => ':attribute đã tồn tại',
+            ],
+            [
+                'title' => 'Tiêu đề',
+                'slug' => 'Đường dẫn',
+                'content' => 'Nội dung',
+                'image' => 'Hình ảnh',
+            ]
+        );
+        $message = false;
+        $success = false;
+        if ($validator->passes()) {
+
+            $success = $this->postRepository->store($request);
+        } else {
+            $message =  $validator->errors()->all();
+        }
+        return response()->json([
             'success' => $success,
-        ));
+            'message' => $message,
+        ]);
+
     }
 
 

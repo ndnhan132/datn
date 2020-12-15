@@ -28,13 +28,6 @@
         <div class="form-group my-2">
             <button class="form-control ml-2 btn-course-create" ><i class="fa fa-plus-circle"></i></button>
         </div>
-        {{-- <div class="text-right col">
-            @if ($totalNewCourse > 0)
-            <span class="text-danger">* Có {{ $totalNewCourse }} lớp cần xét duyệt</span>
-            @else
-            <span class="text-success">* Không có lớp cần xét duyệt</span>
-            @endif
-        </div> --}}
     </form>
 
     <div class="col-md-12 px-0">
@@ -63,23 +56,6 @@
                             </th>
                             <th>Số buổi/tuần</th>
                             <th>học phí</th>
-                            {{-- <th>Thời gian tạo</th> --}}
-                            {{-- <th class="text-center py-1">
-                                <select name="course_status"  class="form-control select_custom_control course_status rounded-pill mx-auto text-center">
-                                    <option value="">Xét duyệt</option>
-                                    <option value="YES" {{ ($course_status === 'YES') ? 'selected' : '' }}>Thông qua</option>
-                                    <option value="NO" {{ ($course_status === 'NO') ? 'selected' : '' }}>Không hợp lệ</option>
-                                    <option value="NEW" {{ ($course_status === 'NEW') ? 'selected' : '' }}>Đăng ký mới</option>
-                                </select>
-                            </th>
-                            <th class="text-center py-1">
-                                <select name="is_received" class="form-control select_custom_control is_received rounded-pill mx-auto text-center">
-                                    <option value="">Trạng thái</option>
-                                    <option value="YES" {{ ($is_received === 'YES') ? 'selected' : '' }}>Đã nhận</option>
-                                    <option value="NO" {{ ($is_received === 'NO') ? 'selected' : '' }}>Chưa nhận</option>
-                                </select>
-                            </th> --}}
-                            {{-- <th>Yêu cầu</th> --}}
                             <th>Tác vụ</th>
                         </tr>
                     </thead>
@@ -96,37 +72,12 @@
                             <td class="text-center">
                                 <span>{{ $course->subject->display_name ?? $course->other_subject }}</span>
                             </td>
-                            {{-- <td class="text-white text-center text-capitalize">
-                                @if ($course->isConfirmed())
-                                <span class="label-status bg-success">Thông qua</span>
-                                @elseif($course->isUnConfirmed())
-                                <span class="label-status bg-secondary">Ko hợp lệ</span>
-                                @elseif($course->isNew())
-                                <span class="label-status bg-danger">Đăng ký mới</span>
-                                @endif
-                            </td> --}}
-
-                            {{-- <td class="text-center">
-                                @if ($course->isConfirmed())
-                                    @if ($course->received())
-                                    <span class="label-status bg-success">Đã nhận</span>
-                                    @else
-                                    <span class="label-status bg-secondary">Chưa nhận</span>
-                                    @endif
-                                @endif
-                            </td> --}}
-                            {{-- <td class="text-center">
-                                <span class="btn btn-sm btn-info- btn-detail label-status-info" data-type="course" data-course-id="{{ $course->id }}" data-can-confirm="yes">Chi tiết</span>
-                            </td> --}}
                             <td class="text-center">
                                 <span>{{ $course->session_per_week }}</span>
                             </td>
                             <td class="text-center">
                                 <span>{{ $course->tuition_per_session }}</span>
                             </td>
-                            {{-- <td class="text-center">
-                                <span>{{ (new Carbon\Carbon($course->created_at))->setTimeZone('Asia/Ho_Chi_Minh')->isoFormat('DD/MM/YYYY') ?? '--/--/----' }}</span>
-                            </td> --}}
                             <td class="text-center">
                                 <span>
                                     <button class="btn- btn-sm- btn-info- btn-outline-info btn-detail" data-type="course" data-course-id="{{ $course->id }}" data-can-confirm="yes">

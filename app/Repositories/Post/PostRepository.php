@@ -47,6 +47,17 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
         $post->slug = $request['slug'];
         $post->category = $category;
         $post->content = $request['content'];
+        $imageUpload = $request['image'];
+        if($imageUpload) {
+            $fileExtension = $request->file('image')->getClientOriginalExtension();
+            $fileName = time() . "." . $fileExtension;
+            // $uploadPath = public_path('/uploads/post');
+            $uploadPath = 'uploads/post';
+            $request->file('image')->move($uploadPath, $fileName);
+            $image = $uploadPath . '/' . $fileName;
+            $post->image = $image;
+        }
+
         return $post->save();
     }
 
@@ -62,6 +73,18 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
         $post->slug = $request['slug'];
         $post->category = $category;
         $post->content = $request['content'];
+
+        $imageUpload = $request['image'];
+        if($imageUpload) {
+            $fileExtension = $request->file('image')->getClientOriginalExtension();
+            $fileName = time() . "." . $fileExtension;
+            // $uploadPath = public_path('/uploads/post');
+            $uploadPath = 'uploads/post';
+            $request->file('image')->move($uploadPath, $fileName);
+            $image = $uploadPath . '/' . $fileName;
+            $post->image = $image;
+        }
+
         return $post->save();
     }
 

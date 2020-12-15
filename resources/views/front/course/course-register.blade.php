@@ -74,7 +74,7 @@
                         </div>
                     </div>
                     <div class="form-group col-sm-12 row">
-                        <label class="col-sm-3">Thời gian dạy</label>
+                        <label class="col-sm-3">Thời gian dạy <span class="text-danger">(*)</span></label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" name="time_working" value="">
                             <span class="text-muted">*(VD: Tối T2-T7)</span>
@@ -384,17 +384,17 @@
     {
         if(typeof errors == "object") {
             var alertHtml = "<div>";
-    $.each(errors, function (key, value) {
-        alertHtml += '<div class = "alert alert-danger py-2 px-2" style = "float: left;width: calc(100% - 0px);margin-left: 0px;">' +
-            '- ' + value + '<button type="extutton" class="close d-none" data-dismiss="alert">×</button >' +
-            '</div>';
-    });
-    alertHtml += '</div>'
-    Swal.fire({
-        title: 'Dữ liệu không hợp lệ',
-        html: alertHtml,
-        focusConfirm: false,
-    })
+            $.each(errors, function (key, value) {
+                alertHtml += '<div class = "alert alert-danger py-2 px-2" style = "float: left;width: calc(100% - 0px);margin-left: 0px;">' +
+                    '- ' + value + '<button type="extutton" class="close d-none" data-dismiss="alert">×</button >' +
+                    '</div>';
+            });
+            alertHtml += '</div>'
+            Swal.fire({
+                title: 'Dữ liệu không hợp lệ',
+                html: alertHtml,
+                focusConfirm: false,
+            })
         }
     }
 </script>

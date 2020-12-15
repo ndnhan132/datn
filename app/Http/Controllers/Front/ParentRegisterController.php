@@ -79,6 +79,7 @@ class ParentRegisterController extends Controller
                 'phone' => 'required',
                 'email' => 'required|max:50|email:rfc,dns',
                 'address' => 'required|max:50',
+                'time_working' => 'required|max:50',
             ],
             [
                 'required' => ':attribute không được để trống',
@@ -92,6 +93,7 @@ class ParentRegisterController extends Controller
                 'phone' => 'Điện thoại',
                 'email' => 'Email',
                 'address' => 'Địa chỉ',
+                'time_working' => 'Thời gian dạy'
             ]
         );
 

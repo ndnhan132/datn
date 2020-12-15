@@ -60,25 +60,17 @@
                                 <a class="" href="{{ route('front.readNews', $post->slug ) }}" target="_blank">Xem</a>
                                 @endif
                             </td>
-                            <td>
-                                <div class="d-flex justify-content-center">
-                                    {{-- <button class="btn btn-sm btn-warning text-white btn-edit" data-id="{{ $post->id }}">
-                                        <i class="fa fa-edit m-0"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-danger text-white ml-2 btn-delete" data-id="{{ $post->id }}">
-                                        <i class="fa fa-trash m-0"></i>
-                                    </button> --}}
+                            <td class="text-center">
                                     <span>
                                         <button class="btn-outline-warning btn-edit" data-id="{{ $post->id }}">
                                             <i class="fa fa-edit m-0"></i>
                                         </button>
                                     </span>
                                     <span>
-                                        <button class="btn-outline-danger ml-2 btn-delete" data-id="{{ $post->id }}">
-                                            <i class="fa fa-trash m-0"></i>
+                                        <button class="btn-outline-danger btn-delete-record" data-record-id="{{ $post->id }}">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
                                         </button>
                                     </span>
-                                </div>
                             </td>
                         </tr>
                         @endforeach

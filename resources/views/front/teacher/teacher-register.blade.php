@@ -117,9 +117,11 @@ $(document).on('click', 'form#teacher-register-form .btn-submit', function(
                     showConfirmButton: false,
                     timer: 1500
                 });
+                _registerBox.empty();
+                _registerBox.append(data.html);
             }
             else {
-                if(data.message && typeof data.message == 'string')
+                if(data.message)
                 {
                     console.log(data.message);
                     msg = data.message ? data.message : "Có lỗi xảy ra!";
@@ -127,11 +129,10 @@ $(document).on('click', 'form#teacher-register-form .btn-submit', function(
                         icon: 'error',
                         text: msg,
                     });
+                    showErrorAlert(data.message);
                 }
             }
             _registerBox.find('.loading-spinner').remove();
-            _registerBox.empty();
-            _registerBox.append(data.html);
             $(document).find('body').removeClass('hover_cursor_progress');
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
@@ -142,6 +143,24 @@ $(document).on('click', 'form#teacher-register-form .btn-submit', function(
             });
             $(document).find('body').removeClass('hover_cursor_progress');
         });
+
+        function showErrorAlert(errors)
+        {
+            if(typeof errors == "object") {
+                var alertHtml = "<div>";
+                $.each(errors, function (key, value) {
+                    alertHtml += '<div class = "alert alert-danger py-2 px-2" style = "float: left;width: calc(100% - 0px);margin-left: 0px;">' +
+                        '- ' + value + '<button type="extutton" class="close d-none" data-dismiss="alert">×</button >' +
+                        '</div>';
+                });
+                alertHtml += '</div>'
+                Swal.fire({
+                    title: 'Dữ liệu không hợp lệ',
+                    html: alertHtml,
+                    focusConfirm: false,
+                })
+            }
+        }
 });
 </script>
 @endsection

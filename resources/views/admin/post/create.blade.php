@@ -33,11 +33,11 @@
                             <label for="input-slug">Thể loại</label>
                             <select class="form-control " id="input-category" name="category">
                                 @if (isset($post))
-                                <option value="PAGE" {{ $post->category == 'PAGE' ? 'selected' : '' }}>Trang</option>
                                 <option value="NEWS" {{ $post->category == 'NEWS' ? 'selected' : '' }}>Bài tin tức</option>
+                                <option value="PAGE" {{ $post->category == 'PAGE' ? 'selected' : '' }}>Trang</option>
                                 @else
-                                <option value="PAGE">Trang</option>
                                 <option value="NEWS">Bài tin tức</option>
+                                <option value="PAGE">Trang</option>
                                 @endif
                             </select>
                         </div>
@@ -57,6 +57,14 @@
                             <input class="form-control" id="input-url" type="text" readonly>
                             @endif
                             <div class="form-control-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="row">
+                                <label for="input-content" class="col-1">Hình ảnh</label>
+                                <input type="file" class="form-control-file col-9" name="image">
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-12">

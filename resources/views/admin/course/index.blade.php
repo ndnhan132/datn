@@ -55,9 +55,6 @@
 					<div class="form-group">
 						<label for="">Số buổi học mỗi tuần</label>
 						<select class="form-control" name="session_per_week" readonly>
-						  @foreach (range(3,3) as $item)
-						  <option value="{{$item}}" >{{ $item}}</option>
-						  @endforeach
 						</select>
 					  </div>
 					  <div class="form-group">

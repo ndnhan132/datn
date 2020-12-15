@@ -50,7 +50,7 @@ function showAjaxErrors(errors) {
     });
     alertHtml += '</div>'
     Swal.fire({
-        title: 'Invalid Data',
+        title: 'Dữ liệu khồng hợp lệ!',
         html: alertHtml,
         focusConfirm: false,
     })
@@ -168,6 +168,7 @@ $(function () {
     });
 
     $(document).on('click', '.post-manager #js-form-update .btn-submit', function (event) {
+        event.preventDefault();
         var form = document.getElementById('js-form-update');
         var content = CKEDITOR.instances['input-content'].getData();
         var formData = new FormData(form);
@@ -181,12 +182,20 @@ $(function () {
             processData: false,
         })
             .done(function (data) {
-                data = JSON.parse(data);
+                if(typeof data == "string"){
+                    data = JSON.parse(data);
+                }
+                console.log(data.message);
+                console.log(data);
                 if (data.success) {
                     msgSuccess('Cập nhật thành công');
-                    loadPageTable();
+                    reloadMainTable();
                 } else {
-                    msgErrors();
+                    if(data.message){
+                        showAjaxErrors(data.message);
+                    }else{
+                        msgErrors();
+                    }
                 }
                 hideSpinner();
             })
@@ -221,6 +230,7 @@ $(function () {
     });
 
     $(document).on('click', '.post-manager #js-form-create .btn-submit', function (event) {
+        event.preventDefault();
         var form = document.getElementById('js-form-create');
         var content = CKEDITOR.instances['input-content'].getData();
         var formData = new FormData(form);
@@ -237,9 +247,13 @@ $(function () {
                 data = JSON.parse(data);
                 if (data.success) {
                     msgSuccess('Tạo thành công');
-                    loadPageTable();
+                    reloadMainTable();
                 } else {
-                    msgErrors();
+                    if(data.message){
+                        showAjaxErrors(data.message);
+                    }else{
+                        msgErrors();
+                    }
                 }
                 hideSpinner();
             })
@@ -407,6 +421,7 @@ $(function () {
                     if (data.success && data.data) {
                         $('.new-course-form input[name=course_id]').val(data.data.id);
                         $('.new-course-form input[name=tuition_per_session]').val(data.data.tuition_per_session);
+                        $('.new-course-form select[name="session_per_week"]').append('<option value="' + data.data.session_per_week + '">' + data.data.session_per_week + '</option>');
                         $('.new-course-form .coursealert').text('* Lớp đã tồn tại : chỉnh sửa');
                     }else{
                         // msgErrors();

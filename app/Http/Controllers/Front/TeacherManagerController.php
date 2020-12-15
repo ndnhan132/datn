@@ -73,9 +73,41 @@ class TeacherManagerController extends Controller
     public function ajaxUpdateGeneral(Request $request)
     {
         Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
-        return response()->json(array(
-            'success' => $this->teacherRepository->updateGeneral($request)
-        ));
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'nullable|max:50',
+                'address' => 'nullable|max:100',
+                'phone' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+                'identity_card' => 'nullable|numeric',
+                'year_of_birth' => 'nullable|numeric|between:1950,2005',
+            ],
+            [
+                'required' => ':attribute không được để trống',
+                'max' => ':attribute tối đa :max ký tự',
+                'numeric' => ':attribute phải là số',
+                'between' => ':attribute có giả trị :input không thuộc khoảng :min - :max',
+                'regex' => ':attribute không đúng định dạng',
+            ],
+            [
+                'name' => 'Họ tên',
+                'address' => 'Địa chỉ',
+                'phone' => 'Số điện thoại',
+                'identity_card' => 'Số chứng minh nhân dân',
+                'year_of_birth' => 'Năm sinh',
+            ]
+        );
+        $message = false;
+        $success = false;
+        if ($validator->passes()) {
+            $success = $this->teacherRepository->updateGeneral($request);
+        } else {
+            $message =  $validator->errors()->all();
+        }
+        return response()->json([
+            'success' => $success,
+            'message' => $message,
+        ]);
     }
     public function ajaxUpdatePassword(Request $request)
     {
@@ -128,7 +160,7 @@ class TeacherManagerController extends Controller
             ],
             [
                 'required' => ':attribute không được để trống',
-                'max' => ':attribute quá dài',
+                'max' => ':attribute tối đa :max ký tự',
                 'numeric' => ':attribute phải là số',
             ],
             [
@@ -146,7 +178,7 @@ class TeacherManagerController extends Controller
             $message =  $validator->errors()->all();
         }
         return response()->json([
-            'success' => $successzf,
+            'success' => $success,
             'message' => $message,
         ]);
     }

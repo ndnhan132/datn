@@ -53,23 +53,28 @@ class TeacherController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                // 'current_password' => 'required',
-                // 'password' => 'required|confirmed',
+                'email' => 'required|email:rfc,dns|max:50|unique:teachers',
+                'password' => 'required|max:30|confirmed',
+                // 'password_confirmation' => 'required|confirmed|max:30',
             ],
             [
                 'required' => ':attribute không được để trống',
                 'confirmed' => ':attribute không khớp nhau',
+                'email' => ':attribute không hợp lệ',
+                'max' => ':attribute độ dài vượt quá :max ký tự',
+                'unique' => ':attribute đã được sử dụng',
             ],
             [
-                'current_password' => 'Mật khẩu hiện tại',
-                'password' => 'Mật khẩu mới',
+                'current_password' => 'Mật khẩu',
+                'password' => 'Mật khẩu',
+                'email' => 'Email',
             ]
         );
         $success = false;
         $message = 'Có lỗi xảy ra!';
         $redirect = '';
+        $html = '';
         if ($validator->passes()) {
-            // $course = $this->courseRepository->store($request);
             $tmpTeacher = $this->teacherRepository->findByEmail($request['email']);
             if($tmpTeacher) {
                 $message = 'Email đã được sử dụng';
@@ -77,20 +82,17 @@ class TeacherController extends Controller
             else{
                 $teacher =  $this->teacherRepository->store($request);
                 if($teacher){
-
                     $this->sendActiveTeacherAccountMail($teacher);
                     $credentials = $request->only('email', 'password');
-                    // Auth::guard('teacher')->attempt($credentials);
                     $success = true;
-                    // $redirect = route('front.teacherManager.index');
                 }
             }
+            $html = view('front.teacher.register-result', compact(['success']));
+            $html = strval($html);
+            $html = trim($html);
         }else{
             $message = $validator->errors()->all();
         }
-        $html = view('front.teacher.register-result', compact(['success']));
-        $html = strval($html);
-        $html = trim($html);
         return response()->json(array(
             'success'  => $success,
             'message'  => $message,
@@ -100,38 +102,65 @@ class TeacherController extends Controller
 
     public function ajaxLogin(Request $request)
     {
-        if(Auth::guard('teacher')->check()) dd('Đã đăng nhập');
-        $email = $request->input('email');
-        $password = $request->input('password');
+        if(Auth::guard('teacher')->check()){
+            return redirect()->route('front.home');
+        };
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'email' => 'required|email:rfc,dns|max:50',
+                'password' => 'required|max:30',
+            ],
+            [
+                'required' => ':attribute không được để trống',
+                'max' => ':attribute tối đa :max ký tự',
+                'email' => ':attribute không hợp lệ'
+            ],
+            [
+                'email' => 'Email',
+                'password' => 'Mật khẩu',
+            ]
+        );
         $success = false;
         $message = 'Đăng nhập không thành công.';
-        $tmpTeacher = $this->teacherRepository->findByEmail($email);
-        if($tmpTeacher) {
-            if(Hash::check($password, $tmpTeacher->password)) {
-                // $data = [
-                //     'email' => $email,
-                //     'password' => $password,
-                // ];
-                if(!$tmpTeacher->email_verified_at){
-                    $message = 'Tài khoản chưa được kích hoạt !';
-                }else{
-                    $credentials = $request->only('email', 'password');
-                    $remember = ($request->input('remember')) ? '1' : '0';
-                    if (Auth::guard('teacher')->attempt($credentials, $remember)) {
-                        if(Auth::guard('teacher')->check()) {
-                            $message = 'Đăng nhập thành công.';
-                            $success = true;
+        if ($validator->passes()) {
+            $email = $request->input('email');
+            $password = $request->input('password');
+            $tmpTeacher = $this->teacherRepository->findByEmail($email);
+            if($tmpTeacher) {
+                if(Hash::check($password, $tmpTeacher->password)) {
+                    // $data = [
+                    //     'email' => $email,
+                    //     'password' => $password,
+                    // ];
+                    if(!$tmpTeacher->email_verified_at){
+                        $message = 'Tài khoản chưa được kích hoạt !';
+                    }else{
+                        $credentials = $request->only('email', 'password');
+                        $remember = ($request->input('remember')) ? '1' : '0';
+                        if (Auth::guard('teacher')->attempt($credentials, $remember)) {
+                            if(Auth::guard('teacher')->check()) {
+                                $message = 'Đăng nhập thành công.';
+                                $success = true;
+                            }
                         }
                     }
                 }
+                else {
+                    $message = 'Mật khẩu không chính xác !';
+                }
             }
             else {
-                $message = 'Mật khẩu không chính xác !';
+                $message = 'Email ko tồn tại !';
             }
+        } else {
+            $message =  $validator->errors()->all();
         }
-        else {
-            $message = 'Email ko tồn tại !';
-        }
+        return response()->json([
+            'success' => $success,
+            'message' => $message,
+        ]);
+
         return response()->json(array(
             'success' => $success,
             'message' => $message,
