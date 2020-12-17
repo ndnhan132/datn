@@ -2,6 +2,10 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'PageController@index')->name('front.home');
+Route::get('/front/ajax/load-list-teacher-slider', 'PageController@ajaxLoadListTeacherSlider');
+Route::get('/front/ajax/load-reference-tuition', 'PageController@ajaxLoadReferenceTuition');
+Route::get('/front/ajax/load-reference-tuition-without-readmore', 'PageController@ajaxLoadReferenceTuitionWithoutReadmore');
+Route::get('/hoc-phi-tham-khao.html', 'PageController@getReferenceTuitionPage')->name('front.getReferenceTuitionPage');
 
 Route::get('/dang-ky-tim-gia-su.html', 'CourseController@getCourseRegisterPage')->name('front.getCourseRegisterPage');
 Route::post('/front/ajax/course/store', 'CourseController@ajaxStore');

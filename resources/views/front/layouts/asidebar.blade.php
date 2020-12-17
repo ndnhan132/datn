@@ -35,7 +35,7 @@
             @include('front.layouts.asidebar.leftbar3')
         </div>
     </div>
-    <div class="panel">
+    {{-- <div class="panel">
         <div class="panel-header">
             Fanpage
         </div>
@@ -48,7 +48,7 @@
         </div>
         <div class="panel-body asidebar-box-body">
         </div>
-    </div>
+    </div> --}}
     {{-- <div class="panel" id="asidebar-teacher-by-courselevel">
         <div class="panel-header">
             Gia sư các khối lớp

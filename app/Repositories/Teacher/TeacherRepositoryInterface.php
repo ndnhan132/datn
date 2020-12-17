@@ -14,4 +14,5 @@ interface TeacherRepositoryInterface
     public function verifyEmail($id);
     public function sendRequestConfirmation($teacherId);
     public function getFrontListWithPagination($startFrom, $recordPerPage, $teacherLevelId = false, $gender = 'BOTH',$courseLevelId = false, $subjectId = false);
+    public function getHomeTeacher($num);
 }

@@ -24,7 +24,7 @@
                     <a class="nav-link" href="{{ route('front.forParent')}}"><span>Phụ huynh</span><i class="fas fa-angle-down pl-2"></i></a>
                     <div class="sub-menu py-1 mt-2 fade-down fade-up-">
                         <a href="{{ route('front.getCourseRegisterPage') }}"><i class="fas fa-caret-right"></i><span>Đăng ký tìm gia sư</span></a>
-                        <a href="{{ route('front.readPage', 'bang-gia-tham-khao') }}"><i class="fas fa-caret-right"></i><span>Bảng giá tham khảo</span></a>
+                        <a href="{{ route('front.getReferenceTuitionPage') }}"><i class="fas fa-caret-right"></i><span>Bảng giá tham khảo</span></a>
                         <a href="{{ route('front.readPage', 'phu-huynh-can-biet') }}"><i class="fas fa-caret-right"></i><span>Phụ huynh cần biết</span></a>
                         <a href="{{ route('front.getAllTeachersPage') }}"><i class="fas fa-caret-right"></i><span>Danh sách gia sư</span></a>
                     </div>

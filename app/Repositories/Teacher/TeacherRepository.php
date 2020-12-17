@@ -161,4 +161,12 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
             'total' => $total
         );
     }
+    public function getHomeTeacher($num)
+    {
+        return $this->model->where('teacher_account_status_id', \App\Models\TeacherAccountStatus::CONFIRMED_ID)
+        ->orderBy('created_at', 'asc')
+        ->limit($num)
+        ->offset(0)
+        ->get();
+    }
 }

@@ -851,3 +851,80 @@
         height: 20px!important;
     }
 }
+
+#carousel-slides{
+    .position-relative{
+        .image{
+            img{
+                padding: 4px;
+            }
+        }
+        .position-absolute{
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            padding: 0px 4px 5px 4px;
+            // opacity: 0;
+            max-height: 34px;
+            transition: all 1s linear;
+            overflow: hidden;
+            letter-spacing: .012em;
+            word-spacing: .016em;
+            align-content: center;
+            background-color: rgba(0, 0, 0, 0.15);
+            color: white;
+            margin-bottom: 0.35rem;
+            h6{
+                font-size: 0.95rem;
+                margin-bottom: 0.25rem;
+                padding: 0.5rem 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            p{
+                font-size: 0.8rem;
+                display: none;
+                margin-bottom: 0px;
+            }
+        }
+
+    }
+    .position-relative:hover{
+        .position-absolute{
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            opacity: 1;
+            transition: all 0.5s linear;
+            max-height: 130px;
+            h6{
+                font-size: 0.88rem;
+                padding: 0.35rem 0 0 0;
+                overflow: auto;
+                text-overflow: clip;
+                white-space: normal;
+            }
+            p{
+                display:inline-block;
+            }
+        }
+    }
+}
+
+.reference-tuition-table{
+    table{
+        table-layout:fixed;
+        width: 100%;
+        th,td{
+            text-align: center!important;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.9rem;
+        }
+        .cell-null{
+            background-color: rgba(250, 228, 186, 0.2)!important;
+            border-color: #FAE4BA!important;
+
+            font-weight:bold;
+        }
+    }
+}

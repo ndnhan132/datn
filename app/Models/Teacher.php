@@ -254,9 +254,11 @@ class Teacher extends Authenticatable
                 if($key != 0) $str .= ' - ';
                 $str .= $sbj->display_name;
             }
-            return $str;
+            if($str != ''){
+                return $str;
+            }
       }
-      return 'chưa chập nhật';
+      return 'chưa cập nhật';
   }
 /**
  * @Author: Nhan Nguyen Dinh
@@ -275,9 +277,11 @@ class Teacher extends Authenticatable
             if($key != 0) $str .= ' - ';
             $str .= $lvl->display_name;
         }
-        return $str;
+        if($str != ''){
+            return $str;
+        }
     }
-    return 'chưa chập nhật';
+    return 'chưa cập nhật';
  }
 
 

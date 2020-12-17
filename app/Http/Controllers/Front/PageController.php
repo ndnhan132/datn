@@ -9,6 +9,7 @@ use App\Repositories\Post\PostRepositoryInterface;
 use App\Repositories\Subject\SubjectRepositoryInterface;
 use App\Repositories\CourseLevel\CourseLevelRepositoryInterface;
 use Illuminate\Support\Facades\Log;
+use App\Repositories\Teacher\TeacherRepositoryInterface;
 
 class PageController extends Controller
 {
@@ -16,10 +17,12 @@ class PageController extends Controller
     protected $subjectRepository;
     protected $courseLevelRepository;
     protected $postRepository;
+    protected $teacherRepository;
 
     public function __construct(
         CourseRepositoryInterface $courseRepository,
         SubjectRepositoryInterface $subjectRepository,
+        TeacherRepositoryInterface $teacherRepository,
         PostRepositoryInterface $postRepository,
         CourseLevelRepositoryInterface $courseLevelRepository
         )
@@ -28,14 +31,38 @@ class PageController extends Controller
         $this->subjectRepository = $subjectRepository;
         $this->postRepository = $postRepository;
         $this->courseLevelRepository = $courseLevelRepository;
+        $this->teacherRepository = $teacherRepository;
     }
     public function index()
     {
         Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
         $courses = $this->courseRepository->getHomeCourse(7);
+        // $teachers = $this->teacherRepository->getHomeTeacher(20);
         return view('front.home.index', compact(['courses']));
     }
-
+    public function ajaxLoadListTeacherSlider()
+    {
+        $teachers = $this->teacherRepository->getHomeTeacher(20);
+        return view('front.home.ajax-list-teacher', compact(['teachers']));
+    }
+    public function ajaxLoadReferenceTuition()
+    {
+        $subjects     = $this->subjectRepository->index();
+        $courseLevels = $this->courseLevelRepository->index();
+        $courses = $this->courseRepository->index();
+        return view('front.home.ajax-reference-tuition', compact(['courseLevels', 'subjects', 'courses']));
+    }
+    public function ajaxLoadReferenceTuitionWithoutReadmore()
+    {
+        $subjects     = $this->subjectRepository->index();
+        $courseLevels = $this->courseLevelRepository->index();
+        $courses = $this->courseRepository->index();
+        return view('front.reference-tuition.ajax-reference-tuition', compact(['courseLevels', 'subjects', 'courses']));
+    }
+    public function getReferenceTuitionPage()
+    {
+        return view('front.reference-tuition.index');
+    }
     public function ajaxLoadAsideData(Request $request)
     {
         Log::info($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . '~' . __METHOD__);
