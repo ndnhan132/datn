@@ -19,6 +19,8 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 // Load Composer's autoloader
 // require 'vendor/autoload.php';
+// require 'vendor/autoload.php';
+use App\Helper\MailHelper;
 
 class TeacherController extends Controller
 {
@@ -27,6 +29,7 @@ class TeacherController extends Controller
     protected $courseLevelRepository;
     protected $teacherLevelRepository;
     protected $subjectRepository;
+    private $mailHelper;
 
     public function __construct(
         TeacherRepositoryInterface $teacherRepository,
@@ -39,6 +42,7 @@ class TeacherController extends Controller
         $this->teacherLevelRepository = $teacherLevelRepository;
         $this->subjectRepository = $subjectRepository;
         $this->courseLevelRepository = $courseLevelRepository;
+         $this->mailHelper = new MailHelper();
     }
 
     public function getTeacherRegisterPage()
@@ -212,47 +216,55 @@ class TeacherController extends Controller
 Xin trân trọng!
 EOF;
 
-        $debug = false;
-        $mail = new PHPMailer(true);
-        try{
-            try {
-                // Server settings
-                // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
-                $mail->SMTPDebug =  ($debug) ? SMTP::DEBUG_SERVER : SMTP::DEBUG_OFF ;
-                $mail->isSMTP();                                            // Send using SMTP
-                $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
-                $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-                $mail->Username   = $webMail;                     // SMTP username
-                $mail->Password   = $webMailPass;                               // SMTP password
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-                $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+    try{
+        $this->mailHelper->sendEmail($recipientMail, $recipientName, $subject, $message);
+        return true;
+    } catch(Exception $e){
+        Log::debug('send mail fail');
+        return false;
+    }
 
-                $mail->CharSet = 'UTF-8';
-                //Recipients
-                $mail->setFrom($webMail, $webMailName);
-                $mail->clearAllRecipients();
-            }catch(Exception $e){
-                $style = '"color: #ff0000;"';
-                echo "<h1 style={$style}><Strong>Message could not be sent. Mailer Error: {$mail->ErrorInfo} </Strong></h1>";
-            }
+        // $debug = false;
+        // $mail = new PHPMailer(true);
+        // try{
+        //     try {
+        //         // Server settings
+        //         // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        //         $mail->SMTPDebug =  ($debug) ? SMTP::DEBUG_SERVER : SMTP::DEBUG_OFF ;
+        //         $mail->isSMTP();                                            // Send using SMTP
+        //         $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+        //         $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+        //         $mail->Username   = $webMail;                     // SMTP username
+        //         $mail->Password   = $webMailPass;                               // SMTP password
+        //         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+        //         $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
-            $mail->addAddress($recipientMail, $recipientName);     // Add a recipient
-            // Content
-            $mail->isHTML(true);                                  // Set email format to HTML
-            $mail->Subject = $subject;
-            $mail->Body    = $message;
-            $mail->AltBody = $message;
+        //         $mail->CharSet = 'UTF-8';
+        //         //Recipients
+        //         $mail->setFrom($webMail, $webMailName);
+        //         $mail->clearAllRecipients();
+        //     }catch(Exception $e){
+        //         $style = '"color: #ff0000;"';
+        //         echo "<h1 style={$style}><Strong>Message could not be sent. Mailer Error: {$mail->ErrorInfo} </Strong></h1>";
+        //     }
 
-            if($mail->send()){
-                return true;
-            }else{
-                return false;
-            }
-        }catch(Exception $e){
-            $style = '"color: #ff0000;"';
-            echo "<h1 style={$style}><Strong>Message could not be sent. Mailer Error: {$mail->ErrorInfo} </Strong></h1>";
-            return false;
-        }
+        //     $mail->addAddress($recipientMail, $recipientName);     // Add a recipient
+        //     // Content
+        //     $mail->isHTML(true);                                  // Set email format to HTML
+        //     $mail->Subject = $subject;
+        //     $mail->Body    = $message;
+        //     $mail->AltBody = $message;
+
+        //     if($mail->send()){
+        //         return true;
+        //     }else{
+        //         return false;
+        //     }
+        // }catch(Exception $e){
+        //     $style = '"color: #ff0000;"';
+        //     echo "<h1 style={$style}><Strong>Message could not be sent. Mailer Error: {$mail->ErrorInfo} </Strong></h1>";
+        //     return false;
+        // }
     }
 
     public function verifyTeacherEmail(Request $request)

@@ -1,9 +1,9 @@
 <table class="mb-0 w-100 table table-sm table-bordered text-left text-capitalize"  style="table-layout:fixed">
     <tbody>
-        <tr><td class="pr-3" COLSPAN="2">E-mail</td><td colspan="5"> {{ $teacher->email  ?? 'Chưa cập nhật'}}</td></tr>
+        {{-- <tr><td class="pr-3" COLSPAN="2">E-mail</td><td colspan="5"> {{ $teacher->email  ?? 'Chưa cập nhật'}}</td></tr> --}}
         <tr><td class="pr-3" COLSPAN="2">Họ & tên</td><td colspan="5"> {{ $teacher->name ?? 'Chưa cập nhật' }}</td></tr>
         <tr><td class="pr-3" COLSPAN="2">Giới tính</td><td colspan="5"> {{ $teacher->is_male ? 'Nam' : 'Nữ' }}</td></tr>
-        <tr><td class="pr-3" COLSPAN="2">Điện thoại</td><td colspan="5"> {{ $teacher->phone  ?? 'Chưa cập nhật'}}</td></tr>
+        {{-- <tr><td class="pr-3" COLSPAN="2">Điện thoại</td><td colspan="5"> {{ $teacher->phone  ?? 'Chưa cập nhật'}}</td></tr> --}}
         <tr><td class="pr-3" COLSPAN="2">Năm sinh</td><td colspan="5"> {{ $teacher->year_of_birth ?? 'Chưa cập nhật' }}</td></tr>
         <tr><td class="pr-3" COLSPAN="2">Địa chỉ</td><td colspan="5"> {{ $teacher->address  ?? 'Chưa cập nhật'}}</td></tr>
         <tr><td class="pr-3" COLSPAN="2">Đại học</td><td colspan="5"> {{ $teacher->university ?? 'Chưa cập nhật' }}</td></tr>

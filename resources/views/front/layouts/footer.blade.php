@@ -78,7 +78,7 @@
                             <a><i class="fas fa-headset"></i>&nbsp;&nbsp;+8415175357</a>
                         </li>
                         <li>
-                            <a href="https://t.me/shopkeys"><i class="fab fa-telegram-plane"></i>&nbsp;&nbsp;Telegram</a>
+                            <a href="https://t.me/giasudanang"><i class="fab fa-telegram-plane"></i>&nbsp;&nbsp;Telegram</a>
                         </li>
                     </ul>
                 </div>

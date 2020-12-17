@@ -246,7 +246,16 @@
                                 $(document).find('#teacher_table tbody').append(row);
                             });
                         }else{
-                            $(document).find('#teacher_table').slideUp();
+                            // $(document).find('#teacher_table').slideUp();
+                            $(document).find('#teacher_table').slideDown();
+                            var row = `
+                                <tr>
+                                    <td class="text-capitalize align-middle" colspan="4">
+                                        <span>Không có gia sư nhận dạy lớp này.</span>
+                                    </td>
+                                </tr>
+                                `;
+                                $(document).find('#teacher_table tbody').append(row);
                         }
 
                     }else{
@@ -342,6 +351,7 @@
         $(document).find('#course-register-form input[name="select_teacher"').val("");
         $(document).find('#course-register-form input[name="select_teacher"').val($(this).data('teacher-id'));
         var formData = $('#course-register-form').serialize()
+        $(document).find('body').addClass('hover_cursor_progress');
         $.ajax({
                 url: '/front/ajax/parent-register/store',
                 type: 'POST',
@@ -366,6 +376,7 @@
                     $(document).find('.modal').modal('hide');
                     showErrorAlert(data.message);
                 }
+                $(document).find('body').removeClass('hover_cursor_progress');
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
                 console.log("error");
@@ -374,10 +385,12 @@
                             text: 'Có lỗi xảy ra!',
                         });
                 $(document).find('.modal').modal('hide');
+                $(document).find('body').removeClass('hover_cursor_progress');
             })
             .always(function (data, textStatus, errorThrown) {
                 console.log("complete");
                 $(document).find('.modal').modal('hide');
+                $(document).find('body').removeClass('hover_cursor_progress');
             });
     });
     function showErrorAlert(errors)

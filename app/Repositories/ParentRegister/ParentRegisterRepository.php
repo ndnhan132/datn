@@ -4,6 +4,7 @@ namespace App\Repositories\ParentRegister;
 
 use App\Repositories\BaseRepository;
 use App\Models\ParentRegister;
+use Illuminate\Support\Facades\Log;
 
 class ParentRegisterRepository extends BaseRepository implements ParentRegisterRepositoryInterface
 {
@@ -74,12 +75,25 @@ class ParentRegisterRepository extends BaseRepository implements ParentRegisterR
         $reg->tuition_per_session = $request['tuition_per_session'];
         $reg->course_id = $request['select_course'];
         $reg->teacher_id = $request['select_teacher'];
-        return $reg->save();
+
+        // if (true) {
+        if ($reg->save()) {
+            return array(
+                'success' => true,
+                'record' => $reg,
+            );
+        } else {
+            return array(
+                'success' => false,
+                'record' => '',
+            );
+        }
     }
-    public function checkCanRegister($request)
+    public function checkCanRegister7day($request)
     {
         $regId = $this->model->where('email', $request['email'])
                             ->orWhere('phone', $request['phone'])->pluck('id');
+
         $reg = $this->model->where('teacher_id', $request['select_teacher'])
                             ->where('course_id', $request['select_course'])
                             ->whereIn('id', $regId)
@@ -88,6 +102,27 @@ class ParentRegisterRepository extends BaseRepository implements ParentRegisterR
         if(!$reg){
             return true;
         }
+        $createdAt = strtotime($reg->created_at);
+        $diff = time() - $createdAt;
+        if($diff > 7 * 24 * 60 * 60){
+            return true;
+        }
+        return false;
+    }
+
+    public function checkCanRegisterDuplicateTeacher($request)
+    {
+        $regId = $this->model->where('email', $request['email'])
+                            ->orWhere('phone', $request['phone'])->pluck('id');
+        $reg = $this->model->where('course_id', $request['select_course'])
+                            ->whereIn('id', $regId)
+                            ->where('flag_is_checked', false)
+                            ->orderBy('created_at', 'DESC')
+                            ->first();
+        if(!$reg){
+            return true;
+        }
+
         $createdAt = strtotime($reg->created_at);
         $diff = time() - $createdAt;
         if($diff > 7 * 24 * 60 * 60){

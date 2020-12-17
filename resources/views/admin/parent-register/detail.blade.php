@@ -69,7 +69,7 @@
                 <td> {{ $parentRegister->teacher->getAge() ?? '' }}</td>
             </tr>
             <tr>
-                <td class="pr-3 text-nowrap" >trình độ viên</td>
+                <td class="pr-3 text-nowrap" >trình độ giáo viên</td>
                 <td> {{ $parentRegister->teacher->getGenderAndLevel() ?? '' }}</td>
             </tr>
 
