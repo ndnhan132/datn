@@ -1,4 +1,4 @@
-// @import url(https://fonts.googleapis.com/css?family=Niconne);
+@import url(https://fonts.googleapis.com/css?family=Niconne);
 /* latin-ext */
 @font-face {
   font-family: 'Niconne';
@@ -126,3 +126,16 @@ input:focus{
     -webkit-touch-callout: none;
     min-width: 80px;
 }
+
+.text_niconne{
+    font-family: 'Niconne'!important;
+}
+.text_courier{
+    font-family: 'Courier New', monospace!important;
+}
+.text_monaco{
+	font-family: monaco,Consolas,Lucida Console,monospace;
+}
+.text_georgia {
+    font-family: Georgia, serif!important;
+  }

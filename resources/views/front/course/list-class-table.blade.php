@@ -9,7 +9,7 @@
 @endisset
 <div class="d-flex flex-wrap  opacity_transition_effect">
     @foreach ($courses as $course)
-    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 pl-3 pr-0">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4 px-0 px-sm-2 pr-0">
         <div class="list-class-item">
             <div class="border-bottom item-header">
                 <h6 class="text-left text-uppercase">

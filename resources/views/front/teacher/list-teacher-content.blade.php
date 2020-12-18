@@ -9,14 +9,14 @@
 @endisset
 <div class="d-flex flex-wrap opacity_transition_effect">
     @foreach ($teachers as $teacher)
-    <article class="teacher-item col-sm-6 px-0 border-bottom">
-        <div class="w-100 d-flex bg-white p-2">
-            <div class="teacher-img col-lg-4 col-md-4 col-sm-4 col-xs-12">
+    <article class="teacher-item col-12 col-md-6 px-0 border-bottom">
+        <div class="w-100 d-flex bg-white p-0 p-md-2">
+            <div class="teacher-img col-4 col-sm-3 col-md-4 col-lg-4 col-xl-4">
                 <a href="" class="btn-view-teacher-modal" data-teacher="{{ $teacher->id }}">
                     <img src="{{ $teacher->getAvatarSrc() }}" alt="@">
                 </a>
             </div>
-            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <div class="col-lg-8 col-md-8 col-sm-9 col-8">
                 <a href="" class="teacher-name btn-view-teacher-modal" data-teacher="{{ $teacher->id }}">
                     <h2 class="text-truncate">{{ $teacher->name }}</h2>
                 </a>

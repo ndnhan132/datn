@@ -11,7 +11,7 @@
 
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="align-top m-0 h-100">
-                    <h5 class="text-uppercase">Tiêu chí làm việc</h5>
+                    <h5 class="text-uppercase text_georgia">Tiêu chí làm việc</h5>
                     <ul class="list-unstyled">
                         @php
                             $tieuchi = array(
@@ -33,7 +33,7 @@
 
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="align-top m-0 h-100">
-                    <h5 class="text-uppercase">Trung tâm gia sư đà nẵng</h5>
+                    <h5 class="text-uppercase text_georgia">Trung tâm gia sư đà nẵng</h5>
                     <ul class="list-unstyled">
                         <li>
                             <a href=""><i class="fas fa-phone-volume"></i>&nbsp;&nbsp;Điện thoại: +84368054220</a>
@@ -63,7 +63,7 @@
 
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="align-top m-0 h-100">
-                    <h5 class="text-warning">HỖ TRỢ</h5>
+                    <h5 class="text-warning text_georgia">HỖ TRỢ</h5>
                     <ul class="list-unstyled">
                         <li>
                             <a href=""><i class="far fa-comment-dots"></i>&nbsp;&nbsp;Liên hệ</a>

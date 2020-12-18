@@ -12,28 +12,28 @@
 
             <div class="form-group col-sm-12 d-flex flex-wrap">
                 <fieldset class="w-100">
-                    <legend class="col-sm-12 label-title">Thông tin liên hệ</legend>
+                    <legend class="col-sm-12 label-title text_georgia">Thông tin liên hệ</legend>
                     <div class="form-group col-sm-12 row">
-                        <label class="col-sm-3">Họ tên <span class="text-danger">(*)</span></label>
-                        <div class="col-sm-6">
+                        <label class="text-nowrap col-sm-4 col-md-3">Họ tên <span class="text-danger">(*)</span></label>
+                        <div class="col-sm-8 col-sm-8 col-lg-7">
                         <input type="text" class="form-control" name="fullname" value="">
                         </div>
                     </div>
                     <div class="form-group col-sm-12 row">
-                        <label class="col-sm-3">Số điện thoại <span class="text-danger">(*)</span></label>
-                        <div class="col-sm-6">
+                        <label class="text-nowrap col-sm-4 col-md-3">Số điện thoại <span class="text-danger">(*)</span></label>
+                        <div class="col-sm-8 col-sm-8 col-lg-7">
                             <input type="text" class="form-control" name="phone" value="">
                         </div>
                     </div>
                     <div class="form-group col-sm-12 row">
-                        <label class="col-sm-3">Email <span class="text-danger">(*)</span></label>
-                        <div class="col-sm-6">
+                        <label class="text-nowrap col-sm-4 col-md-3">Email <span class="text-danger">(*)</span></label>
+                        <div class="col-sm-8 col-sm-8 col-lg-7">
                             <input type="text" class="form-control" name="email" value="">
                         </div>
                     </div>
                     <div class="form-group col-sm-12 row">
-                        <label class="col-sm-3">Địa chỉ <span class="text-danger">(*)</span></label>
-                        <div class="col-sm-6">
+                        <label class="text-nowrap col-sm-4 col-md-3">Địa chỉ <span class="text-danger">(*)</span></label>
+                        <div class="col-sm-8 col-sm-8 col-lg-7">
                             <input type="text" class="form-control" name="address" value="">
                         </div>
                     </div>
@@ -42,10 +42,10 @@
 
             <div class="form-group col-sm-12 d-flex flex-wrap">
                 <fieldset class="w-100">
-                    <legend class="col-sm-12 label-title">Thông tin lớp học</legend>
+                    <legend class="col-sm-12 label-title text_georgia">Thông tin lớp học</legend>
                     <div class="form-group col-sm-12 row">
-                        <label class="col-sm-3">Khối lớp</label>
-                        <div class="col-sm-6">
+                        <label class="text-nowrap col-sm-4 col-md-3">Khối lớp</label>
+                        <div class="col-sm-8 col-sm-8 col-lg-7">
                             <select name="course_level" class="form-control">
                                 <option value="">Lựa chọn</option>
                                 @foreach ($courseLevels as $item)
@@ -55,27 +55,27 @@
                         </div>
                     </div>
                     <div class="form-group col-sm-12 row">
-                        <label class="col-sm-3">Môn học</label>
-                        <div class="col-sm-6">
+                        <label class="text-nowrap col-sm-4 col-md-3">Môn học</label>
+                        <div class="col-sm-8 col-sm-8 col-lg-7">
                             <select name="subject" class="form-control">
                             </select>
                         </div>
                     </div>
                     <div class="form-group col-sm-12 row">
-                        <label class="col-sm-3">Học phí/buổi</label>
-                        <div class="col-sm-6">
+                        <label class="text-nowrap col-sm-4 col-md-3">Học phí/buổi</label>
+                        <div class="col-sm-8 col-sm-8 col-lg-7">
                             <input type="text" class="form-control" name="tuition_per_session" value="" readonly>
                         </div>
                     </div>
                     <div class="form-group col-sm-12 row">
-                        <label class="col-sm-3">Số buổi/Tuần</label>
-                        <div class="col-sm-6">
+                        <label class="text-nowrap col-sm-4 col-md-3">Số buổi/Tuần</label>
+                        <div class="col-sm-8 col-sm-8 col-lg-7">
                             <input type="text" class="form-control" name="session_per_week" value="" readonly>
                         </div>
                     </div>
                     <div class="form-group col-sm-12 row">
-                        <label class="col-sm-3">Thời gian dạy <span class="text-danger">(*)</span></label>
-                        <div class="col-sm-6">
+                        <label class="text-nowrap col-sm-4 col-md-3">Thời gian dạy <span class="text-danger">(*)</span></label>
+                        <div class="col-sm-8 col-sm-8 col-lg-7">
                             <input type="text" class="form-control" name="time_working" value="">
                             <span class="text-muted">*(VD: Tối T2-T7)</span>
                         </div>
@@ -89,33 +89,22 @@
             <div  id="teacher_table" style="display: none" class="w-100">
             <div class="form-group col-sm-12 d-flex flex-wrap">
                 <fieldset class="w-100">
-                    <legend class="col-sm-12 label-title">Đề cử gia sư</legend>
+                    <legend class="col-sm-12 label-title text_georgia">Đề cử gia sư</legend>
                     <div class="form-group col-sm-12 row">
-                        <table class="table table-striped table-bordered">
-                            <thead class="bg-primary text-white">
-                                <tr class="text-nowrap">
-                                    <th>Ảnh</th>
-                                    <th>Họ tên</th>
-                                    <th>Thông tin</th>
-                                    <th class="text-center">Trạng thái</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{-- <tr>
-                                        <td><img src="https://picsum.photos/id/1005/200/300" alt="Hình ảnh đại diện" width="50" height="70">
-                                    </td>
-                                    <td class="text-capitalize">
-                                        <span>Nguyễn Đình Nhân</span>
-                                    </td>
-                                    <td class="text-capitalize">
-                                        <span>Nam sinh viên chưa ra trường</span>
-                                    </td>
-                                    <td class="text-center">
-                                        <span class="label-status bg-warning">Chưa Kiểm tra</span>
-                                    </td>
-                                </tr> --}}
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered">
+                                <thead class="bg-primary text-white">
+                                    <tr class="text-nowrap">
+                                        <th>Ảnh</th>
+                                        <th>Họ tên</th>
+                                        <th>Thông tin</th>
+                                        <th class="text-center">Trạng thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </fieldset>
             </div>
@@ -230,15 +219,15 @@
                             data.teacher.forEach(function(item, index, array) {
                                 var row = `
                                 <tr>
-                                        <td><img src="` + item.teacher_avatar + `" alt="Hình ảnh đại diện" width="50" height="70">
+                                        <td class="p-1"><img src="` + item.teacher_avatar + `" alt="Hình ảnh đại diện" width="50" height="70">
                                     </td>
-                                    <td class="text-capitalize align-middle">
+                                    <td class="text-capitalize align-middle p-1 text-nowrap">
                                         <span>` + item.teacher_name + `</span>
                                     </td>
-                                    <td class="text-capitalize align-middle">
+                                    <td class="text-capitalize align-middle p-1 text-nowrap">
                                         <span>` + item.teacher_level + `</span>
                                     </td>
-                                    <td class="text-center align-middle">
+                                    <td class="text-center align-middle p-1 text-nowrap">
                                         <span data-teacher="` + item.teacher_id + `" class="btn btn-teacher-detail label-status bg-warning">xem</span>
                                     </td>
                                 </tr>

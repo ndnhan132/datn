@@ -26,9 +26,9 @@
         <div class="row">
             <div class="form-group col-sm-12 d-flex flex-wrap">
                 <div class="form-group col-sm-12 row">
-                    <label class="col-sm-3">Email<span
+                    <label class="text-nowrap col-12 col-sm-4 col-md-4 col-lg-4 col-xl-3">Email<span
                             class="text-danger">(*)</span></label>
-                    <div class="col-sm-6">
+                    <div class="col-12 col-sm-7 col-md-6 col-lg-6 col-xl-7">
                         <input type="text" class="form-control" name="email"
                             value="">
                         <div class="form-control-feedback">(Sử dụng để đăng
@@ -37,23 +37,23 @@
                     </div>
                 </div>
                 <div class="form-group col-sm-12 row">
-                    <label class="col-sm-3">Họ tên</label>
-                    <div class="col-sm-6">
+                    <label class="text-nowrap col-12 col-sm-4 col-md-4 col-lg-4 col-xl-3">Họ tên</label>
+                    <div class="col-12 col-sm-7 col-md-6 col-lg-6 col-xl-7">
                         <input type="text" class="form-control" name="name" value="">
                     </div>
                 </div>
                 <div class="form-group col-sm-12 row">
-                    <label class="col-sm-3">Mật khẩu <span
+                    <label class="text-nowrap col-12 col-sm-4 col-md-4 col-lg-4 col-xl-3">Mật khẩu <span
                             class="text-danger">(*)</span></label>
-                    <div class="col-sm-6">
+                    <div class="col-12 col-sm-7 col-md-6 col-lg-6 col-xl-7">
                         <input type="password" class="form-control"
                             name="password" value="">
                     </div>
                 </div>
                 <div class="form-group col-sm-12 row">
-                    <label class="col-sm-3">Nhập lại mật khẩu <span
+                    <label class="text-nowrap col-12 col-sm-4 col-md-4 col-lg-4 col-xl-3">Nhập lại mật khẩu <span
                             class="text-danger">(*)</span></label>
-                    <div class="col-sm-6">
+                    <div class="col-12 col-sm-7 col-md-6 col-lg-6 col-xl-7">
                         <input type="password" class="form-control"
                             name="password_confirmation" value="">
                     </div>

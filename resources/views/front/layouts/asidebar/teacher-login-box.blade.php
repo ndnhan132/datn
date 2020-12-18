@@ -39,7 +39,7 @@
         </div>
     </div>
 @else
-    <div class="panel mb-0 pl-0">
+    <div class="panel mb-0 pl-0 text_georgia">
         <div class="panel-header bg-primary btn-teacher-show-login pl-2 text-white">
             <span>Gia sư đăng nhập</span>
         </div>

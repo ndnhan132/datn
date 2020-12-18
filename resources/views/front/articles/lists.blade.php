@@ -1,16 +1,16 @@
 @foreach ($articles as $item)
     <article class="news-item">
         <div class="w-100 d-flex">
-            <div class="news-img col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="news-img col-lg-4 col-md-4 col-sm-4 col-4">
                 <a href="">
                     @if ($item->image)
-                    <img src="{{ asset($item->image) }}" alt="@">
+                    <img src="{{ asset($item->image) }}" alt="@" class="img-fluid">
                     @else
-                    <img src="{{ asset('images/noimage.jpg') }}" alt="@">
+                    <img src="{{ asset('images/noimage.jpg') }}" alt="@" class="img-fluid">
                     @endif
                 </a>
             </div>
-            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-8">
                 <a href="{{ route('front.readNews', $item->slug) }}" class="news-title">
                     <h2 class="text-truncate">{{$item->title ?? ''}}</h2>
                 </a>

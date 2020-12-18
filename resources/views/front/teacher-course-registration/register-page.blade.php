@@ -1,5 +1,5 @@
 @extends('front.layouts.app')
-@section('title', $course->title)
+@section('title', ucfirst( $course->title))
 @section('head')
 @endsection
 @section('content')

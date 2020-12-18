@@ -3,7 +3,7 @@
 @section('head')
 @endsection
 @section('content')
-<div class="mainbox mt-0">
+<div class="mainbox mt-0 mb-3 mb-sm-4">
     <div class="w-100">
         <div class="col-12">
             <div class="breadcrumbs">
