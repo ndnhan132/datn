@@ -1,15 +1,15 @@
 <footer class="container-fluid">
     <div class="container text-white pt-5 pb-4 information">
         <div class="row">
-            <div class="col-md-3 col-12">
-                <div class="align-top m-0 h-100">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="align-top m-0 h-100 text-center">
 <div>
 <img src="{{ asset('/images/logo/5.png')}}" alt="footer icon" class="img-fluid">
 </div>
                 </div>
             </div>
 
-            <div class="col-md-3 col-12">
+            <div class="col-12 col-sm-6 col-lg-3">
                 <div class="align-top m-0 h-100">
                     <h5 class="text-uppercase">Tiêu chí làm việc</h5>
                     <ul class="list-unstyled">
@@ -31,7 +31,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3 col-12">
+            <div class="col-12 col-sm-6 col-lg-3">
                 <div class="align-top m-0 h-100">
                     <h5 class="text-uppercase">Trung tâm gia sư đà nẵng</h5>
                     <ul class="list-unstyled">
@@ -61,7 +61,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3 col-12">
+            <div class="col-12 col-sm-6 col-lg-3">
                 <div class="align-top m-0 h-100">
                     <h5 class="text-warning">HỖ TRỢ</h5>
                     <ul class="list-unstyled">

@@ -11,7 +11,7 @@
             @include('front.layouts.asidebar.loading')
         </div>
     </div>
-    <div class="panel" id="asidebar-teacher-by-courselevel">
+    <div class="panel d-none d-lg-block" id="asidebar-teacher-by-courselevel">
         <div class="panel-header">
             Phụ huynh
         </div>
@@ -19,7 +19,7 @@
             @include('front.layouts.asidebar.leftbar1')
         </div>
     </div>
-    <div class="panel">
+    <div class="panel d-none d-lg-block">
         <div class="panel-header">
             Gia sư
         </div>
@@ -27,7 +27,7 @@
             @include('front.layouts.asidebar.leftbar2')
         </div>
     </div>
-    <div class="panel">
+    <div class="panel d-none d-lg-block">
         <div class="panel-header">
             Chính sách
         </div>

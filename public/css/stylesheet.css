@@ -233,7 +233,7 @@ a.text-primary:focus {
   color: #fff; }
 
 #mainNav {
-  padding: 1rem 0rem;
+  padding: 0.25rem 0rem;
   background-color: #fff;
   color: #999999;
   border-bottom: 3px solid #EF5763 !important;
@@ -255,7 +255,7 @@ a.text-primary:focus {
     text-transform: uppercase;
     margin-left: 0px; }
     #mainNav .navbar-brand img {
-      height: 1.5rem; }
+      height: 2.75rem; }
   #mainNav .nav-coslapse {
     background-color: #F9F9F9; }
   #mainNav .navbar-nav .nav-item .nav-link {
@@ -566,8 +566,13 @@ a.text-primary:focus {
 #page-container {
   width: 100%;
   height: auto;
-  margin-top: 136px; }
+  margin-top: 55px; }
 
+@media only screen and (min-width: 992px) {
+  #page-container {
+    width: 100%;
+    height: auto;
+    margin-top: 136px; } }
 .mainbox {
   background-color: white;
   padding: 0.75rem;
@@ -1211,18 +1216,34 @@ a.text-primary:focus {
   #carousel-slides .position-relative:hover .position-absolute p {
     display: inline-block; }
 
-.reference-tuition-table table {
-  table-layout: fixed;
-  width: 100%; }
-  .reference-tuition-table table th, .reference-tuition-table table td {
-    text-align: center !important;
-    padding: 0.25rem 0.5rem;
-    font-size: 0.9rem; }
-  .reference-tuition-table table .cell-null {
-    background-color: rgba(250, 228, 186, 0.2) !important;
-    border-color: #FAE4BA !important;
-    font-weight: bold; }
+.reference-tuition-table table th, .reference-tuition-table table td {
+  text-align: center !important;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.9rem; }
+.reference-tuition-table table .cell-null {
+  background-color: rgba(250, 228, 186, 0.2) !important;
+  border-color: #FAE4BA !important;
+  font-weight: bold; }
 
+@media only screen and (min-width: 992px) {
+  .reference-tuition-table table {
+    table-layout: fixed;
+    width: 100%; } }
+@media only screen and (max-width: 1199px) {
+  .reference-tuition-table table th, .reference-tuition-table table td {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+    letter-spacing: -.01em;
+    word-spacing: -.01em; } }
+#list-course table th, #list-course table td {
+  padding: 0.5rem 0.5rem; }
+
+@media only screen and (min-width: 768px) {
+  #list-course table {
+    table-layout: fixed; } }
+@media only screen and (max-width: 767px) {
+  #list-course table th, #list-course table td {
+    padding: 0.25rem 0.5rem; } }
 footer {
   background: #232b50;
   background-image: url("../images/bg-1.png"); }

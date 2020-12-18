@@ -13,7 +13,7 @@
             <tbody>
                 @foreach ($courseLevels as $lv)
                 <tr>
-                    <td scope="row" class="text-capitalize">{{ strtolower($lv->display_name) }}</td>
+                    <td scope="row" class="text-capitalize text-nowrap">{{ strtolower($lv->display_name) }}</td>
                     @foreach ($subjects as $sub)
                     @php
                         $cou = $courses->where('subject_id', $sub->id)->where('course_level_id', $lv->id)->first();

@@ -1,8 +1,8 @@
 <div id="list-course" class="mainbox">
     <div>
         @include('front.home.header-title', ['title' => 'Danh sách lớp mới'])
-        <div class="table-responsive- w-100">
-        <table class="table table-striped table-bordered w-100"  style="table-layout:fixed">
+        <div class="table-responsive">
+        <table class="table table-striped table-bordered w-100">
             <thead class="bg-primary text-white">
                 <tr class="text-nowrap">
                     <th class="text-center">Môn học</th>
@@ -16,7 +16,7 @@
             <tbody>
             @foreach ($courses as $course)
                 <tr>
-                    <td class="text-capitalize text-center">{{ $course->subject->display_name ?? '' }}</td>
+                    <td class="text-capitalize text-center text-nowrap">{{ $course->subject->display_name ?? '' }}</td>
                     <td class="text-capitalize text-center">{{ $course->courseLevel->display_name ?? '' }}</td>
                     <td class="text-center">{{ $course->tuition_per_session . ' đ/buổi' }}</td>
                     <td class="text-center">{{ $course->session_per_week ?? '' }}</td>

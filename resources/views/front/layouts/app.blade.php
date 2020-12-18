@@ -18,11 +18,11 @@
     @include('front.layouts.navbar')
     <div id="page-container">
         <div class="container pt-3">
-            <div class="d-flex">
-                <div class="col-3 pl-md-0">
+            <div class="d-flex flex-wrap">
+                <div class="col-12 col-lg-3 px-0 pl-md-0 pr-lg-3">
                     @include('front.layouts.asidebar')
                 </div>
-                <div class="col-9 pr-md-0">
+                <div class="col-12 col-lg-9 px-0 pr-md-0 pl-lg-3">
                     @yield('content')
                 </div>
             </div>

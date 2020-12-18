@@ -1,8 +1,15 @@
 #page-container {
     width: 100%;
     height: auto;
-    margin-top: 136px;
+    margin-top: 55px;
 }
+@media only screen and (min-width: 992px) {
+    #page-container {
+        width: 100%;
+        height: auto;
+        margin-top: 136px;
+    }
+  }
 
 .mainbox {
     background-color: rgb(255, 255, 255);
@@ -913,8 +920,6 @@
 
 .reference-tuition-table{
     table{
-        table-layout:fixed;
-        width: 100%;
         th,td{
             text-align: center!important;
             padding: 0.25rem 0.5rem;
@@ -925,6 +930,51 @@
             border-color: #FAE4BA!important;
 
             font-weight:bold;
+        }
+    }
+}
+@media only screen and (min-width: 992px) {
+    .reference-tuition-table{
+        table{
+            table-layout:fixed;
+            width: 100%;
+        }
+    }
+}
+@media only screen and (max-width: 1199px) {
+    .reference-tuition-table{
+        table{
+            th,td{
+                padding: 0.25rem 0.5rem;
+                font-size: 0.9rem;
+                letter-spacing: -.01em;
+                word-spacing: -.01em;
+            }
+        }
+    }
+}
+
+#list-course{
+    table{
+        th,td{
+            padding: 0.5rem 0.5rem;
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #list-course{
+        table{
+            table-layout:fixed;
+        }
+    }
+}
+@media only screen and (max-width: 767px) {
+    #list-course{
+        table{
+            th,td{
+                padding: 0.25rem 0.5rem;
+            }
         }
     }
 }

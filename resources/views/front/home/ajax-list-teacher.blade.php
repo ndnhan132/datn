@@ -135,17 +135,29 @@
                     {
                         breakpoint: 992,
                         settings: {
-                            item: 3,
+                            item: 4,
                         }
                     },
                     {
                         breakpoint: 768,
                         settings: {
-                            item: 2,
+                            item: 3,
                         }
                     },
                     {
                         breakpoint: 576,
+                        settings: {
+                            item: 3,
+                        }
+                    },
+                    {
+                        breakpoint: 400,
+                        settings: {
+                            item: 2,
+                        }
+                    },
+                    {
+                        breakpoint: 250,
                         settings: {
                             item: 1,
                         }
