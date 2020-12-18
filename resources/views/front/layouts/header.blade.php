@@ -21,8 +21,9 @@
                     </div> --}}
                 </li>
                 <li class="nav-item  position-relative">
-                    <a class="nav-link" href="{{ route('front.forParent')}}"><span>Phụ huynh</span><i class="fas fa-angle-down pl-2"></i></a>
-                    <div class="sub-menu py-1 mt-2 fade-down fade-up-">
+                    {{-- <a class="nav-link" href="{{ route('front.forParent')}}"><span>Phụ huynh</span><i class="fas fa-angle-down pl-2"></i></a> --}}
+                    <a class="nav-link"><span>Phụ huynh</span><i class="fas fa-angle-down pl-2"></i></a>
+                    <div class="sub-menu py-1 mt-lg-2 fade-down fade-up-">
                         <a href="{{ route('front.getCourseRegisterPage') }}"><i class="fas fa-caret-right"></i><span>Đăng ký tìm gia sư</span></a>
                         <a href="{{ route('front.getReferenceTuitionPage') }}"><i class="fas fa-caret-right"></i><span>Bảng giá tham khảo</span></a>
                         <a href="{{ route('front.readPage', 'phu-huynh-can-biet') }}"><i class="fas fa-caret-right"></i><span>Phụ huynh cần biết</span></a>
@@ -30,8 +31,9 @@
                     </div>
                 </li>
                 <li class="nav-item  position-relative">
-                    <a class="nav-link" href="{{ route('front.forTeacher')}}"><span>Gia sư</span><i class="fas fa-angle-down pl-2"></i></a>
-                    <div class="sub-menu py-1 mt-2 fade-down fade-up-">
+                    {{-- <a class="nav-link" href="{{ route('front.forTeacher')}}"><span>Gia sư</span><i class="fas fa-angle-down pl-2"></i></a> --}}
+                    <a class="nav-link"><span>Gia sư</span><i class="fas fa-angle-down pl-2"></i></a>
+                    <div class="sub-menu py-1 mt-lg-2 fade-down fade-up-">
                         <a href="{{ route('front.getTeacherRegisterPage') }}"><i class="fas fa-caret-right"></i><span>Đăng ký làm gia sư</span></a>
                         <a href=""><i class="fas fa-caret-right"></i><span>Lớp mới cần gia sư</span></a>
                         <a href=""><i class="fas fa-caret-right"></i><span>Tìm kiếm lớp mới</span></a>

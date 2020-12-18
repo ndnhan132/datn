@@ -116,6 +116,9 @@ $(function () {
                     msgErrors(data.message);
                 }
         $(document).find('body').removeClass('hover_cursor_progress');
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+                msgErrors();
             });
         /* #endregion */
     });

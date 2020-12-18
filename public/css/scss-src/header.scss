@@ -1,17 +1,3 @@
-// #mainNav::after {
-//     content: '';
-//     display: block;
-//     position: absolute;
-//     top: 0;
-//     right: 0;
-//     bottom: 0;
-//     left: 0;
-//     opacity: .15;
-//     opacity: .05;
-//     // background-image: url("../images/bg-1.png");
-
-// }
-
 #mainNav {
     padding: 0.25rem 0rem;
     // background-color: #212529;
@@ -62,6 +48,9 @@
         .nav-link:hover {
             color: #fed136;
         }
+    }
+    a{
+        cursor: pointer;
     }
 }
 
@@ -210,10 +199,86 @@
 }
 
 
-@media all and (min-width: 992px) {
+@media all and (min-width: 100px) {
 	.navbar .nav-item .sub-menu{  display:block; opacity: 0;  visibility: hidden; transition:.3s; margin-top:0;  }
 	.navbar .nav-item:hover .nav-link{ color: #fff;  }
 	.navbar .sub-menu.fade-down{ top:80%; transform: rotateX(-75deg); transform-origin: 0% 0%; }
 	.navbar .sub-menu.fade-up{ top:180%;  }
 	.navbar .nav-item:hover .sub-menu{ transition: .3s; opacity:1; visibility:visible; top:100%; transform: rotateX(0deg); }
+}
+
+@media (max-width: 991px) {
+    #mainNav {
+        .nav-container {
+            .navbar-collapse {
+                border-top: 1px solid #d4d4d4;
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+
+                .navbar-nav {
+                    li.nav-item {
+                        border-left: 1px solid transparent;
+                        border-right: 1px solid transparent;
+                        a.nav-link {
+                            padding: 0.25rem 1.0rem;
+                            font-size: 15px;
+                            line-height: 1.25;
+                            font-weight: 500;
+                            color: #6b7280;
+                            font-family: Inter var, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+                        }
+
+                        .sub-menu {
+                            min-width: 100%;
+                            position: absolute;
+                            list-style: none;
+                            margin: 0;
+                            text-align: left;
+                            padding-left: 0;
+                            background-color: #FFF;
+
+                            // padding-bottom: 4px;
+                            padding-top: 0.25rem;
+                            padding-bottom: 0.25rem;
+                            border-radius: 0.33rem;
+                            box-sizing: border-box;
+                            border: 0 solid #d2d6dc;
+                            box-shadow: 0 0 0 1px rgba(0,0,0,.05);
+                            a {
+                                width: 100%;
+                                padding: 0.5rem 1rem;
+                                color: #374151;
+                                display: inline-block;
+                                white-space:nowrap;
+                                i {
+                                    padding-right: 0.5rem;
+                                }
+
+                            }
+
+                        }
+                    }
+
+                    li.nav-item:hover {
+                        border-left: 1px solid #d4d4d4;
+                        border-right: 1px solid #d4d4d4;
+                        color: #222;
+                        z-index: 9999;
+                        a.nav-link {
+                            color: #222 !important;
+                        }
+
+                        .sub-menu {
+                            a:hover {
+                                background-color: #f4f5f7;
+                            }
+                        }
+                    }
+                    .nav-item:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+    }
 }

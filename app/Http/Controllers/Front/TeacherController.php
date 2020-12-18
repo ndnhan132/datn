@@ -106,6 +106,8 @@ class TeacherController extends Controller
 
     public function ajaxLogin(Request $request)
     {
+        Log::debug('ajaxLogin');
+        Log::debug($request->all());
         if(Auth::guard('teacher')->check()){
             return redirect()->route('front.home');
         };
@@ -190,9 +192,9 @@ class TeacherController extends Controller
 
     public function sendActiveTeacherAccountMail($teacher)
     {
-        $webMail = 'ndnhans1@gmail.com';
-        $webMailPass = 'ndnhan187539115';
-        $webMailName = 'Gia Sư Đà Nẵng';
+        // $webMail = 'ndnhans1@gmail.com';
+        // $webMailPass = 'ndnhan187539115';
+        // $webMailName = 'Gia Sư Đà Nẵng';
 
 
         $recipientMail = $teacher->email;
