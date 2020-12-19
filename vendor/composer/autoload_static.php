@@ -42,6 +42,7 @@ class ComposerStaticInit3749756c5e53698c029908d6f19ba338
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
         '40275907c8566c390185147049ef6e5d' => __DIR__ . '/..' . '/livewire/livewire/src/helpers.php',
         '0e5c713f7509b4e7ad04c13d9b21dfe7' => __DIR__ . '/../..' . '/app/Helper/MailHelper.php',
+        '1f9e54d362959b6a1a8e882d41880168' => __DIR__ . '/../..' . '/app/Helper/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (

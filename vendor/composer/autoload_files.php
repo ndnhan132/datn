@@ -41,4 +41,5 @@ return array(
     'ed962a97bd972bc82007176b647d4e36' => $vendorDir . '/facade/ignition/src/helpers.php',
     '40275907c8566c390185147049ef6e5d' => $vendorDir . '/livewire/livewire/src/helpers.php',
     '0e5c713f7509b4e7ad04c13d9b21dfe7' => $baseDir . '/app/Helper/MailHelper.php',
+    '1f9e54d362959b6a1a8e882d41880168' => $baseDir . '/app/Helper/helpers.php',
 );

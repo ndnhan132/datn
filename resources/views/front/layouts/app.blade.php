@@ -18,7 +18,6 @@
 
 </head>
 <body>
-    {{ test_function() }}
     @include('front.layouts.header')
     @include('front.layouts.navbar')
     <div id="page-container">
