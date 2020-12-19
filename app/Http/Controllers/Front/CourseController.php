@@ -226,7 +226,7 @@ class CourseController extends Controller
                         $teacher[] = array(
                             'teacher_id' => $reg->teacher->id,
                             'teacher_name' => $reg->teacher->name,
-                            'teacher_avatar' => asset($reg->teacher->getAvatarSrc()),
+                            'teacher_avatar' => asset_public_env($reg->teacher->getAvatarSrc()),
                             'teacher_level' => $reg->teacher->getGenderAndLevel(),
                         );
                     }

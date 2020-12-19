@@ -55,7 +55,7 @@ $asideItems = array(
 
 <div class="app-sidebar__user">
     <img class="app-sidebar__user-avatar rounded-0 mx-1"
-        src="{{ asset('images/logo/5.png') }}"
+        src="{{ asset_public_env('images/logo/5.png') }}"
         width="90"
         alt="User Image">
     <div>

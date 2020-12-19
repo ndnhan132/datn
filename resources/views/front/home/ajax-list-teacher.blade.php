@@ -14,7 +14,7 @@
                 <div class="position-relative">
                     <div class="border image">
                             <a href="">
-                            <img src="{{ asset($item->getAvatarSrc()) }}" alt="image" class="w-100 img-fluid">
+                            <img src="{{ asset_public_env($item->getAvatarSrc()) }}" alt="image" class="w-100 img-fluid">
                         </a>
                     </div>
                     <div class="position-absolute text-center">
@@ -33,7 +33,7 @@
                 <div class="position-relative">
                     <div class="border image">
                             <a href="">
-                            <img src="{{ asset($item->getAvatarSrc()) }}" alt="image" class="w-100 img-fluid">
+                            <img src="{{ asset_public_env($item->getAvatarSrc()) }}" alt="image" class="w-100 img-fluid">
                         </a>
                     </div>
                     <div class="position-absolute text-center">

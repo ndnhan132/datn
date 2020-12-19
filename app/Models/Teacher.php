@@ -73,7 +73,7 @@ class Teacher extends Authenticatable
     public function getAvatarSrc()
     {
         $res = $this->images->where('image_type', \App\Models\Image::TEACHER_AVATAR)->first();
-        return $res->src ?? asset('/images/noavatar.jpg');
+        return $res->src ?? asset_public_env('/images/noavatar.jpg');
     }
 
     /**

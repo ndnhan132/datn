@@ -10,7 +10,7 @@
 <div class="list-teacher-page">
     <div class="d-flex align-items-center title mb-3">
         <div class="title-icon">
-        <img src="{{ asset('images/icon/graduation-cap-solid.svg') }}" alt="al">
+        <img src="{{ asset_public_env('images/icon/graduation-cap-solid.svg') }}" alt="al">
         </div>
         <h3>Danh sách lớp</h3>
     </div>

@@ -4,7 +4,7 @@
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="align-top m-0 h-100 text-center">
 <div>
-<img src="{{ asset('/images/logo/5.png')}}" alt="footer icon" class="img-fluid">
+<img src="{{ asset_public_env('/images/logo/5.png')}}" alt="footer icon" class="img-fluid">
 </div>
                 </div>
             </div>

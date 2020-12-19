@@ -227,7 +227,7 @@ class TeacherManagerController extends Controller
 
         return response()->json(array(
             'success' => $success,
-            'url' => asset($url),
+            'url' => assasset_public_envet($url),
         ));
     }
 

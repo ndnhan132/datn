@@ -42,5 +42,5 @@
 
 @endsection
 @section('javascript')
-<script src="{{asset('/web-admin/js/onepage/teacher.js') . '?' . time() }}" type="text/javascript"></script>
+<script src="{{asset_public_env('/web-admin/js/onepage/teacher.js') . '?' . time() }}" type="text/javascript"></script>
 @endsection

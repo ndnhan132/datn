@@ -32,7 +32,7 @@ class PageController extends Controller
             $request->file('upload')->move(public_path('ckeditor'), $fileName);
 
             $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-            $url = asset('ckeditor/'.$fileName);
+            $url = asset_public_env('ckeditor/'.$fileName);
             $msg = 'Image uploaded successfully';
             $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
 

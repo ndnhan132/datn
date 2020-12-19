@@ -2,7 +2,7 @@
     <div class="container nav-container">
         <div class="logo">
             <a class="navbar-brand js-scroll-trigger p-0" href="{{ route('front.home') }}">
-                <img src="{{asset('/images/logo/4.png')}}" alt="" />
+                <img src="{{asset_public_env('/images/logo/4.png')}}" alt="" />
             </a>
         </div>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars ml-1"></i></button>

@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ asset('/css/lightslider.css')}}">
+<link rel="stylesheet" href="{{ asset_public_env('/css/lightslider.css')}}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.min.js"></script>
 
 <div id="list-teacher" class="mainbox mb-4">

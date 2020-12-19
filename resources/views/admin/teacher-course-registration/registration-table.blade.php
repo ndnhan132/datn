@@ -26,7 +26,7 @@
                         </td>
                         <td class="text-center">
                             <span>
-                                <img src="{{ asset($teacher->getAvatarSrc())}}" width="55" height="70" class="">
+                                <img src="{{ asset_public_env($teacher->getAvatarSrc())}}" width="55" height="70" class="">
                             </span>
                         </td>
                         <td>

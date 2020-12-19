@@ -4,9 +4,9 @@
             <div class="news-img col-lg-4 col-md-4 col-sm-4 col-4">
                 <a href="">
                     @if ($item->image)
-                    <img src="{{ asset($item->image) }}" alt="@" class="img-fluid">
+                    <img src="{{ asset_public_env($item->image) }}" alt="@" class="img-fluid">
                     @else
-                    <img src="{{ asset('images/noimage.jpg') }}" alt="@" class="img-fluid">
+                    <img src="{{ asset_public_env('images/noimage.jpg') }}" alt="@" class="img-fluid">
                     @endif
                 </a>
             </div>

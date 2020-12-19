@@ -30,7 +30,7 @@
         <div class="d-flex flex-wrap">
             @foreach ($images as $item)
             <div class="col-md-12 px-0">
-                <img src="{{asset($item->src)}}" alt="" class="img-fluid img-thumbnail w-100">
+                <img src="{{asset_public_env($item->src)}}" alt="" class="img-fluid img-thumbnail w-100">
             </div>
             @endforeach
         </div>

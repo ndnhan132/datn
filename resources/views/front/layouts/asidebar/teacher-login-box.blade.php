@@ -12,19 +12,19 @@
                     <div class="pl-3 flex-shrink-1-" style="width: calc(100% - 65px)">
                         <ul class="w-100 d-flex flex-column list-unstyled mb-0">
                             <li  class="w-100 text-truncate">
-                                <img src="{{ asset('images/icon/email16x.png') }}" alt="...">
+                                <img src="{{ asset_public_env('images/icon/email16x.png') }}" alt="...">
                                 <span>{{ ucfirst(Auth::guard('teacher')->user()->email) }}</span>
                             </li>
                             <li>
-                                <img src="{{ asset('images/icon/info16x.png') }}" alt="...">
+                                <img src="{{ asset_public_env('images/icon/info16x.png') }}" alt="...">
                                 <span>{{ ucfirst(Auth::guard('teacher')->user()->getGenderAndLevel()) }}</span>
                             </li>
                             <li>
-                                <img src="{{ asset('images/icon/icon_owner13x.gif') }}" alt="...">
+                                <img src="{{ asset_public_env('images/icon/icon_owner13x.gif') }}" alt="...">
                                 <a href="{{ route('front.teacherManager.index') }}" class="btn-teacher-profile"><u>Hồ sơ</u></a>
                             </li>
                             <li>
-                                <img src="{{ asset('images/icon/logout16x.png') }}" alt="...">
+                                <img src="{{ asset_public_env('images/icon/logout16x.png') }}" alt="...">
                                 <a href="#" class="btn-teacher-logout"><u>Đăng xuất</u></a>
                             </li>
                         </ul>
@@ -53,7 +53,7 @@
                         <li><input name="password" type="password" id="password" value="111111"></li>
                         <li class="text-center">
                             <div class="position-relative col-6 px-0 ml-auto">
-                                <img src="{{ asset('/images/icon/lock24.png') }}" alt="lock" class="btn-login-icon">
+                                <img src="{{ asset_public_env('/images/icon/lock24.png') }}" alt="lock" class="btn-login-icon">
                                 <span class="btn-teacher-login my-2 btn-login">Đăng nhập</span>
                             </div>
                         </li>
@@ -68,11 +68,11 @@
                             </div>
                         </li>
                         <li>
-                            <img src="{{ asset('/images/icon/help_icon.gif') }}" alt="help">
+                            <img src="{{ asset_public_env('/images/icon/help_icon.gif') }}" alt="help">
                             <a href="#">Quên mật khẩu</a>
                         </li>
                         <li>
-                            <img src="{{ asset('/images/icon/help_icon.gif') }}" alt="help">
+                            <img src="{{ asset_public_env('/images/icon/help_icon.gif') }}" alt="help">
                             <a href="#">Không đăng nhập được</a>
                         </li>
                     </ul>

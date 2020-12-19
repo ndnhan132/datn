@@ -3,7 +3,7 @@
         @include('front.home.header-title', ['title' => 'Giới thiệu'])
         <div class="row">
             <div class="col-12 col-md-6">
-                <img class="img-fluid" src="{{ asset('/images/introduce.png') }}" alt="">
+                <img class="img-fluid" src="{{ asset_public_env('/images/introduce.png') }}" alt="">
             </div>
             <div class="col-12 col-md-6 mt-3 mt-md-0">
                 <div>

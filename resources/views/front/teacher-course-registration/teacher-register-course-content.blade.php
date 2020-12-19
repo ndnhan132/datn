@@ -63,7 +63,7 @@
                         $teacher = $record->teacher;
                         @endphp
                         <tr>
-                            <td class="p-1 text-center"><img src="{{ asset($teacher->getAvatarSrc()) }}"
+                            <td class="p-1 text-center"><img src="{{ asset_public_env($teacher->getAvatarSrc()) }}"
                                     alt="Hình ảnh đại diện" width="50" height="70">
                             </td>
                             <td class="text-capitalize  align-middle text-nowrap p-1">

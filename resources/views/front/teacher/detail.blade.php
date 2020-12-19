@@ -2,7 +2,7 @@
     <div class="d-flex flex-column">
         <div class="row mb-3">
             <div class="col-4 mx-auto">
-            <img src="{{ asset($teacher->getAvatarSrc()) }}" alt="Chưa cập nhật" class="img-thumbnail img-responsive">
+            <img src="{{ asset_public_env($teacher->getAvatarSrc()) }}" alt="Chưa cập nhật" class="img-thumbnail img-responsive">
             </div>
             {{-- <div class="col-8 d-flex flex-column">
                 <h4 class="text-capitalize "></h4>

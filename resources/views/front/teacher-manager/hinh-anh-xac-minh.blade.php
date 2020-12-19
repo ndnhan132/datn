@@ -43,7 +43,7 @@
                         @if (count($identityCardImages) < 2)
                         <div class="image-upload"  data-upload-type="IDENTITY">
                             <div class="image-cover" >
-                                <img src="{{ asset('images/upload.gif') }}" alt="">
+                                <img src="{{ asset_public_env('images/upload.gif') }}" alt="">
                                 <div class="image-action">
                                     <div class="body">
                                         <span class="btn-view"><i class="fas fa-eye"></i></span>
@@ -78,7 +78,7 @@
                         @if (count($degreeCardImages) < 4)
                         <div class="image-upload" data-upload-type="DEGREE">
                             <div class="image-cover">
-                                <img src="{{ asset('images/upload.gif') }}" alt="">
+                                <img src="{{ asset_public_env('images/upload.gif') }}" alt="">
                                 <div class="image-action">
                                     <div class="body">
                                         <span class="btn-view"><i class="fas fa-eye"></i></span>
@@ -146,7 +146,7 @@ $(function() {
     var imageUploadHtml = `
 <div class="image-upload" data-upload-type="DEGREE">
     <div class="image-cover">
-        <img src="{{ asset('images/upload.gif') }}" alt="">
+        <img src="{{ asset_public_env('images/upload.gif') }}" alt="">
         <div class="image-action">
             <div class="body">
                 <span class="btn-view"><i class="fas fa-eye"></i></span>
