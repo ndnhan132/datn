@@ -14,5 +14,9 @@
             <i class="far fa-images"></i>Hình ảnh xác minh</a>
         <a href="{{ route('front.teacherManager.getManager', 'mat-khau') }}" class="text-danger {{ Request::is('ho-so/cai-dat-mat-khau.html') ? 'active' : ''}}">
             <i class="text-danger fas fa-key"></i>Mật khẩu</a>
+            <a href="{{ route('front.teacherLogout') }}" class="text-muted">
+                <i class="text-muted fas fa-sign-out-alt"></i>Đăng xuất
+            </a>
+
     </div>
 </div>

@@ -8,6 +8,7 @@ Route::name('admin.')->middleware(['CheckAdminLogin'])->group(function(){
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
     Route::get('/dashboard', 'DashboardController@index');
     Route::get('/index', 'DashboardController@index');
+    Route::get('/ajax/get-dashboard-count', 'DashboardController@ajaxGetDashboardCount');
 
     // Danh sách gia sư
     Route::get('/giao-vien', 'TeacherController@index')->name('teacher.index');

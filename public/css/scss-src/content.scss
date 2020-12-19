@@ -417,6 +417,14 @@
     }
 }
 
+@media only screen and (max-width: 575px) {
+    .teacher-manager .form-wrap #verify-form .images-box .image-thumbnail,
+    .teacher-manager .form-wrap #verify-form .images-box .image-upload{
+        width: 100%;
+    }
+}
+
+
 .form-wrap {
     border-color: #424242;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);

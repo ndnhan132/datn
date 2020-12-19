@@ -16,11 +16,11 @@
     @include('front.layouts.header')
     @include('front.layouts.navbar')
     <div id="page-container">
-        <div class="container pt-4 teacher-manager">
-            <div class="col-md-3 offset-md-1">
+        <div class="container pt-4 teacher-manager d-flex flex-wrap">
+            <div class="col-12 col-lg-3 offset-lg-1">
                 @include('front.layouts.teacher-manager-aside')
             </div>
-            <div class="col-md-7">
+            <div class="col-12 col-lg-7 mt-3 mt-lg-0">
                 @yield('content')
             </div>
         </div>

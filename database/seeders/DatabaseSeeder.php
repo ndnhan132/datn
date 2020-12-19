@@ -86,9 +86,10 @@ class DatabaseSeeder extends Seeder
             'speciality' => $this->randomChuyenNganh(),
             'teacher_level_id' => 2,
             'reference_tuition' => $faker->numberBetween($min = 10, $max = 30) . '0000',
-            'year_of_birth' => $faker->numberBetween($min = 1970, $max = 2000),
+            'year_of_birth' => $faker->numberBetween($min = 1980, $max = 2000),
             'teacher_account_status_id' => '1',
             'email_verified_at' => now(),
+            'last_modified' => time() - $faker->numberBetween($min = 10, $max = 999999),
         ]);
 
 
@@ -108,6 +109,7 @@ class DatabaseSeeder extends Seeder
             'year_of_birth' => $faker->numberBetween($min = 1970, $max = 2000),
             'teacher_account_status_id' => '2',
             'email_verified_at' => now(),
+            'last_modified' => time() - $faker->numberBetween($min = 10, $max = 999999),
         ]);
         foreach ($teacherName as $name) {
             DB::table('teachers')->insert([
@@ -124,6 +126,8 @@ class DatabaseSeeder extends Seeder
                 'reference_tuition' => $faker->numberBetween($min = 100, $max = 400) . '000',
                 'year_of_birth' => $faker->numberBetween($min = 1970, $max = 2000),
                 'teacher_account_status_id' => $faker->randomElement($array = array (null,'1', '2', '3','1','1','1','1')),
+                'last_modified' => time() - $faker->numberBetween($min = 10, $max = 999999),
+                'email_verified_at' => now(),
             ]);
         }
 
@@ -139,12 +143,6 @@ class DatabaseSeeder extends Seeder
             'Biology' => 'Sinh học',
             'History' => 'Lịch sử',
             'Geography' => 'Địa Lý',
-            // 'Painting' => 'Hội Hoạ',
-            // 'Chinese' => 'Tiếng Trung',
-            // 'Japanese' => 'Tiếng Nhật',
-            // 'Piano' => 'Đàn Piano',
-            // 'Organ' => 'Đàn Organ',
-            // 'Guitar' => 'Đàn Guitar',
         );
         foreach($subjects as $key => $val) {
             DB::table('subjects')->insert([
@@ -176,14 +174,14 @@ class DatabaseSeeder extends Seeder
         $courseLvs = DB::table('course_levels')->get();
         \App\Models\Teacher::all()->each(function ($teacher) use ($courseLvs) {
             $teacher->courseLevels()->attach(
-                $courseLvs->random(rand(1, 5))->pluck('id')
+                $courseLvs->random(rand(1, 3))->pluck('id')
             );
         });
 
         $subjects = DB::table('subjects')->get();
         \App\Models\Teacher::all()->each(function ($teacher) use ($subjects) {
             $teacher->subjects()->attach(
-                $subjects->random(rand(1, 5))->pluck('id')
+                $subjects->random(rand(1, 3))->pluck('id')
             );
         });
 
@@ -218,14 +216,13 @@ class DatabaseSeeder extends Seeder
                         continue;
                     }
                 }
-                if($cou->id == 11 || $cou->id == 12){
+                if($cou->id == 8 || $cou->id == 10){
                     continue;
                 }
                 $title = 'tuyển gia sư dạy môn ' . $sub->display_name . ' ' . $cou->display_name;
                 DB::table('courses')->insert([
                     'subject_id' => $sub->id,
                     'course_level_id' => $cou->id,
-                    // 'time_working' => 'T2 - T7',
                     'tuition_per_session' =>  $faker->numberBetween($min = 15, $max = 30) . '0000',
                     'slug' => Str::slug($title, '-'),
                     'title' => $title,
@@ -248,31 +245,73 @@ class DatabaseSeeder extends Seeder
         foreach($teachers as $tea) {
             DB::table('images')->insert([
                 'teacher_id' => $tea->id,
-                'src' => '/uploads/avatar/'. $faker->numberBetween($min = 1, $max = 10) . '.jpg',
+                'src' => '/uploads/avatar/'. $faker->numberBetween($min = 1, $max = 37) . '.jpg',
                 'image_type' => 'TEACHER_AVATAR'
             ]);
-            foreach(range(0, 1) as $index){
+            // foreach(range(0, 1) as $index){
                 DB::table('images')->insert([
                     'teacher_id' => $tea->id,
-                    'src' => 'https://picsum.photos/id/1047/300/200',
+                    'src' => '/uploads/identity/cmnd_'. $faker->numberBetween($min = 1, $max = 10) . '.jpg',
                     'image_type' => 'TEACHER_IDENTITY_CARD'
                 ]);
-            }
-            foreach(range(0, 2) as $index){
+            // }
+            // foreach(range(0, 1) as $index){
                 DB::table('images')->insert([
                     'teacher_id' => $tea->id,
-                    'src' => 'https://picsum.photos/id/1033/300/200',
+                    'src' => '/uploads/degree/bc_'. $faker->numberBetween($min = 1, $max = 20) . '.jpg',
                     'image_type' => 'TEACHER_DEGREE'
                 ]);
-            }
+            // }
         }
 
-        foreach (range(0, 30) as $index) {
+        $listPosts = array(
+            'dạy con ở nhà',
+            'cách giữ cho học sinh tập trung',
+            'chia sẻ kinh nghiệm tìm giáo viên',
+            'chia sẻ kinh nghiệm học tiếng anh',
+            'chia sẻ kinh nghiệm dạy kèm (phần 1)',
+            'chia sẻ kinh nghiệm dạy kèm (phần 2)',
+            'chia sẻ kinh nghiệm dạy kèm (phần 3)',
+            'chia sẻ kinh nghiệm dạy kèm (phần 4)',
+            'chia sẻ kinh nghiệm dạy kèm (phần 5)',
+            'cách trở thành gia sư giỏi',
+            'các tố chất cần có của một gia sư',
+            'lý do nên tìm giáo viên tốt để dạy con bạn',
+            'gia sư và những khó khăn',
+            // 'các trường tiểu học khu vực Thanh Khê',
+            // 'các trường tiểu học khu vực Sơn Trà',
+            // 'các trường tiểu học khu vực Ngũ Hành Sơn',
+            // 'các trường tiểu học khu vực Liên Chiểu',
+            // 'các trường tiểu học khu vực Hải Châu',
+            // 'các trường tiểu học khu vực Cẩm Lệ',
+
+            'các trường trung học khu vực Thanh Khê',
+            'các trường trung học khu vực Sơn Trà',
+            'các trường trung học khu vực Ngũ Hành Sơn',
+            'các trường trung học khu vực Liên Chiểu',
+            'các trường trung học khu vực Hải Châu',
+            'các trường trung học khu vực Cẩm Lệ',
+
+            // 'các trường trung học cơ sở khu vực Thanh Khê',
+            // 'các trường trung học cơ sở khu vực Sơn Trà',
+            // 'các trường trung học cơ sở khu vực Ngũ Hành Sơn',
+            // 'các trường trung học cơ sở khu vực Liên Chiểu',
+            // 'các trường trung học cơ sở khu vực Hải Châu',
+            // 'các trường trung học cơ sở khu vực Cẩm Lệ',
+
+            'lợi ích khi thuê gia sư tại nhà',
+            'an toàn trong mùa dịch',
+            'thông báo tạm ngưng việc dạy và học do bão',
+        );
+        shuffle($listPosts);
+
+        foreach ($listPosts as $value) {
             DB::table('posts')->insert([
-                'title' => $faker->name,
-                'slug' => Str::slug($faker->name, '-'),
-                'content' => $faker->randomHtml(4,5),
+                'title' => $value,
+                'slug' => Str::slug($value, '-'),
+                'content' => '<h1 style="text-align: center; color: yellow;"><center>' . $value . '</center></h1><br><hr><br>' . $faker->text(200),
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'image' => '/uploads/post/'. $faker->numberBetween($min = 1, $max = 11) . '.jpg',
             ]);
         }
 
@@ -284,8 +323,12 @@ class DatabaseSeeder extends Seeder
             'hướng dẫn nhận lớp',
             'hướng dẫn đăng ký làm gia sư',
             'gia sư cần biết',
-            'bảng giá tham khảo',
+            // 'bảng giá tham khảo',
             'phụ huynh cần biết',
+            'Chính Sách Thanh Toán',
+            'Chính Sách Nhận Lớp Dạy',
+            'Thỏa Thuận Sử Dụng',
+            'Chính Sách Bảo Mật Thông Tin',
         );
         foreach ($listPages as $value) {
             DB::table('posts')->insert([
@@ -297,14 +340,17 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        foreach ($teacherName as $name) {
+        $nguoiYeuCau = array_slice($teacherName, 18);
+        foreach ($nguoiYeuCau as $name) {
+            $title = $faker->randomElement($array = array ('Yêu cầu mở thêm lớp ', 'Không tìm thấy gia sư như yêu cầu', 'Cần hướng dẫn đăng ký', 'Yêu cầu xét duyệt', 'Thắc mắc yêu cầu'));
+            $content = 'nội dung yêu cầu của ' . $name . ' là  :  ' . $title;
             DB::table('enquiries')->insert([
                 'flag_is_checked' => $faker->randomElement($array = array (true, false)),
                 'name' => $name,
                 'email' => Str::slug($name, ''). '@yahoo.com',
                 'phone' => $faker->e164PhoneNumber,
-                'title' => $faker->randomElement($array = array ('Yêu cầu mở thêm lớp', 'Không tìm thấy gia sư như yêu cầu', 'Cần hướng dẫn đăng ký', 'Yêu cầu xét duyệt', 'Thắc mắc yêu cầu')),
-                'content' => $faker->text(200),
+                'title' => $title,
+                'content' => $content,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ]);
         }

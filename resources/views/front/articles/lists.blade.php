@@ -12,10 +12,10 @@
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8 col-8">
                 <a href="{{ route('front.readNews', $item->slug) }}" class="news-title">
-                    <h2 class="text-truncate">{{$item->title ?? ''}}</h2>
+                    <h2 class="text-truncate text_georgia">{{ $item->title ? ucfirst($item->title) : ''}}</h2>
                 </a>
                 <div class="date">
-                    <i class="far fa-calendar-alt"></i>&nbsp;&nbsp;07 02/2017
+                    <i class="far fa-calendar-alt"></i>&nbsp;&nbsp;{{ (new Carbon\Carbon($item->created_at))->setTimeZone('Asia/Ho_Chi_Minh')->isoFormat('DD MM/Y') ?? '-- --/----' }}
                 </div>
             </div>
         </div>

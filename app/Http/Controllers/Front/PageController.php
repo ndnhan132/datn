@@ -103,7 +103,7 @@ class PageController extends Controller
 
     public function getListNews()
     {
-        $recordPerPage = 12;
+        $recordPerPage = 6;
         $page = 1;
         $startFrom = 0;
         $res = $this->postRepository->getNewsWithPagination($startFrom, $recordPerPage);
@@ -120,7 +120,7 @@ class PageController extends Controller
 
     public function ajaxGetListNews(Request $request)
     {
-        $recordPerPage = 12;
+        $recordPerPage = 6;
         if(isset($request['recordPerPage'])) {
             $recordPerPage = $request['record-per-page'];
         }

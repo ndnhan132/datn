@@ -76,8 +76,12 @@ $(function () {
     });
     $(document).on('click', '.btn-table-reset-reload', function () {
         showSpinner();
-        document.getElementById("page-control-form").reset();
-        document.getElementById("form-search").reset();
+        if(document.getElementById("page-control-form")){
+            document.getElementById("page-control-form").reset();
+        }
+        if(document.getElementById("form-search")){
+            document.getElementById("form-search").reset();
+        }
         $("#page-control-form input[type=hidden]").val('');
         $('#page-control-form option').attr('selected', false);
         reloadMainTable();

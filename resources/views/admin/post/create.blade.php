@@ -77,6 +77,7 @@
                 </div>
                 <div class="tile-footer">
                     <button class="btn btn-primary btn-submit" type="submit">Lưu</button>
+                        <button class="btn btn-secondary ml-2 btn-table-reset-reload" type="reset">Quay lại</button>
                 </div>
             </form>
         </div>

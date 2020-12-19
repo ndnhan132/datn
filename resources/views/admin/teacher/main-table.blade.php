@@ -80,7 +80,7 @@
                                 @elseif($record->isIneligible())
                                     <span class="label-status bg-secondary">Không đạt điều kiên</span>
                                 @else
-                                <span class="label-status bg-success">Chưa Xem xét</span>
+                                <span class="label-status bg-primary">Chưa Xem xét</span>
                                 @endif
                             </td>
                             <td class="text-center">

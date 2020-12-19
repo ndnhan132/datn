@@ -13,19 +13,21 @@
     $registrations = $teacher->teacherCourseRegistrations->sortByDesc('id')->all();
     $myReceived = $teacher->getMyReceivedRegistration();
 @endphp
-<div class="form-wrap- mb-5" id="profile">
+<div class="form-wrap- mb-0 mb-md-5" id="profile">
     <div>
-        <div class="row d-flex flex-wrap pb-4">
+        <div class="row d-flex flex-wrap pb-0">
             <div class="form-group col-sm-12">
                 {{-- <label class="col-sm-12">Tải lên</small></label> --}}
                 <div class="col-sm-12">
                     <div class="profile-box- d-flex flex-wrap">
-                        <div class="profile-box avatar">
-                            <img src="{{ asset(Auth::guard('teacher')->user()->getAvatarSrc() ?? '/image/noimage.jpg') }}" alt="" class="img-thumbnail">
+                        <div class="col-12 col-lg-3 h-100 px-0 text-center">
+                            <div class="profile-box avatar">
+                                <img src="{{ asset(Auth::guard('teacher')->user()->getAvatarSrc() ?? '/image/noimage.jpg') }}" alt="" class="img-thumbnail">
+                            </div>
                         </div>
-                        <div class="col profile-box ml-3">
+                        <div class="col profile-box ml-lg-3">
                             <div class="d-flex flex-column px-2">
-                                <h4 class="text-capitalize name"> {{ $teacher->name ?? 'Chưa cập nhật' }}</h4>
+                                <h4 class="text-capitalize name text-center"> {{ $teacher->name ?? 'Chưa cập nhật' }}</h4>
                                 <table>
                                     <tr>
                                         <td class="text-nowrap"><span>-&nbsp;Email</span></td>
@@ -154,9 +156,9 @@
                                 <div class="d-flex flex-wrap">
                                     @if (count($images))
                                         @foreach ($images as $item)
-                                        <div class="col-md-4 px-1 pb-2">
+                                        <div class="col-12 col-sm-6 col-md-4 px-1 pb-2">
                                             <div class="" data-id="{{ $item->id }}">
-                                                <img src="{{asset( $item->src )}}" alt="" class="img-thumbnail">
+                                                <img src="{{asset_public_env( $item->src )}}" alt="" class="img-thumbnail">
                                             </div>
                                         </div>
                                         @endforeach

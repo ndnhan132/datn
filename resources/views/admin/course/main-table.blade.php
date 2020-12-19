@@ -1,7 +1,7 @@
 <div class="cover-container">
 
     <form class="col-md-12 px-0 form-inline" id="form-search">
-        <div class="form-group my-2 pl-1">
+        {{-- <div class="form-group my-2 pl-1">
             <input type="text" name="search_text" class="form-control ml-2" placeholder="Search" value="{{ $searchText ?? '' }}">
         </div>
         <div class="form-group my-2">
@@ -21,7 +21,7 @@
         </div>
         <div class="form-group my-2">
             <button class="form-control ml-2 btn-submit"><i class="fa fa-search"></i></button>
-        </div>
+        </div> --}}
         <div class="form-group my-2">
             <button class="form-control ml-2 btn-table-reset-reload" type="reset"><i class="fa fa-refresh"></i></button>
         </div>
@@ -80,19 +80,19 @@
                             </td>
                             <td class="text-center">
                                 <span>
-                                    <button class="btn- btn-sm- btn-info- btn-outline-info btn-detail" data-type="course" data-course-id="{{ $course->id }}" data-can-confirm="yes">
+                                    <button class="btn- btn-sm- btn-info- btn-outline-info btn-detail  bg-white" data-type="course" data-course-id="{{ $course->id }}" data-can-confirm="yes">
                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                     </button>
                                 </span>
 
                                 <span>
-                                    <button class="btn-outline-warning btn-course-edit" data-id="{{ $course->id }}">
+                                    <button class="btn-outline-warning btn-course-edit bg-white" data-id="{{ $course->id }}">
                                         <i class="fa fa-edit m-0"></i>
                                     </button>
                                 </span>
 
                                 <span>
-                                    <button class="btn-outline-danger btn-delete-record" data-record-id="{{ $course->id }}">
+                                    <button class="btn-outline-danger btn-delete-record bg-white" data-record-id="{{ $course->id }}">
                                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                                     </button>
                                 </span>
