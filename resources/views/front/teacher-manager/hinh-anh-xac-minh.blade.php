@@ -42,7 +42,7 @@
                         @endif
                         @if (count($identityCardImages) < 2)
                         <div class="image-upload"  data-upload-type="IDENTITY">
-                            <div class="image-cover" >
+                            <div class="image-cover" data-id="">
                                 <img src="{{ asset_public_env('images/upload.gif') }}" alt="">
                                 <div class="image-action">
                                     <div class="body">
@@ -59,10 +59,10 @@
             <div class="form-group col-sm-12">
                 <label class="col-sm-12">Bằng cấp <small class="text-danger">(Tối đa 4 hình ảnh)</small></label>
                 <div class="col-sm-12">
-                    <div class="images-box d-flex flex-wrap" data-max="4">
+                    <div class="images-box d-flex flex-wrap {{ $item->id }}" data-max="4">
                         @if (count($degreeCardImages))
                             @foreach ($degreeCardImages as $item)
-                            <div class="image-thumbnail">
+                            <div class="image-thumbnail {{ $item->id }}">
                                 <div class="image-cover" data-id="{{ $item->id }}">
                                     <img src="{{asset( $item->src )}}" alt="">
                                     <div class="image-action">
@@ -77,7 +77,7 @@
                         @endif
                         @if (count($degreeCardImages) < 4)
                         <div class="image-upload" data-upload-type="DEGREE">
-                            <div class="image-cover">
+                            <div class="image-cover" data-id="">
                                 <img src="{{ asset_public_env('images/upload.gif') }}" alt="">
                                 <div class="image-action">
                                     <div class="body">
@@ -145,7 +145,7 @@ $(function() {
     var uploadType;
     var imageUploadHtml = `
 <div class="image-upload" data-upload-type="DEGREE">
-    <div class="image-cover">
+    <div class="image-cover" data-id="">
         <img src="{{ asset_public_env('images/upload.gif') }}" alt="">
         <div class="image-action">
             <div class="body">
@@ -184,7 +184,7 @@ $(function() {
         var _ext = $(this).val().split('.').pop().toLowerCase();
         if ($.inArray(_ext, ['png', 'jpg', 'jpeg']) == -1) {
             // $('#avatar-form').reset();
-            alert('ko ho tro');
+            alert('Không hỗ trợ ' + _ext );
             return;
         }
         if (_fileData.size > 4200000) /* 2mb*/ {
@@ -231,7 +231,17 @@ $(function() {
                             $('#verify-form input[name=file_name]').val('');
                             $('#verify-form input[name=file_type]').val('');
                             if(data.success && data.url){
+                                console.log($(boxSelected));
                                 $(boxSelected).find('img').attr('src', data.url);
+                                $(boxSelected).find('.image-cover').attr('data-id', data.id);
+                                var _imagesBox = $(boxSelected).closest('.images-box');
+                                var _max = _imagesBox.data('max');
+                                if(_imagesBox.find('.image-thumbnail').length < (_max)){
+                                    _imagesBox.append(imageUploadHtml);
+                                    if(_max == 2){
+                                        _imagesBox.find('.image-upload').attr('data-upload-type', "IDENTITY");
+                                    }
+                                 }
                             }
                             boxSelected = '';
                             uploadType = '';

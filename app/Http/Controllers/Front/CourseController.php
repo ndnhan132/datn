@@ -222,7 +222,7 @@ class CourseController extends Controller
             if($regs){
                 $teacher = array();
                 foreach($regs as $reg){
-                    if($reg->registration_status_id == \App\models\RegistrationStatus::ELIGIBLE_ID){
+                    if($reg->registration_status_id == \App\Models\RegistrationStatus::ELIGIBLE_ID){
                         $teacher[] = array(
                             'teacher_id' => $reg->teacher->id,
                             'teacher_name' => $reg->teacher->name,

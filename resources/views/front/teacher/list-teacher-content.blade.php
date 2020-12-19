@@ -13,7 +13,7 @@
         <div class="w-100 d-flex bg-white p-0 p-md-2">
             <div class="teacher-img col-4 col-sm-3 col-md-4 col-lg-4 col-xl-4">
                 <a href="" class="btn-view-teacher-modal" data-teacher="{{ $teacher->id }}">
-                    <img src="{{ $teacher->getAvatarSrc() }}" alt="@">
+                    <img src="{{ asset_public_env($teacher->getAvatarSrc()) }}" alt="@">
                 </a>
             </div>
             <div class="col-lg-8 col-md-8 col-sm-9 col-8">

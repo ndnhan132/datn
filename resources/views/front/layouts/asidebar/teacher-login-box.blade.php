@@ -7,7 +7,7 @@
             <div class="profile-body">
                 <div class="d-flex flex-row">
                     <div class="px-0 col-auto" style="width: 65px; height: 97px;">
-                        <img src="{{ asset(Auth::guard('teacher')->user()->getAvatarSrc()) }}" alt="Ảnh đại diện gia sư" class="img-fluid rounded-circle">
+                        <img src="{{ asset_public_env(Auth::guard('teacher')->user()->getAvatarSrc()) }}" alt="Ảnh đại diện gia sư" class="img-fluid rounded-circle">
                     </div>
                     <div class="pl-3 flex-shrink-1-" style="width: calc(100% - 65px)">
                         <ul class="w-100 d-flex flex-column list-unstyled mb-0">

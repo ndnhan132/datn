@@ -192,6 +192,7 @@ class TeacherManagerController extends Controller
         $fileData      = $request->input('file_data')      ?? '';
         $fileSrc       = $request->input('file_src')       ?? '';
         $success = false;
+        $fileName = time() . '_' . $fileName;
         if($teacher->getAvatarSrc() == $fileSrc){
             $success = true;
         }
@@ -213,21 +214,25 @@ class TeacherManagerController extends Controller
         $fileName      = $request->input('file_name')      ?? (Str::slug($teacher->name, '-') . '.' . $fileExtension);
         $fileData      = $request->input('file_data')      ?? '';
         $fileType      = $request->input('file_type')      ?? '';
+        $fileName = time() . '_' . $fileName;
         $success = false;
         $url = '';
+        $id = '';
         $action = 'replace';
         $action = 'new';
         if($fileType == 'DEGREE' || $fileType == 'IDENTITY'){
             $res = $this->imageRepository->updateTeacherImage($fileName, $teacher->id, $fileData, $fileType, $action);
             if($res) {
-                $url = $res;
+                $url = $res->src;
+                $id = $res->id;
                 $success = true;
             }
         }
 
         return response()->json(array(
             'success' => $success,
-            'url' => assasset_public_envet($url),
+            'url' => asset_public_env($url),
+            'id' => $id,
         ));
     }
 

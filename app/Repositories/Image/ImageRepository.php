@@ -14,6 +14,12 @@ class ImageRepository extends BaseRepository implements ImageRepositoryInterface
     public function updateTeacherAvatar($fileName, $teacherId, $imageData)
     {
         $src = 'uploads/avatar/' . $fileName;
+        if (app()->environment('production')) {
+            $src = 'public/uploads/avatar/' . $fileName;
+        }
+        elseif (app()->environment('local')) {
+            $src = 'uploads/avatar/' . $fileName;
+        }
         $image_array_1 = explode(";", $imageData);
         $image_array_2 = explode(",", $image_array_1[1]);
         $data = base64_decode($image_array_2[1]);
@@ -39,14 +45,32 @@ class ImageRepository extends BaseRepository implements ImageRepositoryInterface
     {
         if($type == 'DEGREE'){
             $src = 'uploads/degree/' . $fileName;
+            if (app()->environment('production')) {
+                $src = 'public/uploads/degree/' . $fileName;
+            }
+            elseif (app()->environment('local')) {
+                $src = 'uploads/degree/' . $fileName;
+            }
             $image_type = \App\Models\Image::TEACHER_DEGREE;
         }
         elseif($type == 'IDENTITY'){
             $src = 'uploads/identity/' . $fileName;
+            if (app()->environment('production')) {
+                $src = 'public/uploads/identity/' . $fileName;
+            }
+            elseif (app()->environment('local')) {
+                $src = 'uploads/identity/' . $fileName;
+            }
             $image_type = \App\Models\Image::TEACHER_IDENTITY_CARD;
         }
         elseif($type == 'AVATAR'){
             $src = 'uploads/avatar/' . $fileName;
+            if (app()->environment('production')) {
+                $src = 'public/uploads/avatar/' . $fileName;
+            }
+            elseif (app()->environment('local')) {
+                $src = 'uploads/avatar/' . $fileName;
+            }
             $image_type = \App\Models\Image::TEACHER_AVATAR;
         }
         else return false;
@@ -81,7 +105,7 @@ class ImageRepository extends BaseRepository implements ImageRepositoryInterface
         else return false;
 
         if($image->save()){
-            return $image->src;
+            return $image;
         }
         return false;
     }

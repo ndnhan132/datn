@@ -95,7 +95,7 @@ $(function() {
         var _ext = $(this).val().split('.').pop().toLowerCase();
         if ($.inArray(_ext, ['png', 'jpg', 'jpeg']) == -1) {
             // $('#avatar-form').reset();
-            alert('ko ho tro');
+            alert('Không hỗ trợ ' + _ext );
             return;
         }
         if (_fileData.size > 4200000) /* 2mb*/ {

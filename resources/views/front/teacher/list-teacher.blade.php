@@ -1,5 +1,5 @@
 @extends('front.layouts.app')
-@section('title', 'Dành cho gia sư')
+@section('title', 'Danh sách gia sư')
 @section('head')
 @endsection
 @section('content')

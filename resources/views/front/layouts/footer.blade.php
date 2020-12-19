@@ -49,9 +49,9 @@
                                 else{
                                     $domain = "http";
                                 }
-                                $domain .= "://www." . $_SERVER['HTTP_HOST'];
+                                $domain = $_SERVER['HTTP_HOST'];
                             @endphp
-                            <a href=""><i class="fas fa-globe"></i>&nbsp;&nbsp;Website:&nbsp;{{ $domain }}</a>
+                            <a href="{{ route('front.home') }}"><i class="fas fa-globe"></i>&nbsp;&nbsp;Website:&nbsp;{{ $domain }}</a>
                         </li>
                         <li>
                             <a><i class="fa fa-map-marker"

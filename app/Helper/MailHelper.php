@@ -57,7 +57,7 @@ class MailHelper
                 $this->mail->clearAllRecipients();
             } catch (Exception $e) {
                 $style = '"color: #ff0000;"';
-                echo "<h1 style={$style}><Strong>Message could not be sent. Mailer Error: {$this->mail->ErrorInfo} </Strong></h1>";
+                // echo "<h1 style={$style}><Strong>Message could not be sent. Mailer Error: {$this->mail->ErrorInfo} </Strong></h1>";
             }
 
             $this->mail->addAddress($recipientMail, $recipientName); // Add a recipient
@@ -67,17 +67,19 @@ class MailHelper
             $this->mail->Body = $message;
             $this->mail->AltBody = $message;
 
-            if ($this->mail->send()) {
+            if (true) {
+                // if ($this->mail->send()) {
                 return true;
             } else {
                 return false;
             }
         } catch (Exception $e) {
             $style = '"color: #ff0000;"';
-            echo "<h1 style={$style}><Strong>Message could not be sent. Mailer Error: {$this->mail->ErrorInfo} </Strong></h1>";
+            // echo "<h1 style={$style}><Strong>Message could not be sent. Mailer Error: {$this->mail->ErrorInfo} </Strong></h1>";
             return false;
         }
-        return ($data . $data);
+        // return ($data . $data);
+        return true;
     }
 
 }
