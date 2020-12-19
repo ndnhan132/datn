@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Log;
 // Load Composer's autoloader
 // require 'vendor/autoload.php';
 
+if(!function_exists('test_function')) {
+    function test_function()
+    {
+        dd("Test function");
+    }
+}
+
 class MailHelper
 {
     private $mail;
