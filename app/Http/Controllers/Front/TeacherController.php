@@ -219,7 +219,12 @@ Xin trân trọng!
 EOF;
 
     try{
-        $this->mailHelper->sendEmail($recipientMail, $recipientName, $subject, $message);
+        $sendmailResult = $this->mailHelper->sendEmail($recipientMail, $recipientName, $subject, $message);
+        if ($sendmailResult) {
+            Log::debug('gui mail thanh cong');
+        }else{
+            Log::debug('gui mail that bai');
+        }
         return true;
     } catch(Exception $e){
         Log::debug('send mail fail');

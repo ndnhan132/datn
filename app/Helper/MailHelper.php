@@ -21,9 +21,9 @@ class MailHelper
     public function __construct()
     {
 
-        $this->webMail = "web.sp.nhan@gmail.com";
+        $this->webMail = "ndnhans1@gmail.com";
         $this->webMailPass = "ndnhan187539115";
-        $this->webMailName = "Web Mail";
+        $this->webMailName = "Gia Sư Đà Nẵng";
     }
 
     public function sendEmailTest($val)
@@ -58,6 +58,7 @@ class MailHelper
             } catch (Exception $e) {
                 $style = '"color: #ff0000;"';
                 // echo "<h1 style={$style}><Strong>Message could not be sent. Mailer Error: {$this->mail->ErrorInfo} </Strong></h1>";
+                Log::debug('Message could not be sent. Mailer Error connect: ' . $this->mail->ErrorInfo);
             }
 
             $this->mail->addAddress($recipientMail, $recipientName); // Add a recipient
@@ -67,8 +68,8 @@ class MailHelper
             $this->mail->Body = $message;
             $this->mail->AltBody = $message;
 
-            if (true) {
-                // if ($this->mail->send()) {
+            // if (true) {
+            if ($this->mail->send()) {
                 return true;
             } else {
                 return false;
@@ -76,6 +77,7 @@ class MailHelper
         } catch (Exception $e) {
             $style = '"color: #ff0000;"';
             // echo "<h1 style={$style}><Strong>Message could not be sent. Mailer Error: {$this->mail->ErrorInfo} </Strong></h1>";
+            Log::debug('Message could not be sent. Mailer Error send: ' . $this->mail->ErrorInfo);
             return false;
         }
         // return ($data . $data);

@@ -2,7 +2,13 @@
     <tbody>
         <tr><td class="pr-3" COLSPAN="2">E-mail</td><td colspan="5"> {{ $teacher->email  ?? 'Chưa cập nhật'}}</td></tr>
         <tr><td class="pr-3" COLSPAN="2">Họ & tên</td><td colspan="5"> {{ $teacher->name ?? 'Chưa cập nhật' }}</td></tr>
-        <tr><td class="pr-3" COLSPAN="2">Giới tính</td><td colspan="5"> {{ $teacher->is_male ? 'Nam' : 'Nữ' }}</td></tr>
+        <tr><td class="pr-3" COLSPAN="2">Giới tính</td>
+            @if (isset($teacher->is_male))
+            <td colspan="5">{{ $teacher->is_male ? 'Nam' : 'Nữ' }}</td>
+            @else
+            <td colspan="5">Chưa cập nhật</td>
+            @endif
+        </tr>
         <tr><td class="pr-3" COLSPAN="2">Điện thoại</td><td colspan="5"> {{ $teacher->phone  ?? 'Chưa cập nhật'}}</td></tr>
         <tr><td class="pr-3" COLSPAN="2">Năm sinh</td><td colspan="5"> {{ $teacher->year_of_birth ?? 'Chưa cập nhật' }}</td></tr>
         <tr><td class="pr-3" COLSPAN="2">Cmnd</td><td colspan="5"> {{ $teacher->identity_card ?? 'Chưa cập nhật' }}</td></tr>
