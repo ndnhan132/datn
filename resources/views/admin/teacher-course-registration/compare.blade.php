@@ -77,9 +77,9 @@
       <div>
           <div class="w-100 text-right pt-3">
 
-            <button class="btn btn-sm btn-success px-3 btn-confirm" data-registration-id="{{ $registration->id }}" data-status="{{ \App\Models\RegistrationStatus::RECEIVED_NAME }}"  data-course-id="{{ $course->id }}">
+            {{-- <button class="btn btn-sm btn-success px-3 btn-confirm" data-registration-id="{{ $registration->id }}" data-status="{{ \App\Models\RegistrationStatus::RECEIVED_NAME }}"  data-course-id="{{ $course->id }}">
                     Đã nhận
-                </button>
+                </button> --}}
                 &nbsp;&nbsp;&nbsp;
                 <button class="btn btn-sm btn-primary px-3 btn-confirm" data-registration-id="{{ $registration->id }}" data-status="{{ \App\Models\RegistrationStatus::ELIGIBLE_NAME }}" data-course-id="{{ $course->id }}">
                     Đủ điều kiện

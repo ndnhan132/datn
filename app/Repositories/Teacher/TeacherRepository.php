@@ -67,8 +67,12 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
     public function confirm($teacherId, $isActive)
     {
         $teacher = $this->model->find($teacherId);
-        $teacher->flag_is_teacher = $isActive;
-        $teacher->flag_is_checked = true;
+        if($teacherId){
+            $teacher->teacher_account_status_id = \App\Models\TeacherAccountStatus::CONFIRMED_ID;
+        }
+        else{
+            $teacher->teacher_account_status_id = \App\Models\TeacherAccountStatus::INELIGIBLE_ID;
+        }
         return $teacher->save();
     }
 

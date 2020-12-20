@@ -205,11 +205,6 @@ class Teacher extends Authenticatable
     {
         // $myId = Auth::guard('teacher')->user()->id;
         $myId = $this->id;
-        // $res = $this->teacherCourseRegistrations
-        //             ->where('teacher_id', $myId)
-        //             ->where('registration_status_id', \App\Models\RegistrationStatus::RECEIVED_ID)
-        //             ->sortByDesc('id')
-        //             ->all();
         $res = $this->parentRegisters
         ->where('teacher_id', $myId)
         ->where('flag_is_confirmed', true)

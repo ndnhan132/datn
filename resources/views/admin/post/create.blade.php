@@ -119,7 +119,7 @@
     });
 
     $(document).on('change', '#input-category', function (){
-        var slug =  $(this).val();
+        var slug =  $('#input-slug').val();
         var url = slug2Url(slug);
         $(document).find('#input-url').val(url);
     });
@@ -155,7 +155,7 @@
         if(category == 'PAGE'){
             url += '/trang/';
         }else {
-            url += '/tin tuc/';
+            url += '/tin-tuc/';
         }
         url += slug + '.html';
         return url;

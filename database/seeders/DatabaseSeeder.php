@@ -328,16 +328,16 @@ class DatabaseSeeder extends Seeder
             'giới thiệu',
             'phương thức liên hệ',
             'thông báo',
+            'tuyển dụng',
             'hợp đồng gia sư',
             'hướng dẫn nhận lớp',
             'hướng dẫn đăng ký làm gia sư',
             'gia sư cần biết',
-            // 'bảng giá tham khảo',
+            'hướng dẫn thanh toán',
             'phụ huynh cần biết',
             'Chính Sách Thanh Toán',
-            'Chính Sách Nhận Lớp Dạy',
-            'Thỏa Thuận Sử Dụng',
-            'Chính Sách Bảo Mật Thông Tin',
+            'Chính Sách Nhận Lớp',
+            'Chính sách hoàn tiền',
         );
         foreach ($listPages as $value) {
             DB::table('posts')->insert([

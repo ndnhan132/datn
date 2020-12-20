@@ -1,5 +1,5 @@
 <a class="app-header__logo bg-primary" href="{{ route('front.home') }}"
-    target="_blank">Gia sư Đà Nẵng</a>
+    target="_blank">Gia Sư Đà Nẵng</a>
 <!-- Sidebar toggle button-->
 <a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
     aria-label="Hide Sidebar">

@@ -3,24 +3,20 @@
     $itemArray = array();
     $itemArray[] = array (
         'title' => 'Chính sách thanh toán',
-        'href'  => '',
+        'href'  => route('front.readPage', 'chinh-sach-thanh-toan'),
     );
     $itemArray[] = array (
-        'title' => 'chính sách nhận lớp dạy',
-        'href'  => '',
+        'title' => 'chính sách nhận lớp',
+        'href'  => route('front.readPage', 'chinh-sach-nhan-lop'),
     );
     $itemArray[] = array (
-        'title' => 'Thỏa thuận sử dụng',
-        'href'  => '',
-    );
-    $itemArray[] = array (
-        'title' => 'Chính sách bảo mật thông tin',
-        'href'  => '',
+        'title' => 'Chính sách hoàn tiền',
+        'href'  => route('front.readPage', 'chinh-sach-hoan-tien'),
     );
     @endphp
     @foreach ($itemArray as $level)
     <li class="asidebar-item">
-        <a href="" class="asidebar-link">
+        <a href="{{ $level['href'] }}" class="asidebar-link">
             {{ $level['title'] }}
         </a>
     </li>

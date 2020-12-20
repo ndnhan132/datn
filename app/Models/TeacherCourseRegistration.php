@@ -19,7 +19,8 @@ class TeacherCourseRegistration extends Model
      */
     public function isReceived()
     {
-        return $this->registration_status_id == \App\Models\RegistrationStatus::RECEIVED_ID;
+        // return $this->registration_status_id == \App\Models\RegistrationStatus::RECEIVED_ID;
+        return false;
     }
     public function isPendding()
     {
@@ -53,9 +54,9 @@ class TeacherCourseRegistration extends Model
             case \App\Models\RegistrationStatus::PENDING_ID:
                 return 'warning';
                 break;
-            case \App\Models\RegistrationStatus::RECEIVED_ID:
-                return 'success';
-                break;
+            // case \App\Models\RegistrationStatus::RECEIVED_ID:
+            //     return 'success';
+            //     break;
             case \App\Models\RegistrationStatus::ELIGIBLE_ID:
                 return 'info';
                 break;

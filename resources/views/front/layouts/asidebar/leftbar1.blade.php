@@ -2,7 +2,7 @@
     @php
     $itemArray = array();
     $itemArray[] = array (
-        'title' => 'Đăng tin tìm gia sư',
+        'title' => 'Đăng tìm gia sư',
         'href'  => route('front.getCourseRegisterPage'),
     );
     $itemArray[] = array (
