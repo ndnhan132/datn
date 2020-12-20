@@ -53,6 +53,12 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
             $fileName = time() . "." . $fileExtension;
             // $uploadPath = public_path('/uploads/post');
             $uploadPath = 'uploads/post';
+            if (app()->environment('production')) {
+                $uploadPath = 'public/uploads/post';
+            }
+            elseif (app()->environment('local')) {
+                $uploadPath = 'uploads/post';
+            }
             $request->file('image')->move($uploadPath, $fileName);
             $image = $uploadPath . '/' . $fileName;
             $post->image = $image;
@@ -80,6 +86,12 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
             $fileName = time() . "." . $fileExtension;
             // $uploadPath = public_path('/uploads/post');
             $uploadPath = 'uploads/post';
+            if (app()->environment('production')) {
+                $uploadPath = 'public/uploads/post';
+            }
+            elseif (app()->environment('local')) {
+                $uploadPath = 'uploads/post';
+            }
             $request->file('image')->move($uploadPath, $fileName);
             $image = $uploadPath . '/' . $fileName;
             $post->image = $image;

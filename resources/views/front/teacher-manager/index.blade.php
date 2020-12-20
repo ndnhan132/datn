@@ -22,7 +22,7 @@
                     <div class="profile-box- d-flex flex-wrap">
                         <div class="col-12 col-lg-3 h-100 px-0 text-center">
                             <div class="profile-box avatar">
-                                <img src="{{ asset(Auth::guard('teacher')->user()->getAvatarSrc() ?? '/image/noimage.jpg') }}" alt="" class="img-thumbnail">
+                                <img src="{{ asset_public_env(Auth::guard('teacher')->user()->getAvatarSrc() ?? '/image/noimage.jpg') }}" alt="" class="img-thumbnail">
                             </div>
                         </div>
                         <div class="col profile-box ml-lg-3">

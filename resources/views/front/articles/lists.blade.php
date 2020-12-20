@@ -1,7 +1,7 @@
 @foreach ($articles as $item)
     <article class="news-item">
         <div class="w-100 d-flex">
-            <div class="news-img col-lg-4 col-md-4 col-sm-4 col-4">
+            <div class="news-img col-lg-5 col-md-4 col-sm-4 col-4 col-xl-4 pr-0 pr-sm-3">
                 <a href="">
                     @if ($item->image)
                     <img src="{{ asset_public_env($item->image) }}" alt="@" class="img-fluid">
@@ -10,7 +10,7 @@
                     @endif
                 </a>
             </div>
-            <div class="col-lg-8 col-md-8 col-sm-8 col-8">
+            <div class="col-lg-7 col-md-8 col-sm-8 col-8 col-xl-8">
                 <a href="{{ route('front.readNews', $item->slug) }}" class="news-title">
                     <h2 class="text-truncate text_georgia">{{ $item->title ? ucfirst($item->title) : ''}}</h2>
                 </a>

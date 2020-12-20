@@ -425,7 +425,7 @@ $(function () {
                     if (data.success && data.data) {
                         $('.new-course-form input[name=course_id]').val(data.data.id);
                         $('.new-course-form input[name=tuition_per_session]').val(data.data.tuition_per_session);
-                        $('.new-course-form select[name="session_per_week"]').append('<option value="' + data.data.session_per_week + '">' + data.data.session_per_week + '</option>');
+                        $('.new-course-form select[name="session_per_week"]').empty().append('<option value="' + data.data.session_per_week + '">' + data.data.session_per_week + '</option>');
                         $('.new-course-form .coursealert').text('* Lớp đã tồn tại : chỉnh sửa');
                     }else{
                         // msgErrors();

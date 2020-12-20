@@ -55,6 +55,7 @@
 					<div class="form-group">
 						<label for="">Số buổi học mỗi tuần</label>
 						<select class="form-control" name="session_per_week" readonly>
+							<option value="3">3</option>
 						</select>
 					  </div>
 					  <div class="form-group">
