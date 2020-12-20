@@ -57,12 +57,27 @@ class TeacherCourseRegistrationRepository extends BaseRepository implements Teac
         return $this->model->where('teacher_id', '=', $teacherId)->orderBy('id', 'DESC')->get();
     }
 
-    public function pagination($startFrom, $recordPerPage, $select_registration_status, $searchText, $searchCriterion)
+    public function pagination($startFrom, $recordPerPage, $select_registration_status, $searchText, $searchCriterion, $select_subject, $select_course_level, $teacherLevelId)
     {
         $query = $this->model;
 
         if($select_registration_status) {
             $query = $query->where('registration_status_id', $select_registration_status);
+        }
+        if($teacherLevelId) {
+            $query = $query->whereHas('teacher', function($q) use ($teacherLevelId) {
+                return $q->where('teacher_level_id', $teacherLevelId);
+            });
+        }
+        if($select_subject){
+            $query = $query->whereHas('course', function($q) use ($select_subject){
+                return $q->where('subject_id', $select_subject);
+            });
+        }
+        if($select_course_level){
+            $query = $query->whereHas('course', function($q) use ($select_course_level){
+                return $q->where('course_level_id', $select_course_level);
+            });
         }
 
         if($searchText && $searchCriterion) {

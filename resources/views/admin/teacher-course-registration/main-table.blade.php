@@ -11,10 +11,6 @@
                     }
                 @endphp
                 <option value="">Không tìm kiếm</option>
-                {{-- <option value="COURSE_FULLNAME" {{ $searchCriterion == 'COURSE_FULLNAME' ? 'selected' : '' }}>Họ tên người gửi</option>
-                <option value="COURSE_EMAIL" {{ $searchCriterion == 'COURSE_EMAIL' ? 'selected' : '' }}>Email</option>
-                <option value="COURSE_ADDRESS" {{ $searchCriterion == 'COURSE_ADDRESS' ? 'selected' : '' }}>Địa chỉ</option>
-                <option value="COURSE_PHONE" {{ $searchCriterion == 'COURSE_PHONE' ? 'selected' : '' }}>Điện thoại</option> --}}
                 <option value="TEACHER_FULLNAME" {{ $searchCriterion == 'TEACHER_FULLNAME' ? 'selected' : '' }}>Họ tên người gửi</option>
                 <option value="TEACHER_EMAIL" {{ $searchCriterion == 'TEACHER_EMAIL' ? 'selected' : '' }}>Email</option>
                 <option value="TEACHER_PHONE" {{ $searchCriterion == 'TEACHER_PHONE' ? 'selected' : '' }}>Điện thoại</option>
@@ -49,15 +45,33 @@
                         </tr>
                         <tr class="">
                             <th>mã số</th>
-                            <th class="text-left">Môn học</th>
                             <th class="text-left">
-                                khối lớp
+                                <select name="select_subject"  class="form-control select_custom_control select_subject rounded-pill mx-auto text-center">
+                                    <option value="">Môn học</option>
+                                    @foreach ($subjects as $item)
+                                    <option value="{{$item->id}}" {{ ($select_subject == $item->id) ? 'selected' : '' }}>{{ $item->display_name}}</option>
+                                    @endforeach
+                                </select>
+                            </th>
+                            <th class="text-left">
+                                <select name="select_course_level"  class="form-control select_custom_control select_course_level rounded-pill mx-auto text-center">
+                                    <option value="">Khối lớp</option>
+                                    @foreach ($courseLevels as $item)
+                                    <option value="{{$item->id}}" {{ ($select_course_level == $item->id) ? 'selected' : '' }}>{{ $item->display_name}}</option>
+                                    @endforeach
+                                </select>
                             </th>
                             <th class="text-left">
                                 Họ tên
                             </th>
                             <th class="text-left">
-                                Trình độ
+                                {{-- Trình độ --}}
+                                <select name="teacher_level" id="" class="form-control select_custom_control teacher_level rounded-pill mx-auto text-center text-capitalize">
+                                    <option value="">Trình độ</option>
+                                    @foreach ($teacherLevels as $item)
+                                    <option value="{{ $item->id }}" {{ $item->id == $teacherLevelId ? 'selected' : ''}}>{{ $item->display_name }}</option>
+                                    @endforeach
+                                </select>
                             </th>
                             <th class="text-center py-1">
                                 <select name="select_registration_status" class="form-control select_custom_control select_registration_status rounded-pill mx-auto text-center">
@@ -128,4 +142,7 @@
     @endif
 
     <input type="hidden" value="{{ $select_registration_status ?? '' }}" name="select_registration_status">
+    <input type="hidden" value="{{ $select_course_level ?? '' }}" name="select_course_level">
+    <input type="hidden" value="{{ $select_subject ?? '' }}" name="select_subject">
+    <input type="hidden" value="{{ $teacher_level ?? '0' }}" name="teacher_level">
 </form>

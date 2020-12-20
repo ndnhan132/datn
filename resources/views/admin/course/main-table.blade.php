@@ -80,19 +80,19 @@
                             </td>
                             <td class="text-center">
                                 <span>
-                                    <button class="btn- btn-sm- btn-info- btn-outline-info btn-detail  bg-white" data-type="course" data-course-id="{{ $course->id }}" data-can-confirm="yes">
+                                    <button class="btn- btn-sm- btn-info- btn-outline-info btn-detail" data-type="course" data-course-id="{{ $course->id }}" data-can-confirm="yes">
                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                     </button>
                                 </span>
 
                                 <span>
-                                    <button class="btn-outline-warning btn-course-edit bg-white" data-id="{{ $course->id }}">
+                                    <button class="btn-outline-warning btn-course-edit" data-id="{{ $course->id }}">
                                         <i class="fa fa-edit m-0"></i>
                                     </button>
                                 </span>
 
                                 <span>
-                                    <button class="btn-outline-danger btn-delete-record bg-white" data-record-id="{{ $course->id }}">
+                                    <button class="btn-outline-danger btn-delete-record" data-record-id="{{ $course->id }}">
                                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                                     </button>
                                 </span>

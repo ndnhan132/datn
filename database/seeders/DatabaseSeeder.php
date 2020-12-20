@@ -234,14 +234,23 @@ class DatabaseSeeder extends Seeder
         $courses= DB::table('courses')->get();
         $registrationStatuses = DB::table('registration_statuses')->get();
         foreach($courses as $course) {
-            foreach(range(0,7) as $index){
-                DB::table('teacher_course_registrations')->insert([
-                    'teacher_id' => $faker->randomElement($teachers->pluck('id')->toArray()),
-                    'course_id' => $course->id,
-                    'registration_status_id' => $faker->randomElement($registrationStatuses->pluck('id')->toArray()),
-                    ]);
+            $listTeacherIds = array();
+            foreach(range(0,9) as $index){
+                $teacherId = $faker->randomElement($teachers->pluck('id')->toArray());
+                if( !in_array($teacherId, $listTeacherIds)) {
+                    $listTeacherIds[] = $teacherId;
                 }
             }
+            foreach($listTeacherIds as $teacher_id) {
+                DB::table('teacher_course_registrations')->insert([
+                    'teacher_id' => $teacher_id,
+                    'course_id' => $course->id,
+                    'registration_status_id' => $faker->randomElement($registrationStatuses->pluck('id')->toArray()),
+                ]);
+            }
+        }
+
+
         foreach($teachers as $tea) {
             DB::table('images')->insert([
                 'teacher_id' => $tea->id,

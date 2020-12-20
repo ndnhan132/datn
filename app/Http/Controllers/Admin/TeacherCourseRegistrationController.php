@@ -10,6 +10,8 @@ use App\Repositories\RegistrationStatus\RegistrationStatusRepositoryInterface;
 use App\Repositories\Teacher\TeacherRepositoryInterface;
 use App\Repositories\TeacherLevel\TeacherLevelRepositoryInterface;
 use Illuminate\Support\Facades\Log;
+use App\Repositories\Subject\SubjectRepositoryInterface;
+use App\Repositories\CourseLevel\CourseLevelRepositoryInterface;
 
 class TeacherCourseRegistrationController extends Controller
 {
@@ -18,12 +20,16 @@ class TeacherCourseRegistrationController extends Controller
     protected $registrationStatusRepository;
     protected $teacherRepository;
     protected $teacherLevelRepository;
+    protected $subjectRepository;
+    protected $courseLevelRepository;
 
     public function __construct(
         TeacherCourseRegistrationRepositoryInterface $teacherCourseRegistrationRepository,
         CourseRepositoryInterface $courseRepository,
         RegistrationStatusRepositoryInterface $registrationStatusRepository,
         TeacherLevelRepositoryInterface $teacherLevelRepository,
+        SubjectRepositoryInterface $subjectRepository,
+        CourseLevelRepositoryInterface $courseLevelRepository,
         TeacherRepositoryInterface $teacherRepository
         )
     {
@@ -32,6 +38,8 @@ class TeacherCourseRegistrationController extends Controller
         $this->registrationStatusRepository = $registrationStatusRepository;
         $this->teacherRepository = $teacherRepository;
         $this->teacherLevelRepository = $teacherLevelRepository;
+        $this->subjectRepository = $subjectRepository;
+        $this->courseLevelRepository = $courseLevelRepository;
 
     }
 
@@ -66,12 +74,27 @@ class TeacherCourseRegistrationController extends Controller
             $searchCriterion = $request['search_criterion'];
         }
 
+        $select_subject = false;
+        if(isset($request['select_subject']) && is_numeric($request['select_subject'])){
+            $select_subject = strval($request['select_subject']);
+        }
+        $select_course_level = false;
+        if(isset($request['select_course_level']) && is_numeric($request['select_course_level'])){
+            $select_course_level = strval($request['select_course_level']);
+        }
+
+        $teacherLevelId = false;
+        if(isset($request['teacher_level'])){
+            $teacherLevelId = $request['teacher_level'];
+        }
+
         $res = $this->teacherCourseRegistrationRepository->pagination(
                                                                         $startFrom,
                                                                         $recordPerPage,
                                                                         $select_registration_status,
                                                                         $searchText,
-                                                                        $searchCriterion
+                                                                        $searchCriterion,
+                                                                        $select_subject, $select_course_level, $teacherLevelId
                                                                     );
         $teacherCourseRegistrations = $res['data'];
         $total = $res['total'];
@@ -82,6 +105,9 @@ class TeacherCourseRegistrationController extends Controller
         }
         $registrationStatuses = $this->registrationStatusRepository->index();
         $totalNewRegistration = $this->teacherCourseRegistrationRepository->getTotalNewRegistration();
+        $teacherLevels = $this->teacherLevelRepository->index();
+        $subjects = $this->subjectRepository->index();
+        $courseLevels = $this->courseLevelRepository->index();
         return view('admin.teacher-course-registration.main-table', compact([
                                                                             'teacherCourseRegistrations',
                                                                             'max',
@@ -93,7 +119,13 @@ class TeacherCourseRegistrationController extends Controller
                                                                             'select_registration_status',
                                                                             'totalNewRegistration',
                                                                             'searchText',
-                                                                            'searchCriterion'
+                                                                            'searchCriterion',
+                                                                            'teacherLevels',
+                                                                            'teacherLevelId',
+                                                                            'subjects',
+                                                                            'courseLevels',
+                                                                            'select_subject',
+                                                                            'select_course_level',
                                                                         ]));
     }
 
